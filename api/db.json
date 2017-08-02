@@ -1,34 +1,88 @@
 {
-  "tasks": [
+  "customers": [
     {
-      "title": "lorem ipsum dolor",
-      "complete": true,
-      "id": 1
+      "id": 1,
+      "first_name": "John",
+      "last_name": "Laboune",
+      "street_address": "29 Raven Street",
+      "postcode": "33852",
+      "city": "Plumtree",
+      "email": "email@example.com",
+      "password_hash": "$2a$06$ZL8NzPXz2XDILlHF.jIN/u5n0XZoJ2jfgD7lK61wsQuC8Ee8has5G",
+      "created_on": "20/07/2017",
+      "last_login": "23/07/2017 22:38"
     },
     {
-      "title": "sit amet",
-      "complete": true,
-      "id": 2
-    },
-    {
-      "title": "dolor ipsum lorem",
-      "complete": false,
-      "id": 3
-    },
-    {
-      "title": "random text",
-      "complete": false,
-      "id": 4
-    },
-    {
-      "title": "koonk",
-      "complete": true,
-      "id": 6
-    },
-    {
-      "title": "qwe2",
-      "complete": false,
-      "id": 8
+      "id": 2,
+      "first_name": "Mark",
+      "last_name": "Matley",
+      "street_address": "18 Denman St",
+      "postcode": "W1A 1JT",
+      "city": "Soho, London",
+      "email": "email2@example.com",
+      "password_hash": "$2a$06$nY5U9kd0ps8sbBwiHL23X.6XBe1CdKiT1em3OYpTEN6vej6DZ/kE2",
+      "created_on": "15/07/2017",
+      "last_login": "20/07/2017 17:23"
     }
-  ]
+  ],
+  "accounts": {
+    "1": [
+      {
+        "id": 1,
+        "account_type": "Personal account",
+        "account_sortcode": "56-12-34",
+        "account_number": "12345678",
+        "account_currency": "GBP",
+        "balance": 148.95
+      },
+      {
+        "id": 2,
+        "account_type": "Business account",
+        "account_sortcode": "46-43-21",
+        "account_number": "98765432",
+        "account_currency": "GBP",
+        "balance": 5401.34
+      }
+    ],
+    "2": [
+      {
+        "id":1 ,
+        "account_type": "Business account",
+        "account_sortcode": "56-12-34",
+        "account_number": "12345678",
+        "account_currency": "GBP",
+        "balance": 1248.92
+      }
+    ]
+  },
+  "transactions": {
+    "1": [
+      {
+        "id": 1,
+        "date": "24/07/2017 22:38",
+        "amount": 103.44,
+        "payee": "John Laboune",
+        "type": "Transfer",
+        "status": "In progress"
+      },
+      {
+        "id": 2,
+        "date": "24/07/2017 23:38",
+        "amount": 120.44,
+        "payee": "John Laboune",
+        "type": "Deposit",
+        "status": "Done"
+      }
+    ],
+    "2": [
+      {
+        "id": 1,
+        "date": "25/07/2017 22:38",
+        "amount": 220.44,
+        "payee": "Mark Matley",
+        "type": "Withdrawal",
+        "status": "Done"
+      }
+    ]
+  }
 }
