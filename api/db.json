@@ -25,64 +25,48 @@
       "last_login": "20/07/2017 17:23"
     }
   ],
-  "accounts": {
-    "1": [
-      {
-        "id": 1,
-        "account_type": "Personal account",
-        "account_sortcode": "56-12-34",
-        "account_number": "12345678",
-        "account_currency": "GBP",
-        "balance": 148.95
-      },
-      {
-        "id": 2,
-        "account_type": "Business account",
-        "account_sortcode": "46-43-21",
-        "account_number": "98765432",
-        "account_currency": "GBP",
-        "balance": 5401.34
-      }
-    ],
-    "2": [
-      {
-        "id":1 ,
-        "account_type": "Business account",
-        "account_sortcode": "56-12-34",
-        "account_number": "12345678",
-        "account_currency": "GBP",
-        "balance": 1248.92
-      }
-    ]
-  },
-  "transactions": {
-    "1": [
-      {
-        "id": 1,
-        "date": "24/07/2017 22:38",
-        "amount": 103.44,
-        "payee": "John Laboune",
-        "type": "Transfer",
-        "status": "In progress"
-      },
-      {
-        "id": 2,
-        "date": "24/07/2017 23:38",
-        "amount": 120.44,
-        "payee": "John Laboune",
-        "type": "Deposit",
-        "status": "Done"
-      }
-    ],
-    "2": [
-      {
-        "id": 1,
-        "date": "25/07/2017 22:38",
-        "amount": 220.44,
-        "payee": "Mark Matley",
-        "type": "Withdrawal",
-        "status": "Done"
-      }
-    ]
-  }
+  "accounts": [
+    {
+      "id": 1,
+      "account_type": "Personal account",
+      "account_sortcode": "56-12-34",
+      "account_number": "12345678",
+      "account_currency": "GBP",
+      "balance": 148.95
+    },
+    {
+      "id": 2,
+      "account_type": "Business account",
+      "account_sortcode": "46-43-21",
+      "account_number": "98765432",
+      "account_currency": "GBP",
+      "balance": 5401.34
+    }
+  ],
+  "transactions": [
+    {
+      "id": 1,
+      "date": "24/07/2017 22:38",
+      "amount": 103.44,
+      "payee": "John Laboune",
+      "type": "Transfer",
+      "status": "In progress"
+    },
+    {
+      "id": 2,
+      "date": "24/07/2017 23:38",
+      "amount": 120.44,
+      "payee": "John Laboune",
+      "type": "Deposit",
+      "status": "Done"
+    },
+    {
+      "id": 3,
+      "date": "25/07/2017 22:38",
+      "amount": 220.44,
+      "payee": "Mark Matley",
+      "type": "Withdrawal",
+      "status": "Done"
+    }
+  ]
 }
