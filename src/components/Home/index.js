@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 class Home extends Component {
    constructor() {
@@ -12,6 +13,9 @@ class Home extends Component {
          <div className="container">
             <h1>Home</h1>
             <p>We have {this.state.clients.length} clients right now!</p>
+            <Link to="/login">
+               <button>Click here to log in</button>
+            </Link>
          </div>
       );
    }
