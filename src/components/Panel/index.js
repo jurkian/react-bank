@@ -5,7 +5,7 @@ class Panel extends Component {
    constructor() {
       super();
 
-      this.state = { client: '', account: '' }
+      this.state = { client: '', account: '', income: '', expenses: '' }
    }
 
    render() {
@@ -44,14 +44,14 @@ class Panel extends Component {
             </nav>
 
             <div className="widget stats-widget">
-               <h3>Income change stats <small>(last 7 days)</small></h3>
-               <select>
-                  <option>Last 7 days</option>
-                  <option>Last 30 days</option>
+               <h3>Income change stats</h3>
+               <select onChange={this.changeStatsRange.bind(this)} ref="statsRange">
+                  <option value="7">Last 7 days</option>
+                  <option value="30">Last 30 days</option>
                </select>
 
-               <p>Income: {this.state.account.income_7_days} {this.state.account.currency}</p>
-               <p>Expenses: {this.state.account.expenses_7_days} {this.state.account.currency}</p>
+               <p>Income: {this.state.income} {this.state.account.currency}</p>
+               <p>Expenses: {this.state.expenses} {this.state.account.currency}</p>
                <p>Balance: {this.state.account.balance} {this.state.account.currency}</p>
             </div>
 
@@ -67,9 +67,27 @@ class Panel extends Component {
       .then(client => this.setState({ client }));
 
       // Get default account's info
+      // Set income and expenses stats to 7 days, by default
       fetch('http://localhost:3001/accounts/1')
       .then(res => res.json())
-      .then(account => this.setState({ account }));
+      .then(account => this.setState({ account, income: account.income_7_days, expenses: account.expenses_7_days }));
+   }
+
+   changeStatsRange() {
+      let statsRange = this.refs.statsRange.value;
+
+      if (statsRange === "7") {
+         this.setState({
+            income: this.state.account.income_7_days,
+            expenses: this.state.account.expenses_7_days
+         });
+
+      } else if (statsRange === "30") {
+         this.setState({
+            income: this.state.account.income_30_days,
+            expenses: this.state.account.expenses_30_days
+         });
+      }
    }
 }
 
