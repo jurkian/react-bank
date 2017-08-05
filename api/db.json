@@ -10,7 +10,9 @@
       "email": "email@example.com",
       "password_hash": "$2a$06$ZL8NzPXz2XDILlHF.jIN/u5n0XZoJ2jfgD7lK61wsQuC8Ee8has5G",
       "created_on": "20/07/2017",
-      "last_login": "23/07/2017 22:38"
+      "last_login": "23/07/2017 22:38",
+      "messages_no": 5,
+      "cards_no": 2
     },
     {
       "id": 2,
@@ -22,7 +24,9 @@
       "email": "email2@example.com",
       "password_hash": "$2a$06$nY5U9kd0ps8sbBwiHL23X.6XBe1CdKiT1em3OYpTEN6vej6DZ/kE2",
       "created_on": "15/07/2017",
-      "last_login": "20/07/2017 17:23"
+      "last_login": "20/07/2017 17:23",
+      "messages_no": 5,
+      "cards_no": 2
     }
   ],
   "accounts": [
@@ -32,7 +36,11 @@
       "account_sortcode": "56-12-34",
       "account_number": "12345678",
       "account_currency": "GBP",
-      "balance": 148.95
+      "balance": 148.95,
+      "income_7_days": 1250.21,
+      "expenses_7_days": 340.11,
+      "income_30_days": 3240.11,
+      "expenses_30_days": 1443.99
     },
     {
       "id": 2,
@@ -40,7 +48,11 @@
       "account_sortcode": "46-43-21",
       "account_number": "98765432",
       "account_currency": "GBP",
-      "balance": 5401.34
+      "balance": 5401.34,
+      "income_7_days": 1250.21,
+      "expenses_7_days": 340.11,
+      "income_30_days": 3240.11,
+      "expenses_30_days": 1443.99
     }
   ],
   "transactions": [
