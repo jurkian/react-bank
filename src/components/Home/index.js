@@ -5,7 +5,7 @@ class Home extends Component {
    constructor() {
       super();
 
-      this.state = { clients: '' };
+      this.state = { clients: '', lastClient: '' };
    }
 
    render() {
@@ -13,6 +13,12 @@ class Home extends Component {
          <div className="container">
             <h1>Home</h1>
             <p>We have {this.state.clients.length} clients right now!</p>
+            <p>
+               {`Our last user is
+                  ${this.state.lastClient.first_name} ${this.state.lastClient.last_name}
+                  from ${this.state.lastClient.city}`}
+            </p>
+
             <Link to="/login">
                <button>Click here to log in</button>
             </Link>
@@ -24,7 +30,10 @@ class Home extends Component {
       fetch('http://localhost:3001/clients')
       .then(res => res.json())
       .then(clients => {
-         this.setState({ clients });
+         this.setState({
+            clients,
+            lastClient: clients[clients.length - 1]
+         });
       });
    }
 
