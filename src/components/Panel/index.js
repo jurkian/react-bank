@@ -5,7 +5,7 @@ class Panel extends Component {
    constructor() {
       super();
 
-      this.state = { client: '', accountInfo: '' }
+      this.state = { client: '', account: '' }
    }
 
    render() {
@@ -50,9 +50,9 @@ class Panel extends Component {
                   <option>Last 30 days</option>
                </select>
 
-               <p>Income: {this.state.accountInfo.income_7_days} {this.state.accountInfo.account_currency}</p>
-               <p>Expenses: {this.state.accountInfo.expenses_7_days} {this.state.accountInfo.account_currency}</p>
-               <p>Balance: {this.state.accountInfo.balance} {this.state.accountInfo.account_currency}</p>
+               <p>Income: {this.state.account.income_7_days} {this.state.account.currency}</p>
+               <p>Expenses: {this.state.account.expenses_7_days} {this.state.account.currency}</p>
+               <p>Balance: {this.state.account.balance} {this.state.account.currency}</p>
             </div>
 
          </div>
@@ -69,7 +69,7 @@ class Panel extends Component {
       // Get default account's info
       fetch('http://localhost:3001/accounts/1')
       .then(res => res.json())
-      .then(accountInfo => this.setState({ accountInfo }));
+      .then(account => this.setState({ account }));
    }
 }
 
