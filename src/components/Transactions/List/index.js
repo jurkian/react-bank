@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-class List extends Component {
+class TransactionsList extends Component {
    constructor(props) {
       super(props);
 
@@ -54,4 +54,4 @@ const TransactionEl = (props) => {
    </li>);
 }
 
-export default List;
+export default TransactionsList;
