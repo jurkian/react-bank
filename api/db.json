@@ -55,6 +55,24 @@
       "expenses_30_days": 1443.99
     }
   ],
+  "cards": [
+    {
+      "id": 1,
+      "type": "debit",
+      "expires_month": "09",
+      "expires_year": "2018",
+      "security_code": 395,
+      "balance": 148.95
+    },
+    {
+      "id": 2,
+      "type": "credit",
+      "expires_month": "12",
+      "expires_year": "2019",
+      "security_code": 823,
+      "balance": 5401.34
+    }
+  ],
   "transactions": [
     {
       "id": 1,
