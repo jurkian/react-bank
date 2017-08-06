@@ -1,8 +1,15 @@
 import React, { Component } from 'react';
+import {
+   BrowserRouter as Router,
+   Route,
+   Link
+} from 'react-router-dom';
+
+import SingleAccount from './SingleAccount/index';
 
 class Accounts extends Component {
-   constructor() {
-      super();
+   constructor(props) {
+      super(props);
 
       this.state = { accounts: [] };
    }
@@ -11,16 +18,23 @@ class Accounts extends Component {
 
       // Accounts
       const accounts = this.state.accounts
-         .map(acc => <Account key={acc.id} {...acc} />);
+         .map(acc => <AccountEl key={acc.id} {...acc} />);
 
       return (
          <div className="container">
-            <h1>Accounts</h1>
-            <p>We have {this.state.accounts.length} accounts right now!</p>
 
-            <ul>
-               {accounts}
-            </ul>
+            <Route exact path={this.props.match.url} render={() => (
+               <div className="container">
+                  <h1>Accounts</h1>
+                  <p>You have {this.state.accounts.length} accounts available</p>
+
+                  <ul>
+                     {accounts}
+                  </ul>
+               </div>
+            )} />
+
+            <Route path={`${this.props.match.url}/:accId`} component={SingleAccount} />
          </div>
       );
    }
@@ -32,10 +46,15 @@ class Accounts extends Component {
          this.setState({ accounts });
       });
    }
-
 }
 
-// Single account
-const Account = (props) => <li>{props.id}, {props.type}, {props.sortcode}, {props.number}, {props.currency}, {props.balance}</li>;
+// Single account element
+const AccountEl = (props) => {
+   return (<li>
+      <Link to={`/accounts/${props.id}`}>
+         {props.id}, {props.type}, {props.sortcode}, {props.number}, {props.currency}, {props.balance}
+      </Link>
+   </li>);
+}
 
 export default Accounts;
