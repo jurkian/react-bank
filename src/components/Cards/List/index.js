@@ -10,7 +10,7 @@ class CardsList extends Component {
 
    render() {
 
-      // Accounts
+      // Cards
       const cards = this.state.cards
          .map(card => <CardEl key={card.id} {...card} />);
 
@@ -35,7 +35,7 @@ class CardsList extends Component {
    }
 }
 
-// Single account element
+// Single card element
 const CardEl = (props) => {
    return (<li>
       <Link to={`/cards/${props.id}`}>
