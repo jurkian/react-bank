@@ -11,6 +11,7 @@ import Panel from '../Panel/index';
 import Accounts from '../Accounts/index';
 import Transactions from '../Transactions/index';
 import Cards from '../Cards/index';
+import Messages from '../Messages/index';
 import Help from '../Help/index';
 
 import './app.css';
@@ -32,6 +33,7 @@ class App extends Component {
                      <li><Link to="/accounts">Accounts</Link></li>
                      <li><Link to="/transactions">Transactions</Link></li>
                      <li><Link to="/cards">Cards</Link></li>
+                     <li><Link to="/messages">Messages</Link></li>
                      <li><Link to="/help">Help</Link></li>
                   </ul>
                </nav>
@@ -43,6 +45,7 @@ class App extends Component {
                   <Route path="/accounts" component={Accounts} />
                   <Route path="/transactions" component={Transactions} />
                   <Route path="/cards" component={Cards} />
+                  <Route path="/messages" component={Messages} />
                   <Route path="/help" component={Help} />
                </section>
 
