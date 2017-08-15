@@ -4,10 +4,10 @@ import { Link } from 'react-router-dom';
 const HeaderBar = () => {
    return (
       <div className="header-bar">
-         <div className="user-profile-nav">
+         <div className="user-profile-box">
             <Link to="/panel/profile">
-               <img src="" />
-               <span>John Kovalsky</span>
+               <img src="https://placehold.it/60x60" />
+               <span>John Laboune</span>
             </Link>
          </div>
 
