@@ -3,6 +3,7 @@ import { Route } from 'react-router-dom';
 
 import CardsList from './List/index';
 import SingleCard from './Single/index';
+import PINChange from './PINChange/index';
 
 class Cards extends Component {
    constructor(props) {
@@ -13,7 +14,8 @@ class Cards extends Component {
       return (
          <div className="container">
             <Route exact path={this.props.match.url} component={CardsList} />
-            <Route path={`${this.props.match.url}/:cardId`} component={SingleCard} />
+            <Route exact path={`${this.props.match.url}/:cardId`} component={SingleCard} />
+            <Route exact path={`${this.props.match.url}/:cardId/change-pin`} component={PINChange} />
          </div>
       );
    }

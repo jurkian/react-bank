@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 class SingleCard extends Component {
    constructor(props) {
@@ -17,6 +18,9 @@ class SingleCard extends Component {
                <li>Expires year: {this.state.singleCard.expires_year}</li>
                <li>Security code: {this.state.singleCard.security_code}</li>
                <li>Balance: {this.state.singleCard.balance}</li>
+               <li>
+                  <Link to={`/cards/${this.state.singleCard.id}/change-pin`}><button>Change PIN</button></Link>
+               </li>
             </ul>
          </div>
       );
