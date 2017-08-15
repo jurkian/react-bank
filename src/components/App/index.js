@@ -27,17 +27,17 @@ class App extends Component {
       return (
          <div className="app container">
             <Router>
-               <section className="content-area">
+               <section className="row content-area">
                   <Route exact path="/" component={Home} />
-                  <Route path="/" component={Navigation} />
-                  <Route path="/login" component={Login} />
-                  <Route path="/panel" component={Panel} />
-                  <Route path="/accounts" component={Accounts} />
-                  <Route path="/transactions" component={Transactions} />
-                  <Route path="/cards" component={Cards} />
-                  <Route path="/profile" component={Profile} />
-                  <Route path="/messages" component={Messages} />
-                  <Route path="/help" component={Help} />
+                  <Route exact path="/login" component={Login} />
+                  <Route path="/panel" component={Navigation} />
+                  <Route exact path="/panel" component={Panel} />
+                  <Route path="/panel/accounts" component={Accounts} />
+                  <Route path="/panel/transactions" component={Transactions} />
+                  <Route path="/panel/cards" component={Cards} />
+                  <Route path="/panel/profile" component={Profile} />
+                  <Route path="/panel/messages" component={Messages} />
+                  <Route path="/panel/help" component={Help} />
                </section>
             </Router>
          </div>

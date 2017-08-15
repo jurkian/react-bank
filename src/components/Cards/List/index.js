@@ -12,7 +12,7 @@ class CardsList extends Component {
 
       // Cards
       const cards = this.state.cards
-         .map(card => <CardEl key={card.id} {...card} />);
+         .map(card => <CardEl key={card.id} {...card} matchUrl={this.props.match.url} />);
 
       return (
          <div>
@@ -38,7 +38,7 @@ class CardsList extends Component {
 // Single card element
 const CardEl = (props) => {
    return (<li>
-      <Link to={`/cards/${props.id}`}>
+      <Link to={`${props.matchUrl}/${props.id}`}>
          {props.id}, {props.type}, {props.expires_month}, {props.expires_year}, {props.security_code}, {props.balance}
       </Link>
    </li>);

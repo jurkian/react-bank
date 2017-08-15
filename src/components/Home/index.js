@@ -11,7 +11,7 @@ class Home extends Component {
    render() {
       return (
          <div className="container">
-            <h1>Home</h1>
+            <h1>Welcome to React-Bank</h1>
             <p>We have {this.state.clients.length} clients right now!</p>
             <p>
                {`Our last user is

@@ -19,8 +19,8 @@ class SingleCard extends Component {
                <li>Security code: {this.state.singleCard.security_code}</li>
                <li>Balance: {this.state.singleCard.balance}</li>
                <li>
-                  <Link to={`/cards/${this.state.singleCard.id}/change-pin`}><button>Change PIN</button></Link>
-                  <Link to={`/cards/${this.state.singleCard.id}/change-limits`}><button>Change limits</button></Link>
+                  <Link to={`${this.props.match.url}/change-pin`}><button>Change PIN</button></Link>
+                  <Link to={`${this.props.match.url}/change-limits`}><button>Change limits</button></Link>
                </li>
             </ul>
          </div>

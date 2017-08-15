@@ -11,37 +11,7 @@ class Panel extends Component {
    render() {
       return (
          <div className="container">
-            <h1>Panel</h1>
-
-            <nav>
-               <ul>
-                  <li>
-                     <Link to="/accounts">
-                        <button>Go to accounts</button>
-                     </Link>
-                  </li>
-                  <li>
-                     <Link to="/transactions">
-                        <button>Go to transactions</button>
-                     </Link>
-                  </li>
-                  <li>
-                     <Link to="/cards">
-                        <button>Go to cards ({this.state.client.cards_no})</button>
-                     </Link>
-                  </li>
-                  <li>
-                     <Link to="/messages">
-                        <button>Go to messages ({this.state.client.messages_no})</button>
-                     </Link>
-                  </li>
-                  <li>
-                     <Link to="/profile">
-                        <button>Go to profile</button>
-                     </Link>
-                  </li>
-               </ul>
-            </nav>
+            <h1>Welcome {this.state.client.first_name} {this.state.client.last_name}</h1>
 
             <div className="widget stats-widget">
                <h3>Income change stats</h3>

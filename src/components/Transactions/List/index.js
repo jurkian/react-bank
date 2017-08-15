@@ -14,7 +14,7 @@ class TransactionsList extends Component {
       // Allow search for payee's name
       const transactions = this.state.transactions
          .filter(trans => trans.payee.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1)
-         .map(trans => <TransactionEl key={trans.id} {...trans} />);
+         .map(trans => <TransactionEl key={trans.id} {...trans} matchUrl={this.props.match.url} />);
 
       return (
          <div>
@@ -48,7 +48,7 @@ class TransactionsList extends Component {
 // Single transaction element
 const TransactionEl = (props) => {
    return (<li>
-      <Link to={`/transactions/${props.id}`}>
+      <Link to={`${props.matchUrl}/${props.id}`}>
          {props.id}, {props.date}, {props.payee}, {props.amount}, {props.type}, {props.status}
       </Link>
    </li>);

@@ -5,15 +5,13 @@ const Navigation = () => {
    return (
       <nav>
          <ul>
-            <li><Link to="/">Home</Link></li>
-            <li><Link to="/login">Login</Link></li>
-            <li><Link to="/panel">Panel</Link></li>
-            <li><Link to="/accounts">Accounts</Link></li>
-            <li><Link to="/transactions">Transactions</Link></li>
-            <li><Link to="/cards">Cards</Link></li>
-            <li><Link to="/profile">Profile</Link></li>
-            <li><Link to="/messages">Messages</Link></li>
-            <li><Link to="/help">Help</Link></li>
+            <li><Link to="/panel">Home</Link></li>
+            <li><Link to="/panel/accounts">Accounts</Link></li>
+            <li><Link to="/panel/transactions">Transactions</Link></li>
+            <li><Link to="/panel/cards">Cards</Link></li>
+            <li><Link to="/panel/profile">Profile</Link></li>
+            <li><Link to="/panel/messages">Messages</Link></li>
+            <li><Link to="/panel/help">Help</Link></li>
          </ul>
       </nav>
    );

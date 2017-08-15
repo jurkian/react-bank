@@ -12,7 +12,7 @@ class AccountsList extends Component {
 
       // Accounts
       const accounts = this.state.accounts
-         .map(acc => <AccountEl key={acc.id} {...acc} />);
+         .map(acc => <AccountEl key={acc.id} {...acc} matchUrl={this.props.match.url} />);
 
       return (
          <div>
@@ -38,7 +38,7 @@ class AccountsList extends Component {
 // Single account element
 const AccountEl = (props) => {
    return (<li>
-      <Link to={`/accounts/${props.id}`}>
+      <Link to={`${props.matchUrl}/${props.id}`}>
          {props.id}, {props.type}, {props.sortcode}, {props.number}, {props.currency}, {props.balance}
       </Link>
    </li>);

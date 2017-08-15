@@ -14,7 +14,7 @@ class MessagesList extends Component {
       // Allow search for message title
       const messages = this.state.messages
          .filter(message => message.title.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1)
-         .map(message => <MessageEl key={message.id} {...message} />);
+         .map(message => <MessageEl key={message.id} {...message} matchUrl={this.props.match.url} />);
 
       return (
          <div>
@@ -48,7 +48,7 @@ class MessagesList extends Component {
 // Single message element
 const MessageEl = (props) => {
    return (<li>
-      <Link to={`/messages/${props.id}`}>
+      <Link to={`${props.matchUrl}/${props.id}`}>
          {props.id}, {props.title}, {props.date}
       </Link>
    </li>);
