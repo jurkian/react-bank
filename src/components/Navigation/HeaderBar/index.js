@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
+import './style.css';
+
 const HeaderBar = () => {
    return (
       <div className="header-bar">

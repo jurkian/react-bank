@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
+import './style.css';
+
 const MainNavigation = () => {
    return (
       <div className="main-navigation">

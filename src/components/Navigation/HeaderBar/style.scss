@@ -1,0 +1,29 @@
+@import '../../shared/styles/mixins.scss';
+
+.header-bar {
+   display: flex;
+   justify-content: space-between;
+   margin-bottom: 40px;
+}
+
+.user-profile-box {
+   img {
+      border-radius: 50%;
+      margin-right: 12px;
+   }
+
+   span {
+
+   }
+}
+
+.other-header-links {
+   @include reset-ul();
+   display: flex;
+   justify-content: flex-end;
+   align-items: center;
+
+   li {
+      margin: 0 12px;
+   }
+}
