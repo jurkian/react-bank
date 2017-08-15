@@ -20,6 +20,7 @@ class SingleCard extends Component {
                <li>Balance: {this.state.singleCard.balance}</li>
                <li>
                   <Link to={`/cards/${this.state.singleCard.id}/change-pin`}><button>Change PIN</button></Link>
+                  <Link to={`/cards/${this.state.singleCard.id}/change-limits`}><button>Change limits</button></Link>
                </li>
             </ul>
          </div>

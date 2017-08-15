@@ -62,7 +62,10 @@
       "expires_month": "09",
       "expires_year": "2018",
       "security_code": 395,
-      "balance": 148.95
+      "pin": 1234,
+      "balance": 148.95,
+      "daily_withdrawal_limit": 1234,
+      "daily_online_limit": 5678
     },
     {
       "id": 2,
@@ -70,7 +73,10 @@
       "expires_month": "12",
       "expires_year": "2019",
       "security_code": 823,
-      "balance": 5401.34
+      "pin": 1234,
+      "balance": 5401.34,
+      "daily_withdrawal_limit": 1234,
+      "daily_online_limit": 998
     }
   ],
   "transactions": [
