@@ -13,7 +13,7 @@ class Cards extends Component {
 
    render() {
       return (
-         <div className="container">
+         <div className="col-xs-12">
             <Route exact path={this.props.match.url} component={CardsList} />
             <Route exact path={`${this.props.match.url}/:cardId`} component={SingleCard} />
             <Route exact path={`${this.props.match.url}/:cardId/change-pin`} component={PINChange} />

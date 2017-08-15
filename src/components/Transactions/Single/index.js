@@ -9,7 +9,7 @@ class SingleTransaction extends Component {
 
    render() {
       return (
-         <div>
+         <div className="well">
             <h1>{this.state.singleTrans.id}. {this.state.singleTrans.type}</h1>
             <ul>
                <li>Date: {this.state.singleTrans.date}</li>

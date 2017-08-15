@@ -9,7 +9,7 @@ class SingleAccount extends Component {
 
    render() {
       return (
-         <div>
+         <div className="well">
             <h1>{this.state.singleAcc.type}</h1>
             <ul>
                <li>Sortcode: {this.state.singleAcc.sortcode}</li>

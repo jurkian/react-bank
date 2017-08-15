@@ -21,13 +21,15 @@ class TransactionsList extends Component {
             <h1>Transactions</h1>
             <p>There are {this.state.transactions.length} finished transactions right now!</p>
 
-            <form className="search-form">
-               <input placeholder="Search for..." onChange={this.findTransaction.bind(this)} ref="search" />
+            <form onSubmit={this.handleFormSubmit.bind(this)}>
+               <div className="form-group">
+                  <input className="form-control" placeholder="Search for..." onChange={this.findTransaction.bind(this)} ref="search" />
+               </div>
             </form>
 
-            <ul>
+            <div className="list-group">
                {transactions}
-            </ul>
+            </div>
          </div>
       );
    }
@@ -43,15 +45,22 @@ class TransactionsList extends Component {
    findTransaction() {
       this.setState({ search: this.refs.search.value });
    }
+
+   handleFormSubmit(e) {
+      e.preventDefault();
+   }
 }
 
 // Single transaction element
 const TransactionEl = (props) => {
-   return (<li>
-      <Link to={`${props.matchUrl}/${props.id}`}>
-         {props.id}, {props.date}, {props.payee}, {props.amount}, {props.type}, {props.status}
+   return (
+      <Link to={`${props.matchUrl}/${props.id}`} className="list-group-item">
+         <h4 className="list-group-item-heading">{props.id}. {props.type}</h4>
+         <p className="list-group-item-text">
+            Payee: {props.payee}, date: {props.date}, amount: {props.amount}, status: {props.status}
+         </p>
       </Link>
-   </li>);
+   );
 }
 
 export default TransactionsList;

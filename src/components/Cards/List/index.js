@@ -19,9 +19,9 @@ class CardsList extends Component {
             <h1>Cards</h1>
             <p>You have {this.state.cards.length} active cards</p>
 
-            <ul>
+            <div className="list-group">
                {cards}
-            </ul>
+            </div>
          </div>
       );
    }
@@ -37,11 +37,14 @@ class CardsList extends Component {
 
 // Single card element
 const CardEl = (props) => {
-   return (<li>
-      <Link to={`${props.matchUrl}/${props.id}`}>
-         {props.id}, {props.type}, {props.expires_month}, {props.expires_year}, {props.security_code}, {props.balance}
+   return (
+      <Link to={`${props.matchUrl}/${props.id}`} className="list-group-item">
+         <h4 className="list-group-item-heading">{props.id}. {props.type} card</h4>
+         <p className="list-group-item-text">
+            Expires: {props.expires_month}/{props.expires_year}, balance: {props.balance}
+         </p>
       </Link>
-   </li>);
+   );
 }
 
 export default CardsList;

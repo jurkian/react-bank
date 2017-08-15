@@ -11,7 +11,7 @@ class Messages extends Component {
 
    render() {
       return (
-         <div className="container">
+         <div className="col-xs-12">
             <Route exact path={this.props.match.url} component={MessagesList} />
             <Route path={`${this.props.match.url}/:messageId`} component={SingleMessage} />
          </div>

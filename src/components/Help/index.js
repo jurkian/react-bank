@@ -2,34 +2,42 @@ import React from 'react';
  
 const Help = () => {
    return (
-      <div className="container">
-         <h1>Help</h1>
+      <div className="col-xs-12">
+         <h1 className="text-center">Do you need help?</h1>
+
+         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Et beatae temporibus quasi natus consectetur illum perferendis commodi neque molestiae recusandae.</p>
          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Et beatae temporibus quasi natus consectetur illum perferendis commodi neque molestiae recusandae.</p>
 
-         <section>
-            <form>
-               <p>
-                  <label htmlFor="name">Your name</label>
-                  <input id="name" type="name" name="name" placeholder="Your name..." />
-               </p>
-               <p>
-                  <label htmlFor="email">Your email</label>
-                  <input id="email" type="email" name="email" placeholder="Your email..." />
-               </p>
-               <p>
-                  <label htmlFor="subject">Subject</label>
-                  <select id="subject" name="subject">
-                     <option>Subject 1</option>
-                     <option>Subject 2</option>
-                     <option>Subject 3</option>
-                  </select>
-               </p>
+         <h2>Contact us</h2>
 
-               <p>
-                  <button>Send message</button>
-               </p>
-            </form>
-         </section>
+         <div className="row">
+            <div className="col-sm-6">
+               <form>
+                  <div className="form-group">
+                     <label htmlFor="name">Your name</label>
+                     <input type="text" id="name" className="form-control" placeholder="Your name..." />
+                  </div>
+
+                  <div className="form-group">
+                     <label htmlFor="email">Your email</label>
+                     <input type="email" id="email" className="form-control" placeholder="Your email..." />
+                  </div>
+
+                  <div className="form-group">
+                     <label htmlFor="subject">Subject</label>
+
+                     <select id="subject" className="form-control">
+                        <option>Subject 1</option>
+                        <option>Subject 2</option>
+                        <option>Subject 3</option>
+                     </select>
+                  </div>
+
+                  <button type="submit" className="btn btn-primary btn-lg btn-block">Send message</button>
+               </form>
+            </div>
+         </div>
+
       </div>
    );
 }

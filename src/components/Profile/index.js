@@ -7,25 +7,28 @@ class Profile extends Component {
 
    render() {
       return (
-         <div className="container">
+         <div className="col-sm-6 col-sm-offset-3">
             <h1>Edit your account details</h1>
 
-            <form>
-               <p>
-                  <label htmlFor="email">Your email</label>
-                  <input id="email" type="email" name="email" placeholder="Your email..." />
-               </p>
-               <p>
-                  <label htmlFor="password">Your password</label>
-                  <input id="password" type="password" name="password" placeholder="Your password..." />
-               </p>
+            <form onSubmit={this.handleFormSubmit.bind(this)}>
+               <div className="form-group">
+                  <label htmlFor="email">Change your email</label>
+                  <input type="email" id="email" name="email" className="form-control" placeholder="Your new email..." ref="newEmail" />
+               </div>
 
-               <p>
-                  <button>Save changes</button>
-               </p>
+               <div className="form-group">
+                  <label htmlFor="password">Change your password</label>
+                  <input type="password" id="password" name="password" className="form-control" placeholder="Enter new password..." />
+               </div>
+
+               <button type="submit" className="btn btn-primary btn-lg btn-block">Save changes</button>
             </form>
          </div>
       );
+   }
+
+   handleFormSubmit(e) {
+      e.preventDefault();
    }
 }
 

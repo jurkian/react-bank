@@ -9,20 +9,21 @@ class LimitsChange extends Component {
 
    render() {
       return (
-         <div>
+         <div className="col-sm-6 col-sm-offset-3">
             <h1>Limits change for {this.state.singleCard.id}. {this.state.singleCard.type} card</h1>
 
             <form onSubmit={this.handleFormSubmit.bind(this)}>
-               <p>
+               <div className="form-group">
                   <label htmlFor="daily-withdrawal-limit">Enter new daily withdrawal limit</label>
-                  <input id="daily-withdrawal-limit" type="text" name="daily-withdrawal-limit" placeholder="New daily withdrawal limit" ref="newDWL" />
-               </p>
-               <p>
-                  <label htmlFor="daily-online-limit">Enter new daily online limit</label>
-                  <input id="daily-online-limit" type="text" name="daily-online-limit" placeholder="New daily online limit" ref="newDOL" />
-               </p>
+                  <input type="text" id="daily-withdrawal-limit" name="daily-withdrawal-limit" className="form-control" placeholder="New daily withdrawal limit..." ref="newDWL" />
+               </div>
 
-               <button type="submit">Change limits</button>
+               <div className="form-group">
+                  <label htmlFor="daily-online-limit">Enter new daily online limit</label>
+                  <input type="text" id="daily-online-limit" name="daily-online-limit" className="form-control" placeholder="New daily online limit..." ref="newDOL" />
+               </div>
+
+               <button type="submit" className="btn btn-primary btn-lg btn-block">Change limits</button>
                <p className="validation-info">{this.state.validationInfo}</p>
             </form>
          </div>

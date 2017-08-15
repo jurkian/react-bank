@@ -9,12 +9,13 @@ class SingleMessage extends Component {
 
    render() {
       return (
-         <div>
+         <div className="well">
             <h1>{this.state.singleMessage.id}. {this.state.singleMessage.title}</h1>
-            <ul>
-               <li>Date: {this.state.singleMessage.date}</li>
-               <li>{this.state.singleMessage.content}</li>
-            </ul>
+            <p>Date: {this.state.singleMessage.date}</p>
+
+            <hr />
+
+            <article dangerouslySetInnerHTML={{__html: this.state.singleMessage.content}} />
          </div>
       );
    }

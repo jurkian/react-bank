@@ -19,9 +19,9 @@ class AccountsList extends Component {
             <h1>Accounts</h1>
             <p>You have {this.state.accounts.length} accounts</p>
 
-            <ul>
+            <div className="list-group">
                {accounts}
-            </ul>
+            </div>
          </div>
       );
    }
@@ -37,11 +37,14 @@ class AccountsList extends Component {
 
 // Single account element
 const AccountEl = (props) => {
-   return (<li>
-      <Link to={`${props.matchUrl}/${props.id}`}>
-         {props.id}, {props.type}, {props.sortcode}, {props.number}, {props.currency}, {props.balance}
+   return (
+      <Link to={`${props.matchUrl}/${props.id}`} className="list-group-item">
+         <h4 className="list-group-item-heading">{props.id}. {props.type}</h4>
+         <p className="list-group-item-text">
+            Sortcode: {props.sortcode}, currency: {props.currency}, balance: {props.balance} {props.currency}
+         </p>
       </Link>
-   </li>);
+   );
 }
 
 export default AccountsList;
