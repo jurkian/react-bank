@@ -1,6 +1,5 @@
 import './polyfills.js';
 
-import 'normalize.css';
 import './index.css';
 
 import React from 'react';

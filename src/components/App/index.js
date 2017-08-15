@@ -5,7 +5,10 @@ import {
    Link
 } from 'react-router-dom';
 
+import './app.css';
+
 import Home from '../Home/index';
+import Navigation from '../Navigation/index';
 import Login from '../Login/index';
 import Panel from '../Panel/index';
 import Accounts from '../Accounts/index';
@@ -15,8 +18,6 @@ import Profile from '../Profile/index';
 import Messages from '../Messages/index';
 import Help from '../Help/index';
 
-import './app.css';
-
 class App extends Component {
    constructor() {
       super();
@@ -24,24 +25,11 @@ class App extends Component {
 
    render() {
       return (
-         <Router>
-            <div className="App">
-               <nav>
-                  <ul>
-                     <li><Link to="/">Home</Link></li>
-                     <li><Link to="/login">Login</Link></li>
-                     <li><Link to="/panel">Panel</Link></li>
-                     <li><Link to="/accounts">Accounts</Link></li>
-                     <li><Link to="/transactions">Transactions</Link></li>
-                     <li><Link to="/cards">Cards</Link></li>
-                     <li><Link to="/profile">Profile</Link></li>
-                     <li><Link to="/messages">Messages</Link></li>
-                     <li><Link to="/help">Help</Link></li>
-                  </ul>
-               </nav>
-
-               <section className="container">
+         <div className="app container">
+            <Router>
+               <section className="content-area">
                   <Route exact path="/" component={Home} />
+                  <Route path="/" component={Navigation} />
                   <Route path="/login" component={Login} />
                   <Route path="/panel" component={Panel} />
                   <Route path="/accounts" component={Accounts} />
@@ -51,9 +39,8 @@ class App extends Component {
                   <Route path="/messages" component={Messages} />
                   <Route path="/help" component={Help} />
                </section>
-
-            </div>
-         </Router>
+            </Router>
+         </div>
       );
    }
 }

@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "normalize.css": "^7.0.0",
+    "bootstrap-sass": "^3.3.7",
     "promise-polyfill": "^6.0.2",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
