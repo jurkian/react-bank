@@ -10,17 +10,19 @@ class Home extends Component {
 
    render() {
       return (
-         <div className="container">
+         <div className="col-xs-12 text-center">
             <h1>Welcome to React-Bank</h1>
-            <p>We have {this.state.clients.length} clients right now!</p>
-            <p>
+            <div className="intro-text">
+               <p>We have {this.state.clients.length} clients right now!</p>
+               <p>
                {`Our last user is
-                  ${this.state.lastClient.first_name} ${this.state.lastClient.last_name}
-                  from ${this.state.lastClient.city}`}
-            </p>
+                     ${this.state.lastClient.first_name} ${this.state.lastClient.last_name}
+                     from ${this.state.lastClient.city}`}
+               </p>
+            </div>
 
             <Link to="/login">
-               <button>Click here to log in</button>
+               <button className="btn btn-primary btn-lg">Click here to log in</button>
             </Link>
          </div>
       );
