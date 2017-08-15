@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 
 class Login extends Component {
    constructor() {
@@ -8,24 +7,28 @@ class Login extends Component {
 
    render() {
       return (
-         <div className="container">
-            <h1>Log in now</h1>
+         <div className="col-xs-12 ">
+            <h1 className="text-center">Log in now</h1>
 
             <form>
-               <p>
+               <div className="form-group">
                   <label htmlFor="email">Your email</label>
-                  <input id="email" type="email" name="email" placeholder="Your email..." />
-               </p>
-               <p>
+                  <input type="email" id="email" className="form-control" id="email" placeholder="Your email..." />
+               </div>
+
+               <div className="form-group">
                   <label htmlFor="password">Your password</label>
-                  <input id="password" type="password" name="password" placeholder="Your password..." />
-               </p>
+                  <input type="password" id="password" className="form-control" id="password" placeholder="Your password..." />
+               </div>
 
+               <div className="checkbox">
+                  <label>
+                     <input type="checkbox" name="remember" /> Keep me signed in
+                  </label>
+               </div>
+
+               <button type="submit" className="btn btn-primary btn-lg btn-block">Log in now</button>
             </form>
-
-            <Link to="/panel">
-               <button>Log in now</button>
-            </Link>
          </div>
       );
    }
