@@ -10,6 +10,7 @@ import './app.css';
 import Home from '../Home/index';
 import Navigation from '../Navigation/index';
 import Login from '../Login/index';
+import Logout from '../Logout/index';
 import Panel from '../Panel/index';
 import Accounts from '../Accounts/index';
 import Transactions from '../Transactions/index';
@@ -30,6 +31,7 @@ class App extends Component {
                <section className="row content-area">
                   <Route exact path="/" component={Home} />
                   <Route exact path="/login" component={Login} />
+                  <Route exact path="/logout" component={Logout} />
                   <Route path="/panel" component={Navigation} />
                   <Route exact path="/panel" component={Panel} />
                   <Route path="/panel/accounts" component={Accounts} />

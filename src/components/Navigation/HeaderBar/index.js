@@ -16,6 +16,9 @@ const HeaderBar = () => {
          <ul className="other-header-links">
             <li>Search for...</li>
             <li>Menu</li>
+            <li>
+               <Link to="/logout">Logout</Link>
+            </li>
          </ul>
       </div>
    );
