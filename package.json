@@ -4,17 +4,18 @@
   "private": true,
   "dependencies": {
     "bootstrap-sass": "^3.3.7",
+    "jwt-decode": "^2.2.0",
     "promise-polyfill": "^6.0.2",
-    "react": "^15.5.4",
-    "react-dom": "^15.5.4",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
     "react-router-dom": "^4.1.2",
     "whatwg-fetch": "^2.0.3"
   },
   "devDependencies": {
     "node-sass": "^4.5.3",
-    "node-sass-chokidar": "0.0.1",
+    "node-sass-chokidar": "0.0.3",
     "npm-run-all": "^4.0.2",
-    "react-scripts": "1.0.7"
+    "react-scripts": "1.0.11"
   },
   "scripts": {
     "build-css": "node-sass src/ -o src/",

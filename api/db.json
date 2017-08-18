@@ -12,7 +12,8 @@
       "created_on": "20/07/2017",
       "last_login": "23/07/2017 22:38",
       "messages_no": 5,
-      "cards_no": 2
+      "cards_no": 2,
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6IkpvaG4gTGFib3VuZSIsImVtYWlsIjoiZW1haWxAZXhhbXBsZS5jb20ifQ.zVUEZd48wY1zwPHAuglWIo21ls14U9hvy-Xlbyhvoys"
     },
     {
       "id": 2,
@@ -26,7 +27,8 @@
       "created_on": "15/07/2017",
       "last_login": "20/07/2017 17:23",
       "messages_no": 5,
-      "cards_no": 2
+      "cards_no": 2,
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwibmFtZSI6Ik1hcmsgTWF0bGV5IiwiZW1haWwiOiJlbWFpbDJAZXhhbXBsZS5jb20ifQ.KdoGm7qoThOBrCsXlAMITXCF-2OuUPIb7CftGMqmaQg"
     }
   ],
   "accounts": [
