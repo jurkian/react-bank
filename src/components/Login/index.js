@@ -37,6 +37,13 @@ class Login extends Component {
       );
    }
 
+   componentDidMount() {
+      // If user logged in, redirect to panel
+      if (localStorage.getItem('user_token')) {
+         this.props.history.push('/panel');
+      }
+   }
+
    handleFormSubmit(e) {
       e.preventDefault();
 
