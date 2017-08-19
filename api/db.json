@@ -39,10 +39,24 @@
       "number": "12345678",
       "currency": "GBP",
       "balance": 148.95,
-      "income_7_days": 1250.21,
-      "expenses_7_days": 340.11,
-      "income_30_days": 3240.11,
-      "expenses_30_days": 1443.99
+      "income_expenses_7_days": [
+        { "date": "25.08.2017", "income": 2400, "expenses": 4000 },
+        { "date": "26.08.2017", "income": 1398, "expenses": 3000 },
+        { "date": "27.08.2017", "income": 9800, "expenses": 2000 },
+        { "date": "28.08.2017", "income": 3908, "expenses": 2780 },
+        { "date": "29.08.2017", "income": 4800, "expenses": 1890 },
+        { "date": "30.08.2017", "income": 3800, "expenses": 2390 },
+        { "date": "31.08.2017", "income": 4300, "expenses": 3490 }
+      ],
+      "income_expenses_30_days": [
+        { "date": "1.08.2017", "income": 500, "expenses": 2000 },
+        { "date": "6.08.2017", "income": 1000, "expenses": 2500 },
+        { "date": "11.08.2017", "income": 1345, "expenses": 3000 },
+        { "date": "16.08.2017", "income": 3908, "expenses": 2780 },
+        { "date": "21.08.2017", "income": 4800, "expenses": 1890 },
+        { "date": "26.08.2017", "income": 1399, "expenses": 150 },
+        { "date": "31.08.2017", "income": 3800, "expenses": 433 }
+      ]
     },
     {
       "id": 2,
@@ -51,10 +65,24 @@
       "number": "98765432",
       "currency": "GBP",
       "balance": 5401.34,
-      "income_7_days": 1250.21,
-      "expenses_7_days": 340.11,
-      "income_30_days": 3240.11,
-      "expenses_30_days": 1443.99
+      "income_expenses_7_days": [
+        { "date": "25.08.2017", "income": 2400, "expenses": 4000 },
+        { "date": "26.08.2017", "income": 1398, "expenses": 3000 },
+        { "date": "27.08.2017", "income": 9800, "expenses": 2000 },
+        { "date": "28.08.2017", "income": 3908, "expenses": 2780 },
+        { "date": "29.08.2017", "income": 4800, "expenses": 1890 },
+        { "date": "30.08.2017", "income": 3800, "expenses": 2390 },
+        { "date": "31.08.2017", "income": 4300, "expenses": 3490 }
+      ],
+      "income_expenses_30_days": [
+        { "date": "1.08.2017", "income": 500, "expenses": 2000 },
+        { "date": "6.08.2017", "income": 1000, "expenses": 2500 },
+        { "date": "11.08.2017", "income": 1345, "expenses": 3000 },
+        { "date": "16.08.2017", "income": 3908, "expenses": 2780 },
+        { "date": "21.08.2017", "income": 4800, "expenses": 1890 },
+        { "date": "26.08.2017", "income": 1399, "expenses": 150 },
+        { "date": "31.08.2017", "income": 3800, "expenses": 433 }
+      ]
     }
   ],
   "cards": [
