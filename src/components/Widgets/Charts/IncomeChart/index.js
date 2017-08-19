@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { AreaChart, linearGradient, XAxis, YAxis, CartesianGrid, Tooltip, Area } from 'recharts';
+import { AreaChart, linearGradient, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Area } from 'recharts';
 
 class IncomeChart extends Component {
    constructor(props) {
@@ -22,7 +22,8 @@ class IncomeChart extends Component {
             <XAxis dataKey="date" />
             <YAxis />
             <CartesianGrid strokeDasharray="3 3" />
-            <Tooltip />
+            <Tooltip separator=": " />
+            <Legend verticalAlign="top" height={36}/>
             <Area type="monotone" dataKey="income" stroke="#82ca9d" fillOpacity={1} fill="url(#colorIncome)" />
             <Area type="monotone" dataKey="expenses" stroke="#8884d8" fillOpacity={1} fill="url(#colorExpenses)" />
          </AreaChart>
