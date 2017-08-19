@@ -1,15 +1,13 @@
 .app {
    min-height: 500px;
-   display: flex;
-   justify-content: center;
-   align-items: center;
+   margin: 50px auto 30px;
    border-radius: 10px;
    background-color:  #fff;
    box-shadow: 0px 0px 65px 0px rgba(60, 108, 222, 0.25);
 }
 
 .content-area {
-   flex: 1;
+   padding: 25px;
 }
 
 @import "widget.scss";
