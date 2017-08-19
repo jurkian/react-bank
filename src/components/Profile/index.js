@@ -3,12 +3,20 @@ import React, { Component } from 'react';
 class Profile extends Component {
    constructor(props) {
       super(props);
+
+      this.state = { client: {} };
    }
 
    render() {
       return (
          <div className="col-sm-6 col-sm-offset-3">
-            <h1>Edit your account details</h1>
+            <h1>Your account details</h1>
+            <p>{this.state.client.first_name} {this.state.client.last_name}</p>
+            <p>{this.state.client.street_address}, {this.state.client.postcode} {this.state.client.city}</p>
+            <p><strong>Email: </strong> {this.state.client.email}</p>
+            <p><strong>Registered on: </strong> {this.state.client.created_on}</p>
+
+            <p>&nbsp;</p>
 
             <form onSubmit={this.handleFormSubmit.bind(this)}>
                <div className="form-group">
@@ -25,6 +33,13 @@ class Profile extends Component {
             </form>
          </div>
       );
+   }
+
+   componentDidMount() {
+      // Get logged in client info
+      fetch('http://localhost:3001/clients/1')
+      .then(res => res.json())
+      .then(client => this.setState({ client }));
    }
 
    handleFormSubmit(e) {
