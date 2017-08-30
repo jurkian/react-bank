@@ -1,0 +1,13 @@
+.module {
+   background: #fff;
+   border-radius: 9px;
+   box-shadow: 0 0 65px rgba(60, 108, 222, 0.25);
+   padding: 25px 0;
+   margin: 0 auto 20px;
+   overflow: hidden;
+
+   > * {
+      padding-left: 25px;
+      padding-right: 25px;
+   }
+}

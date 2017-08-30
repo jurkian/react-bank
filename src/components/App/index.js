@@ -26,23 +26,23 @@ class App extends Component {
 
    render() {
       return (
-         <div className="app container">
-            <Router>
-               <section className="row content-area">
-                  <Route exact path="/" component={Home} />
-                  <Route exact path="/login" component={Login} />
-                  <Route exact path="/logout" component={Logout} />
-                  <Route path="/panel" component={Navigation} />
-                  <Route exact path="/panel" component={Panel} />
-                  <Route path="/panel/accounts" component={Accounts} />
-                  <Route path="/panel/transactions" component={Transactions} />
-                  <Route path="/panel/cards" component={Cards} />
-                  <Route path="/panel/profile" component={Profile} />
-                  <Route path="/panel/messages" component={Messages} />
-                  <Route path="/panel/help" component={Help} />
-               </section>
-            </Router>
-         </div>
+         <Router>
+            <div className="app container">
+               <Route exact path="/" component={Home} />
+               <Route exact path="/login" component={Login} />
+               <Route exact path="/logout" component={Logout} />
+
+               <Route path="/panel" component={Navigation} />
+               <Route exact path="/panel" component={Panel} />
+
+               <Route path="/panel/accounts" component={Accounts} />
+               <Route path="/panel/transactions" component={Transactions} />
+               <Route path="/panel/cards" component={Cards} />
+               <Route path="/panel/profile" component={Profile} />
+               <Route path="/panel/messages" component={Messages} />
+               <Route path="/panel/help" component={Help} />
+            </div>
+         </Router>
       );
    }
 }

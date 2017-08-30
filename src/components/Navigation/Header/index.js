@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom';
 
 import './style.css';
 
-const HeaderBar = () => {
+const Header = () => {
    return (
-      <div className="header-bar">
+      <header className="navigation-header">
          <div className="user-profile-box">
             <Link to="/panel/profile">
                <img src="https://placehold.it/60x60" />
@@ -13,15 +13,11 @@ const HeaderBar = () => {
             </Link>
          </div>
 
-         <ul className="other-header-links">
-            <li>Search for...</li>
-            <li>Menu</li>
-            <li>
-               <Link to="/logout">Logout</Link>
-            </li>
+         <ul className="navigation-header-links">
+            <li><Link to="/logout">Logout</Link></li>
          </ul>
-      </div>
+      </header>
    );
 }
 
-export default HeaderBar;
+export default Header;

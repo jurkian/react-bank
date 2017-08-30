@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-import HeaderBar from './HeaderBar/index';
+import './style.css';
+
+import Header from './Header/index';
 import MainNavigation from './MainNavigation/index';
 
 class Navigation extends Component {
@@ -11,10 +13,14 @@ class Navigation extends Component {
 
    render() {
       return (
-         <nav className="col-xs-12">
-            <HeaderBar />
-            <MainNavigation />
-         </nav>
+         <div className="row">
+            <div className="col-xs-12">
+               <section className="navigation module">
+                  <Header />
+                  <MainNavigation />
+               </section>
+            </div>
+         </div>
       );
    }
    

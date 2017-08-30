@@ -1,13 +1,18 @@
 .app {
-   min-height: 500px;
    margin: 50px auto 30px;
+   padding: 25px;
    border-radius: 10px;
-   background-color:  #fff;
+   background-color:  #f5f5f5;
    box-shadow: 0px 0px 65px 0px rgba(60, 108, 222, 0.25);
 }
 
-.content-area {
-   padding: 25px;
+html, body {
+   min-height: 100%;
+}
+ 
+body {
+   margin-top: 50px;
+   margin-bottom: 50px;
 }
 
-@import "widget.scss";
+@import "module.scss";

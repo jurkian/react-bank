@@ -1,33 +1,29 @@
-@import '../../shared/styles/mixins.scss';
+@import '../../App/variables';
+@import '../../App/mixins';
 
-.main-navigation {
-   margin-bottom: 40px;
+// Main navigation
+
+.navigation nav {
    
    ul {
       @include reset-ul();
       display: flex;
-      justify-content: space-between;
+      justify-content: center;
+      flex-wrap: wrap;
    }
 
    li {
-      flex: 1;
-      margin-left: 10px;
-      margin-right: 10px;
-
-      &:first-child {
-         margin-left: 0;
-      }
-
-      &:last-child {
-         margin-right: 0;
-      }
+      flex: 0 0 110px;
+      margin: 0 10px 18px;
    }
 
    .active {
-      text-decoration: underline;
+      .main-nav-box {
+         background-image: linear-gradient(to right, $light-blue 0%, $dark-blue 100%);
 
-      .main-nav-widget {
-         opacity: 0.5;
+         i {
+            color: #fff;
+         }
       }
    }
 }
@@ -56,5 +52,13 @@
    i {
       color: #9fadb9;
       font-size: 38px;
+   }
+}
+
+@media (min-width: 530px) {
+   .navigation nav {
+      ul {
+         justify-content: space-between;
+      }
    }
 }

@@ -5,7 +5,7 @@ import './style.css';
 
 const MainNavigation = () => {
    return (
-      <div className="main-navigation">
+      <nav>
          <ul>
             <li>
                <NavLink to="/panel" exact={true}>
@@ -78,7 +78,7 @@ const MainNavigation = () => {
                </NavLink>
             </li>
          </ul>
-      </div>
+      </nav>
    );
 }
 
