@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import jwtDecode from 'jwt-decode';
 
+import loginIcon from './login-icon.png';
+
+import './style.css';
+
 class Login extends Component {
    constructor() {
       super();
@@ -10,29 +14,38 @@ class Login extends Component {
 
    render() {
       return (
-         <div className="col-xs-12">
-            <h1 className="text-center">Log in now</h1>
+         <div className="row">
+            <div className="col-xs-12">
+               <section className="login module">
+                  <section className="login-icon">
+                     <div className="icon-container">
+                        <img src={loginIcon} className="img-responsive" alt="Login icon" />
+                     </div>
+                  </section>
 
-            <form onSubmit={this.handleFormSubmit.bind(this)}>
-               <div className="form-group">
-                  <label htmlFor="email">Your email</label>
-                  <input type="email" id="email" className="form-control" placeholder="Your email..." ref="email" />
-               </div>
+                  <form className="login-form" method="post" onSubmit={this.handleFormSubmit.bind(this)}>
+                     <div>
+                        <div className="form-group">
+                           <input type="email" className="form-control login-input" placeholder="Your email..." ref="email" />
+                        </div>
+                        <div className="form-group">
+                           <input type="password" className="form-control password-input" placeholder="Your password..." ref="password" />
+                        </div>
+                        <div className="checkbox">
+                           <label>
+                              <input type="checkbox" name="remember" /> Keep me signed in
+                           </label>
+                        </div>
 
-               <div className="form-group">
-                  <label htmlFor="password">Your password</label>
-                  <input type="password" id="password" className="form-control" placeholder="Your password..." ref="password" />
-               </div>
+                        <p className="validation-info">{this.state.validationInfo}</p>
+                     </div>
 
-               <div className="checkbox">
-                  <label>
-                     <input type="checkbox" name="remember" /> Keep me signed in
-                  </label>
-               </div>
-
-               <button type="submit" className="btn btn-primary btn-lg btn-block">Log in now</button>
-               <p className="validation-info">{this.state.validationInfo}</p>
-            </form>
+                     <div className="module-single-btn">
+                        <button type="submit" className="btn btn-primary">Log in now</button>
+                     </div>
+                  </form>
+               </section>
+            </div>
          </div>
       );
    }

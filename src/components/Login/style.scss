@@ -1,0 +1,52 @@
+@import '../App/variables.scss';
+
+.login {
+   max-width: 365px;
+   padding-bottom: 0;
+}
+
+// Icon
+
+.login-icon {
+   text-align: center;
+}
+
+.icon-container {
+   display: inline-flex;
+   justify-content: center;
+   align-items: center;
+   margin: 35px 0 60px;
+   padding: 48px;
+   border-radius: 50%;
+   box-shadow: 0 0 65px $navy-box-shadow;
+   background: #fff;
+}
+
+// Form
+
+.login form {
+   padding: 0;
+
+   > div:first-child {
+      padding-left: 25px;
+      padding-right: 25px;
+   }
+}
+
+.login-input, .password-input {
+   padding-left: 44px;
+   background-position: 17px;
+   background-repeat: no-repeat;
+}
+
+.login-input {
+   background-image: url('human-icon.svg');
+}
+
+.password-input {
+   background-image: url('lock-icon.svg');
+}
+
+.checkbox {
+   margin: 20px 0;
+}

@@ -1,0 +1,16 @@
+@import 'variables.scss';
+
+// Placeholder and label colors
+
+.form-group {
+   ::placeholder, label {
+      color: $light-blue;
+   }
+}
+
+// Input, select, textarea
+
+.form-control {
+   padding: 25px 17px;
+   color: $light-blue;
+}

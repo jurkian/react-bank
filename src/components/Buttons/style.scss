@@ -1,0 +1,43 @@
+@import '../App/variables.scss';
+
+.btn-bold {
+   text-transform: uppercase;
+   font-weight: bold;
+}
+
+// Big module buttons
+
+.module-single-btn, .module-double-btn {
+   padding-left: 0;
+   padding-right: 0;
+
+   a, button {
+      background-image: linear-gradient(to right, $light-blue 0%, $dark-blue 100%);
+      border: 0;
+      border-radius: 0;
+      text-transform: uppercase;
+      text-align: center;
+   }
+}
+
+// Single module button
+
+.module-single-btn {
+   a, button {
+      width: 100%;
+      padding: 30px 8px;
+   }
+}
+
+// Double module button
+
+.module-double-btn {
+   display: flex;
+
+   a, button {
+      flex: 1;
+      padding: 25px 8px;
+      font-size: 14px;
+      font-weight: 700;
+   }
+}
