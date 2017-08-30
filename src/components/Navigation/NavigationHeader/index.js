@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import './style.css';
 
-const Header = () => {
+const NavigationHeader = () => {
    return (
       <header className="navigation-header">
          <div className="user-profile-box">
@@ -20,4 +20,4 @@ const Header = () => {
    );
 }
 
-export default Header;
+export default NavigationHeader;

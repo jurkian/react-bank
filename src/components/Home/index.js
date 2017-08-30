@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
+import HomeHeader from './HomeHeader/index';
+import HomeFeatures from './HomeFeatures/index';
+
 class Home extends Component {
    constructor() {
       super();
@@ -10,20 +13,13 @@ class Home extends Component {
 
    render() {
       return (
-         <div className="col-xs-12 text-center">
-            <h1>Welcome to React-Bank</h1>
-            <div className="intro-text">
-               <p>We have {this.state.clients.length} clients right now!</p>
-               <p>
-               {`Our last user is
-                     ${this.state.lastClient.first_name} ${this.state.lastClient.last_name}
-                     from ${this.state.lastClient.city}`}
-               </p>
+         <div className="row">
+            <div className="col-xs-12">
+               <section className="home module">
+                  <HomeHeader {...this.state} />
+                  <HomeFeatures />
+               </section>
             </div>
-
-            <Link to="/login">
-               <button className="btn btn-primary btn-lg">Click here to log in</button>
-            </Link>
          </div>
       );
    }

@@ -1,0 +1,11 @@
+@import '../App/variables';
+
+.home {
+   max-width: 500px;
+}
+
+@media (min-width: $screen-md-min) {
+   .home {
+      max-width: 900px;
+   }
+}

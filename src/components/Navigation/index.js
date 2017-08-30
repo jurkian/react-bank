@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import './style.css';
 
-import Header from './Header/index';
+import NavigationHeader from './NavigationHeader/index';
 import MainNavigation from './MainNavigation/index';
 
 class Navigation extends Component {
@@ -16,7 +16,7 @@ class Navigation extends Component {
          <div className="row">
             <div className="col-xs-12">
                <section className="navigation module">
-                  <Header />
+                  <NavigationHeader />
                   <MainNavigation />
                </section>
             </div>
