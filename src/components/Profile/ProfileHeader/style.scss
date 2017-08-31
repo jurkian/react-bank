@@ -1,0 +1,33 @@
+@import '../../App/variables.scss';
+
+.profile-header {
+   background-image: linear-gradient(to right, $light-blue 0%, $dark-blue 100%);
+   text-align: center;
+   padding-top: 40px;
+   margin-bottom: 80px;
+   
+   .profile-user-info {
+      margin-bottom: -20px;
+   }
+
+   h3 {
+      color: #fff;
+      font-size: 24px;
+      font-weight: 400;
+      margin: 0 0 10px;
+   }
+
+   p {
+      color: $light-gray;
+      font-size: 14px;
+      font-weight: 400;
+   }
+
+   img {
+      max-width: 100px;
+      border-radius: 50%;
+      border: 5px solid #fff;
+      box-shadow: 0 0 65px $navy-box-shadow;
+      transform: translateY(50%);
+   }
+}

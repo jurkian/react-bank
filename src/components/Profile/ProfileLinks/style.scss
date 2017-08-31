@@ -1,0 +1,49 @@
+@import '../../App/variables.scss';
+
+.profile-links {
+   display: flex;
+   flex-direction: column;
+   box-shadow: 0 0 65px $navy-box-shadow;
+   padding-left: 0;
+   padding-right: 0;
+
+   a {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+      padding: 15px 5px;
+      text-decoration: none;
+
+      &:hover {
+         background-image: linear-gradient(to right, $light-blue 0%, $dark-blue 100%);
+
+         i, span {
+            color: #fff;
+         }
+      }
+   }
+
+   i {
+      color: $dark-blue;
+      font-size: 40px;
+      line-height: 1;
+      margin-bottom: 10px;
+   }
+
+   span {
+      color: #c9d4eb;
+      text-transform: uppercase;
+      font-size: 14px;
+   }
+}
+
+@media (min-width: 360px) {
+   .profile-links {
+      flex-direction: row;
+
+      a {
+         padding: 30px 5px;
+      }
+   }
+}

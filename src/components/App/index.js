@@ -16,6 +16,7 @@ import Accounts from '../Accounts/index';
 import Transactions from '../Transactions/index';
 import Cards from '../Cards/index';
 import Profile from '../Profile/index';
+import ProfileChangeDetails from '../ProfileChangeDetails/index';
 import Messages from '../Messages/index';
 import Help from '../Help/index';
 
@@ -39,6 +40,7 @@ class App extends Component {
                <Route path="/panel/transactions" component={Transactions} />
                <Route path="/panel/cards" component={Cards} />
                <Route path="/panel/profile" component={Profile} />
+               <Route path="/panel/change-data" component={ProfileChangeDetails} />
                <Route path="/panel/messages" component={Messages} />
                <Route path="/panel/help" component={Help} />
             </div>

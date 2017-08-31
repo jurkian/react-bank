@@ -1,5 +1,11 @@
 import React, { Component } from 'react';
 
+import './style.css';
+
+import ProfileHeader from './ProfileHeader/index';
+import ProfileStats from './ProfileStats/index';
+import ProfileLinks from './ProfileLinks/index';
+
 class Profile extends Component {
    constructor(props) {
       super(props);
@@ -8,29 +14,20 @@ class Profile extends Component {
    }
 
    render() {
+      const links = [
+         { href: '/panel/transactions', text: 'Transactions', icon: 'ion-card' },
+         { href: '/panel/profile/change-data', text: 'Change details', icon: 'ion-android-checkbox-outline' }
+      ];
+
       return (
-         <div className="col-sm-6 col-sm-offset-3">
-            <h1>Your account details</h1>
-            <p>{this.state.client.first_name} {this.state.client.last_name}</p>
-            <p>{this.state.client.street_address}, {this.state.client.postcode} {this.state.client.city}</p>
-            <p><strong>Email: </strong> {this.state.client.email}</p>
-            <p><strong>Registered on: </strong> {this.state.client.created_on}</p>
-
-            <p>&nbsp;</p>
-
-            <form onSubmit={this.handleFormSubmit.bind(this)}>
-               <div className="form-group">
-                  <label htmlFor="email">Change your email</label>
-                  <input type="email" id="email" name="email" className="form-control" placeholder="Your new email..." ref="newEmail" />
-               </div>
-
-               <div className="form-group">
-                  <label htmlFor="password">Change your password</label>
-                  <input type="password" id="password" name="password" className="form-control" placeholder="Enter new password..." />
-               </div>
-
-               <button type="submit" className="btn btn-primary btn-lg btn-block">Save changes</button>
-            </form>
+         <div className="row">
+            <div className="col-xs-12">
+               <section className="profile module">
+                  <ProfileHeader client={this.state.client} />
+                  <ProfileStats />
+                  <ProfileLinks links={links} />
+               </section>
+            </div>
          </div>
       );
    }
@@ -40,10 +37,6 @@ class Profile extends Component {
       fetch('http://localhost:3001/clients/1')
       .then(res => res.json())
       .then(client => this.setState({ client }));
-   }
-
-   handleFormSubmit(e) {
-      e.preventDefault();
    }
 }
 
