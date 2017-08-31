@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import IncomeStats from '../Widgets/IncomeStats/index';
-import IconedList from '../IconedList/index';
+import IconedList from '../Widgets/IconedList/index';
 import SingleMessage from '../Widgets/SingleMessage/index';
 
 class Panel extends Component {
