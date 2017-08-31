@@ -1,0 +1,76 @@
+@import '../App/variables';
+@import '../App/mixins';
+
+.iconed-list {
+   max-width: 365px;
+   padding-top: 0;
+   padding-bottom: 0;
+
+   ul {
+      @include reset-ul();
+   }
+
+   li {
+      border-bottom: 1px solid #e1e9fd;
+
+      &:last-child {
+         border: 0;
+      }
+
+      & > * {
+         display: flex;
+         flex-direction: column;
+         padding: 16px 18px;
+      }
+
+      & > a { text-decoration: none; }
+
+      & > a:hover {
+         background-image: linear-gradient(to right, $light-blue 0%, $dark-blue 100%);
+
+         span, strong {
+            color: #fff;
+         }
+      }
+   }
+
+   // List title/subtitle
+
+   .list-title, .list-subtitle {
+      font-size: 14px;
+   }
+
+   .list-title {
+      color: $light-blue;
+
+      strong {
+         color: $dark-blue;
+      }
+   }
+
+   .list-subtitle {
+      color: #c9d4eb;
+   }
+}
+
+@media (min-width: 360px) {
+   .iconed-list {
+      li {
+         background: url('list-icon-image.svg') 30px no-repeat;
+
+         > * {
+            padding: 24px 18px 24px 80px;
+         }
+      }
+
+      // List types
+
+      .list-type-image {
+         background-image: url('list-icon-image.svg');
+      }
+      
+      .list-type-comment {
+         background-image: url('list-icon-comment.svg');
+      }
+   }
+}
