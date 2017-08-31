@@ -89,22 +89,28 @@
     {
       "id": 1,
       "type": "debit",
+      "number": "4866-1234-0092-8832",
       "expires_month": "09",
       "expires_year": "2018",
       "security_code": 395,
       "pin": 1234,
       "balance": 148.95,
+      "income_7_days": 2400,
+      "expenses_7_days": 297,
       "daily_withdrawal_limit": 1234,
       "daily_online_limit": 5678
     },
     {
       "id": 2,
       "type": "credit",
+      "number": "4866-1209-0092-5678",
       "expires_month": "12",
       "expires_year": "2019",
       "security_code": 823,
       "pin": 1234,
       "balance": 5401.34,
+      "income_7_days": 2400,
+      "expenses_7_days": 297,
       "daily_withdrawal_limit": 1234,
       "daily_online_limit": 998
     }

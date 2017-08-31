@@ -14,7 +14,7 @@ class SingleCard extends Component {
       return (
          <div className="row">
             <div className="col-xs-12">
-               <CardInfobox />
+               <CardInfobox {...this.state.singleCard} />
 
                <div className="well">
                   <div className="row">

@@ -2,13 +2,13 @@ import React from 'react';
 
 import './style.css';
 
-const CardDetails = () => {
+const CardDetails = (props) => {
    return (
       <section className="card-details">
          <div className="card-details-row">
             <div>
                <span>Card number</span>
-               <p className="big">4866-1209-0092-8832</p>
+               <p className="big">{props.number}</p>
             </div>
          </div>
 
@@ -19,7 +19,7 @@ const CardDetails = () => {
             </div>
             <div>
                <span>Expiration date</span>
-               <p>January 2022</p>
+               <p>{props.expires_month} / {props.expires_year}</p>
             </div>
          </div>
       </section>

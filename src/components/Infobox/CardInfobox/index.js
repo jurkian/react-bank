@@ -13,11 +13,17 @@ const CardInfobox = (props) => {
       <section className="infobox card-infobox module">
          <header>
             <CardLogos type="visa" />
-            <CardDetails />
+            <CardDetails
+               number={props.number}
+               expires_month={props.expires_month}
+               expires_year={props.expires_year} />
          </header>
 
          <AccountName />
-         <AccountSummary />
+         <AccountSummary
+            balance={props.balance} 
+            income_7_days={props.income_7_days}
+            expenses_7_days={props.expenses_7_days} />
       </section>
    );
 }
