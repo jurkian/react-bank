@@ -1,5 +1,6 @@
 import React from 'react';
 
+import '../style.css';
 import './style.css';
 
 import CardLogos from '../CardLogos/index';
@@ -9,7 +10,7 @@ import AccountSummary from '../AccountSummary/index';
 
 const CardInfobox = (props) => {
    return (
-      <section className="account-infobox module">
+      <section className="infobox card-infobox module">
          <header>
             <CardLogos type="visa" />
             <CardDetails />
