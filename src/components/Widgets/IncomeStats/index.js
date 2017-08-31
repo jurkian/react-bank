@@ -10,7 +10,8 @@ class IncomeStats extends Component {
 
    render() {
       return (
-         <div className="widget stats-widget">
+
+         <section className="module stats-widget">
             <h3>Income change stats</h3>
             <p><strong>Account: </strong> {this.state.account.id} {this.state.account.type}</p>
             <p><strong>Balance: </strong> {this.state.account.balance} {this.state.account.currency}</p>
@@ -21,7 +22,7 @@ class IncomeStats extends Component {
             </select>
 
             <IncomeChart data={this.state.chartData} />
-         </div>
+         </section>
       );
    }
 

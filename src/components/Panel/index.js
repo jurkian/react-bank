@@ -18,7 +18,7 @@ class Panel extends Component {
 
    render() {
       return (
-         <div className="container">
+         <div>
             <h1>Welcome {this.state.client.first_name} {this.state.client.last_name}</h1>
             <div className="row">
                <div className="col-xs-8">
