@@ -1,0 +1,65 @@
+@import '../../App/variables.scss';
+
+.account-summary {
+
+}
+
+.account-summary-boxes,
+.account-summary-total {
+   text-align: center;
+}
+
+.account-summary-boxes {
+   display: flex;
+   flex-direction: column;
+   margin: 0 auto 34px;
+
+   div {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      border-bottom: 1px solid #e7efff;
+      padding: 16px 0;
+   }
+
+   span {
+      font-size: 14px;
+      color: $light-gray;
+   }
+
+   strong {
+      font-size: 24px;
+      color: $light-blue;
+   }
+}
+
+.account-summary-total {
+   display: flex;
+   flex-direction: column;
+   margin-bottom: 30px;
+
+   span {
+      font-size: 14px;
+      color: $light-gray;
+   }
+
+   strong {
+      font-size: 36px;
+      color: $green;
+   }
+}
+
+@media (min-width: 360px) {
+   .account-summary-boxes {
+      flex-direction: row;
+
+      div {
+         padding-left: 5px;
+         padding-right: 5px;
+
+         &:first-child {
+            border-right: 1px solid #e7efff;
+         }
+      }
+   }
+}

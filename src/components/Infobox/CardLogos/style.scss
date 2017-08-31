@@ -1,0 +1,14 @@
+@import '../../App/variables.scss';
+
+// Card company info
+
+.card-logos {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   margin-bottom: 35px;
+
+   img:first-child {
+      margin-right: 10px;
+   }
+}

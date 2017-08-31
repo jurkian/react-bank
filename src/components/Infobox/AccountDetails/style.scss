@@ -1,0 +1,19 @@
+@import '../../App/variables.scss';
+
+.account-name {
+   text-align: center;
+   background-image: linear-gradient(to top, #edf3ff 0%, #ffffff 100%);
+   padding: 24px 10px 20px;
+
+   h3 {
+      font-size: 24px;
+      font-weight: 400;
+      margin: 0 0 2px;
+      color: $light-blue;
+   }
+
+   span {
+      font-size: 14px;
+      color: $light-gray;
+   }
+}
