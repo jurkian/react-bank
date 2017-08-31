@@ -1,0 +1,79 @@
+@import '../../App/variables.scss';
+
+.message {
+   max-width: 365px;
+   padding-top: 0;
+   padding-bottom: 0;
+
+   > * {
+      margin-left: 0;
+      margin-right: 0;
+   }
+}
+
+// Message header
+.message-header {
+   border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+   padding: 35px 25px;
+   margin-bottom: 35px;
+
+   h3 {
+      font-size: 18px;
+      text-align: center;
+      margin: 0 0 35px;
+   }
+}
+
+.message-sender-info {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+
+   img {
+      border-radius: 50%;
+      max-width: 82px;
+      margin-bottom: 14px;
+   }
+
+   div {
+      display: flex;
+      flex-direction: column;
+   }
+
+   span, strong {
+      font-size: 12px;
+   }
+
+   span {
+      color: #c9d4eb;
+   }
+
+   strong {
+      color: $light-blue;
+   }
+}
+
+.message article {
+   color: $light-blue;
+   font-size: 12px;
+   font-weight: 700;
+
+   padding: 0 25px;
+   margin-bottom: 35px;
+}
+
+@media (min-width: 360px) {
+   .message-header h3 {
+      text-align: left;
+   }
+
+   .message-sender-info {
+      flex-direction: row;
+
+      img {
+         margin-right: 23px;
+         margin-bottom: 0;
+         max-width: 41px;
+      }
+   }
+}
