@@ -10,8 +10,8 @@ class Panel extends Component {
       this.state = {
          client: '',
          listData: [
-            { type: '', title: '<strong>John Doe</strong> added new image', subtitle: '34 minutes ago' },
-            { type: 'image', title: '<strong>John Doe</strong> added new image', subtitle: '34 minutes ago' }
+            { type: '', href: '/panel/accounts', title: '<strong>John Doe</strong> added new image', subtitle: '34 minutes ago' },
+            { type: 'image', href: '', title: '<strong>John Doe</strong> added new image', subtitle: '34 minutes ago' }
          ]
       }
    }
