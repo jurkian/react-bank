@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 
 import loginIcon from '../Login/login-icon.png';
-
 import './style.css';
+
+import SingleModuleButton from '../Buttons/SingleModuleButton/index';
 
 class ProfileChangeDetails extends Component {
    constructor() {
@@ -34,9 +35,7 @@ class ProfileChangeDetails extends Component {
                         <p className="validation-info">{this.state.validationInfo}</p>
                      </div>
 
-                     <div className="module-single-btn">
-                        <button type="submit" className="btn btn-primary">Save changes</button>
-                     </div>
+                     <SingleModuleButton text="Save changes" type="submit" />
                   </form>
                </section>
             </div>

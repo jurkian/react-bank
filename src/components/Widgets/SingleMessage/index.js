@@ -1,6 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+import MultiModuleButtons from '../../Buttons/MultiModuleButtons/index';
+import SingleMultiButton from '../../Buttons/SingleMultiButton/index';
+
 import './style.css';
 
 const SingleMessage = (props) => {
@@ -20,10 +23,10 @@ const SingleMessage = (props) => {
 
          <article dangerouslySetInnerHTML={{__html: props.content}} />
 
-         <div className="module-double-btn">
-            <Link to="#" className="btn btn-primary">Cancel</Link>
-            <Link to="#" className="btn btn-primary">Reply</Link>
-         </div>
+         <MultiModuleButtons>
+            <SingleMultiButton text="Cancel" href="#" />
+            <SingleMultiButton text="Reply" />
+         </MultiModuleButtons>
       </section>
    );
 };

@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import SingleModuleButton from '../../Buttons/SingleModuleButton/index';
+
 class LimitsChange extends Component {
    constructor(props) {
       super(props);
@@ -23,8 +25,9 @@ class LimitsChange extends Component {
                   <input type="text" id="daily-online-limit" name="daily-online-limit" className="form-control" placeholder="New daily online limit..." ref="newDOL" />
                </div>
 
-               <button type="submit" className="btn btn-primary btn-lg btn-block">Change limits</button>
                <p className="validation-info">{this.state.validationInfo}</p>
+
+               <SingleModuleButton text="Change limits" type="submit" />
             </form>
          </div>
       );

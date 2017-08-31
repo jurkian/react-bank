@@ -1,5 +1,7 @@
 import React from 'react';
- 
+
+import SingleModuleButton from '../Buttons/SingleModuleButton/index';
+
 const Help = () => {
    return (
       <div className="col-xs-12">
@@ -33,7 +35,7 @@ const Help = () => {
                      </select>
                   </div>
 
-                  <button type="submit" className="btn btn-primary btn-lg btn-block">Send message</button>
+                  <SingleModuleButton text="Send message" type="submit" />
                </form>
             </div>
          </div>

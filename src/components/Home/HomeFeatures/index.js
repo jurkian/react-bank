@@ -1,7 +1,8 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 import './style.css';
+
+import SingleButton from '../../Buttons/SingleButton/index';
 
 const HomeHeader = () => {
    return (
@@ -16,7 +17,7 @@ const HomeHeader = () => {
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe, sequi.</p>
 
             <div className="home-cta">
-               <Link to="/login" className="btn btn-primary btn-lg">Click here to log in</Link>
+               <SingleButton text="Click here to log in" href="/login" size="lg" />
             </div>
          </section>
       </section>

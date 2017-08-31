@@ -8,6 +8,9 @@ import CardDetails from '../CardDetails/index';
 import AccountName from '../AccountName/index';
 import AccountSummary from '../AccountSummary/index';
 
+import MultiModuleButtons from '../../Buttons/MultiModuleButtons/index';
+import SingleMultiButton from '../../Buttons/SingleMultiButton/index';
+
 const CardInfobox = (props) => {
    return (
       <section className="infobox card-infobox module">
@@ -24,6 +27,11 @@ const CardInfobox = (props) => {
             balance={props.balance} 
             income_7_days={props.income_7_days}
             expenses_7_days={props.expenses_7_days} />
+
+         <MultiModuleButtons>
+            <SingleMultiButton text="Change PIN" href={`${props.currentUrl}/change-pin`} />
+            <SingleMultiButton text="Change limits" href={`${props.currentUrl}/change-limits`} />
+         </MultiModuleButtons>
       </section>
    );
 }

@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import SingleModuleButton from '../../Buttons/SingleModuleButton/index';
+
 class PINChange extends Component {
    constructor(props) {
       super(props);
@@ -23,8 +25,9 @@ class PINChange extends Component {
                   <input type="text" id="new-pin-conf" name="new-pin-conf" className="form-control" placeholder="Confirm new PIN..." required />
                </div>
 
-               <button type="submit" className="btn btn-primary btn-lg btn-block">Change PIN</button>
                <p className="validation-info">{this.state.validationInfo}</p>
+
+               <SingleModuleButton text="Change PIN" type="submit" />
             </form>
          </div>
       );

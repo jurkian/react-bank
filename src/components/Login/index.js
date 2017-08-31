@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import jwtDecode from 'jwt-decode';
 
 import loginIcon from './login-icon.png';
-
 import './style.css';
+
+import SingleModuleButton from '../Buttons/SingleModuleButton/index';
 
 class Login extends Component {
    constructor() {
@@ -40,9 +41,7 @@ class Login extends Component {
                         <p className="validation-info">{this.state.validationInfo}</p>
                      </div>
 
-                     <div className="module-single-btn">
-                        <button type="submit" className="btn btn-primary">Log in now</button>
-                     </div>
+                     <SingleModuleButton text="Log in now" type="submit" />
                   </form>
                </section>
             </div>
