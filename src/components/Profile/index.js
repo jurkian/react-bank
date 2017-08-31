@@ -16,7 +16,7 @@ class Profile extends Component {
    render() {
       const links = [
          { href: '/panel/transactions', text: 'Transactions', icon: 'ion-card' },
-         { href: '/panel/profile/change-data', text: 'Change details', icon: 'ion-android-checkbox-outline' }
+         { href: '/panel/change-details', text: 'Change details', icon: 'ion-android-checkbox-outline' }
       ];
 
       return (
