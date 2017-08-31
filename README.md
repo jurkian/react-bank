@@ -2,6 +2,12 @@
 
 Banking app built in React.
 
+Inspired by [Daily UI 30](https://symu.co/freebies/ui-kits-9/daily-ui-30-elements/) PSD files.
+
+Moved to HTML5/CSS3 using Avocode ([link to HTML/CSS repo](https://github.com/jurkian/daily-ui-30-html)).
+
+Technologies used: React, JavaScript ES6, Sass, Bootstrap 3
+
 ## How to use it?
 
 1. Install all dependencies `npm install`
