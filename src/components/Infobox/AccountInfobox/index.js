@@ -7,7 +7,7 @@ import AccountDetails from '../AccountDetails/index';
 import AccountName from '../AccountName/index';
 import AccountSummary from '../AccountSummary/index';
 
-const CardInfobox = (props) => {
+const CardInfobox = () => {
    return (
       <section className="infobox account-infobox module">
          <header>

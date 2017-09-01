@@ -1,18 +1,16 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Route } from 'react-router-dom';
 
 import TransactionsList from './List/index';
 import SingleTransaction from './Single/index';
 
-class Transactions extends Component {
-   render() {
-      return (
-         <div className="col-xs-12">
-            <Route exact path={this.props.match.url} component={TransactionsList} />
-            <Route path={`${this.props.match.url}/:transId`} component={SingleTransaction} />
-         </div>
-      );
-   }
+const Transactions = (props) => {
+   return (
+      <div className="col-xs-12">
+         <Route exact path={props.match.url} component={TransactionsList} />
+         <Route path={`${props.match.url}/:transId`} component={SingleTransaction} />
+      </div>
+   );
 }
 
 export default Transactions;
