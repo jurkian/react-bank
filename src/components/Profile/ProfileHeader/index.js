@@ -12,7 +12,7 @@ const ProfileHeader = (props) => {
             <p><strong>Registered on</strong> {props.client.created_on}</p>
          </div>
 
-         <img src="https://placehold.it/200x200" alt="John Doe profile image" />
+         <img src="https://placehold.it/200x200" alt={`${props.client.first_name} ${props.client.last_name} profile`} />
       </header>
    );
 }

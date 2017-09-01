@@ -5,10 +5,6 @@ import MessagesList from './List/index';
 import SingleMessage from './Single/index';
 
 class Messages extends Component {
-   constructor(props) {
-      super(props);
-   }
-
    render() {
       return (
          <div className="col-xs-12">

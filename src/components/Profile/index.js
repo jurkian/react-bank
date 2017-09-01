@@ -7,8 +7,8 @@ import ProfileStats from './ProfileStats/index';
 import ProfileLinks from './ProfileLinks/index';
 
 class Profile extends Component {
-   constructor(props) {
-      super(props);
+   constructor() {
+      super();
 
       this.state = { client: {} };
    }

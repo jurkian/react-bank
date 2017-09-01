@@ -7,10 +7,6 @@ import PINChange from './PINChange/index';
 import LimitsChange from './LimitsChange/index';
 
 class Cards extends Component {
-   constructor(props) {
-      super(props);
-   }
-
    render() {
       return (
          <div className="col-xs-12">

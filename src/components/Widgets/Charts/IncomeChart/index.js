@@ -2,10 +2,6 @@ import React, { Component } from 'react';
 import { AreaChart, linearGradient, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Area } from 'recharts';
 
 class IncomeChart extends Component {
-   constructor(props) {
-      super(props);
-   }
-
    render() {
       return (
          <AreaChart width={900} height={300} data={this.props.data} margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>

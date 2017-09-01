@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 class TransactionsList extends Component {
-   constructor(props) {
-      super(props);
+   constructor() {
+      super();
 
       this.state = { transactions: [], search: '' };
    }

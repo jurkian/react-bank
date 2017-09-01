@@ -5,10 +5,6 @@ import AccountsList from './List/index';
 import SingleAccount from './Single/index';
 
 class Accounts extends Component {
-   constructor(props) {
-      super(props);
-   }
-
    render() {
       return (
          <div className="col-xs-12">

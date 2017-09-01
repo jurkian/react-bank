@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
 import './style.css';
@@ -8,7 +8,7 @@ const NavigationHeader = () => {
       <header className="navigation-header">
          <div className="user-profile-box">
             <Link to="/panel/profile">
-               <img src="https://placehold.it/60x60" />
+               <img src="https://placehold.it/60x60" alt="User profile" />
                <span>John Laboune</span>
             </Link>
          </div>

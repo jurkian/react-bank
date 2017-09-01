@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 
 import CardInfobox from '../../Infobox/CardInfobox/index';
 
 class SingleCard extends Component {
-   constructor(props) {
-      super(props);
+   constructor() {
+      super();
 
       this.state = { singleCard: [] };
    }

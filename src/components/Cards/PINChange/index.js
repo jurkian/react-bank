@@ -3,8 +3,8 @@ import React, { Component } from 'react';
 import SingleModuleButton from '../../Buttons/SingleModuleButton/index';
 
 class PINChange extends Component {
-   constructor(props) {
-      super(props);
+   constructor() {
+      super();
 
       this.state = { singleCard: [], validationInfo: '' };
    }
@@ -44,7 +44,7 @@ class PINChange extends Component {
    handleFormSubmit(e) {
       e.preventDefault();
 
-      let newPin = parseInt(this.refs.newPin.value);
+      let newPin = parseInt(this.refs.newPin.value, 10);
       this.setState({ validationInfo: 'Sending...' });
 
       // TODO: create API endpoint to change PIN only

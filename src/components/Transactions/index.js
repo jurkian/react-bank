@@ -5,10 +5,6 @@ import TransactionsList from './List/index';
 import SingleTransaction from './Single/index';
 
 class Transactions extends Component {
-   constructor(props) {
-      super(props);
-   }
-
    render() {
       return (
          <div className="col-xs-12">

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 
 class SingleAccount extends Component {
-   constructor(props) {
-      super(props);
+   constructor() {
+      super();
 
       this.state = { singleAcc: [] };
    }

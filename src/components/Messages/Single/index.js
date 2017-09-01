@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 
 class SingleMessage extends Component {
-   constructor(props) {
-      super(props);
+   constructor() {
+      super();
 
       this.state = { singleMessage: [] };
    }

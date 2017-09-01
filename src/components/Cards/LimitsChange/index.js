@@ -3,8 +3,8 @@ import React, { Component } from 'react';
 import SingleModuleButton from '../../Buttons/SingleModuleButton/index';
 
 class LimitsChange extends Component {
-   constructor(props) {
-      super(props);
+   constructor() {
+      super();
 
       this.state = { singleCard: [], validationInfo: '' };
    }
@@ -47,8 +47,8 @@ class LimitsChange extends Component {
       // DWL = Daily Withdrawal Limit
       // DOL = Daily Online Limit
 
-      let newDWL = parseInt(this.refs.newDWL.value);
-      let newDOL = parseInt(this.refs.newDOL.value);
+      let newDWL = parseInt(this.refs.newDWL.value, 10);
+      let newDOL = parseInt(this.refs.newDOL.value, 10);
 
       this.setState({ validationInfo: 'Sending...' });
 

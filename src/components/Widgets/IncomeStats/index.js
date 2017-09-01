@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import IncomeChart from '../Charts/IncomeChart/index';
 
 class IncomeStats extends Component {
-   constructor(props) {
-      super(props);
+   constructor() {
+      super();
 
       this.state = { account: '', chartData: [] };
    }

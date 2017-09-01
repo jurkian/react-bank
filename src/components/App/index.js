@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import {
    BrowserRouter as Router,
-   Route,
-   Link
+   Route
 } from 'react-router-dom';
 
 import './app.css';
@@ -21,10 +20,6 @@ import Messages from '../Messages/index';
 import Help from '../Help/index';
 
 class App extends Component {
-   constructor() {
-      super();
-   }
-
    render() {
       return (
          <Router>

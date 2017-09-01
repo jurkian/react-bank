@@ -8,7 +8,7 @@ const HomeHeader = () => {
    return (
       <section className="home-features">
          <div className="home-image">
-            <img src="https://placehold.it/400x300" className="img-responsive" alt="Home image" />
+            <img src="https://placehold.it/400x300" className="img-responsive" alt="React-bank home" />
          </div>
 
          <section className="home-text">
