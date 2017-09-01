@@ -8,11 +8,13 @@ import LimitsChange from './LimitsChange/index';
 
 const Cards = (props) => {
    return (
-      <div className="col-xs-12">
-         <Route exact path={props.match.url} component={CardsList} />
-         <Route exact path={`${props.match.url}/:cardId`} component={SingleCard} />
-         <Route exact path={`${props.match.url}/:cardId/change-pin`} component={PINChange} />
-         <Route exact path={`${props.match.url}/:cardId/change-limits`} component={LimitsChange} />
+      <div className="row">
+         <div className="col-xs-12">
+            <Route exact path={props.match.url} component={CardsList} />
+            <Route exact path={`${props.match.url}/:cardId`} component={SingleCard} />
+            <Route exact path={`${props.match.url}/:cardId/change-pin`} component={PINChange} />
+            <Route exact path={`${props.match.url}/:cardId/change-limits`} component={LimitsChange} />
+         </div>
       </div>
    );
 }

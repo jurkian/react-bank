@@ -28,12 +28,18 @@ class Panel extends Component {
          <div>
             <h1>Welcome {this.state.client.first_name} {this.state.client.last_name}</h1>
             <div className="row">
-               <div className="col-xs-8">
+               <div className="col-md-8">
                   <IncomeStats />
                </div>
-               <div className="col-xs-4">
-                  <IconedList items={this.state.listData} />
-                  <SingleMessage {...this.state.messageData} />
+               <div className="col-md-4">
+                  <div className="row">
+                     <div className="col-sm-6 col-md-12">
+                        <IconedList items={this.state.listData} />
+                     </div>
+                     <div className="col-sm-6 col-md-12">
+                        <SingleMessage {...this.state.messageData} />
+                     </div>
+                  </div>
                </div>
             </div>
          </div>
