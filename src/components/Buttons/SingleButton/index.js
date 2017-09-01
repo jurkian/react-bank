@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const SingleButton = (props) => {
    const btnColor = (props.color) ? `btn-${props.color}` : 'btn-primary';
    const btnSize = (props.size) ? `btn-${props.size}` : '';
-   const btnType = (props.type) ? `type="${props.type}"` : 'button';
+   const btnType = (props.type) ? props.type : 'button';
 
    return (
       (props.href) ? (

@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const SingleMultiButton = (props) => {
-   const btnType = (props.type) ? `type="${props.type}"` : 'button';
+   const btnType = (props.type) ? props.type : 'button';
 
    return (
       (props.href) ? (

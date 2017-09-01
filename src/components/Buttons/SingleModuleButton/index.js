@@ -5,7 +5,7 @@ import '../style.css';
 import './style.css';
 
 const SingleModuleButton = (props) => {
-   const btnType = (props.type) ? `type="${props.type}"` : 'button';
+   const btnType = (props.type) ? props.type : 'button';
 
    return (
       <div className="single-module-btn">
