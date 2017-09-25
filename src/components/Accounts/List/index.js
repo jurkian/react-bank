@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 class AccountsList extends Component {
    constructor() {
@@ -45,6 +46,14 @@ const AccountEl = (props) => {
          </p>
       </Link>
    );
+}
+
+AccountEl.propTypes = {
+   id: PropTypes.number,
+   type: PropTypes.string,
+   sortcode: PropTypes.string,
+   currency: PropTypes.string,
+   balance: PropTypes.number
 }
 
 export default AccountsList;

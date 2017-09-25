@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import './style.css';
 
@@ -25,5 +26,11 @@ const CardDetails = (props) => {
       </section>
    );
 }
- 
+
+CardDetails.propTypes = {
+   number: PropTypes.string,
+   expires_month: PropTypes.string,
+   expires_year: PropTypes.string
+}
+
 export default CardDetails;

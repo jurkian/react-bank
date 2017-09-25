@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import './style.css';
 
@@ -15,6 +16,11 @@ const HomeHeader = (props) => {
          </p>
       </header>
    );
+}
+
+HomeHeader.propTypes = {
+   clients: PropTypes.array,
+   lastClient: PropTypes.object
 }
 
 export default HomeHeader;

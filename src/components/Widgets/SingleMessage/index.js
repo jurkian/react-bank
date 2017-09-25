@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import MultiModuleButtons from '../../Buttons/MultiModuleButtons/index';
 import SingleMultiButton from '../../Buttons/SingleMultiButton/index';
@@ -29,5 +30,12 @@ const SingleMessage = (props) => {
       </section>
    );
 };
+
+SingleMessage.propTypes = {
+   title: PropTypes.string,
+   sender: PropTypes.string,
+   recipient: PropTypes.string,
+   content: PropTypes.string
+}
 
 export default SingleMessage;

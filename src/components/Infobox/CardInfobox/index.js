@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import '../style.css';
 import './style.css';
@@ -34,6 +35,16 @@ const CardInfobox = (props) => {
          </MultiModuleButtons>
       </section>
    );
+}
+
+CardInfobox.propTypes = {
+   number: PropTypes.string,
+   expires_month: PropTypes.string,
+   expires_year: PropTypes.string,
+   balance: PropTypes.number,
+   income_7_days: PropTypes.number,
+   expenses_7_days: PropTypes.number,
+   currentUrl: PropTypes.string
 }
  
 export default CardInfobox;

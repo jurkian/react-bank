@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import '../style.css';
 import './style.css';
@@ -17,5 +18,11 @@ const SingleModuleButton = (props) => {
       </div>
    );
 };
+
+SingleModuleButton.propTypes = {
+   type: PropTypes.string,
+   href: PropTypes.string,
+   text: PropTypes.string
+}
 
 export default SingleModuleButton;

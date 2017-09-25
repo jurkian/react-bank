@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import './style.css';
 
@@ -22,6 +23,12 @@ const AccountSummary = (props) => {
          </section>
       </section>
    );
+}
+
+AccountSummary.propTypes = {
+   income_7_days: PropTypes.number,
+   expenses_7_days: PropTypes.number,
+   balance: PropTypes.number
 }
  
 export default AccountSummary;

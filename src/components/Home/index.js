@@ -7,7 +7,7 @@ class Home extends Component {
    constructor() {
       super();
 
-      this.state = { clients: '', lastClient: '' };
+      this.state = { clients: [], lastClient: {} };
    }
 
    render() {

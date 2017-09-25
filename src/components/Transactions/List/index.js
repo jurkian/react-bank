@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 class TransactionsList extends Component {
    constructor() {
@@ -61,6 +62,16 @@ const TransactionEl = (props) => {
          </p>
       </Link>
    );
+}
+
+TransactionEl.propTypes = {
+   matchUrl: PropTypes.string,
+   id: PropTypes.number,
+   type: PropTypes.string,
+   payee: PropTypes.string,
+   date: PropTypes.string,
+   amount: PropTypes.number,
+   status: PropTypes.string
 }
 
 export default TransactionsList;

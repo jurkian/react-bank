@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import './style.css';
 import SingleListItem from './SingleListItem/index';
@@ -21,5 +22,9 @@ const IconedList = (props) => {
       </section>
    );
 };
+
+IconedList.propTypes = {
+   items: PropTypes.array
+}
 
 export default IconedList;

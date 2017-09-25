@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import './style.css';
 
@@ -17,6 +18,10 @@ const ProfileLinks = (props) => {
    return <section className="profile-links">{links}</section>;
 }
 
+ProfileLinks.propTypes = {
+   links: PropTypes.array
+}
+
 const SingleLink = (props) => {
    return (
       <Link to={props.href}>
@@ -24,6 +29,12 @@ const SingleLink = (props) => {
          <span>{props.text}</span>
       </Link>
    );
+}
+
+SingleLink.propTypes = {
+   href: PropTypes.string,
+   icon: PropTypes.string,
+   text: PropTypes.string
 }
 
 export default ProfileLinks;

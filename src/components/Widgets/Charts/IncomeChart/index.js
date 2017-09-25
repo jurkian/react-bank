@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { AreaChart, linearGradient, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Area } from 'recharts';
 
 const IncomeChart = (props) => {
@@ -23,6 +24,10 @@ const IncomeChart = (props) => {
          <Area type="monotone" dataKey="expenses" stroke="#8884d8" fillOpacity={1} fill="url(#colorExpenses)" />
       </AreaChart>
    );
+}
+
+IncomeChart.propTypes = {
+   data: PropTypes.array
 }
 
 export default IncomeChart;

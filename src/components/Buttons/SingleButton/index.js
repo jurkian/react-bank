@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 const SingleButton = (props) => {
    const btnColor = (props.color) ? `btn-${props.color}` : 'btn-primary';
@@ -14,5 +15,13 @@ const SingleButton = (props) => {
       )
    );
 };
+
+SingleButton.propTypes = {
+   color: PropTypes.string,
+   size: PropTypes.string,
+   type: PropTypes.string,
+   href: PropTypes.string,
+   text: PropTypes.string
+}
 
 export default SingleButton;

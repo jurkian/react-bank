@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import './style.css';
 
@@ -15,6 +16,10 @@ const ProfileHeader = (props) => {
          <img src="https://placehold.it/200x200" alt={`${props.client.first_name} ${props.client.last_name} profile`} />
       </header>
    );
+}
+
+ProfileHeader.propTypes = {
+   client: PropTypes.object
 }
 
 export default ProfileHeader;

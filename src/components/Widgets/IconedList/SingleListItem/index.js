@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import ListContainer from '../ListContainer/index';
 
@@ -16,6 +17,13 @@ const SingleListItem = (props) => {
          </ListContainer>
       </li>
    );
+}
+
+SingleListItem.propTypes = {
+   type: PropTypes.string,
+   href: PropTypes.string,
+   title: PropTypes.string,
+   subtitle: PropTypes.string
 }
 
 export default SingleListItem;

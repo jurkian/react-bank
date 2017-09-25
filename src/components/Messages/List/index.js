@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 class MessagesList extends Component {
    constructor() {
@@ -61,6 +62,13 @@ const MessageEl = (props) => {
          </p>
       </Link>
    );
+}
+
+MessageEl.propTypes = {
+   matchUrl: PropTypes.string,
+   id: PropTypes.number,
+   title: PropTypes.string,
+   date: PropTypes.string
 }
 
 export default MessagesList;

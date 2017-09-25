@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 class CardsList extends Component {
    constructor() {
@@ -45,6 +46,14 @@ const CardEl = (props) => {
          </p>
       </Link>
    );
+}
+
+CardEl.propTypes = {
+   id: PropTypes.number,
+   type: PropTypes.string,
+   expires_month: PropTypes.string,
+   expires_year: PropTypes.string,
+   balance: PropTypes.number
 }
 
 export default CardsList;
