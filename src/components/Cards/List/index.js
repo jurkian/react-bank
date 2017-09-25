@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import LoadingAnimation from '../../LoadingAnimation/index';
 
 class CardsList extends Component {
    constructor() {
       super();
 
-      this.state = { cards: [] };
+      this.state = { cards: [], isFetching: true };
    }
 
    render() {
@@ -18,11 +19,17 @@ class CardsList extends Component {
       return (
          <div>
             <h1>Cards</h1>
-            <p>You have {this.state.cards.length} active cards</p>
 
-            <div className="list-group">
-               {cards}
-            </div>
+            {this.state.isFetching ? (
+               <LoadingAnimation />
+            ) : (
+               <div>
+                  <p>You have {this.state.cards.length} active cards</p>
+                  <div className="list-group">
+                     {cards}
+                  </div>
+               </div>
+            )}
          </div>
       );
    }
@@ -31,7 +38,7 @@ class CardsList extends Component {
       fetch('http://localhost:3001/cards')
       .then(res => res.json())
       .then(cards => {
-         this.setState({ cards });
+         this.setState({ cards, isFetching: false });
       });
    }
 }

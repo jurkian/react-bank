@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import LoadingAnimation from '../../LoadingAnimation/index';
 
 class TransactionsList extends Component {
    constructor() {
       super();
 
-      this.state = { transactions: [], search: '' };
+      this.state = { transactions: [], search: '', isFetching: true };
    }
 
    render() {
@@ -20,17 +21,24 @@ class TransactionsList extends Component {
       return (
          <div>
             <h1>Transactions</h1>
-            <p>There are {this.state.transactions.length} finished transactions right now!</p>
 
-            <form onSubmit={this.handleFormSubmit.bind(this)}>
-               <div className="form-group">
-                  <input className="form-control" placeholder="Search for..." onChange={this.findTransaction.bind(this)} ref="search" />
+            {this.state.isFetching ? (
+               <LoadingAnimation />
+            ) : (
+               <div>
+                  <p>There are {this.state.transactions.length} finished transactions right now!</p>
+
+                  <form onSubmit={this.handleFormSubmit.bind(this)}>
+                     <div className="form-group">
+                        <input className="form-control" placeholder="Search for..." onChange={this.findTransaction.bind(this)} ref="search" />
+                     </div>
+                  </form>
+      
+                  <div className="list-group">
+                     {transactions}
+                  </div>
                </div>
-            </form>
-
-            <div className="list-group">
-               {transactions}
-            </div>
+            )}
          </div>
       );
    }
@@ -39,7 +47,7 @@ class TransactionsList extends Component {
       fetch('http://localhost:3001/transactions')
       .then(res => res.json())
       .then(transactions => {
-         this.setState({ transactions });
+         this.setState({ transactions, isFetching: false });
       });
    }
 

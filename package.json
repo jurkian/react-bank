@@ -9,6 +9,7 @@
     "prop-types": "^15.5.10",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
+    "react-loading": "^0.1.4",
     "react-router-dom": "^4.1.2",
     "recharts": "^1.0.0-alpha.3",
     "whatwg-fetch": "^2.0.3"

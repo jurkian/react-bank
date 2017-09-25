@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import LoadingAnimation from '../../LoadingAnimation/index';
 
 class MessagesList extends Component {
    constructor() {
       super();
 
-      this.state = { messages: [], search: '' };
+      this.state = { messages: [], search: '', isFetching: true };
    }
 
    render() {
@@ -20,17 +21,24 @@ class MessagesList extends Component {
       return (
          <div>
             <h1>Messages</h1>
-            <p>There are {this.state.messages.length} messages in your box</p>
 
-            <form onSubmit={this.handleFormSubmit.bind(this)}>
-               <div className="form-group">
-                  <input className="form-control" placeholder="Search for..." onChange={this.findMessage.bind(this)} ref="search" />
+            {this.state.isFetching ? (
+               <LoadingAnimation />
+            ) : (
+               <div>
+                  <p>There are {this.state.messages.length} messages in your box</p>
+
+                  <form onSubmit={this.handleFormSubmit.bind(this)}>
+                     <div className="form-group">
+                        <input className="form-control" placeholder="Search for..." onChange={this.findMessage.bind(this)} ref="search" />
+                     </div>
+                  </form>
+
+                  <div className="list-group">
+                     {messages}
+                  </div>
                </div>
-            </form>
-
-            <div className="list-group">
-               {messages}
-            </div>
+            )}
          </div>
       );
    }
@@ -39,7 +47,7 @@ class MessagesList extends Component {
       fetch('http://localhost:3001/messages')
       .then(res => res.json())
       .then(messages => {
-         this.setState({ messages });
+         this.setState({ messages, isFetching: false });
       });
    }
 
