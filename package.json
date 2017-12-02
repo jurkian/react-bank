@@ -5,20 +5,20 @@
   "dependencies": {
     "bootstrap-sass": "^3.3.7",
     "jwt-decode": "^2.2.0",
-    "promise-polyfill": "^6.0.2",
-    "prop-types": "^15.5.10",
-    "react": "^15.6.1",
-    "react-dom": "^15.6.1",
-    "react-loading": "^0.1.4",
-    "react-router-dom": "^4.1.2",
-    "recharts": "^1.0.0-alpha.3",
+    "promise-polyfill": "^6.1.0",
+    "prop-types": "^15.6.0",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-loading": "^1.0.2",
+    "react-router-dom": "^4.2.2",
+    "recharts": "^1.0.0-beta.6",
     "whatwg-fetch": "^2.0.3"
   },
   "devDependencies": {
-    "node-sass": "^4.5.3",
+    "node-sass": "^4.7.2",
     "node-sass-chokidar": "0.0.3",
-    "npm-run-all": "^4.0.2",
-    "react-scripts": "1.0.11"
+    "npm-run-all": "^4.1.2",
+    "react-scripts": "1.0.17"
   },
   "scripts": {
     "build-css": "node-sass src/ -o src/",
