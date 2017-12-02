@@ -1,6 +1,6 @@
 import React from 'react';
 
-import SingleModuleButton from '../Buttons/SingleModuleButton/index';
+import SingleModuleButton from 'components/Buttons/SingleModuleButton/index';
 
 const Help = () => {
    return (

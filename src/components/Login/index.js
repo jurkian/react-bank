@@ -6,7 +6,7 @@ import jwtDecode from 'jwt-decode';
 import loginIcon from './login-icon.png';
 import './style.css';
 
-import SingleModuleButton from '../Buttons/SingleModuleButton/index';
+import SingleModuleButton from 'components/Buttons/SingleModuleButton/index';
 
 class Login extends Component {
    constructor() {

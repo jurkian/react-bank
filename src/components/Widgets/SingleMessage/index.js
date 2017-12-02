@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import MultiModuleButtons from '../../Buttons/MultiModuleButtons/index';
-import SingleMultiButton from '../../Buttons/SingleMultiButton/index';
+import MultiModuleButtons from 'components/Buttons/MultiModuleButtons/index';
+import SingleMultiButton from 'components/Buttons/SingleMultiButton/index';
 
 import './style.css';
 

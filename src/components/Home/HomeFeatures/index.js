@@ -2,7 +2,7 @@ import React from 'react';
 
 import './style.css';
 
-import SingleButton from '../../Buttons/SingleButton/index';
+import SingleButton from 'components/Buttons/SingleButton/index';
 
 const HomeHeader = () => {
    return (

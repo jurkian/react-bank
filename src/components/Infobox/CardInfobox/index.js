@@ -9,8 +9,8 @@ import CardDetails from '../CardDetails/index';
 import AccountName from '../AccountName/index';
 import AccountSummary from '../AccountSummary/index';
 
-import MultiModuleButtons from '../../Buttons/MultiModuleButtons/index';
-import SingleMultiButton from '../../Buttons/SingleMultiButton/index';
+import MultiModuleButtons from 'components/Buttons/MultiModuleButtons/index';
+import SingleMultiButton from 'components/Buttons/SingleMultiButton/index';
 
 const CardInfobox = (props) => {
    return (

@@ -6,18 +6,18 @@ import {
 
 import './app.css';
 
-import Home from '../Home/index';
-import Navigation from '../Navigation/index';
-import Login from '../Login/index';
-import Logout from '../Logout/index';
-import Panel from '../Panel/index';
-import Accounts from '../Accounts/index';
-import Transactions from '../Transactions/index';
-import Cards from '../Cards/index';
-import Profile from '../Profile/index';
-import ProfileChangeDetails from '../ProfileChangeDetails/index';
-import Messages from '../Messages/index';
-import Help from '../Help/index';
+import Home from 'components/Home/index';
+import Navigation from 'components/Navigation/index';
+import Login from 'components/Login/index';
+import Logout from 'components/Logout/index';
+import Panel from 'components/Panel/index';
+import Accounts from 'components/Accounts/index';
+import Transactions from 'components/Transactions/index';
+import Cards from 'components/Cards/index';
+import Profile from 'components/Profile/index';
+import ProfileChangeDetails from 'components/ProfileChangeDetails/index';
+import Messages from 'components/Messages/index';
+import Help from 'components/Help/index';
 
 const App = () => {
    return (

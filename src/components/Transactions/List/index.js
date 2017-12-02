@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import LoadingAnimation from '../../LoadingAnimation/index';
+import LoadingAnimation from 'components/LoadingAnimation/index';
 
 class TransactionsList extends Component {
    constructor() {

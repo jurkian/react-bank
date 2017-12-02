@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import CardInfobox from '../../Infobox/CardInfobox/index';
+import CardInfobox from 'components/Infobox/CardInfobox/index';
 
 class SingleCard extends Component {
    constructor() {

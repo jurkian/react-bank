@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import SingleModuleButton from '../../Buttons/SingleModuleButton/index';
+import SingleModuleButton from 'components/Buttons/SingleModuleButton/index';
 
 class PINChange extends Component {
    constructor() {

@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 
-import loginIcon from '../Login/login-icon.png';
+import loginIcon from 'components/Login/login-icon.png';
 import './style.css';
 
-import SingleModuleButton from '../Buttons/SingleModuleButton/index';
+import SingleModuleButton from 'components/Buttons/SingleModuleButton/index';
 
 class ProfileChangeDetails extends Component {
    constructor() {
