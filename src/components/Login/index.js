@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import Formsy from 'formsy-react';
+import FormsyInput from '../FormsyInput';
 import jwtDecode from 'jwt-decode';
 
 import loginIcon from './login-icon.png';
@@ -10,10 +12,28 @@ class Login extends Component {
    constructor() {
       super();
 
-      this.state = ({ validationInfo: '' })
+      this.state = ({ validationInfo: '' });
    }
 
    render() {
+      const loginValidations = {
+         validations: {
+            isEmail: true
+         },
+         validationErrors: {
+            isEmail: 'This is not a valid email'
+         }
+      }
+
+      const passwordValidations = {
+         validations: {
+            minLength: 6
+         },
+         validationErrors: {
+            minLength: 'Your password has to be at least 6 characters'
+         }
+      }
+
       return (
          <div className="row">
             <div className="col-xs-12">
@@ -24,14 +44,31 @@ class Login extends Component {
                      </div>
                   </section>
 
-                  <form className="login-form" method="post" onSubmit={this.handleFormSubmit.bind(this)}>
+                  <Formsy
+                     className="login-form"
+                     onValidSubmit={this.handleFormSubmit.bind(this)}>
+
                      <div>
                         <div className="form-group">
-                           <input type="email" className="form-control login-input" placeholder="Your email..." ref="email" />
+                           <FormsyInput
+                              name="email"
+                              className="login-input"
+                              type="email"
+                              placeholder="Your email..."
+                              {...loginValidations}
+                              required />
                         </div>
+
                         <div className="form-group">
-                           <input type="password" className="form-control password-input" placeholder="Your password..." ref="password" />
+                           <FormsyInput
+                              name="password"
+                              className="password-input"
+                              type="password"
+                              placeholder="Your password..."
+                              {...passwordValidations} 
+                              required />
                         </div>
+                        
                         <div className="checkbox">
                            <label>
                               <input type="checkbox" name="remember" /> Keep me signed in
@@ -42,7 +79,7 @@ class Login extends Component {
                      </div>
 
                      <SingleModuleButton text="Log in now" type="submit" />
-                  </form>
+                  </Formsy>
                </section>
             </div>
          </div>
@@ -56,8 +93,8 @@ class Login extends Component {
       }
    }
 
-   handleFormSubmit(e) {
-      e.preventDefault();
+   handleFormSubmit(model) {
+      const { email, password } = model;
 
       this.setState({ validationInfo: 'Sending...' });
 
@@ -66,18 +103,17 @@ class Login extends Component {
       fetch(`http://localhost:3001/clients/1`, {
          // method: 'POST',
          // body: JSON.stringify({
-         //    'email': this.refs.email.value,
-         //    'password': this.refs.password.value
+         //    'email': email,
+         //    'password': password
          // })
       })
       .then(res => res.json())
       .then(res => {
 
-         let formEmail = this.refs.email.value;
          let decodedToken = jwtDecode(res.token);
 
          // Check server response
-         if (formEmail === decodedToken.email) {
+         if (email === decodedToken.email) {
 
             // Store the token
             localStorage.setItem('user_token', res.token);
