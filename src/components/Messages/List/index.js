@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import axios from 'axios';
-import LoadingAnimation from 'components/LoadingAnimation/index';
+import AsyncLoader from 'components/AsyncLoader';
 
 class MessagesList extends Component {
    constructor() {
       super();
 
-      this.state = { messages: [], search: '', isFetching: true };
+      this.state = { messages: [], search: '', loaded: false };
    }
 
    render() {
@@ -23,23 +23,19 @@ class MessagesList extends Component {
          <div>
             <h1>Messages</h1>
 
-            {this.state.isFetching ? (
-               <LoadingAnimation />
-            ) : (
-               <div>
-                  <p>There are {this.state.messages.length} messages in your box</p>
+            <AsyncLoader loaded={this.state.loaded}>
+               <p>There are {this.state.messages.length} messages in your box</p>
 
-                  <form onSubmit={this.handleFormSubmit.bind(this)}>
-                     <div className="form-group">
-                        <input className="form-control" placeholder="Search for..." onChange={this.findMessage.bind(this)} ref="search" />
-                     </div>
-                  </form>
-
-                  <div className="list-group">
-                     {messages}
+               <form onSubmit={this.handleFormSubmit.bind(this)}>
+                  <div className="form-group">
+                     <input className="form-control" placeholder="Search for..." onChange={this.findMessage.bind(this)} ref="search" />
                   </div>
+               </form>
+
+               <div className="list-group">
+                  {messages}
                </div>
-            )}
+            </AsyncLoader>
          </div>
       );
    }
@@ -47,9 +43,8 @@ class MessagesList extends Component {
    componentDidMount() {
       axios.get('http://localhost:3001/messages')
       .then(res => res.data)
-      .then(messages => {
-         this.setState({ messages, isFetching: false });
-      });
+      .then(messages => this.setState({ messages, loaded: true }))
+      .catch(() => this.setState({ loaded: 0 }));
    }
 
    findMessage() {

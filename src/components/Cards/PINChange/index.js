@@ -1,42 +1,38 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import LoadingAnimation from 'components/LoadingAnimation/index';
+import AsyncLoader from 'components/AsyncLoader';
 import SingleModuleButton from 'components/Buttons/SingleModuleButton/index';
 
 class PINChange extends Component {
    constructor() {
       super();
 
-      this.state = { singleCard: [], validationInfo: '', isFetching: true };
+      this.state = { singleCard: [], validationInfo: '', loaded: false };
    }
 
    render() {
       return (
          <div className="col-sm-6 col-sm-offset-3">
 
-            {this.state.isFetching ? (
-               <LoadingAnimation />
-            ) : (
-               <div>
-                  <h1>PIN change for {this.state.singleCard.id}. {this.state.singleCard.type} card</h1>
+            <AsyncLoader loaded={this.state.loaded}>
+               <h1>PIN change for {this.state.singleCard.id}. {this.state.singleCard.type} card</h1>
 
-                  <form onSubmit={this.handleFormSubmit.bind(this)}>
-                     <div className="form-group">
-                        <label htmlFor="new-pin">Enter new PIN</label>
-                        <input type="text" id="new-pin" name="new-pin" className="form-control" placeholder="Enter new PIN..." ref="newPin" required />
-                     </div>
+               <form onSubmit={this.handleFormSubmit.bind(this)}>
+                  <div className="form-group">
+                     <label htmlFor="new-pin">Enter new PIN</label>
+                     <input type="text" id="new-pin" name="new-pin" className="form-control" placeholder="Enter new PIN..." ref="newPin" required />
+                  </div>
 
-                     <div className="form-group">
-                        <label htmlFor="new-pin-conf">Confirm new PIN</label>
-                        <input type="text" id="new-pin-conf" name="new-pin-conf" className="form-control" placeholder="Confirm new PIN..." required />
-                     </div>
+                  <div className="form-group">
+                     <label htmlFor="new-pin-conf">Confirm new PIN</label>
+                     <input type="text" id="new-pin-conf" name="new-pin-conf" className="form-control" placeholder="Confirm new PIN..." required />
+                  </div>
 
-                     <p className="validation-info">{this.state.validationInfo}</p>
+                  <p className="validation-info">{this.state.validationInfo}</p>
 
-                     <SingleModuleButton text="Change PIN" type="submit" />
-                  </form>
-               </div>
-            )}
+                  <SingleModuleButton text="Change PIN" type="submit" />
+               </form>
+            </AsyncLoader>
 
          </div>
       );
@@ -45,9 +41,8 @@ class PINChange extends Component {
    componentDidMount() {
       axios.get(`http://localhost:3001/cards/${this.props.match.params.cardId}`)
       .then(res => res.data)
-      .then(singleCard => {
-         this.setState({ singleCard, isFetching: false });
-      });
+      .then(singleCard => this.setState({ singleCard, loaded: true }))
+      .catch(() => this.setState({ loaded: 0 }));
    }
 
    handleFormSubmit(e) {

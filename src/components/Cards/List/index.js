@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import axios from 'axios';
-import LoadingAnimation from 'components/LoadingAnimation/index';
+import AsyncLoader from 'components/AsyncLoader';
 
 class CardsList extends Component {
    constructor() {
       super();
 
-      this.state = { cards: [], isFetching: true };
+      this.state = { cards: [], loaded: false };
    }
 
    render() {
@@ -21,16 +21,12 @@ class CardsList extends Component {
          <div>
             <h1>Cards</h1>
 
-            {this.state.isFetching ? (
-               <LoadingAnimation />
-            ) : (
-               <div>
-                  <p>You have {this.state.cards.length} active cards</p>
-                  <div className="list-group">
-                     {cards}
-                  </div>
+            <AsyncLoader loaded={this.state.loaded}>
+               <p>You have {this.state.cards.length} active cards</p>
+               <div className="list-group">
+                  {cards}
                </div>
-            )}
+            </AsyncLoader>
          </div>
       );
    }
@@ -38,9 +34,8 @@ class CardsList extends Component {
    componentDidMount() {
       axios.get('http://localhost:3001/cards')
       .then(res => res.data)
-      .then(cards => {
-         this.setState({ cards, isFetching: false });
-      });
+      .then(cards => this.setState({ cards, loaded: true }))
+      .catch(() => this.setState({ loaded: 0 }));
    }
 }
 

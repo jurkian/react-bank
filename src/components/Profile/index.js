@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import AsyncLoader from 'components/AsyncLoader';
 
 import './style.css';
 
@@ -11,7 +12,7 @@ class Profile extends Component {
    constructor() {
       super();
 
-      this.state = { client: {} };
+      this.state = { client: {}, loaded: false };
    }
 
    render() {
@@ -22,13 +23,15 @@ class Profile extends Component {
 
       return (
          <div className="row">
-            <div className="col-xs-12">
-               <section className="profile module">
-                  <ProfileHeader client={this.state.client} />
-                  <ProfileStats />
-                  <ProfileLinks links={links} />
-               </section>
-            </div>
+            <AsyncLoader loaded={this.state.loaded}>
+               <div className="col-xs-12">
+                  <section className="profile module">
+                     <ProfileHeader client={this.state.client} />
+                     <ProfileStats />
+                     <ProfileLinks links={links} />
+                  </section>
+               </div>
+            </AsyncLoader>
          </div>
       );
    }
@@ -37,7 +40,8 @@ class Profile extends Component {
       // Get logged in client info
       axios.get('http://localhost:3001/clients/1')
       .then(res => res.data)
-      .then(client => this.setState({ client }));
+      .then(client => this.setState({ client, loaded: true }))
+      .catch(() => this.setState({ loaded: 0 }));
    }
 }
 

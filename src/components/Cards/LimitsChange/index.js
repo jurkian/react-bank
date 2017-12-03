@@ -1,42 +1,38 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import LoadingAnimation from 'components/LoadingAnimation/index';
+import AsyncLoader from 'components/AsyncLoader';
 import SingleModuleButton from 'components/Buttons/SingleModuleButton/index';
 
 class LimitsChange extends Component {
    constructor() {
       super();
 
-      this.state = { singleCard: [], validationInfo: '', isFetching: true };
+      this.state = { singleCard: [], validationInfo: '', loaded: false };
    }
 
    render() {
       return (
          <div className="col-sm-6 col-sm-offset-3">
 
-            {this.state.isFetching ? (
-               <LoadingAnimation />
-            ) : (
-               <div>
-                  <h1>Limits change for {this.state.singleCard.id}. {this.state.singleCard.type} card</h1>
+            <AsyncLoader loaded={this.state.loaded}>
+               <h1>Limits change for {this.state.singleCard.id}. {this.state.singleCard.type} card</h1>
 
-                  <form onSubmit={this.handleFormSubmit.bind(this)}>
-                     <div className="form-group">
-                        <label htmlFor="daily-withdrawal-limit">Enter new daily withdrawal limit</label>
-                        <input type="text" id="daily-withdrawal-limit" name="daily-withdrawal-limit" className="form-control" placeholder="New daily withdrawal limit..." ref="newDWL" />
-                     </div>
+               <form onSubmit={this.handleFormSubmit.bind(this)}>
+                  <div className="form-group">
+                     <label htmlFor="daily-withdrawal-limit">Enter new daily withdrawal limit</label>
+                     <input type="text" id="daily-withdrawal-limit" name="daily-withdrawal-limit" className="form-control" placeholder="New daily withdrawal limit..." ref="newDWL" />
+                  </div>
 
-                     <div className="form-group">
-                        <label htmlFor="daily-online-limit">Enter new daily online limit</label>
-                        <input type="text" id="daily-online-limit" name="daily-online-limit" className="form-control" placeholder="New daily online limit..." ref="newDOL" />
-                     </div>
+                  <div className="form-group">
+                     <label htmlFor="daily-online-limit">Enter new daily online limit</label>
+                     <input type="text" id="daily-online-limit" name="daily-online-limit" className="form-control" placeholder="New daily online limit..." ref="newDOL" />
+                  </div>
 
-                     <p className="validation-info">{this.state.validationInfo}</p>
+                  <p className="validation-info">{this.state.validationInfo}</p>
 
-                     <SingleModuleButton text="Change limits" type="submit" />
-                  </form>
-               </div>
-            )}
+                  <SingleModuleButton text="Change limits" type="submit" />
+               </form>
+            </AsyncLoader>
 
          </div>
       );
@@ -45,9 +41,8 @@ class LimitsChange extends Component {
    componentDidMount() {
       axios.get(`http://localhost:3001/cards/${this.props.match.params.cardId}`)
       .then(res => res.data)
-      .then(singleCard => {
-         this.setState({ singleCard, isFetching: false });
-      });
+      .then(singleCard => this.setState({ singleCard, loaded: true }))
+      .catch(() => this.setState({ loaded: 0 }));
    }
 
    handleFormSubmit(e) {

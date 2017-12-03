@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import axios from 'axios';
-import LoadingAnimation from 'components/LoadingAnimation/index';
+import AsyncLoader from 'components/AsyncLoader';
 
 class TransactionsList extends Component {
    constructor() {
       super();
 
-      this.state = { transactions: [], search: '', isFetching: true };
+      this.state = { transactions: [], search: '', loaded: false };
    }
 
    render() {
@@ -23,23 +23,19 @@ class TransactionsList extends Component {
          <div>
             <h1>Transactions</h1>
 
-            {this.state.isFetching ? (
-               <LoadingAnimation />
-            ) : (
-               <div>
-                  <p>There are {this.state.transactions.length} finished transactions right now!</p>
+            <AsyncLoader loaded={this.state.loaded}>
+               <p>There are {this.state.transactions.length} finished transactions right now!</p>
 
-                  <form onSubmit={this.handleFormSubmit.bind(this)}>
-                     <div className="form-group">
-                        <input className="form-control" placeholder="Search for..." onChange={this.findTransaction.bind(this)} ref="search" />
-                     </div>
-                  </form>
-      
-                  <div className="list-group">
-                     {transactions}
+               <form onSubmit={this.handleFormSubmit.bind(this)}>
+                  <div className="form-group">
+                     <input className="form-control" placeholder="Search for..." onChange={this.findTransaction.bind(this)} ref="search" />
                   </div>
+               </form>
+   
+               <div className="list-group">
+                  {transactions}
                </div>
-            )}
+            </AsyncLoader>
          </div>
       );
    }
@@ -47,9 +43,8 @@ class TransactionsList extends Component {
    componentDidMount() {
       axios.get('http://localhost:3001/transactions')
       .then(res => res.data)
-      .then(transactions => {
-         this.setState({ transactions, isFetching: false });
-      });
+      .then(transactions => this.setState({ transactions, loaded: true }))
+      .catch(() => this.setState({ loaded: 0 }));
    }
 
    findTransaction() {

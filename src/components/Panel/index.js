@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import AsyncLoader from 'components/AsyncLoader';
 
 import IncomeStats from 'components/Widgets/IncomeStats/index';
 import IconedList from 'components/Widgets/IconedList/index';
@@ -20,13 +21,14 @@ class Panel extends Component {
             sender: 'Johny Depp, johnyd@symu.co',
             recipient: 'jakub.jurkian@example.com',
             content: '<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Debitis, laboriosam.</p><p>Qui porro voluptatibus nisi tempore nam deleniti quo. Porro, nulla.</p>'
-         }
+         },
+         loaded: false
       }
    }
 
    render() {
       return (
-         <div>
+         <AsyncLoader loaded={this.state.loaded}>
             <h1>Welcome {this.state.client.first_name} {this.state.client.last_name}</h1>
             <div className="row">
                <div className="col-md-8">
@@ -43,7 +45,7 @@ class Panel extends Component {
                   </div>
                </div>
             </div>
-         </div>
+         </AsyncLoader>
       );
    }
 
@@ -51,7 +53,8 @@ class Panel extends Component {
       // Get logged in client info
       axios.get('http://localhost:3001/clients/1')
       .then(res => res.data)
-      .then(client => this.setState({ client }));
+      .then(client => this.setState({ client, loaded: true }))
+      .catch(() => this.setState({ loaded: 0 }));
    }
 }
 

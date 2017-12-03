@@ -1,29 +1,31 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import AsyncLoader from 'components/AsyncLoader';
 import IncomeChart from '../Charts/IncomeChart/index';
 
 class IncomeStats extends Component {
    constructor() {
       super();
 
-      this.state = { account: '', chartData: [] };
+      this.state = { account: {}, chartData: [], loaded: false };
    }
 
    render() {
       return (
+         <AsyncLoader loaded={this.state.loaded}>
+            <section className="module stats-widget">
+               <h3>Income change stats</h3>
+               <p><strong>Account: </strong> {this.state.account.id} {this.state.account.type}</p>
+               <p><strong>Balance: </strong> {this.state.account.balance} {this.state.account.currency}</p>
 
-         <section className="module stats-widget">
-            <h3>Income change stats</h3>
-            <p><strong>Account: </strong> {this.state.account.id} {this.state.account.type}</p>
-            <p><strong>Balance: </strong> {this.state.account.balance} {this.state.account.currency}</p>
+               <select onChange={this.changeStatsRange.bind(this)} ref="statsRange">
+                  <option value="7">Last 7 days</option>
+                  <option value="30">Last 30 days</option>
+               </select>
 
-            <select onChange={this.changeStatsRange.bind(this)} ref="statsRange">
-               <option value="7">Last 7 days</option>
-               <option value="30">Last 30 days</option>
-            </select>
-
-            <IncomeChart data={this.state.chartData} />
-         </section>
+               <IncomeChart data={this.state.chartData} />
+            </section>
+         </AsyncLoader>
       );
    }
 
@@ -34,8 +36,10 @@ class IncomeStats extends Component {
       .then(res => res.data)
       .then(account => this.setState({
          account,
-         chartData: account.income_expenses_7_days
-      }));
+         chartData: account.income_expenses_7_days,
+         loaded: true
+      }))
+      .catch(() => this.setState({ loaded: 0 }));
    }
 
    changeStatsRange() {
