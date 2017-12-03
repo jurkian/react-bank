@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import axios from 'axios';
 import LoadingAnimation from 'components/LoadingAnimation/index';
 
 class MessagesList extends Component {
@@ -44,8 +45,8 @@ class MessagesList extends Component {
    }
 
    componentDidMount() {
-      fetch('http://localhost:3001/messages')
-      .then(res => res.json())
+      axios.get('http://localhost:3001/messages')
+      .then(res => res.data)
       .then(messages => {
          this.setState({ messages, isFetching: false });
       });

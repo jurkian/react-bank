@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 import SingleModuleButton from 'components/Buttons/SingleModuleButton/index';
 
@@ -34,8 +35,8 @@ class LimitsChange extends Component {
    }
 
    componentDidMount() {
-      fetch(`http://localhost:3001/cards/${this.props.match.params.cardId}`)
-      .then(res => res.json())
+      axios.get(`http://localhost:3001/cards/${this.props.match.params.cardId}`)
+      .then(res => res.data)
       .then(singleCard => {
          this.setState({ singleCard });
       });
@@ -53,10 +54,9 @@ class LimitsChange extends Component {
       this.setState({ validationInfo: 'Sending...' });
 
       // TODO: create API endpoint to change limits only
-      fetch(`http://localhost:3001/cards/${this.state.singleCard.id}`, {
-         method: 'PUT',
+      axios.put(`http://localhost:3001/cards/${this.state.singleCard.id}`, {
          headers: { 'Content-Type': 'application/json' },
-         body: JSON.stringify({
+         data: {
             'id': this.state.singleCard.id,
             'type': this.state.singleCard.type,
             'expires_month': this.state.singleCard.expires_month,
@@ -66,9 +66,9 @@ class LimitsChange extends Component {
             'balance': this.state.singleCard.balance,
             'daily_withdrawal_limit': (newDWL) ? newDWL : this.state.singleCard.daily_withdrawal_limit,
             'daily_online_limit': (newDOL) ? newDOL : this.state.singleCard.daily_online_limit
-         })
+         }
       })
-      .then(res => res.json())
+      .then(res => res.data)
       .then(singleCard => {
          this.setState({
             singleCard,

@@ -1,11 +1,12 @@
 import { Component } from 'react';
+import axios from 'axios';
 
 class Logout extends Component {
    componentWillMount() {
 
       // Let the server know
-      fetch(`http://localhost:3001/clients/1`)
-      .then(res => res.json())
+      axios.get(`http://localhost:3001/clients/1`)
+      .then(res => res.data)
       .then(res => {
 
          // Read the status

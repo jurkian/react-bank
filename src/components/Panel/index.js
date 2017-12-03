@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 import IncomeStats from 'components/Widgets/IncomeStats/index';
 import IconedList from 'components/Widgets/IconedList/index';
@@ -48,8 +49,8 @@ class Panel extends Component {
 
    componentDidMount() {
       // Get logged in client info
-      fetch('http://localhost:3001/clients/1')
-      .then(res => res.json())
+      axios.get('http://localhost:3001/clients/1')
+      .then(res => res.data)
       .then(client => this.setState({ client }));
    }
 }

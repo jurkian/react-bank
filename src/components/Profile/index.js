@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 import './style.css';
 
@@ -34,8 +35,8 @@ class Profile extends Component {
 
    componentDidMount() {
       // Get logged in client info
-      fetch('http://localhost:3001/clients/1')
-      .then(res => res.json())
+      axios.get('http://localhost:3001/clients/1')
+      .then(res => res.data)
       .then(client => this.setState({ client }));
    }
 }

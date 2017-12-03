@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import Formsy from 'formsy-react';
 import FormsyInput from '../FormsyInput';
 import jwtDecode from 'jwt-decode';
@@ -100,14 +101,14 @@ class Login extends Component {
 
       // Current fake API doesn't support JWT tokens, so... SIMULATE IT
       // Use GET instead of POST
-      fetch(`http://localhost:3001/clients/1`, {
+      axios.get(`http://localhost:3001/clients/1`, {
          // method: 'POST',
          // body: JSON.stringify({
          //    'email': email,
          //    'password': password
          // })
       })
-      .then(res => res.json())
+      .then(res => res.data)
       .then(res => {
 
          let decodedToken = jwtDecode(res.token);

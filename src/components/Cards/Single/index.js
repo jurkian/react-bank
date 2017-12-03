@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 import CardInfobox from 'components/Infobox/CardInfobox/index';
 
@@ -20,8 +21,8 @@ class SingleCard extends Component {
    }
 
    componentDidMount() {
-      fetch(`http://localhost:3001/cards/${this.props.match.params.cardId}`)
-      .then(res => res.json())
+      axios.get(`http://localhost:3001/cards/${this.props.match.params.cardId}`)
+      .then(res => res.data)
       .then(singleCard => {
          this.setState({ singleCard });
       });

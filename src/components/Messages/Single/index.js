@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 class SingleMessage extends Component {
    constructor() {
@@ -21,8 +22,8 @@ class SingleMessage extends Component {
    }
 
    componentDidMount() {
-      fetch(`http://localhost:3001/messages/${this.props.match.params.messageId}`)
-      .then(res => res.json())
+      axios.get(`http://localhost:3001/messages/${this.props.match.params.messageId}`)
+      .then(res => res.data)
       .then(singleMessage => {
          this.setState({ singleMessage });
       });

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import axios from 'axios';
 import LoadingAnimation from 'components/LoadingAnimation/index';
 
 class AccountsList extends Component {
@@ -36,8 +37,8 @@ class AccountsList extends Component {
    }
 
    componentDidMount() {
-      fetch('http://localhost:3001/accounts')
-      .then(res => res.json())
+      axios.get('http://localhost:3001/accounts')
+      .then(res => res.data)
       .then(accounts => {
          this.setState({ accounts, isFetching: false });
       });

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 class SingleTransaction extends Component {
    constructor() {
@@ -23,8 +24,8 @@ class SingleTransaction extends Component {
    }
 
    componentDidMount() {
-      fetch(`http://localhost:3001/transactions/${this.props.match.params.transId}`)
-      .then(res => res.json())
+      axios.get(`http://localhost:3001/transactions/${this.props.match.params.transId}`)
+      .then(res => res.data)
       .then(singleTrans => {
          this.setState({ singleTrans });
       });

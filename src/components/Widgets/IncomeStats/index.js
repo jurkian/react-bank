@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import IncomeChart from '../Charts/IncomeChart/index';
 
 class IncomeStats extends Component {
@@ -29,8 +30,8 @@ class IncomeStats extends Component {
    componentDidMount() {
       // Get default account's info
       // Set income and expenses stats to 7 days, by default
-      fetch('http://localhost:3001/accounts/1')
-      .then(res => res.json())
+      axios.get('http://localhost:3001/accounts/1')
+      .then(res => res.data)
       .then(account => this.setState({
          account,
          chartData: account.income_expenses_7_days

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 import HomeHeader from './HomeHeader/index';
 import HomeFeatures from './HomeFeatures/index';
@@ -24,8 +25,8 @@ class Home extends Component {
    }
 
    componentDidMount() {
-      fetch('http://localhost:3001/clients')
-      .then(res => res.json())
+      axios.get('http://localhost:3001/clients')
+      .then(res => res.data)
       .then(clients => {
          this.setState({
             clients,

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 import './style.css';
 
@@ -36,12 +37,12 @@ class Navigation extends Component {
    // On every panel route change, send a request to server to check if user is authenticated
    onPanelRouteChanged() {
 
-      fetch('http://localhost:3001/clients/1', {
-         headers: new Headers({
+      axios.get('http://localhost:3001/clients/1', {
+         headers: {
             'x-auth-token': localStorage.getItem('user_token')
-         })
+         }
       })
-      .then(res => res.json())
+      .then(res => res.data)
       .then(res => {
          
          // Get response and make a decision

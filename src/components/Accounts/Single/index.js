@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 class SingleAccount extends Component {
    constructor() {
@@ -22,8 +23,8 @@ class SingleAccount extends Component {
    }
 
    componentDidMount() {
-      fetch(`http://localhost:3001/accounts/${this.props.match.params.accId}`)
-      .then(res => res.json())
+      axios.get(`http://localhost:3001/accounts/${this.props.match.params.accId}`)
+      .then(res => res.data)
       .then(singleAcc => {
          this.setState({ singleAcc });
       });
