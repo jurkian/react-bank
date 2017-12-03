@@ -101,12 +101,10 @@ class Login extends Component {
 
       // Current fake API doesn't support JWT tokens, so... SIMULATE IT
       // Use GET instead of POST
-      axios.get(`http://localhost:3001/clients/1`, {
-         // method: 'POST',
-         // body: JSON.stringify({
-         //    'email': email,
-         //    'password': password
-         // })
+      axios(`http://localhost:3001/clients/1`, {
+         method: 'get',
+         // headers: { 'Content-Type': 'application/json' },
+         // data: { email, password }
       })
       .then(res => res.data)
       .then(res => {

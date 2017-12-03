@@ -37,7 +37,8 @@ class Navigation extends Component {
    // On every panel route change, send a request to server to check if user is authenticated
    onPanelRouteChanged() {
 
-      axios.get('http://localhost:3001/clients/1', {
+      axios('http://localhost:3001/clients/1', {
+         method: 'get',
          headers: {
             'x-auth-token': localStorage.getItem('user_token')
          }

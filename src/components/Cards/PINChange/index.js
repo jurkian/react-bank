@@ -48,18 +48,10 @@ class PINChange extends Component {
       let newPin = parseInt(this.refs.newPin.value, 10);
       this.setState({ validationInfo: 'Sending...' });
 
-      // TODO: create API endpoint to change PIN only
-      axios.put(`http://localhost:3001/cards/${this.state.singleCard.id}`, {
+      axios(`http://localhost:3001/cards/${this.state.singleCard.id}`, {
+         method: 'patch',
          headers: { 'Content-Type': 'application/json' },
-         data: {
-            'id': this.state.singleCard.id,
-            'type': this.state.singleCard.type,
-            'expires_month': this.state.singleCard.expires_month,
-            'expires_year': this.state.singleCard.expires_year,
-            'security_code': this.state.singleCard.security_code,
-            'pin': newPin,
-            'balance': this.state.singleCard.balance
-         }
+         data: { pin: newPin }
       })
       .then(res => res.data)
       .then(singleCard => {

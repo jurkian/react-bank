@@ -53,19 +53,12 @@ class LimitsChange extends Component {
 
       this.setState({ validationInfo: 'Sending...' });
 
-      // TODO: create API endpoint to change limits only
-      axios.put(`http://localhost:3001/cards/${this.state.singleCard.id}`, {
+      axios(`http://localhost:3001/cards/${this.state.singleCard.id}`, {
+         method: 'patch',
          headers: { 'Content-Type': 'application/json' },
          data: {
-            'id': this.state.singleCard.id,
-            'type': this.state.singleCard.type,
-            'expires_month': this.state.singleCard.expires_month,
-            'expires_year': this.state.singleCard.expires_year,
-            'security_code': this.state.singleCard.security_code,
-            'pin': this.state.singleCard.pin,
-            'balance': this.state.singleCard.balance,
-            'daily_withdrawal_limit': (newDWL) ? newDWL : this.state.singleCard.daily_withdrawal_limit,
-            'daily_online_limit': (newDOL) ? newDOL : this.state.singleCard.daily_online_limit
+            daily_withdrawal_limit: (newDWL) ? newDWL : this.state.singleCard.daily_withdrawal_limit,
+            daily_online_limit: (newDOL) ? newDOL : this.state.singleCard.daily_online_limit
          }
       })
       .then(res => res.data)
