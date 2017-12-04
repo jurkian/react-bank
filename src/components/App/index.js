@@ -1,23 +1,21 @@
 import React from 'react';
-import {
-   BrowserRouter as Router,
-   Route
-} from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import './app.css';
 
-import Home from 'components/Home/index';
-import Navigation from 'components/Navigation/index';
-import Login from 'components/Login/index';
-import Logout from 'components/Logout/index';
-import Panel from 'components/Panel/index';
-import Accounts from 'components/Accounts/index';
-import Transactions from 'components/Transactions/index';
-import Cards from 'components/Cards/index';
-import Profile from 'components/Profile/index';
-import ProfileChangeDetails from 'components/ProfileChangeDetails/index';
-import Messages from 'components/Messages/index';
-import Help from 'components/Help/index';
+import Home from 'components/Home';
+import Navigation from 'components/Navigation';
+import Login from 'components/Login';
+import Logout from 'components/Logout';
+import Panel from 'components/Panel';
+import Accounts from 'components/Accounts';
+import Transactions from 'components/Transactions';
+import Cards from 'components/Cards';
+import Profile from 'components/Profile';
+import ProfileChangeDetails from 'components/ProfileChangeDetails';
+import Messages from 'components/Messages';
+import Help from 'components/Help';
+import Auth from 'components/Auth';
 
 const App = () => {
    return (
@@ -27,6 +25,7 @@ const App = () => {
             <Route exact path="/login" component={Login} />
             <Route exact path="/logout" component={Logout} />
 
+            <Route path="/panel" component={Auth} />
             <Route path="/panel" component={Navigation} />
             <Route exact path="/panel" component={Panel} />
 
