@@ -1,78 +1,73 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
-import axios from 'axios';
+import { connect } from 'react-redux';
+import { fetchMessages } from 'actions/messages';
 import AsyncLoader from 'components/AsyncLoader';
+import MessagesListEl from '../ListElement';
 
 class MessagesList extends Component {
    constructor() {
       super();
 
-      this.state = { messages: [], search: '', loaded: false };
+      this.state = {search: '' };
+   }
+
+   componentWillMount() {
+      this.props.fetchMessages();
    }
 
    render() {
 
       // Messages
       // Allow search for message title
-      const messages = this.state.messages
+      const messages = this.props.messages
          .filter(message => message.title.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1)
-         .map(message => <MessageEl key={message.id} {...message} matchUrl={this.props.match.url} />);
+         .map(message => <MessagesListEl key={message.id} {...message} matchUrl={this.props.match.url} />);
 
-      return (
-         <div>
-            <h1>Messages</h1>
+      if (!this.props.fetchMessagesStatus) {
+         return <AsyncLoader loaded={this.props.fetchMessagesStatus} />;
 
-            <AsyncLoader loaded={this.state.loaded}>
-               <p>There are {this.state.messages.length} messages in your box</p>
+      } else {
+         return (
+            <div>
+               <h1>Messages</h1>
 
-               <form onSubmit={this.handleFormSubmit.bind(this)}>
-                  <div className="form-group">
-                     <input className="form-control" placeholder="Search for..." onChange={this.findMessage.bind(this)} ref="search" />
-                  </div>
-               </form>
+               <p>There are {this.props.messages.length} messages in your box</p>
+
+               <div className="form-group">
+                  <input
+                     className="form-control"
+                     placeholder="Search for..."
+                     onChange={this.findMessage.bind(this)}
+                     ref="search" />
+               </div>
 
                <div className="list-group">
                   {messages}
                </div>
-            </AsyncLoader>
-         </div>
-      );
-   }
-
-   componentDidMount() {
-      axios.get('http://localhost:3001/messages')
-      .then(res => res.data)
-      .then(messages => this.setState({ messages, loaded: true }))
-      .catch(() => this.setState({ loaded: 0 }));
+            </div>
+         );
+      }
    }
 
    findMessage() {
       this.setState({ search: this.refs.search.value });
    }
+}
 
-   handleFormSubmit(e) {
-      e.preventDefault();
+const mapStateToProps = (state) => {
+   return {
+      messages: state.messages.data,
+      fetchMessagesStatus: state.messages.status
+   }
+};
+
+const mapDispatchToProps = (dispatch) => {
+   return {
+      fetchMessages: () => dispatch(fetchMessages())
    }
 }
 
-// Single message element
-const MessageEl = (props) => {
-   return (
-      <Link to={`${props.matchUrl}/${props.id}`} className="list-group-item">
-         <h4 className="list-group-item-heading">{props.id}. {props.title}</h4>
-         <p className="list-group-item-text">
-            date: {props.date}
-         </p>
-      </Link>
-   );
-}
-
-MessageEl.propTypes = {
-   matchUrl: PropTypes.string,
-   id: PropTypes.number,
-   title: PropTypes.string,
-   date: PropTypes.string
-}
-
-export default MessagesList;
+export default connect(
+   mapStateToProps,
+   mapDispatchToProps
+)(MessagesList);

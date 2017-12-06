@@ -1,35 +1,46 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import { connect } from 'react-redux';
+import { fetchMessages } from 'actions/messages';
 import AsyncLoader from 'components/AsyncLoader';
 
 class SingleMessage extends Component {
-   constructor() {
-      super();
-
-      this.state = { singleMessage: [], loaded: false };
+   componentWillMount() {
+      this.props.fetchMessages();
    }
 
    render() {
-      return (
-         <div className="well">
-            <AsyncLoader loaded={this.state.loaded}>
-               <h1>{this.state.singleMessage.id}. {this.state.singleMessage.title}</h1>
-               <p>Date: {this.state.singleMessage.date}</p>
+      if (!this.props.fetchMessagesStatus) {
+         return <AsyncLoader loaded={this.props.fetchMessagesStatus} />;
+
+      } else {
+         return (
+            <div className="well">
+               <h1>{this.props.singleMessage.id}. {this.props.singleMessage.title}</h1>
+               <p>Date: {this.props.singleMessage.date}</p>
 
                <hr />
 
-               <article dangerouslySetInnerHTML={{__html: this.state.singleMessage.content}} />
-            </AsyncLoader>
-         </div>
-      );
-   }
-
-   componentDidMount() {
-      axios.get(`http://localhost:3001/messages/${this.props.match.params.messageId}`)
-      .then(res => res.data)
-      .then(singleMessage => this.setState({ singleMessage, loaded: true }))
-      .catch(() => this.setState({ loaded: 0 }));
+               <article dangerouslySetInnerHTML={{__html: this.props.singleMessage.content}} />
+            </div>
+         );
+      }
    }
 }
 
-export default SingleMessage;
+const mapStateToProps = (state, ownProps) => {
+   return {
+      singleMessage: state.messages.data[ownProps.match.params.messageId - 1],
+      fetchMessagesStatus: state.messages.status
+   }
+};
+
+const mapDispatchToProps = (dispatch) => {
+   return {
+      fetchMessages: () => dispatch(fetchMessages())
+   }
+}
+
+export default connect(
+   mapStateToProps,
+   mapDispatchToProps
+)(SingleMessage);
