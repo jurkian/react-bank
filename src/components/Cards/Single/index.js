@@ -1,33 +1,42 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import { connect } from 'react-redux';
+import { fetchCards } from 'actions/cards';
 import AsyncLoader from 'components/AsyncLoader';
 import CardInfobox from 'components/Infobox/CardInfobox/index';
 
 class SingleCard extends Component {
-   constructor() {
-      super();
-
-      this.state = { singleCard: [], loaded: false };
+   componentWillMount() {
+      this.props.fetchCards();
    }
 
    render() {
-      return (
-         <div className="row">
-            <AsyncLoader loaded={this.state.loaded}>
-               <div className="col-xs-12">
-                  <CardInfobox {...this.state.singleCard} currentUrl={this.props.match.url} />
-               </div>
-            </AsyncLoader>
-         </div>
-      );
-   }
+      if (!this.props.fetchCardsStatus) {
+         return <AsyncLoader loaded={this.props.fetchCardsStatus} />;
 
-   componentDidMount() {
-      axios.get(`http://localhost:3001/cards/${this.props.match.params.cardId}`)
-      .then(res => res.data)
-      .then(singleCard => this.setState({ singleCard, loaded: true }))
-      .catch(() => this.setState({ loaded: 0 }));
+      } else {
+         return <div className="row">
+            <div className="col-xs-12">
+               <CardInfobox {...this.props.singleCard} currentUrl={this.props.match.url} />
+            </div>
+         </div>
+      }
    }
 }
 
-export default SingleCard;
+const mapStateToProps = (state, ownProps) => {
+   return {
+      singleCard: state.cards.data[ownProps.match.params.cardId - 1],
+      fetchCardsStatus: state.cards.status
+   }
+};
+
+const mapDispatchToProps = (dispatch) => {
+   return {
+      fetchCards: () => dispatch(fetchCards())
+   }
+}
+
+export default connect(
+   mapStateToProps,
+   mapDispatchToProps
+)(SingleCard);
