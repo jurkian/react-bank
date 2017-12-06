@@ -6,7 +6,6 @@ import AsyncLoader from 'components/AsyncLoader';
 
 class AccountsList extends Component {
 
-   // Load accounts when component is ready to mount
    componentWillMount() {
       this.props.fetchAccounts();
    }
@@ -17,19 +16,21 @@ class AccountsList extends Component {
       const accounts = this.props.accounts.map((acc, index) =>
          <AccountsListElement key={index} {...acc} matchUrl={this.props.match.url} />);
 
-      return (
-         <div>
-            <h1>Accounts</h1>
+      if (!this.props.fetchAccountsStatus) {
+         return <AsyncLoader loaded={this.props.fetchAccountsStatus} />;
 
-            <AsyncLoader loaded={this.props.fetchAccountsStatus}>
+      } else {
+         return (
+            <div>
+               <h1>Accounts</h1>
                <p>You have {this.props.accounts.length} accounts</p>
-
+   
                <div className="list-group">
                   {accounts}
                </div>
-            </AsyncLoader>
-         </div>
-      );
+            </div>
+         );
+      }
    }
 }
 

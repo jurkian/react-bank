@@ -1,36 +1,46 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import { connect } from 'react-redux';
+import { fetchAccounts } from 'actions/accounts';
 import AsyncLoader from 'components/AsyncLoader';
 
 class SingleAccount extends Component {
-   constructor() {
-      super();
 
-      this.state = { singleAcc: [], loaded: false };
+   componentWillMount() {
+      this.props.fetchAccounts();
    }
-
+   
    render() {
-      return (
-         <div className="well">
-            <AsyncLoader loaded={this.state.loaded}>
-               <h1>{this.state.singleAcc.type}</h1>
-               <ul>
-                  <li>Sortcode: {this.state.singleAcc.sortcode}</li>
-                  <li>Number: {this.state.singleAcc.number}</li>
-                  <li>Currency: {this.state.singleAcc.currency}</li>
-                  <li>Balance: {this.state.singleAcc.balance} {this.state.singleAcc.currency}</li>
-               </ul>
-            </AsyncLoader>
-         </div>
-      );
-   }
+      if (!this.props.fetchAccountsStatus) {
+         return <AsyncLoader loaded={this.props.fetchAccountsStatus} />;
 
-   componentDidMount() {
-      axios.get(`http://localhost:3001/accounts/${this.props.match.params.accId}`)
-      .then(res => res.data)
-      .then(singleAcc => this.setState({ singleAcc, loaded: true }))
-      .catch(() => this.setState({ loaded: 0 }));
+      } else {
+         return <div className="well">
+            <h1>{this.props.singleAcc.type}</h1>
+            <ul>
+               <li>Sortcode: {this.props.singleAcc.sortcode}</li>
+               <li>Number: {this.props.singleAcc.number}</li>
+               <li>Currency: {this.props.singleAcc.currency}</li>
+               <li>Balance: {this.props.singleAcc.balance} {this.props.singleAcc.currency}</li>
+            </ul>
+         </div>
+      }
    }
 }
 
-export default SingleAccount;
+const mapStateToProps = (state, ownProps) => {
+   return {
+      singleAcc: state.accounts.data[ownProps.match.params.accId - 1],
+      fetchAccountsStatus: state.accounts.status
+   }
+};
+
+const mapDispatchToProps = (dispatch) => {
+   return {
+      fetchAccounts: () => dispatch(fetchAccounts())
+   }
+}
+
+export default connect(
+   mapStateToProps,
+   mapDispatchToProps
+)(SingleAccount);
