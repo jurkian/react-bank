@@ -2,6 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import LoadingAnimation from 'components/LoadingAnimation';
 
+/* 
+   Loaded:
+      true = yes
+      false = not yet
+      0 = no
+*/
+
 const AsyncLoader = ({ loaded, children, errorText }) => {
 
    // If no error text is passed in props, use default
