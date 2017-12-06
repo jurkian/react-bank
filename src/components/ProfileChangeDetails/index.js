@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { fetchProfile, changeUserDetails } from 'actions/profile';
 
 import loginIcon from 'components/Login/login-icon.png';
 import './style.css';
@@ -6,12 +8,10 @@ import './style.css';
 import SingleModuleButton from 'components/Buttons/SingleModuleButton/index';
 
 class ProfileChangeDetails extends Component {
-   constructor() {
-      super();
-
-      this.state = ({ validationInfo: '' })
+   componentWillMount() {
+      this.props.fetchProfile();
    }
-
+   
    render() {
       return (
          <div className="row">
@@ -32,7 +32,7 @@ class ProfileChangeDetails extends Component {
                            <input type="password" className="form-control password-input" placeholder="Enter new password..." ref="password" />
                         </div>
 
-                        <p className="validation-info">{this.state.validationInfo}</p>
+                        <p className="validation-info">{this.props.validationInfo}</p>
                      </div>
 
                      <SingleModuleButton text="Save changes" type="submit" />
@@ -46,8 +46,28 @@ class ProfileChangeDetails extends Component {
    handleFormSubmit(e) {
       e.preventDefault();
 
-      this.setState({ validationInfo: 'Saving...' });
+      const id = 1;
+      const newEmail = this.refs.email.value;
+      const newPassword = this.refs.password.value;
+
+      this.props.changeUserDetails(id, newEmail, newPassword);
    }
 }
 
-export default ProfileChangeDetails;
+const mapStateToProps = (state, ownProps) => {
+   return {
+      validationInfo: state.profile.validations.changeDetails
+   }
+};
+
+const mapDispatchToProps = (dispatch) => {
+   return {
+      changeUserDetails: (id, newEmail, newPassword) => dispatch(changeUserDetails(id, newEmail, newPassword)),
+      fetchProfile: () => dispatch(fetchProfile())
+   }
+}
+
+export default connect(
+   mapStateToProps,
+   mapDispatchToProps
+)(ProfileChangeDetails);

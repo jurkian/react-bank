@@ -1,15 +1,19 @@
 import {
    FETCH_PROFILE,
    FETCH_PROFILE_STATUS,
-   PROFILE_CHANGE_DETAILS
+   USER_CHANGE_DETAILS,
+   USER_CHANGE_DETAILS_STATUS
 } from 'actions/profile';
 
 const initialState = {
    data: [],
-   status: false
+   status: false,
+   validations: []
 };
 
 const profile = (state = initialState, action) => {
+   let currentUser;
+
    switch (action.type) {
 
       case FETCH_PROFILE:
@@ -24,8 +28,23 @@ const profile = (state = initialState, action) => {
             status: action.status
          }
 
-      case PROFILE_CHANGE_DETAILS:
-         return;
+      case USER_CHANGE_DETAILS:
+         currentUser = state.data.find(el => el.id === action.id);
+         // currentUser.password_hash = action.newPassword; // TODO: hash it!
+         currentUser.email = action.newEmail;
+
+         return {
+            ...state
+         }
+
+      case USER_CHANGE_DETAILS_STATUS:
+         return {
+            ...state,
+            validations: {
+               ...state.validations,
+               changeDetails: action.status
+            }
+         };
 
       default: 
          return state;
