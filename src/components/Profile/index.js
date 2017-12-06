@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import { connect } from 'react-redux';
+import { fetchProfile } from 'actions/profile';
 import AsyncLoader from 'components/AsyncLoader';
 
 import './style.css';
@@ -9,10 +10,8 @@ import ProfileStats from './ProfileStats/index';
 import ProfileLinks from './ProfileLinks/index';
 
 class Profile extends Component {
-   constructor() {
-      super();
-
-      this.state = { client: {}, loaded: false };
+   componentWillMount() {
+      this.props.fetchProfile();
    }
 
    render() {
@@ -21,28 +20,40 @@ class Profile extends Component {
          { href: '/panel/change-details', text: 'Change details', icon: 'ion-android-checkbox-outline' }
       ];
 
-      return (
-         <div className="row">
-            <AsyncLoader loaded={this.state.loaded}>
+      if (!this.props.fetchProfileStatus) {
+         return <AsyncLoader loaded={this.props.fetchProfileStatus} />;
+
+      } else {
+         return (
+            <div className="row">
+   
                <div className="col-xs-12">
                   <section className="profile module">
-                     <ProfileHeader client={this.state.client} />
+                     <ProfileHeader profile={this.props.profile} />
                      <ProfileStats />
                      <ProfileLinks links={links} />
                   </section>
                </div>
-            </AsyncLoader>
-         </div>
-      );
-   }
-
-   componentDidMount() {
-      // Get logged in client info
-      axios.get('http://localhost:3001/clients/1')
-      .then(res => res.data)
-      .then(client => this.setState({ client, loaded: true }))
-      .catch(() => this.setState({ loaded: 0 }));
+            </div>
+         );
+      }
    }
 }
 
-export default Profile;
+const mapStateToProps = (state) => {
+   return {
+      profile: state.profile.data[0],
+      fetchProfileStatus: state.profile.status
+   }
+};
+
+const mapDispatchToProps = (dispatch) => {
+   return {
+      fetchProfile: () => dispatch(fetchProfile())
+   }
+}
+
+export default connect(
+   mapStateToProps,
+   mapDispatchToProps
+)(Profile);
