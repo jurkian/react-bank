@@ -7,9 +7,8 @@ class AsyncLoader extends Component {
       super();
 
       this.state = { showError: false };
-      setTimeout(() => this.setState({ showError: true }), 3000);
    }
-   
+
    render() {
       // If no error text is passed in props, use default
       const defaultError = 'If loading takes too long, please refresh the page...';
@@ -19,10 +18,21 @@ class AsyncLoader extends Component {
          return (
             <div>
                <LoadingAnimation />
-               {(this.state.showError) ? <p>{error}</p> : ''}
+               {(this.state.showError) ? <p>{error}</p> : null}
             </div>
          );
       }
+   }
+
+   componentDidMount() {
+      // Start timeout to show the error message
+      this.errorTimeout = setTimeout(() => this.setState({ showError: true }), 3000);
+   }
+
+   componentWillUnmount() {
+      // Remove the timeout when component will be unmounted
+      // Otherwise it will still be working in background
+      clearTimeout(this.errorTimeout);
    }
 }
 
