@@ -1,37 +1,47 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import { connect } from 'react-redux';
+import { fetchTransactions } from 'actions/transactions';
 import AsyncLoader from 'components/AsyncLoader';
 
 class SingleTransaction extends Component {
-   constructor() {
-      super();
 
-      this.state = { singleTrans: [], loaded: false };
+   componentWillMount() {
+      this.props.fetchTransactions();
    }
 
    render() {
-      return (
-         <div className="well">
-            <AsyncLoader loaded={this.state.loaded}>
-               <h1>{this.state.singleTrans.id}. {this.state.singleTrans.type}</h1>
-               <ul>
-                  <li>Date: {this.state.singleTrans.date}</li>
-                  <li>Payee: {this.state.singleTrans.payee}</li>
-                  <li>Amount: {this.state.singleTrans.amount}</li>
-                  <li>Type: {this.state.singleTrans.type}</li>
-                  <li>Status: {this.state.singleTrans.status}</li>
-               </ul>
-            </AsyncLoader>
-         </div>
-      );
-   }
+      if (!this.props.fetchTransactionStatus) {
+         return <AsyncLoader loaded={this.props.fetchTransactionStatus} />;
 
-   componentDidMount() {
-      axios.get(`http://localhost:3001/transactions/${this.props.match.params.transId}`)
-      .then(res => res.data)
-      .then(singleTrans => this.setState({ singleTrans, loaded: true }))
-      .catch(() => this.setState({ loaded: 0 }));
+      } else {
+         return <div className="well">
+            <h1>{this.props.singleTrans.id}. {this.props.singleTrans.type}</h1>
+            <ul>
+               <li>Date: {this.props.singleTrans.date}</li>
+               <li>Payee: {this.props.singleTrans.payee}</li>
+               <li>Amount: {this.props.singleTrans.amount}</li>
+               <li>Type: {this.props.singleTrans.type}</li>
+               <li>Status: {this.props.singleTrans.status}</li>
+            </ul>
+         </div>
+      }
    }
 }
 
-export default SingleTransaction;
+const mapStateToProps = (state, ownProps) => {
+   return {
+      singleTrans: state.transactions.data[ownProps.match.params.transId - 1],
+      fetchTransactionStatus: state.transactions.status
+   }
+};
+
+const mapDispatchToProps = (dispatch) => {
+   return {
+      fetchTransactions: () => dispatch(fetchTransactions())
+   }
+}
+
+export default connect(
+   mapStateToProps,
+   mapDispatchToProps
+)(SingleTransaction);
