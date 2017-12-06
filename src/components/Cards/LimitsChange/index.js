@@ -1,21 +1,22 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import { connect } from 'react-redux';
+import { fetchCards, changeCardLimits } from 'actions/cards';
 import AsyncLoader from 'components/AsyncLoader';
 import SingleModuleButton from 'components/Buttons/SingleModuleButton/index';
 
 class LimitsChange extends Component {
-   constructor() {
-      super();
-
-      this.state = { singleCard: [], validationInfo: '', loaded: false };
+   componentWillMount() {
+      this.props.fetchCards();
    }
 
    render() {
-      return (
-         <div className="col-sm-6 col-sm-offset-3">
+      if (!this.props.fetchCardsStatus) {
+         return <AsyncLoader loaded={this.props.fetchCardsStatus} />;
 
-            <AsyncLoader loaded={this.state.loaded}>
-               <h1>Limits change for {this.state.singleCard.id}. {this.state.singleCard.type} card</h1>
+      } else {
+         return (
+            <div className="col-sm-6 col-sm-offset-3">
+               <h1>Limits change for {this.props.singleCard.id}. {this.props.singleCard.type} card</h1>
 
                <form onSubmit={this.handleFormSubmit.bind(this)}>
                   <div className="form-group">
@@ -28,21 +29,13 @@ class LimitsChange extends Component {
                      <input type="text" id="daily-online-limit" name="daily-online-limit" className="form-control" placeholder="New daily online limit..." ref="newDOL" />
                   </div>
 
-                  <p className="validation-info">{this.state.validationInfo}</p>
+                  <p className="validation-info">{this.props.validationInfo}</p>
 
                   <SingleModuleButton text="Change limits" type="submit" />
                </form>
-            </AsyncLoader>
-
-         </div>
-      );
-   }
-
-   componentDidMount() {
-      axios.get(`http://localhost:3001/cards/${this.props.match.params.cardId}`)
-      .then(res => res.data)
-      .then(singleCard => this.setState({ singleCard, loaded: true }))
-      .catch(() => this.setState({ loaded: 0 }));
+            </div>
+         );
+      }
    }
 
    handleFormSubmit(e) {
@@ -51,27 +44,30 @@ class LimitsChange extends Component {
       // DWL = Daily Withdrawal Limit
       // DOL = Daily Online Limit
 
-      let newDWL = parseInt(this.refs.newDWL.value, 10);
-      let newDOL = parseInt(this.refs.newDOL.value, 10);
+      const cardId = this.props.singleCard.id;
+      const newDWL = parseInt(this.refs.newDWL.value, 10);
+      const newDOL = parseInt(this.refs.newDOL.value, 10);
 
-      this.setState({ validationInfo: 'Sending...' });
-
-      axios(`http://localhost:3001/cards/${this.state.singleCard.id}`, {
-         method: 'patch',
-         headers: { 'Content-Type': 'application/json' },
-         data: {
-            daily_withdrawal_limit: (newDWL) ? newDWL : this.state.singleCard.daily_withdrawal_limit,
-            daily_online_limit: (newDOL) ? newDOL : this.state.singleCard.daily_online_limit
-         }
-      })
-      .then(res => res.data)
-      .then(singleCard => {
-         this.setState({
-            singleCard,
-            validationInfo: 'Limits successfully changed'
-         });
-      });
+      this.props.changeCardLimits(cardId, newDWL, newDOL);
    }
 }
 
-export default LimitsChange;
+const mapStateToProps = (state, ownProps) => {
+   return {
+      singleCard: state.cards.data[ownProps.match.params.cardId - 1],
+      fetchCardsStatus: state.cards.status,
+      validationInfo: state.cards.validations.changeLimits
+   }
+};
+
+const mapDispatchToProps = (dispatch) => {
+   return {
+      changeCardLimits: (id, newDWL, newDOL) => dispatch(changeCardLimits(id, newDWL, newDOL)),
+      fetchCards: () => dispatch(fetchCards())
+   }
+}
+
+export default connect(
+   mapStateToProps,
+   mapDispatchToProps
+)(LimitsChange);

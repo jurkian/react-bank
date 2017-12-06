@@ -11,7 +11,6 @@ class AccountsList extends Component {
    }
 
    render() {
-
       // Prepare accounts list
       const accounts = this.props.accounts.map((acc, index) =>
          <AccountsListElement key={index} {...acc} matchUrl={this.props.match.url} />);

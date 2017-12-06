@@ -1,21 +1,22 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import { connect } from 'react-redux';
+import { fetchCards, changeCardPin } from 'actions/cards';
 import AsyncLoader from 'components/AsyncLoader';
 import SingleModuleButton from 'components/Buttons/SingleModuleButton/index';
 
 class PINChange extends Component {
-   constructor() {
-      super();
-
-      this.state = { singleCard: [], validationInfo: '', loaded: false };
+   componentWillMount() {
+      this.props.fetchCards();
    }
 
    render() {
-      return (
-         <div className="col-sm-6 col-sm-offset-3">
+      if (!this.props.fetchCardsStatus) {
+         return <AsyncLoader loaded={this.props.fetchCardsStatus} />;
 
-            <AsyncLoader loaded={this.state.loaded}>
-               <h1>PIN change for {this.state.singleCard.id}. {this.state.singleCard.type} card</h1>
+      } else {
+         return (
+            <div className="col-sm-6 col-sm-offset-3">
+               <h1>PIN change for {this.props.singleCard.id}. {this.props.singleCard.type} card</h1>
 
                <form onSubmit={this.handleFormSubmit.bind(this)}>
                   <div className="form-group">
@@ -28,39 +29,41 @@ class PINChange extends Component {
                      <input type="text" id="new-pin-conf" name="new-pin-conf" className="form-control" placeholder="Confirm new PIN..." required />
                   </div>
 
-                  <p className="validation-info">{this.state.validationInfo}</p>
+                  <p className="validation-info">{this.props.validationInfo}</p>
 
                   <SingleModuleButton text="Change PIN" type="submit" />
                </form>
-            </AsyncLoader>
-
-         </div>
-      );
-   }
-
-   componentDidMount() {
-      axios.get(`http://localhost:3001/cards/${this.props.match.params.cardId}`)
-      .then(res => res.data)
-      .then(singleCard => this.setState({ singleCard, loaded: true }))
-      .catch(() => this.setState({ loaded: 0 }));
+            </div>
+         );
+      }
    }
 
    handleFormSubmit(e) {
       e.preventDefault();
 
-      let newPin = parseInt(this.refs.newPin.value, 10);
-      this.setState({ validationInfo: 'Sending...' });
+      const cardId = this.props.singleCard.id;
+      const newPin = parseInt(this.refs.newPin.value, 10);
 
-      axios(`http://localhost:3001/cards/${this.state.singleCard.id}`, {
-         method: 'patch',
-         headers: { 'Content-Type': 'application/json' },
-         data: { pin: newPin }
-      })
-      .then(res => res.data)
-      .then(singleCard => {
-         this.setState({ validationInfo: 'PIN successfully changed' });
-      });
+      this.props.changeCardPin(cardId, newPin);
    }
 }
 
-export default PINChange;
+const mapStateToProps = (state, ownProps) => {
+   return {
+      singleCard: state.cards.data[ownProps.match.params.cardId - 1],
+      fetchCardsStatus: state.cards.status,
+      validationInfo: state.cards.validations.changePin
+   }
+};
+
+const mapDispatchToProps = (dispatch) => {
+   return {
+      changeCardPin: (id, newPin) => dispatch(changeCardPin(id, newPin)),
+      fetchCards: () => dispatch(fetchCards())
+   }
+}
+
+export default connect(
+   mapStateToProps,
+   mapDispatchToProps
+)(PINChange);

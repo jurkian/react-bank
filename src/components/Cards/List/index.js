@@ -10,8 +10,8 @@ class CardsList extends Component {
    }
 
    render() {
-      const cards = this.props.cards
-         .map(card => <CardsListEl key={card.id} {...card} matchUrl={this.props.match.url} />);
+      const cards = this.props.cards.map(card =>
+         <CardsListEl key={card.id} {...card} matchUrl={this.props.match.url} />);
 
       if (!this.props.fetchCardsStatus) {
          return <AsyncLoader loaded={this.props.fetchCardsStatus} />;
