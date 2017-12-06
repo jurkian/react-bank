@@ -1,44 +1,35 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import LoadingAnimation from 'components/LoadingAnimation';
 
-/* 
-   Loaded:
-      true = yes
-      false = not yet
-      0 = no
-*/
+class AsyncLoader extends Component {
+   constructor() {
+      super();
 
-const AsyncLoader = ({ loaded, children, errorText }) => {
-
-   // If no error text is passed in props, use default
-   const defaultError = 'This content could not be loaded. Please refresh the page...';
-   const error = errorText || defaultError;
-
-   if (typeof loaded === 'boolean' && !loaded) {
-      return <LoadingAnimation />;
-
-   } else if (typeof loaded === 'boolean' && loaded) {
-      return <div>
-         {children}
-      </div>;
-
-   } else {
-      return <div>
-         <LoadingAnimation />
-         <p>{error}</p>
-      </div>;
+      this.state = { showError: false };
+      setTimeout(() => this.setState({ showError: true }), 3000);
    }
-};
+   
+   render() {
+      // If no error text is passed in props, use default
+      const defaultError = 'If loading takes too long, please refresh the page...';
+      const error = this.props.errorText || defaultError;
+
+      if (!this.props.loaded) {
+         return (
+            <div>
+               <LoadingAnimation />
+               {(this.state.showError) ? <p>{error}</p> : ''}
+            </div>
+         );
+      }
+   }
+}
 
 AsyncLoader.propTypes = {
    loaded: PropTypes.oneOfType([
-      PropTypes.bool,
-      PropTypes.oneOf([0])
+      PropTypes.bool
    ]).isRequired,
-   children: PropTypes.oneOfType([
-      PropTypes.node
-   ]),
    errorText: PropTypes.string
 }
 
