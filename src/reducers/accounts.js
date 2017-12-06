@@ -12,14 +12,16 @@ const accounts = (state = initialState, action) => {
    switch (action.type) {
 
       case FETCH_ACCOUNTS:
-         return Object.assign({}, state, {
+         return {
+            ...state,
             data: [...action.data]
-         });
+         }
 
       case FETCH_ACCOUNTS_STATUS:
-         return Object.assign({}, state, {
+         return {
+            ...state,
             status: action.status
-         });
+         }
 
       default: 
          return state;
