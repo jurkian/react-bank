@@ -11,8 +11,12 @@ class IncomeStats extends Component {
    }
 
    render() {
-      return (
-         <AsyncLoader loaded={this.state.loaded}>
+
+      if (!this.state.loaded) {
+         return <AsyncLoader loaded={this.state.loaded} />;
+
+      } else {
+         return (
             <section className="module stats-widget">
                <h3>Income change stats</h3>
                <p><strong>Account: </strong> {this.state.account.id} {this.state.account.type}</p>
@@ -25,8 +29,8 @@ class IncomeStats extends Component {
 
                <IncomeChart data={this.state.chartData} />
             </section>
-         </AsyncLoader>
-      );
+         );
+      }
    }
 
    componentDidMount() {

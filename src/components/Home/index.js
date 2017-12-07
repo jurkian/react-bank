@@ -12,18 +12,22 @@ class Home extends Component {
    }
 
    render() {
-      return (
-         <div className="row">
-            <AsyncLoader loaded={this.state.loaded}>
+
+      if (!this.state.loaded) {
+         return <AsyncLoader loaded={this.state.loaded} />;
+
+      } else {
+         return (
+            <div className="row">
                <div className="col-xs-12">
                   <section className="home module">
                      <HomeHeader {...this.state} />
                      <HomeFeatures />
                   </section>
                </div>
-            </AsyncLoader>
-         </div>
-      );
+            </div>
+         );
+      }
    }
 
    componentDidMount() {
