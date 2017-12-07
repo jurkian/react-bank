@@ -1,6 +1,6 @@
 # react-bank
 
-Banking app built in React.
+Banking app built in React and Redux.
 
 ![react-bank screenshot](screenshot.png?raw=true)
 
@@ -8,7 +8,7 @@ Inspired by [Daily UI 30](https://symu.co/freebies/ui-kits-9/daily-ui-30-element
 
 Moved to HTML5/CSS3 using Avocode ([link to HTML/CSS repo](https://github.com/jurkian/daily-ui-30-html)).
 
-Technologies used: React, JavaScript ES6, Sass, Bootstrap 3
+Technologies used: React, Redux, JavaScript ES6, Sass, Bootstrap 3
 
 ## How to use it?
 
