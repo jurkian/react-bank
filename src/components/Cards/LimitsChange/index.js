@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import Formsy from 'formsy-react';
 import FormsyInput from 'components/FormsyFields/input';
 import { connect } from 'react-redux';
@@ -41,7 +40,6 @@ class LimitsChange extends Component {
                <h1>Limits change for {this.props.singleCard.id}. {this.props.singleCard.type} card</h1>
 
                <Formsy
-                  className="login-form"
                   onValidSubmit={this.handleFormSubmit.bind(this)}>
 
                   <div className="form-group">
