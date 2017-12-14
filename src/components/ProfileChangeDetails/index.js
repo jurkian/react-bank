@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import { connect } from 'react-redux';
+import { fetchProfile, changeUserDetails } from 'actions/profile';
 import Formsy from 'formsy-react';
 import FormsyInput from 'components/FormsyFields/input';
 
@@ -9,10 +10,8 @@ import './style.css';
 import SingleModuleButton from 'components/Buttons/SingleModuleButton/index';
 
 class ProfileChangeDetails extends Component {
-   constructor() {
-      super();
-      
-      this.state = { validationInfo: '' };
+   componentWillMount() {
+      this.props.fetchProfile();  
    }
    
    render() {
@@ -69,7 +68,7 @@ class ProfileChangeDetails extends Component {
                               required />
                         </div>
 
-                        <p className="validation-info">{this.state.validationInfo}</p>
+                        <p className="validation-info">{this.props.validationInfo}</p>
                      </div>
 
                      <SingleModuleButton text="Save changes" type="submit" />
@@ -83,19 +82,25 @@ class ProfileChangeDetails extends Component {
    handleFormSubmit(model) {
       const id = 1;
       const { email, password } = model;
-   
-      this.setState({ validationInfo: 'Sending...' });
-   
-      axios(`http://localhost:3001/clients/${id}`, {
-         method: 'patch',
-         headers: { 'Content-Type': 'application/json' },
-         data: { email }
-      })
-      .then(res => res.data)
-      .then(res => {
-         this.setState({ validationInfo: 'Your details successfully changed' });
-      });
+
+      this.props.changeUserDetails(id, email, password);
    }
 }
 
-export default ProfileChangeDetails;
+const mapStateToProps = (state, ownProps) => {
+   return {
+      validationInfo: state.profile.validations.changeDetails
+   }
+};
+   
+const mapDispatchToProps = (dispatch) => {
+   return {
+      changeUserDetails: (id, newEmail, newPassword) => dispatch(changeUserDetails(id, newEmail, newPassword)),
+      fetchProfile: () => dispatch(fetchProfile())
+   }
+}
+
+export default connect(
+   mapStateToProps,
+   mapDispatchToProps
+)(ProfileChangeDetails); 
