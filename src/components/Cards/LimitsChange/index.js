@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import axios from 'axios';
+import Formsy from 'formsy-react';
+import FormsyInput from 'components/FormsyFields/input';
 import { connect } from 'react-redux';
 import { fetchCards, changeCardLimits } from 'actions/cards';
 import AsyncLoader from 'components/AsyncLoader';
@@ -14,39 +17,73 @@ class LimitsChange extends Component {
          return <AsyncLoader loaded={this.props.fetchCardsStatus} />;
 
       } else {
+         
+         const dwlValidations = {
+            validations: {
+               isNumeric: true
+            },
+            validationErrors: {
+               isNumeric: 'Please enter a number'
+            }
+         }
+      
+         const dolValidations = {
+            validations: {
+               isNumeric: true
+            },
+            validationErrors: {
+               isNumeric: 'Please enter a number'
+            }
+         }
+
          return (
             <div className="col-sm-6 col-sm-offset-3">
                <h1>Limits change for {this.props.singleCard.id}. {this.props.singleCard.type} card</h1>
 
-               <form onSubmit={this.handleFormSubmit.bind(this)}>
+               <Formsy
+                  className="login-form"
+                  onValidSubmit={this.handleFormSubmit.bind(this)}>
+
                   <div className="form-group">
                      <label htmlFor="daily-withdrawal-limit">Enter new daily withdrawal limit</label>
-                     <input type="text" id="daily-withdrawal-limit" name="daily-withdrawal-limit" className="form-control" placeholder="New daily withdrawal limit..." ref="newDWL" />
+
+                     <FormsyInput
+                        name="dailyWithdrawalLimit"
+                        type="text"
+                        id="daily-withdrawal-limit"
+                        placeholder="New daily withdrawal limit..."
+                        {...dwlValidations}
+                        required />
                   </div>
 
                   <div className="form-group">
                      <label htmlFor="daily-online-limit">Enter new daily online limit</label>
-                     <input type="text" id="daily-online-limit" name="daily-online-limit" className="form-control" placeholder="New daily online limit..." ref="newDOL" />
+
+                     <FormsyInput
+                        name="dailyOnlineLimit"
+                        type="text"
+                        id="daily-online-limit"
+                        placeholder="New daily online limit..."
+                        {...dolValidations}
+                        required />
                   </div>
 
                   <p className="validation-info">{this.props.validationInfo}</p>
 
                   <SingleModuleButton text="Change limits" type="submit" />
-               </form>
+               </Formsy>
             </div>
          );
       }
    }
 
-   handleFormSubmit(e) {
-      e.preventDefault();
-
+   handleFormSubmit(model) {
       // DWL = Daily Withdrawal Limit
       // DOL = Daily Online Limit
 
       const cardId = this.props.singleCard.id;
-      const newDWL = parseInt(this.refs.newDWL.value, 10);
-      const newDOL = parseInt(this.refs.newDOL.value, 10);
+      const newDWL = parseInt(model.dailyOnlineLimit, 10);
+      const newDOL = parseInt(model.dailyWithdrawalLimit, 10);
 
       this.props.changeCardLimits(cardId, newDWL, newDOL);
    }
