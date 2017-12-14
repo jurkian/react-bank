@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Formsy from 'formsy-react';
-import FormsyInput from '../FormsyInput';
+import FormsyInput from 'components/FormsyFields/input';
 import jwtDecode from 'jwt-decode';
 
 import loginIcon from './login-icon.png';
@@ -54,7 +54,7 @@ class Login extends Component {
                            <FormsyInput
                               name="email"
                               className="login-input"
-                              type="email"
+                              type="text"
                               placeholder="Your email..."
                               {...loginValidations}
                               required />
