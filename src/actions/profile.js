@@ -2,8 +2,6 @@ import axios from 'axios';
 
 export const FETCH_PROFILE = 'FETCH_PROFILE';
 export const FETCH_PROFILE_STATUS = 'FETCH_PROFILE_STATUS';
-export const USER_CHANGE_DETAILS = 'USER_CHANGE_DETAILS';
-export const USER_CHANGE_DETAILS_STATUS = 'USER_CHANGE_DETAILS_STATUS';
 
 export function fetchProfile() {
    return function (dispatch) {
@@ -22,33 +20,6 @@ export function fetchProfile() {
 export function fetchProfileStatus(status) {
    return {
       type: FETCH_PROFILE_STATUS,
-      status
-   }
-}
-
-export function changeUserDetails(id, newEmail, newPassword) {
-   return function (dispatch) {
-      dispatch(changeUserDetailsStatus('Saving...'));
-
-      axios(`http://localhost:3001/clients/${id}`, {
-         method: 'patch',
-         headers: { 'Content-Type': 'application/json' },
-         data: { email: newEmail, password: newPassword }
-      })
-      .then(res => res.data)
-      .then(data => {
-         dispatch({ type: USER_CHANGE_DETAILS, id, newEmail, newPassword });
-         dispatch(changeUserDetailsStatus('Changes saved'));
-      })
-      .catch(error => {
-         dispatch(changeUserDetailsStatus('Problems... try again'));
-      });
-   }
-}
-
-export function changeUserDetailsStatus(status) {
-   return {
-      type: USER_CHANGE_DETAILS_STATUS,
       status
    }
 }
