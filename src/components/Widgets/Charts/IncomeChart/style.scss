@@ -1,0 +1,23 @@
+@import '../../../App/variables';
+
+.income-chart-container {
+   height: 230px;
+}
+
+@media (min-width: 500px) {
+   .income-chart-container {
+      height: 280px;
+   }
+}
+
+@media (min-width: $screen-md-min) {
+   .income-chart-container {
+      height: 320px;
+   }
+}
+
+@media (min-width: $screen-lg-min) {
+   .income-chart-container {
+      height: 375px;
+   }
+}
