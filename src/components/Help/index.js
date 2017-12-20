@@ -37,7 +37,7 @@ class Help extends Component {
       return (
          <div className="row">
             <div className="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
-               <h1 className="text-center">Do you need help?</h1>
+               <h1>Do you need help?</h1>
 
                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Et beatae temporibus quasi natus consectetur illum perferendis commodi neque molestiae recusandae.</p>
                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Et beatae temporibus quasi natus consectetur illum perferendis commodi neque molestiae recusandae.</p>
