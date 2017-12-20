@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { fetchTransactions } from 'actions/transactions';
 import AsyncLoader from 'components/AsyncLoader';
@@ -31,6 +32,8 @@ class TransactionsList extends Component {
                <h1>Transactions</h1>
 
                <p>There are {this.props.transactions.length} finished transactions right now!</p>
+
+               <p><Link to={`${this.props.match.url}/new`} className="btn btn-primary">New transfer</Link></p>
 
                <div className="form-group">
                   <input
