@@ -4,7 +4,6 @@
   "private": true,
   "dependencies": {
     "axios": "^0.17.1",
-    "bootstrap-sass": "^3.3.7",
     "formsy-react": "^1.1.1",
     "jwt-decode": "^2.2.0",
     "promise-polyfill": "^6.1.0",
