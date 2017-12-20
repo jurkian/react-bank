@@ -1,5 +1,5 @@
 import './polyfills.js';
-import './vendor/bootstrap/custom-bootstrap.css';
+import './vendor/custom-bootstrap.css';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
