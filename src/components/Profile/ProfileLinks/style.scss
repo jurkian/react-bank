@@ -3,7 +3,7 @@
 .profile-links {
    display: flex;
    flex-direction: column;
-   box-shadow: 0 0 65px $navy-box-shadow;
+   box-shadow: 0 0 6.5rem $navy-box-shadow;
    margin-left: 0;
    margin-right: 0;
 
@@ -12,7 +12,7 @@
       display: flex;
       flex-direction: column;
       text-align: center;
-      padding: 15px 5px;
+      padding: 1.5rem .5rem;
       text-decoration: none;
 
       &:hover {
@@ -26,24 +26,25 @@
 
    i {
       color: $dark-blue;
-      font-size: 40px;
+      font-size: 4rem;
       line-height: 1;
-      margin-bottom: 10px;
+      margin-bottom: 1rem;
    }
 
    span {
       color: #c9d4eb;
       text-transform: uppercase;
-      font-size: 14px;
+      font-size: 1.4rem;
    }
 }
 
-@media (min-width: 360px) {
+// 360px
+@media (min-width: 22.5em) {
    .profile-links {
       flex-direction: row;
 
       a {
-         padding: 30px 5px;
+         padding: 3rem .5rem;
       }
    }
 }

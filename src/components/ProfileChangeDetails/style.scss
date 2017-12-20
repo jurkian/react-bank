@@ -1,7 +1,7 @@
 @import '../App/variables.scss';
 
 .login {
-   max-width: 365px;
+   max-width: 36.5rem;
    padding-bottom: 0;
 }
 
@@ -15,10 +15,10 @@
    display: inline-flex;
    justify-content: center;
    align-items: center;
-   margin: 35px 0 60px;
-   padding: 48px;
+   margin: 3.5rem 0 6rem;
+   padding: 4.8rem;
    border-radius: 50%;
-   box-shadow: 0 0 65px $navy-box-shadow;
+   box-shadow: 0 0 6.5rem $navy-box-shadow;
    background: #fff;
 }
 
@@ -28,14 +28,14 @@
    margin: 0;
 
    > div:first-child {
-      padding-left: 25px;
-      padding-right: 25px;
+      padding-left: 2.5rem;
+      padding-right: 2.5rem;
    }
 }
 
 .login-input, .password-input {
-   padding-left: 44px;
-   background-position: 17px;
+   padding-left: 4.4rem;
+   background-position: 1.7rem;
    background-repeat: no-repeat;
 }
 
@@ -48,5 +48,5 @@
 }
 
 .checkbox {
-   margin: 20px 0;
+   margin: 2rem 0;
 }

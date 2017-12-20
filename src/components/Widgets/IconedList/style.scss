@@ -2,7 +2,7 @@
 @import '../../App/mixins';
 
 .iconed-list {
-   max-width: 365px;
+   max-width: 36.5rem;
    padding-top: 0;
    padding-bottom: 0;
 
@@ -11,7 +11,7 @@
    }
 
    li {
-      border-bottom: 1px solid #e1e9fd;
+      border-bottom: .1rem solid #e1e9fd;
 
       &:last-child {
          border: 0;
@@ -20,7 +20,7 @@
       & > * {
          display: flex;
          flex-direction: column;
-         padding: 16px 18px;
+         padding: 1.6rem 1.8rem;
       }
 
       & > a { text-decoration: none; }
@@ -37,7 +37,7 @@
    // List title/subtitle
 
    .list-title, .list-subtitle {
-      font-size: 14px;
+      font-size: 1.4rem;
    }
 
    .list-title {
@@ -53,13 +53,14 @@
    }
 }
 
-@media (min-width: 360px) {
+// 360px
+@media (min-width: 22.5em) {
    .iconed-list {
       li {
-         background: url('list-icon-image.svg') 30px no-repeat;
+         background: url('list-icon-image.svg') 3rem no-repeat;
 
          > * {
-            padding: 24px 18px 24px 80px;
+            padding: 2.4rem 1.8rem 2.4rem 8rem;
          }
       }
 

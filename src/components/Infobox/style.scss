@@ -1,14 +1,14 @@
 @import '../App/variables.scss';
 
 .infobox {
-   max-width: 365px;
+   max-width: 36.5rem;
    padding-top: 0;
    padding-bottom: 0;
 
    // Infobox header
    > header {
       background-image: linear-gradient(to right, $light-blue 0%, $dark-blue 100%);
-      padding: 28px 28px 40px;
+      padding: 2.8rem 2.8rem 4rem;
       margin: 0;
    }
 }

@@ -13,8 +13,8 @@
    }
 
    li {
-      flex: 0 0 110px;
-      margin: 0 10px 18px;
+      flex: 0 0 11rem;
+      margin: 0 1rem 1.8rem;
    }
 
    .active {
@@ -34,28 +34,29 @@
    span {
       text-transform: uppercase;
       color: #434d56;
-      font-size: 12px;
+      font-size: 1.2rem;
       font-weight: bold;
    }
 }
 
 .main-nav-box {
    background: #f6f8f9;
-   box-shadow: 0 0 4px rgba(0,0,0,0.2);
-   margin-bottom: 5px;
-   min-height: 80px;
-   border-radius: 10px;
+   box-shadow: 0 0 .4rem rgba(0,0,0,0.2);
+   margin-bottom: .5rem;
+   min-height: 8rem;
+   border-radius: 1rem;
    display: flex;
    justify-content: center;
    align-items: center;
 
    i {
       color: #9fadb9;
-      font-size: 38px;
+      font-size: 3.8rem;
    }
 }
 
-@media (min-width: 530px) {
+// 530px
+@media (min-width: 33.125em) {
    .navigation nav {
       ul {
          justify-content: space-between;

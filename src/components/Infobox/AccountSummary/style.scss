@@ -12,23 +12,23 @@
 .account-summary-boxes {
    display: flex;
    flex-direction: column;
-   margin: 0 auto 34px;
+   margin: 0 auto 3.4rem;
 
    div {
       flex: 1;
       display: flex;
       flex-direction: column;
-      border-bottom: 1px solid #e7efff;
-      padding: 16px 0;
+      border-bottom: .1rem solid #e7efff;
+      padding: 1.6rem 0;
    }
 
    span {
-      font-size: 14px;
+      font-size: 1.4rem;
       color: $light-gray;
    }
 
    strong {
-      font-size: 24px;
+      font-size: 2.4rem;
       color: $light-blue;
    }
 }
@@ -36,29 +36,30 @@
 .account-summary-total {
    display: flex;
    flex-direction: column;
-   margin-bottom: 30px;
+   margin-bottom: 3rem;
 
    span {
-      font-size: 14px;
+      font-size: 1.4rem;
       color: $light-gray;
    }
 
    strong {
-      font-size: 36px;
+      font-size: 3.6rem;
       color: $green;
    }
 }
 
-@media (min-width: 360px) {
+// 360px
+@media (min-width: 22.5em) {
    .account-summary-boxes {
       flex-direction: row;
 
       div {
-         padding-left: 5px;
-         padding-right: 5px;
+         padding-left: .5rem;
+         padding-right: .5rem;
 
          &:first-child {
-            border-right: 1px solid #e7efff;
+            border-right: .1rem solid #e7efff;
          }
       }
    }
