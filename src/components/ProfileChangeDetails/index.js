@@ -5,7 +5,6 @@ import Formsy from 'formsy-react';
 import FormsyInput from 'components/FormsyFields/input';
 
 import loginIcon from 'components/Login/login-icon.png';
-import './style.css';
 
 import SingleModuleButton from 'components/Buttons/SingleModuleButton/index';
 
