@@ -7,6 +7,7 @@ import Home from 'components/Home';
 import Navigation from 'components/Navigation';
 import Login from 'components/Login';
 import Logout from 'components/Logout';
+import CurrencyStats from 'components/CurrencyStats';
 import Panel from 'components/Panel';
 import Accounts from 'components/Accounts';
 import Transactions from 'components/Transactions';
@@ -24,6 +25,8 @@ const App = () => {
             <Route exact path="/" component={Home} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/logout" component={Logout} />
+
+            <Route path="/currencies" component={CurrencyStats} />
 
             <Route path="/panel" component={Auth} />
             <Route path="/panel" component={Navigation} />
