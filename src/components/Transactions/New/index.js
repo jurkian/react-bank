@@ -37,7 +37,6 @@ class NewTransaction extends Component {
       } else {
 
          const accounts = this.props.accounts.data;
-         const firstUserAccountInfo = `${accounts[0].type}, ${accounts[0].sortcode}, ${accounts[0].balance} ${accounts[0].currency}`;
          const userAccountsList = accounts.map((acc, index) => (
             <option key={index} value={index}>
                {`${acc.type}, ${acc.sortcode}, ${acc.balance} ${acc.currency}`}
