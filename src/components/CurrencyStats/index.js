@@ -3,6 +3,9 @@ import axios from 'axios';
 import AsyncLoader from 'components/AsyncLoader';
 import CurrencyStatsHeader from './Header';
 import CurrencyList from './List';
+import SingleButton from 'components/Buttons/SingleButton';
+
+import './style.css';
 
 class CurrencyStats extends Component {
    constructor() {
@@ -22,6 +25,10 @@ class CurrencyStats extends Component {
                <div className="col-xs-12">
                   <CurrencyStatsHeader />
                   <CurrencyList currencyData={this.state.currencyData} />
+
+                  <div className="currency-stats-leave-section">
+                     <SingleButton text="Go back to home page &raquo;" href="/" size="lg" />
+                  </div>
                </div>
             </div>
          );
