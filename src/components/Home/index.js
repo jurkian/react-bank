@@ -3,6 +3,7 @@ import axios from 'axios';
 import AsyncLoader from 'components/AsyncLoader';
 import HomeHeader from './HomeHeader/index';
 import HomeFeatures from './HomeFeatures/index';
+import HomeNewFeatures from './HomeNewFeatures/index';
 
 class Home extends Component {
    constructor() {
@@ -23,6 +24,7 @@ class Home extends Component {
                   <section className="home module">
                      <HomeHeader {...this.state} />
                      <HomeFeatures />
+                     <HomeNewFeatures />
                   </section>
                </div>
             </div>
