@@ -4,10 +4,14 @@ import CurrencyBox from '../CurrencyBox';
 
 import './style.css';
 
-const CurrencyList = ({ currencyData }) => {
+const CurrencyList = ({ currencyData, baseCurrency }) => {
    const currencyRates = currencyData.rates;
    const currencyBoxes = Object.keys(currencyRates).map((currency, i) => {
-      return <CurrencyBox key={i} currency={currency} value={currencyRates[currency]} />
+      return <CurrencyBox
+         key={i}
+         baseCurrency={baseCurrency}
+         currency={currency}
+         value={currencyRates[currency]} />
    });
    
    return (
@@ -18,7 +22,8 @@ const CurrencyList = ({ currencyData }) => {
 }
 
 CurrencyList.propTypes = {
-   currencyData: PropTypes.object
+   currencyData: PropTypes.object.isRequired,
+   baseCurrency: PropTypes.string.isRequired,
 }
 
 export default CurrencyList;

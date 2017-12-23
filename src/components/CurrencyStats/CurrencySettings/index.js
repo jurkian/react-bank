@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import moment from 'moment';
 import { SingleDatePicker, isInclusivelyBeforeDay } from 'react-dates';
 
@@ -59,6 +60,14 @@ class CurrencySettings extends Component {
       const newCurrency = e.target.value;
       this.props.onBaseCurrencyChange(newCurrency);
    }
+}
+
+CurrencySettings.propTypes = {
+   date: PropTypes.object.isRequired,
+   currencies: PropTypes.array.isRequired,
+   baseCurrency: PropTypes.string.isRequired,
+   onBaseCurrencyChange: PropTypes.func.isRequired,
+   onCurrencyDateChange: PropTypes.func.isRequired
 }
 
 export default CurrencySettings;
