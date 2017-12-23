@@ -2,6 +2,8 @@
 
 Banking app built in React and Redux.
 
+What's inside? Authentication, accounts, transactions, credit/debit cards, messages, profile details (incl. email/password change), help (incl. contact form), income change and currency statistics
+
 ![react-bank screenshot](screenshot.png?raw=true)
 
 Inspired by [Daily UI 30](https://symu.co/freebies/ui-kits-9/daily-ui-30-elements/) PSD files.
