@@ -8,13 +8,9 @@ import './style.css';
 import 'react-dates/initialize';
 
 class CurrencySettings extends Component {
-   constructor(props) {
-      super(props);
-      this.state = {
-         date: moment().subtract(1, 'day'),
-         focused: false,
-         baseCurrency: props.baseCurrency
-      };
+   constructor() {
+      super();
+      this.state = { focused: false };
    }
    
    render() {
@@ -31,7 +27,7 @@ class CurrencySettings extends Component {
                      name="base-currency"
                      className="form-control"
                      onChange={this.onBaseCurrencyChange.bind(this)}
-                     value={this.state.baseCurrency} >
+                     value={this.props.baseCurrency} >
 
                      <option disabled>Select base currency</option>
                      {currencyEls}
@@ -40,7 +36,7 @@ class CurrencySettings extends Component {
 
                <div className="form-group">
                   <SingleDatePicker
-                     date={this.state.date} // momentPropTypes.momentObj or null
+                     date={this.props.date} // momentPropTypes.momentObj or null
                      onDateChange={date => this.onCurrencyDateChange(date)} // PropTypes.func.isRequired
                      focused={this.state.focused} // PropTypes.bool
                      onFocusChange={({ focused }) => this.setState({ focused })} // PropTypes.func.isRequired
@@ -56,14 +52,11 @@ class CurrencySettings extends Component {
    }
 
    onCurrencyDateChange(date) {
-      this.setState({ date });
       this.props.onCurrencyDateChange(date);
    }
 
    onBaseCurrencyChange(e) {
       const newCurrency = e.target.value;
-
-      this.setState({ baseCurrency: newCurrency })
       this.props.onBaseCurrencyChange(newCurrency);
    }
 }

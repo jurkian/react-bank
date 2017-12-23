@@ -17,7 +17,7 @@ class CurrencyStats extends Component {
          currencyData: [],
          currencies: 'GBP,AUD,CAD,CHF,CZK,EUR,HUF,JPY,NOK,PLN,RUB,SEK,USD'.split(','),
          baseCurrency: 'GBP',
-         date: moment().subtract(1, 'day').format('YYYY-MM-DD'),
+         date: moment().subtract(1, 'day'),
          loaded: false
       };
    }
@@ -33,6 +33,7 @@ class CurrencyStats extends Component {
                   <div className="currency-stats-header text-center">
                      <CurrencyStatsHeader />
                      <CurrencyStatsSettings
+                        date={this.state.date}
                         currencies={this.state.currencies}
                         baseCurrency={this.state.baseCurrency}
                         onBaseCurrencyChange={this.onBaseCurrencyChange.bind(this)}
@@ -58,6 +59,7 @@ class CurrencyStats extends Component {
 
    makeAPIRequest() {
       // Remove baseCurrency from currencies list - it wouldn't make any sense
+      // Then, convert it from array to string (needed for API request)
       const currencies = this.state.currencies.filter(curr =>
          curr !== this.state.baseCurrency).join(',');
 
@@ -68,7 +70,7 @@ class CurrencyStats extends Component {
 
       // If date is set - add it to request
       if (this.state.date) {
-         apiParams.date = this.state.date;
+         apiParams.date = this.state.date.format('YYYY-MM-DD');
       }
 
       axios.get('https://api.fixer.io/latest', { params: apiParams })
@@ -86,7 +88,7 @@ class CurrencyStats extends Component {
    }
 
    onCurrencyDateChange(date) {
-      this.setState({ date: date.format('YYYY-MM-DD'), loaded: false }, () => {
+      this.setState({ date, loaded: false }, () => {
          this.makeAPIRequest();
       });
    }
