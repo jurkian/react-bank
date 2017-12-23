@@ -8,19 +8,17 @@
    margin: 0 auto;
 
    .SingleDatePickerInput {
-      width: 100%;
       text-align: left;
    }
 
    .form-group, .form-group > * {
-      max-width: 100%;
       width: 100%;
    }
 }
 
+// 550px
 @media (min-width: 34.375em) {
    .currency-settings-form {
-      max-width: 100%;
       flex-direction: row;
    
       .form-group, .form-group > * {
