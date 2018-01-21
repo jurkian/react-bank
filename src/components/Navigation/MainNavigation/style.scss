@@ -3,7 +3,10 @@
 
 // Main navigation
 
-.navigation nav {
+.main-nav {
+   height: 0;
+   visibility: hidden;
+
    ul {
       @include reset-ul();
       display: flex;
@@ -42,6 +45,7 @@
 .navigation-visible {
    height: 100%;
    visibility: visible;
+   margin-top: 3rem;
 }
 
 .main-nav-widget {
@@ -70,7 +74,9 @@
 }
 
 @media (min-width: $screen-md-min) {
-   .navigation nav {
+   .main-nav {
+      height: 100%;
+      visibility: visible;
 
       ul {
          flex-direction: row;

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import './style.css';
 
-const NavigationHeader = () => {
+const NavigationHeader = (props) => {
    return (
       <header className="navigation-header">
          <div className="user-profile-box">
@@ -16,7 +16,7 @@ const NavigationHeader = () => {
          <ul className="navigation-header-links">
             <li><Link to="/logout">Logout</Link></li>
             <li className="toggle-menu">
-               <button>
+               <button onClick={props.toggleMobileNav}>
                   <i className="ion-navicon-round"></i>
                </button>
             </li>

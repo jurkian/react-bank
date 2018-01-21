@@ -1,11 +1,17 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import classNames from 'classnames';
 
 import './style.css';
 
-const MainNavigation = () => {
+const MainNavigation = (props) => {
+   let navClasses = classNames({
+      'main-nav': true,
+      'navigation-visible': props.isMobileNavVisible
+   });
+
    return (
-      <nav>
+      <nav className={navClasses}>
          <ul>
             <li>
                <NavLink to="/panel" exact={true}>
