@@ -4,23 +4,34 @@
 // Main navigation
 
 .navigation nav {
-   
    ul {
       @include reset-ul();
       display: flex;
+      flex-direction: column;
       justify-content: center;
       flex-wrap: wrap;
    }
 
    li {
-      flex: 0 0 11rem;
-      margin: 0 1rem 1.8rem;
+      margin: 0 1rem 1.4rem;
+
+      a {
+         text-decoration: none;
+      }
    }
 
    .active {
-      .main-nav-box {
-         background-image: linear-gradient(to right, $light-blue 0%, $dark-blue 100%);
+      .main-nav-widget, .main-nav-box {
+         span {
+            color: #fff;
+         }
+      }
 
+      .main-nav-widget {
+         background-image: linear-gradient(to right, $light-blue 0%, $dark-blue 100%);
+      }
+
+      .main-nav-box {
          i {
             color: #fff;
          }
@@ -28,8 +39,16 @@
    }
 }
 
+.navigation-visible {
+   height: 100%;
+   visibility: visible;
+}
+
 .main-nav-widget {
    text-align: center;
+   background: #f6f8f9;
+   box-shadow: 0 0 .4rem rgba(0,0,0,0.2);
+   border-radius: 1rem;
 
    span {
       text-transform: uppercase;
@@ -40,26 +59,58 @@
 }
 
 .main-nav-box {
-   background: #f6f8f9;
-   box-shadow: 0 0 .4rem rgba(0,0,0,0.2);
-   margin-bottom: .5rem;
-   min-height: 8rem;
-   border-radius: 1rem;
    display: flex;
    justify-content: center;
    align-items: center;
 
    i {
       color: #9fadb9;
-      font-size: 3.8rem;
+      font-size: 3rem;
    }
 }
 
-// 530px
-@media (min-width: 33.125em) {
+@media (min-width: $screen-md-min) {
    .navigation nav {
+
       ul {
-         justify-content: space-between;
+         flex-direction: row;
+      }
+
+      li {
+         flex: 0 0 11rem;
+         margin-bottom: 1.8rem;
+      }
+
+      .active {
+         .main-nav-widget {
+            background: 0;
+
+            span {
+               color: #434d56;
+            }
+         }
+
+         .main-nav-box {
+            background-image: linear-gradient(to right, $light-blue 0%, $dark-blue 100%);
+         }
+      }
+   }
+
+   .main-nav-widget {
+      background: 0;
+      box-shadow: none;
+      border-radius: 0;
+   }
+
+   .main-nav-box {
+      background: #f6f8f9;
+      box-shadow: 0 0 .4rem rgba(0,0,0,0.2);
+      border-radius: 1rem;
+      min-height: 8rem;
+      margin-bottom: .5rem;
+
+      i {
+         font-size: 3.8rem;
       }
    }
 }

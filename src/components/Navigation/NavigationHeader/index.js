@@ -15,6 +15,11 @@ const NavigationHeader = () => {
 
          <ul className="navigation-header-links">
             <li><Link to="/logout">Logout</Link></li>
+            <li className="toggle-menu">
+               <button>
+                  <i className="ion-navicon-round"></i>
+               </button>
+            </li>
          </ul>
       </header>
    );

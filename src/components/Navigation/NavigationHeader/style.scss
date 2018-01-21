@@ -1,13 +1,12 @@
 @import '../../App/mixins';
+@import '../../App/variables';
 
 // Navigation header
-
 .navigation-header {
    display: flex;
    flex-direction: column;
    // justify-content: space-between;
    text-align: center;
-   margin-bottom: 4rem;
 }
 
 .user-profile-box {
@@ -32,8 +31,26 @@
    }
 }
 
-// 450px
-@media (min-width: 28.125em) {
+.toggle-menu {
+   button {
+      font-size: 30px;
+      border: 0;
+      background: 0;
+   }
+}
+
+@media (min-width: $screen-md-min) {
+   .navigation-header {
+      margin-bottom: 4rem;
+   }
+   
+   .toggle-menu {
+      display: none;
+   }
+}
+
+// 500px
+@media (min-width: 31.25em) {
    .user-profile-box {
       margin-bottom: 0;
 
