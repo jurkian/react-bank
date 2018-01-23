@@ -1,40 +1,10 @@
 import React, { Component } from 'react';
-import axios from 'axios';
-import Formsy from 'formsy-react';
-import FormsyInput from 'components/FormsyFields/input';
-import jwtDecode from 'jwt-decode';
-
+import LoginForm from './LoginForm';
 import loginIcon from './login-icon.png';
 import './style.css';
 
-import SingleModuleButton from 'components/Buttons/SingleModuleButton/index';
-
 class Login extends Component {
-   constructor() {
-      super();
-
-      this.state = ({ validationInfo: '' });
-   }
-
    render() {
-      const loginValidations = {
-         validations: {
-            isEmail: true
-         },
-         validationErrors: {
-            isEmail: 'This is not a valid email'
-         }
-      }
-
-      const passwordValidations = {
-         validations: {
-            minLength: 6
-         },
-         validationErrors: {
-            minLength: 'Your password has to be at least 6 characters'
-         }
-      }
-
       return (
          <div className="row">
             <div className="col-xs-12">
@@ -45,42 +15,7 @@ class Login extends Component {
                      </div>
                   </section>
 
-                  <Formsy
-                     className="login-form"
-                     onValidSubmit={this.handleFormSubmit.bind(this)}>
-
-                     <div>
-                        <div className="form-group">
-                           <FormsyInput
-                              name="email"
-                              className="login-input"
-                              type="text"
-                              placeholder="Your email..."
-                              {...loginValidations}
-                              required />
-                        </div>
-
-                        <div className="form-group">
-                           <FormsyInput
-                              name="password"
-                              className="password-input"
-                              type="password"
-                              placeholder="Your password..."
-                              {...passwordValidations} 
-                              required />
-                        </div>
-                        
-                        <div className="checkbox">
-                           <label>
-                              <input type="checkbox" name="remember" /> Keep me signed in
-                           </label>
-                        </div>
-
-                        <p className="validation-info">{this.state.validationInfo}</p>
-                     </div>
-
-                     <SingleModuleButton text="Log in now" type="submit" />
-                  </Formsy>
+                  <LoginForm history={this.props.history} />
                </section>
             </div>
          </div>
@@ -92,39 +27,6 @@ class Login extends Component {
       if (localStorage.getItem('user_token')) {
          this.props.history.push('/panel');
       }
-   }
-
-   handleFormSubmit(model) {
-      const { email, password } = model;
-
-      this.setState({ validationInfo: 'Sending...' });
-
-      // Current fake API doesn't support JWT tokens, so... SIMULATE IT
-      // Use GET instead of POST
-      axios(`http://localhost:3001/clients/1`, {
-         method: 'get',
-         // headers: { 'Content-Type': 'application/json' },
-         // data: { email, password }
-      })
-      .then(res => res.data)
-      .then(res => {
-
-         let decodedToken = jwtDecode(res.token);
-
-         // Check server response
-         if (email === decodedToken.email) {
-
-            // Store the token
-            localStorage.setItem('user_token', res.token);
-
-            // Redirect to panel
-            this.props.history.push('/panel');
-
-         } else {
-            // Else show errors
-            this.setState({ validationInfo: 'Login unsuccessful' });
-         }
-      });
    }
 }
 
