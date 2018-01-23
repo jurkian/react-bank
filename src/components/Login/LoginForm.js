@@ -48,7 +48,7 @@ const InnerForm = props => {
                </label>
             </div>
 
-            {<p className="validation-info">{props.status}</p>}
+            <p className="validation-info">{props.status}</p>
          </div>
 
          <SingleModuleButton text="Log in now" type="submit" />
