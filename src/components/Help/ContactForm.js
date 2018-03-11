@@ -18,7 +18,7 @@ const InnerForm = props => {
    } = props;
 
    return (
-      <Form className="login-form">
+      <Form>
          <div>
             <div className="form-group">
                <label htmlFor="name">Your name</label>
