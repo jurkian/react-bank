@@ -6,7 +6,6 @@
     "axios": "^0.17.1",
     "classnames": "^2.2.5",
     "formik": "^0.10.5",
-    "formsy-react": "^1.1.1",
     "jwt-decode": "^2.2.0",
     "moment": "^2.20.1",
     "promise-polyfill": "^6.1.0",
