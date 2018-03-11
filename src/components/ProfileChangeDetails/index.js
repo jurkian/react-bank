@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchProfile } from 'actions/profile';
-import ChangeDetailsForm from './ChangeDetailsForm';
+import Form from './Form';
 
 import loginIcon from 'components/Login/login-icon.png';
 
@@ -21,7 +21,7 @@ class ProfileChangeDetails extends Component {
                      </div>
                   </section>
 
-                  <ChangeDetailsForm />
+                  <Form />
                </section>
             </div>
          </div>
