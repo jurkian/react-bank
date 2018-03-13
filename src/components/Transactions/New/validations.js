@@ -1,19 +1,20 @@
 import Yup from 'yup';
+import YupCustomValidations from 'components/Common/YupCustomValidations';
 
 // New transaction validations
 export default Yup.object().shape({
 
    targetAccNumber: Yup.number()
       .required('Please enter the account number')
+      .typeError('Account must be a number')
       .positive('Account must be a positive number')
-      .min(8, 'Account must be 8 numbers')
-      .max(8, 'Account must be 8 numbers'),
+      .length(8, 'Account must be 8 numbers'),
 
    targetSortCode: Yup.number()
       .required('Please enter the sort code')
+      .typeError('Sort code must be a number')
       .positive('Sort code must be a positive number')
-      .min(6, 'Sort code must be 6 numbers')
-      .max(6, 'Sort code must be 6 numbers'),
+      .length(6, 'Sort code must be 6 numbers'),
 
    targetName: Yup.string()
       .required('Please enter the name')
@@ -32,5 +33,6 @@ export default Yup.object().shape({
 
    amount: Yup.number()
       .required('Please enter the amount')
+      .typeError('Amount must be a number')
       .positive('Amount must be a positive number')
 });

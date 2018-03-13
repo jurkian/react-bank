@@ -42,6 +42,7 @@ const InnerForm = props => {
                   className="form-control"
                   id="target-acc-number"
                   name="targetAccNumber"
+                  maxLength="8"
                   placeholder="Recipient's account number..."
                />
                {touched.targetAccNumber && errors.targetAccNumber && <p>{errors.targetAccNumber}</p>}
@@ -55,6 +56,7 @@ const InnerForm = props => {
                   className="form-control"
                   id="target-sort-code"
                   name="targetSortCode"
+                  maxLength="6"
                   placeholder="Recipient's sort code..."
                />
                {touched.targetSortCode && errors.targetSortCode && <p>{errors.targetSortCode}</p>}
