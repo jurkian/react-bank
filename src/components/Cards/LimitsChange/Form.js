@@ -61,9 +61,11 @@ const LimitsChangeForm = withFormik({
    mapPropsToValues: props => ({ dailyWithdrawalLimit: '', dailyOnlineLimit: '' }),
 
    validationSchema: Yup.object().shape({
-      dailyWithdrawalLimit: Yup.number('Please enter a number')
+      dailyWithdrawalLimit: Yup.number()
+         .typeError('New limit must be a number')
          .positive('Please enter a positive number'),
-      dailyOnlineLimit: Yup.number('Please enter a number')
+      dailyOnlineLimit: Yup.number()
+         .typeError('New limit must be a number')
          .positive('Please enter a positive number'),
    }),
 
