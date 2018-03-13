@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import { Form, Field, withFormik } from 'formik';
 import Yup from 'yup';
-import YupCustomValidations from 'components/Common/YupCustomValidations';
+import 'components/Common/YupCustomValidations';
 import SingleModuleButton from 'components/Buttons/SingleModuleButton/index';
 
 const InnerForm = props => {
