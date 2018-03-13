@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import { Form, Field, withFormik } from 'formik';
 import Yup from 'yup';
+import YupCustomValidations from 'components/Common/YupCustomValidations';
 import SingleModuleButton from 'components/Buttons/SingleModuleButton/index';
 
 const InnerForm = props => {
@@ -60,14 +61,21 @@ const PINChangeForm = withFormik({
    // Transform outer props into form values
    mapPropsToValues: props => ({ pin: '', pinConf: '' }),
 
-   /*
-      Validations:
-      pin = positive number,
-      pinConf = equals to pin
-   */
    validationSchema: Yup.object().shape({
-      pin: Yup.number('Please enter a number')
+      pin: Yup.number()
+         .typeError('PIN must be a number')
          .positive('Please enter a positive number')
+         .length(4, 'PIN must be 4 numbers'),
+
+      pinConf: Yup.number()
+         // When PIN has any value, activate pinConf validations
+         .when('pin', {
+            is: val => val && val.toString().length > 0,
+            then: Yup.number()
+               .required('Please confirm your PIN')
+               .typeError('PIN confirmation must be a number')
+               .oneOf([Yup.ref('pin')], 'PINs must be the same')
+         }),
    }),
 
    // Submission handler
