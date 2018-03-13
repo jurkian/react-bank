@@ -8,7 +8,7 @@ class Login extends Component {
       return (
          <div className="row">
             <div className="col-xs-12">
-               <section className="login module">
+               <section className="login module container-module">
                   <section className="login-icon">
                      <div className="icon-container">
                         <img src={loginIcon} className="img-responsive" alt="Login icon" />

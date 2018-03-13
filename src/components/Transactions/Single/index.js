@@ -14,7 +14,7 @@ class SingleTransaction extends Component {
          return <AsyncLoader loaded={this.props.fetchTransactionStatus} />;
 
       } else {
-         return <div className="well">
+         return <section className="single-transfer module">
             <h1>{this.props.singleTrans.id}. {this.props.singleTrans.type}</h1>
             <ul>
                <li>Date: {this.props.singleTrans.date}</li>
@@ -23,7 +23,7 @@ class SingleTransaction extends Component {
                <li>Type: {this.props.singleTrans.type}</li>
                <li>Status: {this.props.singleTrans.status}</li>
             </ul>
-         </div>
+         </section>
       }
    }
 }

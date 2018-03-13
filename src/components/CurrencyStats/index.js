@@ -30,23 +30,25 @@ class CurrencyStats extends Component {
          return (
             <div className="row">
                <div className="col-xs-12">
-                  <div className="currency-stats-header text-center">
-                     <CurrencyStatsHeader />
-                     <CurrencyStatsSettings
-                        date={this.state.date}
-                        currencies={this.state.currencies}
-                        baseCurrency={this.state.baseCurrency}
-                        onBaseCurrencyChange={this.onBaseCurrencyChange.bind(this)}
-                        onCurrencyDateChange={this.onCurrencyDateChange.bind(this)} />
-                  </div>
+                  <section className="currency-stats module container-module">
+                     <div className="currency-stats-header text-center">
+                        <CurrencyStatsHeader />
+                        <CurrencyStatsSettings
+                           date={this.state.date}
+                           currencies={this.state.currencies}
+                           baseCurrency={this.state.baseCurrency}
+                           onBaseCurrencyChange={this.onBaseCurrencyChange.bind(this)}
+                           onCurrencyDateChange={this.onCurrencyDateChange.bind(this)} />
+                     </div>
 
-                  <CurrencyList
-                     currencyData={this.state.currencyData}
-                     baseCurrency={this.state.baseCurrency} />
+                     <CurrencyList
+                        currencyData={this.state.currencyData}
+                        baseCurrency={this.state.baseCurrency} />
 
-                  <div className="currency-stats-leave-section">
-                     <SingleButton text="Go back to home page &raquo;" href="/" size="lg" />
-                  </div>
+                     <div className="currency-stats-leave-section">
+                        <SingleButton text="Go back to home page &raquo;" href="/" size="lg" />
+                     </div>
+                  </section>
                </div>
             </div>
          );

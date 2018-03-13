@@ -12,7 +12,7 @@ class ProfileChangeDetails extends Component {
    
    render() {
       return (
-         <div className="row">
+         <div className="row panel-content">
             <div className="col-xs-12">
                <section className="login module">
                   <section className="login-icon">

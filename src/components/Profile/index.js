@@ -25,8 +25,7 @@ class Profile extends Component {
 
       } else {
          return (
-            <div className="row">
-   
+            <div className="row panel-content">
                <div className="col-xs-12">
                   <section className="profile module">
                      <ProfileHeader profile={this.props.profile} />

@@ -1,18 +1,28 @@
+@import 'variables';
+
 .app {
-   margin: 5rem auto 3rem;
-   padding: 2.5rem;
-   border-radius: 1rem;
-   background-color:  #f5f5f5;
-   box-shadow: 0 0 6.5rem 0 rgba(60, 108, 222, 0.25);
+   padding-top: 1.5rem;
+   padding-bottom: 1.5rem;
 }
 
 html, body {
    min-height: 100%;
 }
- 
-body {
-   margin-top: 5rem;
-   margin-bottom: 5rem;
+
+// Panel content
+.panel-content {
+   h1, h2 {
+      &:first-child {
+         margin-top: 0;
+      }
+   }
+}
+
+// 576px, small devices
+@media (min-width: 36em) {
+   .panel-content {
+      margin-top: 2rem;
+   }
 }
 
 @import "module.scss";

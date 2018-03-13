@@ -7,7 +7,7 @@ import NewTransaction from './New/index';
 
 const Transactions = (props) => {
    return (
-      <div className="row">
+      <div className="row panel-content">
          <div className="col-xs-12">
             <Switch>
                <Route exact path="/panel/transactions" component={TransactionsList} />

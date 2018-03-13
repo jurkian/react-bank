@@ -16,7 +16,7 @@
    }
 
    li {
-      margin: 0 1rem 1.4rem;
+      margin-bottom: 1.4rem;
 
       a {
          text-decoration: none;
@@ -85,6 +85,12 @@
       li {
          flex: 0 0 11rem;
          margin-bottom: 1.8rem;
+         margin-left: 1rem;
+         margin-right: 1rem;
+
+         &:first-child { margin-left: 0; }
+
+         &:last-child { margin-right: 0; }
       }
 
       .active {

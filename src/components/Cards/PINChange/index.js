@@ -17,9 +17,11 @@ class PINChange extends Component {
 
          return (
             <div className="col-sm-6 col-sm-offset-3">
-               <h1>PIN change for {this.props.singleCard.id}. {this.props.singleCard.type} card</h1>
+               <section className="pin-change module">
+                  <h1>PIN change for {this.props.singleCard.id}. {this.props.singleCard.type} card</h1>
 
-               <Form />
+                  <Form />
+               </section>
             </div>
          );
       }

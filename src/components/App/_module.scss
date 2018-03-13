@@ -1,3 +1,6 @@
+@import 'variables';
+
+// A typical widget module
 .module {
    background: #fff;
    border-radius: .9rem;
@@ -7,7 +10,29 @@
    overflow: hidden;
 
    > * {
-      margin-left: 2.5rem;
-      margin-right: 2.5rem;
+      margin-left: 1.5rem;
+      margin-right: 1.5rem;
+   }
+
+   h1, h2, h3 {
+      &:first-child {
+         margin-top: 0;
+      }
+   }
+}
+
+@media (min-width: $screen-md-min) {
+   .module {
+      > * {
+         margin-left: 2.5rem;
+         margin-right: 2.5rem;
+      }
+   }     
+}
+
+// Module that contains the content
+.container-module {
+   &:last-child {
+      margin-bottom: 0;
    }
 }

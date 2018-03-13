@@ -14,14 +14,14 @@ class SingleMessage extends Component {
 
       } else {
          return (
-            <div className="well">
+            <section className="single-message module">
                <h1>{this.props.singleMessage.id}. {this.props.singleMessage.title}</h1>
                <p>Date: {this.props.singleMessage.date}</p>
 
                <hr />
 
                <article dangerouslySetInnerHTML={{__html: this.props.singleMessage.content}} />
-            </div>
+            </section>
          );
       }
    }

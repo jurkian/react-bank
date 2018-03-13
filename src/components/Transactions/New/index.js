@@ -25,9 +25,11 @@ class NewTransaction extends Component {
          return (
             <div className="row">
                <div className="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
-                  <h1>New transfer</h1>
+                  <section className="new-transfer module">
+                     <h1>New transfer</h1>
 
-                  <Form userAccountsList={userAccountsList} />
+                     <Form userAccountsList={userAccountsList} />
+                  </section>
                </div>
             </div>
          );

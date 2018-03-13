@@ -14,7 +14,7 @@ class SingleAccount extends Component {
          return <AsyncLoader loaded={this.props.fetchAccountsStatus} />;
 
       } else {
-         return <div className="well">
+         return <section className="single-account module">
             <h1>{this.props.singleAcc.type}</h1>
             <ul>
                <li>Sortcode: {this.props.singleAcc.sortcode}</li>
@@ -22,7 +22,7 @@ class SingleAccount extends Component {
                <li>Currency: {this.props.singleAcc.currency}</li>
                <li>Balance: {this.props.singleAcc.balance} {this.props.singleAcc.currency}</li>
             </ul>
-         </div>
+         </section>
       }
    }
 }

@@ -6,7 +6,7 @@ import SingleMessage from './Single/index';
 
 const Messages = (props) => {
    return (
-      <div className="row">
+      <div className="row panel-content">
          <div className="col-xs-12">
             <Route exact path={props.match.url} component={MessagesList} />
             <Route path={`${props.match.url}/:messageId`} component={SingleMessage} />
