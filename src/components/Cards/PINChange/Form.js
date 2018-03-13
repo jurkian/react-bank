@@ -30,6 +30,7 @@ const InnerForm = props => {
                   id="pin"
                   className="form-control"
                   name="pin"
+                  maxLength="4"
                   placeholder="Enter new PIN..."
                />
                {touched.pin && errors.pin && <p>{errors.pin}</p>}
@@ -43,6 +44,7 @@ const InnerForm = props => {
                   id="pin-conf"
                   className="form-control"
                   name="pinConf"
+                  maxLength="4"
                   placeholder="Confirm new PIN..."
                />
                {touched.pinConf && errors.pinConf && <p>{errors.pinConf}</p>}
