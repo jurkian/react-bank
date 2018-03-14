@@ -18,7 +18,7 @@ class SingleTransaction extends Component {
             <h1>{this.props.singleTrans.id}. {this.props.singleTrans.type}</h1>
             <ul>
                <li>Date: {this.props.singleTrans.date}</li>
-               <li>Payee: {this.props.singleTrans.payee}</li>
+               <li>Payee: {this.props.singleTrans.payeeName}</li>
                <li>Amount: {this.props.singleTrans.amount}</li>
                <li>Type: {this.props.singleTrans.type}</li>
                <li>Status: {this.props.singleTrans.status}</li>

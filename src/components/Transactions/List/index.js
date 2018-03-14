@@ -20,7 +20,7 @@ class TransactionsList extends Component {
 
       // Allow filtering by payee's name
       const transactions = this.props.transactions
-         .filter(trans => trans.payee.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1)
+         .filter(trans => trans.payeeName.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1)
          .map(trans => <TransactionsListEl key={trans.id} {...trans} matchUrl={this.props.match.url} />);
 
       if (!this.props.fetchTransactionsStatus) {
