@@ -90,27 +90,13 @@ const PINChangeForm = withFormik({
    ) => {
 
       const { pin } = values;
-
-      // const cardId = this.props.singleCard.id;
       const newPin = parseInt(pin, 10);
-
-      // this.props.changeCardPin(cardId, newPin);
 
       setStatus('Sending...');
 
-      // Simulate PUT request
-      axios(`http://localhost:3001/clients/1`, {
-         method: 'get',
-         // headers: { 'Content-Type': 'application/json' },
-         // data: { email, password, remember }
-      })
-         .then(res => res.data)
-         .then(res => {
-            setStatus('PIN successfully changed!');
-         })
-         .catch(err => {
-            setStatus('Problems, try again...');
-         });
+      props.changeCardPin(pin)
+         .then(data => setStatus('PIN successfully changed!'))
+         .catch(error => setStatus('Problems, try again...'));
    },
 
 })(InnerForm);

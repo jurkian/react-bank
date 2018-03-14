@@ -27,20 +27,19 @@ export function fetchCardsStatus(status) {
 }
 
 export function changeCardPin(id, newPin) {
-   return function (dispatch) {
+   return dispatch => new Promise((resolve, reject) => {
       axios(`http://localhost:3001/cards/${id}`, {
          method: 'patch',
          headers: { 'Content-Type': 'application/json' },
          data: { pin: newPin }
       })
-      .then(res => res.data)
-      .then(data => {
-         dispatch({ type: CARD_CHANGE_PIN, id, newPin });
-      })
-      .catch(error => {
-
-      });
-   }
+         .then(res => res.data)
+         .then(data => {
+            dispatch({ type: CARD_CHANGE_PIN, id, newPin });
+            resolve(data);
+         })
+         .catch(err => reject(err));
+   });
 }
 
 export function changeCardLimits(id, newWithdrawalLimit, newOnlineLimit) {

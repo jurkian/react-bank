@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchCards } from 'actions/cards';
+import { fetchCards, changeCardPin } from 'actions/cards';
 import AsyncLoader from 'components/AsyncLoader';
 import Form from './Form';
 
 class PINChange extends Component {
    componentWillMount() {
-      this.props.fetchCards();
+      if (!this.props.fetchCardsStatus) {
+         this.props.fetchCards();
+      }
    }
 
    render() {
@@ -20,7 +22,7 @@ class PINChange extends Component {
                <section className="pin-change module">
                   <h1>PIN change for {this.props.singleCard.id}. {this.props.singleCard.type} card</h1>
 
-                  <Form />
+                  <Form changeCardPin={this.props.changeCardPin} />
                </section>
             </div>
          );
@@ -35,9 +37,10 @@ const mapStateToProps = (state, ownProps) => {
    }
 };
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch, ownProps) => {
    return {
-      fetchCards: () => dispatch(fetchCards())
+      fetchCards: () => dispatch(fetchCards()),
+      changeCardPin: pin => dispatch(changeCardPin(parseInt(ownProps.match.params.cardId), pin))
    }
 }
 
