@@ -1,17 +1,24 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchAccounts } from 'actions/accounts';
+import { fetchTransactions, addTransaction } from 'actions/transactions';
 import AsyncLoader from 'components/AsyncLoader';
 import Form from './Form';
 
 class NewTransaction extends Component {
    componentWillMount() {
-      this.props.fetchAccounts();
+      if (!this.props.fetchAccountsStatus) {
+         this.props.fetchAccounts();
+      }
+
+      if (!this.props.fetchTransactionsStatus) {
+         this.props.fetchTransactions();
+      }
    }
 
    render() {
-      if (!this.props.fetchAccountsStatus) {
-         return <AsyncLoader loaded={this.props.fetchAccountsStatus} />;
+      if (!this.props.fetchAccountsStatus || !this.props.fetchTransactionsStatus) {
+         return <AsyncLoader loaded={this.props.fetchAccountsStatus && this.props.fetchTransactionsStatus} />;
 
       } else {
 
@@ -28,7 +35,10 @@ class NewTransaction extends Component {
                   <section className="new-transfer module">
                      <h1>New transfer</h1>
 
-                     <Form userAccountsList={userAccountsList} />
+                     <Form
+                        userAccountsList={userAccountsList}
+                        addTransaction={this.props.addTransaction}
+                     />
                   </section>
                </div>
             </div>
@@ -37,16 +47,19 @@ class NewTransaction extends Component {
    }
 }
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state) => {
    return {
       accounts: state.accounts,
       fetchAccountsStatus: state.accounts.status,
+      fetchTransactionsStatus: state.transactions.status
    }
 };
 
 const mapDispatchToProps = (dispatch) => {
    return {
-      fetchAccounts: () => dispatch(fetchAccounts())
+      fetchAccounts: () => dispatch(fetchAccounts()),
+      fetchTransactions: () => dispatch(fetchTransactions()),
+      addTransaction: (data) => dispatch(addTransaction(data))
    }
 }
 

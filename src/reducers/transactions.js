@@ -1,6 +1,7 @@
 import {
    FETCH_TRANSACTIONS,
-   FETCH_TRANSACTIONS_STATUS 
+   FETCH_TRANSACTIONS_STATUS,
+   ADD_TRANSACTION
 } from 'actions/transactions';
 
 const initialState = {
@@ -21,6 +22,14 @@ const transactions = (state = initialState, action) => {
          return {
             ...state,
             status: action.status
+         }
+
+      case ADD_TRANSACTION:
+         return {
+            ...state,
+            data: [...state.data, {
+               ...action.data
+            }]
          }
 
       default: 

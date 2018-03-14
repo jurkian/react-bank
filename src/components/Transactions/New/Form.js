@@ -1,5 +1,4 @@
 import React from 'react';
-import axios from 'axios';
 import { Form, Field, withFormik } from 'formik';
 import SingleModuleButton from 'components/Buttons/SingleModuleButton/index';
 import validations from './validations';
@@ -22,71 +21,72 @@ const InnerForm = props => {
          <div>
 
             <div className="form-group">
-               <label htmlFor="user-account">Choose your account</label>
+               <label htmlFor="source-account">Choose your account</label>
 
                <Field
                   component="select"
                   className="form-control"
-                  id="user-account"
-                  name="userAccount"
+                  id="source-account"
+                  name="sourceAcc"
                   placeholder="Your new email..."
                >{props.userAccountsList}</Field>
-               {touched.userAccount && errors.userAccount && <p>{errors.userAccount}</p>}
+
+               {touched.sourceAcc && errors.sourceAcc && <p>{errors.sourceAcc}</p>}
             </div>
 
             <div className="form-group">
-               <label htmlFor="target-acc-number">Recipient's account number</label>
+               <label htmlFor="payee-acc-number">Recipient's account number</label>
 
                <Field
                   type="text"
                   className="form-control"
-                  id="target-acc-number"
-                  name="targetAccNumber"
+                  id="payee-acc-number"
+                  name="payeeAccNumber"
                   maxLength="8"
                   placeholder="Recipient's account number..."
                />
-               {touched.targetAccNumber && errors.targetAccNumber && <p>{errors.targetAccNumber}</p>}
+               {touched.payeeAccNumber && errors.payeeAccNumber && <p>{errors.payeeAccNumber}</p>}
             </div>
 
             <div className="form-group">
-               <label htmlFor="target-sort-code">Recipient's sort code</label>
+               <label htmlFor="payee-sort-code">Recipient's sort code</label>
 
                <Field
                   type="text"
                   className="form-control"
-                  id="target-sort-code"
-                  name="targetSortCode"
+                  id="payee-sort-code"
+                  name="payeeSortCode"
                   maxLength="6"
                   placeholder="Recipient's sort code..."
                />
-               {touched.targetSortCode && errors.targetSortCode && <p>{errors.targetSortCode}</p>}
+               {touched.payeeSortCode && errors.payeeSortCode && <p>{errors.payeeSortCode}</p>}
             </div>
 
             <div className="form-group">
-               <label htmlFor="target-name">Recipient's name</label>
+               <label htmlFor="payee-name">Recipient's name</label>
 
                <Field
                   type="text"
                   className="form-control"
-                  id="target-name"
-                  name="targetName"
+                  id="payee-name"
+                  name="payeeName"
                   placeholder="Recipient's name..."
                />
-               {touched.targetName && errors.targetName && <p>{errors.targetName}</p>}
+               {touched.payeeName && errors.payeeName && <p>{errors.payeeName}</p>}
             </div>
 
             <div className="form-group">
-               <label htmlFor="target-address">Recipient's address</label>
+               <label htmlFor="payee-address">Recipient's address</label>
 
                <Field
                   component="textarea"
                   className="form-control"
-                  id="target-address"
-                  name="targetAddress"
+                  id="payee-address"
+                  name="payeeAddress"
                   rows="4"
                   placeholder="Recipient's address..."
                />
-               {touched.targetAddress && errors.targetAddress && <p>{errors.targetAddress}</p>}
+               {touched.payeeAddress && errors.payeeAddress && <p>{errors.payeeAddress}</p>}
             </div>
 
             <div className="form-group">
@@ -128,11 +128,11 @@ const NewTransactionForm = withFormik({
 
    // Transform outer props into form values
    mapPropsToValues: props => ({
-      userAccount: '',
-      targetAccNumber: '',
-      targetSortCode: '',
-      targetName: '',
-      targetAddress: '',
+      sourceAcc: 0,
+      payeeAccNumber: '',
+      payeeSortCode: '',
+      payeeName: '',
+      payeeAddress: '',
       reference: '',
       amount: ''
    }),
@@ -149,35 +149,24 @@ const NewTransactionForm = withFormik({
    ) => {
 
       const {
-         userAccount,
-         targetAccNumber,
-         targetSortCode,
-         targetName,
-         targetAddress,
+         sourceAcc,
+         payeeAccNumber,
+         payeeSortCode,
+         payeeName,
+         payeeAddress,
          reference,
          amount
       } = values;
 
+      const transactionData = {
+         sourceAcc, payeeAccNumber, payeeSortCode, payeeName, payeeAddress, reference, amount
+      };
+
       setStatus('Sending...');
 
-      axios(`http://localhost:3001/transactions`, {
-         method: 'post',
-         headers: { 'Content-Type': 'application/json' },
-         data: {
-            date: '24/07/2017 22:38',
-            amount,
-            payee: 'John Laboune',
-            type: 'Transfer',
-            status: 'Done'
-         }
-      })
-         .then(res => res.data)
-         .then(res => {
-            setStatus('Transfer done');
-         })
-         .catch(err => {
-            setStatus('Problems, try again...');
-         });
+      props.addTransaction(transactionData)
+         .then(data => setStatus('Transfer done!'))
+         .catch(error => setStatus('Problems, try again...'));
    },
 
 })(InnerForm);
