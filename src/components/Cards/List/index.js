@@ -6,7 +6,9 @@ import AsyncLoader from "components/AsyncLoader";
 
 class CardsList extends Component {
    componentWillMount() {
-      this.props.fetchCards();
+      if (!this.props.fetchCardsStatus) {
+         this.props.fetchCards();
+      }
    }
 
    render() {

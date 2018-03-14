@@ -41,7 +41,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
    return {
       fetchCards: () => dispatch(fetchCards()),
       changeCardLimits: (newWithdrawalLimit, newOnlineLimit) =>
-         dispatch(changeCardLimits(parseInt(ownProps.match.params.cardId), newWithdrawalLimit, newOnlineLimit))
+         dispatch(changeCardLimits(parseInt(ownProps.match.params.cardId, 10), newWithdrawalLimit, newOnlineLimit))
    }
 }
 

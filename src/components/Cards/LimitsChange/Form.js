@@ -1,5 +1,4 @@
 import React from 'react';
-import axios from 'axios';
 import { Form, Field, withFormik } from 'formik';
 import Yup from 'yup';
 import SingleModuleButton from 'components/Buttons/SingleModuleButton/index';

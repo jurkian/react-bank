@@ -6,7 +6,9 @@ import CardInfobox from 'components/Infobox/CardInfobox/index';
 
 class SingleCard extends Component {
    componentWillMount() {
-      this.props.fetchCards();
+      if (!this.props.fetchCardsStatus) {
+         this.props.fetchCards();
+      }
    }
 
    render() {

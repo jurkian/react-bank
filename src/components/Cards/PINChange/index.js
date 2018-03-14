@@ -40,7 +40,7 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
    return {
       fetchCards: () => dispatch(fetchCards()),
-      changeCardPin: pin => dispatch(changeCardPin(parseInt(ownProps.match.params.cardId), pin))
+      changeCardPin: pin => dispatch(changeCardPin(parseInt(ownProps.match.params.cardId, 10), pin))
    }
 }
 
