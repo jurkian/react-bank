@@ -6,17 +6,45 @@
 
 import axios from 'axios';
 
-const Auth = ({ history }) => {
-   const token = localStorage.getItem('user_token');
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { fetchProfile } from 'actions/profile';
 
-   if (!token) {
-      history.push('/login');
+class Auth extends Component {
+   // Get user's profile if it's not loaded yet
+   componentWillMount() {
+      if (!this.props.fetchProfileStatus) {
+         this.props.fetchProfile();
+      }
    }
 
-   // Set default Authorization header for axios
-   axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+   render() {
+      const token = localStorage.getItem('user_token');
 
-   return null;
+      if (!token) {
+         this.props.history.push('/login');
+      }
+
+      // Set default Authorization header for axios
+      axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+
+      return null;
+   }
+}
+
+const mapStateToProps = (state) => {
+   return {
+      fetchProfileStatus: state.profile.status
+   }
 };
 
-export default Auth;
+const mapDispatchToProps = (dispatch) => {
+   return {
+      fetchProfile: () => dispatch(fetchProfile())
+   }
+}
+
+export default connect(
+   mapStateToProps,
+   mapDispatchToProps
+)(Auth);
