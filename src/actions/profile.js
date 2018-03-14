@@ -25,18 +25,20 @@ export function fetchProfileStatus(status) {
    }
 }
 
-export function changeUserDetails(id, newEmail, newPassword) {
+export function changeUserDetails(id, email, password) {
+   email = email || '';
+   password = password || '';
+
    return dispatch => new Promise((resolve, reject) => {
-      
-      // No password change yet - needs to be hashed
+
       axios(`http://localhost:3001/clients/${id}`, {
          method: 'patch',
          headers: { 'Content-Type': 'application/json' },
-         data: { email: newEmail }
+         data: { email, password }
       })
          .then(res => res.data)
          .then(data => {
-            dispatch({ type: USER_CHANGE_DETAILS, id, newEmail, newPassword });
+            dispatch({ type: USER_CHANGE_DETAILS, id, email, password });
             resolve(data);
          })
          .catch(err => reject(err));

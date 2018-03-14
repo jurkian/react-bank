@@ -29,8 +29,14 @@ const profile = (state = initialState, action) => {
 
       case USER_CHANGE_DETAILS:
          currentUser = state.data.find(el => el.id === action.id);
-         // currentUser.password_hash = action.newPassword; // TODO: hash it!
-         currentUser.email = action.newEmail;
+
+         if (action.email) {
+            currentUser.email = action.newEmail;
+         }
+
+         if (action.password) {
+            currentUser.password = action.password;
+         }
 
          return {
             ...state

@@ -70,6 +70,11 @@ const ChangeDetailsForm = withFormik({
    ) => {
       const { email, password } = values;
 
+      if (!email && !password) {
+         setStatus('No details changed');
+         return;
+      }
+
       setStatus('Sending...');
 
       props.changeUserDetails(email, password)
