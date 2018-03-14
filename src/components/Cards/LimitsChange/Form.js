@@ -85,6 +85,11 @@ const LimitsChangeForm = withFormik({
       const newDWL = parseInt(dailyOnlineLimit, 10);
       const newDOL = parseInt(dailyWithdrawalLimit, 10);
 
+      if (!newDWL && !newDOL) {
+         setStatus('No limits changed');
+         return;
+      }
+
       setStatus('Sending...');
 
       props.changeCardLimits(newDWL, newDOL)
