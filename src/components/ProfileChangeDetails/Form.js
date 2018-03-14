@@ -1,5 +1,4 @@
 import React from 'react';
-import axios from 'axios';
 import { Form, Field, withFormik } from 'formik';
 import Yup from 'yup';
 import SingleModuleButton from 'components/Buttons/SingleModuleButton/index';
@@ -73,19 +72,9 @@ const ChangeDetailsForm = withFormik({
 
       setStatus('Sending...');
 
-      // Simulate PUT request
-      axios(`http://localhost:3001/clients/1`, {
-         method: 'get',
-         // headers: { 'Content-Type': 'application/json' },
-         // data: { email, password, remember }
-      })
-      .then(res => res.data)
-      .then(res => {
-         setStatus('Details successfully changed!');
-      })
-      .catch(err => {
-         setStatus('Problems, try again...');
-      });
+      props.changeUserDetails(email, password)
+         .then(data => setStatus('Details successfully changed!'))
+         .catch(error => setStatus('Problems, try again...'));
    },
 
 })(InnerForm);

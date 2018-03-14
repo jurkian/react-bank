@@ -1,8 +1,7 @@
 import {
    FETCH_PROFILE,
    FETCH_PROFILE_STATUS,
-   USER_CHANGE_DETAILS,
-   USER_CHANGE_DETAILS_STATUS
+   USER_CHANGE_DETAILS
 } from 'actions/profile';
 
 const initialState = {
@@ -36,15 +35,6 @@ const profile = (state = initialState, action) => {
          return {
             ...state
          }
-
-      case USER_CHANGE_DETAILS_STATUS:
-         return {
-            ...state,
-            validations: {
-               ...state.validations,
-               changeDetails: action.status
-            }
-         };
 
       default: 
          return state;
