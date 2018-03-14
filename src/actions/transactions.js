@@ -1,4 +1,5 @@
 import axios from 'axios';
+import format from 'date-fns/format';
 
 export const FETCH_TRANSACTIONS = 'FETCH_TRANSACTIONS';
 export const FETCH_TRANSACTIONS_STATUS = 'FETCH_TRANSACTIONS_STATUS';
@@ -31,7 +32,7 @@ export function addTransaction(data) {
          method: 'post',
          headers: { 'Content-Type': 'application/json' },
          data: {
-            date: '24/07/2017 22:38',
+            date: format(new Date(), 'DD/MM/YYYY HH:mm'),
             type: 'Transfer',
             status: 'Done',
             ...data
