@@ -3,12 +3,10 @@ import axios from 'axios';
 export const FETCH_CARDS = 'FETCH_CARDS';
 export const FETCH_CARDS_STATUS = 'FETCH_CARDS_STATUS';
 export const CARD_CHANGE_PIN = 'CARD_CHANGE_PIN';
-export const CARD_CHANGE_PIN_STATUS = 'CARD_CHANGE_PIN_STATUS';
 export const CARD_CHANGE_LIMITS = 'CARD_CHANGE_LIMITS';
-export const CARD_CHANGE_LIMITS_STATUS = 'CARD_CHANGE_LIMITS_STATUS';
 
 export function fetchCards() {
-   return function (dispatch) {
+   return dispatch => {
       axios.get('http://localhost:3001/cards')
       .then(res => res.data)
       .then(data => {
@@ -30,8 +28,6 @@ export function fetchCardsStatus(status) {
 
 export function changeCardPin(id, newPin) {
    return function (dispatch) {
-      dispatch(changeCardPinStatus('Loading...'));
-
       axios(`http://localhost:3001/cards/${id}`, {
          method: 'patch',
          headers: { 'Content-Type': 'application/json' },
@@ -40,28 +36,18 @@ export function changeCardPin(id, newPin) {
       .then(res => res.data)
       .then(data => {
          dispatch({ type: CARD_CHANGE_PIN, id, newPin });
-         dispatch(changeCardPinStatus('PIN successfully changed'));
       })
       .catch(error => {
-         dispatch(changeCardPinStatus('Problems... try again'));
+
       });
    }
 }
 
-export function changeCardPinStatus(status) {
-   return {
-      type: CARD_CHANGE_PIN_STATUS,
-      status
-   }
-}
-
 export function changeCardLimits(id, newWithdrawalLimit, newOnlineLimit) {
-   newWithdrawalLimit = newWithdrawalLimit || 0;
-   newOnlineLimit = newOnlineLimit || 0;
+   newWithdrawalLimit = newWithdrawalLimit || '';
+   newOnlineLimit = newOnlineLimit || '';
 
-   return function (dispatch) {
-      dispatch(changeCardLimitsStatus('Loading...'));
-
+   return dispatch => new Promise((resolve, reject) => {
       axios(`http://localhost:3001/cards/${id}`, {
          method: 'patch',
          headers: { 'Content-Type': 'application/json' },
@@ -70,20 +56,17 @@ export function changeCardLimits(id, newWithdrawalLimit, newOnlineLimit) {
             daily_online_limit: newOnlineLimit
          }
       })
-      .then(res => res.data)
-      .then(data => {
-         dispatch({ type: CARD_CHANGE_LIMITS, id, newWithdrawalLimit, newOnlineLimit });
-         dispatch(changeCardLimitsStatus('Limits successfully changed'));
-      })
-      .catch(error => {
-         dispatch(changeCardLimitsStatus('Problems... try again'));
-      });
-   }
-}
+         .then(res => res.data)
+         .then(data => {
+            dispatch({
+               type: CARD_CHANGE_LIMITS,
+               id,
+               newWithdrawalLimit,
+               newOnlineLimit
+            });
 
-export function changeCardLimitsStatus(status) {
-   return {
-      type: CARD_CHANGE_LIMITS_STATUS,
-      status
-   }
+            resolve(data);
+         })
+         .catch(err => reject(err));
+   });
 }

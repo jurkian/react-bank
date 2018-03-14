@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchCards } from 'actions/cards';
+import { fetchCards, changeCardLimits } from 'actions/cards';
 import AsyncLoader from 'components/AsyncLoader';
 import Form from './Form';
 
 class LimitsChange extends Component {
    componentWillMount() {
-      this.props.fetchCards();
+      if (!this.props.fetchCardsStatus) {
+         this.props.fetchCards();
+      }
    }
 
    render() {
@@ -20,7 +22,7 @@ class LimitsChange extends Component {
                <section className="limits-change module">
                   <h1>Limits change for {this.props.singleCard.id}. {this.props.singleCard.type} card</h1>
 
-                  <Form />
+                  <Form changeCardLimits={this.props.changeCardLimits} />
                </section>
             </div>
          );
@@ -35,9 +37,11 @@ const mapStateToProps = (state, ownProps) => {
    }
 };
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch, ownProps) => {
    return {
-      fetchCards: () => dispatch(fetchCards())
+      fetchCards: () => dispatch(fetchCards()),
+      changeCardLimits: (newWithdrawalLimit, newOnlineLimit) =>
+         dispatch(changeCardLimits(parseInt(ownProps.match.params.cardId), newWithdrawalLimit, newOnlineLimit))
    }
 }
 

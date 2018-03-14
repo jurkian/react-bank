@@ -83,27 +83,14 @@ const LimitsChangeForm = withFormik({
       // DWL = Daily Withdrawal Limit
       // DOL = Daily Online Limit
 
-      // const cardId = this.props.singleCard.id;
       const newDWL = parseInt(dailyOnlineLimit, 10);
       const newDOL = parseInt(dailyWithdrawalLimit, 10);
 
-      // this.props.changeCardLimits(cardId, newDWL, newDOL);
-
       setStatus('Sending...');
 
-      // Simulate PUT request
-      axios(`http://localhost:3001/clients/1`, {
-         method: 'get',
-         // headers: { 'Content-Type': 'application/json' },
-         // data: { email, password, remember }
-      })
-         .then(res => res.data)
-         .then(res => {
-            setStatus('Limits successfully changed!');
-         })
-         .catch(err => {
-            setStatus('Problems, try again...');
-         });
+      props.changeCardLimits(newDWL, newDOL)
+         .then(data => setStatus('Limits successfully changed!'))
+         .catch(error => setStatus('Problems, try again...'));
    },
 
 })(InnerForm);
