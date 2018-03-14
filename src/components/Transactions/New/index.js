@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchAccounts } from 'actions/accounts';
-import { fetchTransactions, addTransaction } from 'actions/transactions';
+import { addTransaction } from 'actions/transactions';
 import AsyncLoader from 'components/AsyncLoader';
 import Form from './Form';
 
@@ -10,18 +10,13 @@ class NewTransaction extends Component {
       if (!this.props.fetchAccountsStatus) {
          this.props.fetchAccounts();
       }
-
-      if (!this.props.fetchTransactionsStatus) {
-         this.props.fetchTransactions();
-      }
    }
 
    render() {
-      if (!this.props.fetchAccountsStatus || !this.props.fetchTransactionsStatus) {
-         return <AsyncLoader loaded={this.props.fetchAccountsStatus && this.props.fetchTransactionsStatus} />;
+      if (!this.props.fetchAccountsStatus) {
+         return <AsyncLoader loaded={this.props.fetchAccountsStatus} />;
 
       } else {
-
          const accounts = this.props.accounts.data;
          const userAccountsList = accounts.map((acc, index) => (
             <option key={index} value={index}>
@@ -50,15 +45,13 @@ class NewTransaction extends Component {
 const mapStateToProps = (state) => {
    return {
       accounts: state.accounts,
-      fetchAccountsStatus: state.accounts.status,
-      fetchTransactionsStatus: state.transactions.status
+      fetchAccountsStatus: state.accounts.status
    }
 };
 
 const mapDispatchToProps = (dispatch) => {
    return {
       fetchAccounts: () => dispatch(fetchAccounts()),
-      fetchTransactions: () => dispatch(fetchTransactions()),
       addTransaction: (data) => dispatch(addTransaction(data))
    }
 }

@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { fetchTransactions } from 'actions/transactions';
-import AsyncLoader from 'components/AsyncLoader';
 import TransactionsListEl from '../ListElement';
 
 class TransactionsList extends Component {
@@ -12,10 +10,6 @@ class TransactionsList extends Component {
       this.state = { search: '' };
    }
 
-   componentWillMount() {
-      this.props.fetchTransactions();
-   }
-
    render() {
 
       // Allow filtering by payee's name
@@ -23,32 +17,27 @@ class TransactionsList extends Component {
          .filter(trans => trans.payeeName.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1)
          .map(trans => <TransactionsListEl key={trans.id} {...trans} matchUrl={this.props.match.url} />);
 
-      if (!this.props.fetchTransactionsStatus) {
-         return <AsyncLoader loaded={this.props.fetchTransactionsStatus} />;
+      return (
+         <div>
+            <h1>Transactions</h1>
 
-      } else {
-         return (
-            <div>
-               <h1>Transactions</h1>
+            <p>There are {this.props.transactions.length} finished transactions right now!</p>
 
-               <p>There are {this.props.transactions.length} finished transactions right now!</p>
+            <p><Link to={`${this.props.match.url}/new`} className="btn btn-primary">New transfer</Link></p>
 
-               <p><Link to={`${this.props.match.url}/new`} className="btn btn-primary">New transfer</Link></p>
-
-               <div className="form-group">
-                  <input
-                     className="form-control"
-                     placeholder="Search for..."
-                     onChange={this.findTransaction.bind(this)}
-                     ref="search" />
-               </div>
-   
-               <div className="list-group">
-                  {transactions}
-               </div>
+            <div className="form-group">
+               <input
+                  className="form-control"
+                  placeholder="Search for..."
+                  onChange={this.findTransaction.bind(this)}
+                  ref="search" />
             </div>
-         );
-      }
+
+            <div className="list-group">
+               {transactions}
+            </div>
+         </div>
+      );
    }
 
    findTransaction() {
@@ -58,18 +47,8 @@ class TransactionsList extends Component {
 
 const mapStateToProps = (state) => {
    return {
-      transactions: state.transactions.data,
-      fetchTransactionsStatus: state.transactions.status
+      transactions: state.transactions.data
    }
 };
 
-const mapDispatchToProps = (dispatch) => {
-   return {
-      fetchTransactions: () => dispatch(fetchTransactions())
-   }
-}
-
-export default connect(
-   mapStateToProps,
-   mapDispatchToProps
-)(TransactionsList);
+export default connect(mapStateToProps)(TransactionsList);
