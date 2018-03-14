@@ -1,44 +1,21 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
-import { fetchCards } from 'actions/cards';
-import AsyncLoader from 'components/AsyncLoader';
-import CardInfobox from 'components/Infobox/CardInfobox/index';
+import CardInfobox from 'components/Infobox/CardInfobox';
 
-class SingleCard extends Component {
-   componentWillMount() {
-      if (!this.props.fetchCardsStatus) {
-         this.props.fetchCards();
-      }
-   }
-
-   render() {
-      if (!this.props.fetchCardsStatus) {
-         return <AsyncLoader loaded={this.props.fetchCardsStatus} />;
-
-      } else {
-         return <div className="row">
-            <div className="col-xs-12">
-               <CardInfobox {...this.props.singleCard} currentUrl={this.props.match.url} />
-            </div>
+const SingleCard = (props) => {
+   return (
+      <div className="row">
+         <div className="col-xs-12">
+            <CardInfobox {...props.singleCard} currentUrl={props.match.url} />
          </div>
-      }
-   }
-}
+      </div>
+   );
+};
 
 const mapStateToProps = (state, ownProps) => {
    return {
-      singleCard: state.cards.data[ownProps.match.params.cardId - 1],
-      fetchCardsStatus: state.cards.status
+      singleCard: state.cards.data[ownProps.match.params.cardId - 1]
    }
 };
 
-const mapDispatchToProps = (dispatch) => {
-   return {
-      fetchCards: () => dispatch(fetchCards())
-   }
-}
-
-export default connect(
-   mapStateToProps,
-   mapDispatchToProps
-)(SingleCard);
+export default connect(mapStateToProps)(SingleCard);
