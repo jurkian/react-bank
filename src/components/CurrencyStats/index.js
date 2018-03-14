@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import AsyncLoader from 'components/AsyncLoader';
-import moment from 'moment';
+import subDays from 'date-fns/sub_days';
+import format from 'date-fns/format';
 import CurrencyStatsHeader from './Header';
 import CurrencyStatsSettings from './CurrencySettings';
 import CurrencyList from './List';
@@ -17,7 +18,7 @@ class CurrencyStats extends Component {
          currencyData: [],
          currencies: 'GBP,AUD,CAD,CHF,CZK,EUR,HUF,JPY,NOK,PLN,RUB,SEK,USD'.split(','),
          baseCurrency: 'GBP',
-         date: moment().subtract(1, 'day'),
+         date: subDays(new Date(), 1),
          loaded: false
       };
    }
@@ -72,15 +73,15 @@ class CurrencyStats extends Component {
 
       // If date is set - add it to request
       if (this.state.date) {
-         apiParams.date = this.state.date.format('YYYY-MM-DD');
+         apiParams.date = format(this.state.date, 'YYYY-MM-DD');
       }
 
       axios.get('https://api.fixer.io/latest', { params: apiParams })
-      .then(res => res.data)
-      .then(currencyData => {
-         this.setState({ currencyData, loaded: true });
-      })
-      .catch(() => this.setState({ loaded: 0 }));
+         .then(res => res.data)
+         .then(currencyData => {
+            this.setState({ currencyData, loaded: true });
+         })
+         .catch(() => this.setState({ loaded: 0 }));
    }
 
    onBaseCurrencyChange(baseCurrency) {

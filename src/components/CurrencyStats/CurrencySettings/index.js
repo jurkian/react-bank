@@ -1,19 +1,18 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import moment from 'moment';
-import { SingleDatePicker, isInclusivelyBeforeDay } from 'react-dates';
+import subDays from 'date-fns/sub_days';
+import format from 'date-fns/format';
+import DayPickerInput from 'react-day-picker/DayPickerInput';
+import 'react-day-picker/lib/style.css';
 
-import 'react-dates/lib/css/_datepicker.css';
 import './style.css';
-
-import 'react-dates/initialize';
 
 class CurrencySettings extends Component {
    constructor() {
       super();
-      this.state = { focused: false };
+      this.state = {};
    }
-   
+
    render() {
       const currencyEls = this.props.currencies.map((el, i) =>
          <option key={i}>{el}</option>);
@@ -28,7 +27,7 @@ class CurrencySettings extends Component {
                      name="base-currency"
                      className="form-control"
                      onChange={this.onBaseCurrencyChange.bind(this)}
-                     value={this.props.baseCurrency} >
+                     value={this.props.baseCurrency}>
 
                      <option disabled>Select base currency</option>
                      {currencyEls}
@@ -36,24 +35,24 @@ class CurrencySettings extends Component {
                </div>
 
                <div className="form-group">
-                  <SingleDatePicker
-                     date={this.props.date} // momentPropTypes.momentObj or null
-                     onDateChange={date => this.onCurrencyDateChange(date)} // PropTypes.func.isRequired
-                     focused={this.state.focused} // PropTypes.bool
-                     onFocusChange={({ focused }) => this.setState({ focused })} // PropTypes.func.isRequired
-                     showDefaultInputIcon={true}
-                     isOutsideRange={day => !isInclusivelyBeforeDay(day, moment().subtract(1, 'day'))}
-                     displayFormat="DD/MM/YYYY"
-                     block={true}
+                  <DayPickerInput
+                     inputProps={{ className: 'form-control' }}
+                     onDayChange={date => this.props.onCurrencyDateChange(date)}
+                     formatDate={date => format(date, 'DD/MM/YYYY')}
+                     placeholder={format(subDays(new Date(), 1), 'DD/MM/YYYY')}
+                     value={this.props.date}
+                     dayPickerProps={{
+                        selectedDays: this.props.date,
+                        disabledDays: {
+                           // Disable days: today and further
+                           after: subDays(new Date(), 1)
+                        }
+                     }}
                   />
                </div>
             </form>
          </div>
       );
-   }
-
-   onCurrencyDateChange(date) {
-      this.props.onCurrencyDateChange(date);
    }
 
    onBaseCurrencyChange(e) {
