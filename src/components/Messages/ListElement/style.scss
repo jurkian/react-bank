@@ -1,0 +1,22 @@
+.messages-list-item {
+   display: flex;
+   justify-content: space-between;
+   
+   > div {
+
+   }
+
+   > aside {
+      max-width: 12rem;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+   }
+
+   .checkbox-container {
+      input {
+         margin: 0;
+      }
+   }
+}
