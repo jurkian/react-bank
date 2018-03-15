@@ -1,4 +1,4 @@
-const auth = (state = [], action) => {
+const panel = (state = [], action) => {
    switch (action.type) {
 
       default: 
@@ -6,4 +6,4 @@ const auth = (state = [], action) => {
    }
 };
 
-export default auth;
+export default panel;

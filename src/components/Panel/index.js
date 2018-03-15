@@ -1,68 +1,81 @@
+// Every logged in user has a JWT token in localStorage
+// If it doesn't exist, redirect to /login
+
+// This is just a general check if user has access
+// Further checks will be during API connections, with Authentication headers
+
 import React, { Component } from 'react';
+import { Route } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { fetchProfile } from 'actions/profile';
 import axios from 'axios';
 import AsyncLoader from 'components/AsyncLoader';
 
-import IncomeStats from 'components/Widgets/IncomeStats/index';
-import IconedList from 'components/Widgets/IconedList/index';
-import SingleMessage from 'components/Widgets/SingleMessage/index';
-
+import Navigation from 'components/Navigation';
+import PanelHome from 'components/PanelHome';
+import Accounts from 'components/Accounts';
+import Transactions from 'components/Transactions';
+import Cards from 'components/Cards';
+import Profile from 'components/Profile';
+import ProfileChangeDetails from 'components/ProfileChangeDetails';
+import Messages from 'components/Messages';
+import Help from 'components/Help';
 class Panel extends Component {
-   constructor() {
-      super();
 
-      this.state = {
-         client: '',
-         listData: [
-            { type: '', href: '/panel/accounts', title: '<strong>John Doe</strong> added new image', subtitle: '34 minutes ago' },
-            { type: 'image', href: '', title: '<strong>John Doe</strong> added new image', subtitle: '34 minutes ago' }
-         ],
-         messageData: {
-            title: 'Make logo smaller, trust me!',
-            sender: 'Johny Depp, johnyd@symu.co',
-            recipient: 'jakub.jurkian@example.com',
-            content: '<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Debitis, laboriosam.</p><p>Qui porro voluptatibus nisi tempore nam deleniti quo. Porro, nulla.</p>'
-         },
-         loaded: false
+   // Get user's profile because we use it all over the panel
+   componentWillMount() {
+      if (!this.props.fetchProfileStatus) {
+         this.props.fetchProfile();
       }
    }
 
    render() {
+      // Authorization
+      const token = localStorage.getItem('user_token');
 
-      if (!this.state.loaded) {
-         return <AsyncLoader loaded={this.state.loaded} />;
+      if (!token) {
+         this.props.history.push('/login');
+         return;
+      }
+
+      // Set default Authorization header for axios
+      axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+
+      if (!this.props.fetchProfileStatus) {
+         return <AsyncLoader loaded={this.props.fetchProfileStatus} />;
 
       } else {
          return (
-            <div className="row panel-content">
-               <div className="col-md-12">
-                  <h1>Welcome {this.state.client.first_name} {this.state.client.last_name}</h1>
-               </div>
-
-               <div className="col-md-8">
-                  <IncomeStats />
-               </div>
-               <div className="col-md-4">
-                  <div className="row">
-                     <div className="col-sm-6 col-md-12">
-                        <IconedList items={this.state.listData} />
-                     </div>
-                     <div className="col-sm-6 col-md-12">
-                        <SingleMessage {...this.state.messageData} />
-                     </div>
-                  </div>
-               </div>
+            <div>
+               <Route path="/panel" component={Navigation} />
+   
+               <Route exact path="/panel" component={PanelHome} />
+               <Route path="/panel/accounts" component={Accounts} />
+               <Route path="/panel/transactions" component={Transactions} />
+               <Route path="/panel/cards" component={Cards} />
+               <Route path="/panel/profile" component={Profile} />
+               <Route path="/panel/change-details" component={ProfileChangeDetails} />
+               <Route path="/panel/messages" component={Messages} />
+               <Route path="/panel/help" component={Help} />
             </div>
          );
       }
    }
+}
 
-   componentDidMount() {
-      // Get logged in client info
-      axios.get('http://localhost:3001/clients/1')
-      .then(res => res.data)
-      .then(client => this.setState({ client, loaded: true }))
-      .catch(() => this.setState({ loaded: 0 }));
+const mapStateToProps = (state) => {
+   return {
+      fetchProfileStatus: state.profile.status
+   }
+};
+
+const mapDispatchToProps = (dispatch) => {
+   return {
+      fetchProfile: () => dispatch(fetchProfile())
    }
 }
 
-export default Panel;
+export default connect(
+   mapStateToProps,
+   mapDispatchToProps
+)(Panel);

@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 
 import accounts from './accounts';
-import auth from './auth';
+import panel from './panel';
 import cards from './cards';
 import homeScreen from './homeScreen';
 import messages from './messages';
@@ -10,7 +10,7 @@ import transactions from './transactions';
 
 const reducers = combineReducers({
    accounts,
-   auth,
+   panel,
    cards,
    homeScreen,
    messages,

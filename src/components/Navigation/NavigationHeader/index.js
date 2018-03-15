@@ -9,7 +9,7 @@ const NavigationHeader = (props) => {
          <div className="user-profile-box">
             <Link to="/panel/profile">
                <img src="https://placehold.it/60x60" alt="User profile" />
-               <span>John Laboune</span>
+               <span>{props.user.first_name} {props.user.last_name}</span>
             </Link>
          </div>
 

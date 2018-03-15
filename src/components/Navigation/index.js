@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 import './style.css';
 
@@ -17,7 +18,10 @@ class Navigation extends Component {
          <div className="row">
             <div className="col-xs-12">
                <section className="navigation module">
-                  <NavigationHeader toggleMobileNav={this.toggleMobileNav.bind(this)} />
+                  <NavigationHeader
+                     toggleMobileNav={this.toggleMobileNav.bind(this)}
+                     user={this.props.user}
+                  />
                   <MainNavigation isMobileNavVisible={this.state.isMobileNavVisible} />
                </section>
             </div>
@@ -30,4 +34,10 @@ class Navigation extends Component {
    }
 }
 
-export default Navigation;
+const mapStateToProps = (state) => {
+   return {
+      user: state.profile.data[0]
+   }
+};
+
+export default connect(mapStateToProps)(Navigation);
