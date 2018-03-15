@@ -6,8 +6,7 @@ import {
 
 const initialState = {
    data: [],
-   status: false,
-   validations: []
+   status: false
 };
 
 const profile = (state = initialState, action) => {

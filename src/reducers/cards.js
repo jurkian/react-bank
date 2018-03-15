@@ -7,8 +7,7 @@ import {
 
 const initialState = {
    data: [],
-   status: false,
-   validations: []
+   status: false
 };
 
 const cards = (state = initialState, action) => {
