@@ -1,46 +1,23 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
-import { fetchMessages } from 'actions/messages';
-import AsyncLoader from 'components/AsyncLoader';
 
-class SingleMessage extends Component {
-   componentWillMount() {
-      this.props.fetchMessages();
-   }
+const SingleMessage = (props) => {
+   return (
+      <section className="single-message module">
+         <h1>{props.singleMessage.id}. {props.singleMessage.title}</h1>
+         <p>Date: {props.singleMessage.date}</p>
 
-   render() {
-      if (!this.props.fetchMessagesStatus) {
-         return <AsyncLoader loaded={this.props.fetchMessagesStatus} />;
+         <hr />
 
-      } else {
-         return (
-            <section className="single-message module">
-               <h1>{this.props.singleMessage.id}. {this.props.singleMessage.title}</h1>
-               <p>Date: {this.props.singleMessage.date}</p>
-
-               <hr />
-
-               <article dangerouslySetInnerHTML={{__html: this.props.singleMessage.content}} />
-            </section>
-         );
-      }
-   }
-}
+         <article dangerouslySetInnerHTML={{ __html: props.singleMessage.content }} />
+      </section>
+   );
+};
 
 const mapStateToProps = (state, ownProps) => {
    return {
-      singleMessage: state.messages.data[ownProps.match.params.messageId - 1],
-      fetchMessagesStatus: state.messages.status
+      singleMessage: state.messages.data[ownProps.match.params.messageId - 1]
    }
 };
 
-const mapDispatchToProps = (dispatch) => {
-   return {
-      fetchMessages: () => dispatch(fetchMessages())
-   }
-}
-
-export default connect(
-   mapStateToProps,
-   mapDispatchToProps
-)(SingleMessage);
+export default connect(mapStateToProps)(SingleMessage);
