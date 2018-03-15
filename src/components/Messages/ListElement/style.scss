@@ -40,11 +40,17 @@
       }
 
       > aside {
-         max-width: 15rem;
+         max-width: 16rem;
          width: 100%;
-         align-self: auto;
+         align-self: stretch;
+         align-items: center;
          padding-right: 1.5rem;
          margin-top: 0;
+      }
+
+      .checkbox-container {
+         max-width: 5.5rem;
+         height: 100%;
       }
    }
 }
