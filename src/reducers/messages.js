@@ -1,7 +1,8 @@
 import {
    FETCH_MESSAGES,
    FETCH_MESSAGES_STATUS,
-   MESSAGE_TOGGLE_READ
+   MESSAGE_TOGGLE,
+   MESSAGE_REMOVE
 } from 'actions/messages';
 
 const initialState = {
@@ -24,10 +25,25 @@ const messages = (state = initialState, action) => {
             status: action.status
          }
 
-      case MESSAGE_TOGGLE_READ:
-         return state;
+      case MESSAGE_TOGGLE:
+         return Object.assign({}, state, {
+            data: state.data.map(message => {
+               if (message.id !== action.id) {
+                  return message;
+               }
 
-      default: 
+               return Object.assign({}, message, {
+                  isToggled: !message.isToggled
+               })
+            })
+         });
+
+      case MESSAGE_REMOVE:
+         return Object.assign({}, state, {
+            data: state.data.filter((message) => message.id !== action.id)
+         });
+
+      default:
          return state;
    }
 };

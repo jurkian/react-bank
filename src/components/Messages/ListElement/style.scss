@@ -7,7 +7,7 @@
    }
 
    > aside {
-      max-width: 12rem;
+      max-width: 14rem;
       width: 100%;
       display: flex;
       justify-content: space-between;
@@ -15,6 +15,13 @@
    }
 
    .checkbox-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      max-width: 5.5rem;
+      width: 100%;
+      height: 100%;
+
       input {
          margin: 0;
       }

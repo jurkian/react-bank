@@ -4,8 +4,8 @@ import { connect } from 'react-redux';
 import { fetchMessages } from 'actions/messages';
 import AsyncLoader from 'components/AsyncLoader';
 
-import MessagesList from './List/index';
-import SingleMessage from './Single/index';
+import MessagesList from './List';
+import SingleMessage from './Single';
 
 class Messages extends Component {
    componentWillMount() {
