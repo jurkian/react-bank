@@ -16,7 +16,7 @@ class MessagesListEl extends Component {
                date: {date}
             </p>
          </div>
-         <aside onClick={this.onAsideClick.bind(this)}>
+         <aside>
             <div className="checkbox-container" onClick={this.onCheckboxClick.bind(this)}>
                <input
                   type="checkbox"
@@ -32,15 +32,13 @@ class MessagesListEl extends Component {
       );
    }
 
-   onAsideClick(e) {
-      e.preventDefault();
-   }
-
    onCheckboxClick(e) {
+      e.preventDefault();
       this.props.onToggle(this.props.id, !this.props.isToggled);
    }
 
    onButtonClick(e) {
+      e.preventDefault();
       this.props.onRemove(this.props.id);
    }
 }
