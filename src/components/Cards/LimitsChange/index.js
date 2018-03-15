@@ -16,15 +16,19 @@ const LimitsChange = (props) => {
 };
 
 const mapStateToProps = (state, ownProps) => {
+   const cardId = parseInt(ownProps.match.params.cardId, 10);
+
    return {
-      singleCard: state.cards.data[ownProps.match.params.cardId - 1]
+      singleCard: state.cards.data.find(el => el.id === cardId)
    }
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
+   const cardId = parseInt(ownProps.match.params.cardId, 10);
+   
    return {
       changeCardLimits: (newWithdrawalLimit, newOnlineLimit) =>
-         dispatch(changeCardLimits(parseInt(ownProps.match.params.cardId, 10), newWithdrawalLimit, newOnlineLimit))
+         dispatch(changeCardLimits(cardId, newWithdrawalLimit, newOnlineLimit))
    }
 }
 

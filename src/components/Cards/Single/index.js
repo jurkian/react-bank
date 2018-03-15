@@ -13,8 +13,10 @@ const SingleCard = (props) => {
 };
 
 const mapStateToProps = (state, ownProps) => {
+   const cardId = parseInt(ownProps.match.params.cardId, 10);
+
    return {
-      singleCard: state.cards.data[ownProps.match.params.cardId - 1]
+      singleCard: state.cards.data.find(el => el.id === cardId)
    }
 };
 

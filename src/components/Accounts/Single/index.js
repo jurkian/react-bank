@@ -16,8 +16,10 @@ const SingleAccount = (props) => {
 };
 
 const mapStateToProps = (state, ownProps) => {
+   const accId = parseInt(ownProps.match.params.accId, 10);
+
    return {
-      singleAcc: state.accounts.data[ownProps.match.params.accId - 1]
+      singleAcc: state.accounts.data.find(el => el.id === accId)
    }
 };
 

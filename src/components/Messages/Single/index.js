@@ -15,8 +15,10 @@ const SingleMessage = (props) => {
 };
 
 const mapStateToProps = (state, ownProps) => {
+   const messageId = parseInt(ownProps.match.params.messageId, 10);
+
    return {
-      singleMessage: state.messages.data[ownProps.match.params.messageId - 1]
+      singleMessage: state.messages.data.find(el => el.id === messageId)
    }
 };
 

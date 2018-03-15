@@ -17,8 +17,10 @@ const SingleTransaction = (props) => {
 };
 
 const mapStateToProps = (state, ownProps) => {
+   const transId = parseInt(ownProps.match.params.transId, 10);
+
    return {
-      singleTrans: state.transactions.data[ownProps.match.params.transId - 1]
+      singleTrans: state.transactions.data.find(el => el.id === transId)
    }
 };
 
