@@ -11,7 +11,9 @@ import ProfileLinks from './ProfileLinks/index';
 
 class Profile extends Component {
    componentWillMount() {
-      this.props.fetchProfile();
+      if (!this.props.fetchProfileStatus) {
+         this.props.fetchProfile();
+      }
    }
 
    render() {

@@ -7,11 +7,12 @@ import './style.css';
 const ProfileLinks = (props) => {
    const links = props.links.map((link, index) => {
       return (
-         <SingleLink 
-            key={index} 
-            href={link.href} 
+         <SingleLink
+            key={index}
+            href={link.href}
             text={link.text}
-            icon={link.icon} /> 
+            icon={link.icon}
+         />
       )
    });
 
