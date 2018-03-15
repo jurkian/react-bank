@@ -161,31 +161,36 @@
       "id": 1,
       "title": "Lorem ipsum dolor sit amet",
       "content": "<h2>1Lorem ipsum dolor</h2><p>sit amet, consectetur adipiscing elit. Praesent porttitor a turpis in sagittis.</p><p>Pellentesque convallis tortor non augue tempus, nec blandit neque interdum. Cras et erat mattis, iaculis lectus quis, pretium mi.</p>",
-      "date": "25/07/2017 22:38"
+      "date": "25/07/2017 22:38",
+      "isToggled": false
     },
     {
       "id": 2,
       "title": "Title 2",
       "content": "<h2>2Lorem ipsum dolor</h2><p>sit amet, consectetur adipiscing elit. Praesent porttitor a turpis in sagittis.</p><p>Pellentesque convallis tortor non augue tempus, nec blandit neque interdum. Cras et erat mattis, iaculis lectus quis, pretium mi.</p>",
-      "date": "26/07/2017 22:38"
+      "date": "26/07/2017 22:38",
+      "isToggled": false
     },
     {
       "id": 3,
       "title": "Title 3",
       "content": "<h2>3Lorem ipsum dolor</h2><p>sit amet, consectetur adipiscing elit. Praesent porttitor a turpis in sagittis.</p><p>Pellentesque convallis tortor non augue tempus, nec blandit neque interdum. Cras et erat mattis, iaculis lectus quis, pretium mi.</p>",
-      "date": "27/07/2017 22:38"
+      "date": "27/07/2017 22:38",
+      "isToggled": true
     },
     {
       "id": 4,
       "title": "Title 4",
       "content": "<h2>4Lorem ipsum dolor</h2><p>sit amet, consectetur adipiscing elit. Praesent porttitor a turpis in sagittis.</p><p>Pellentesque convallis tortor non augue tempus, nec blandit neque interdum. Cras et erat mattis, iaculis lectus quis, pretium mi.</p>",
-      "date": "28/07/2017 22:38"
+      "date": "28/07/2017 22:38",
+      "isToggled": false
     },
     {
       "id": 5,
       "title": "Title 5",
       "content": "<h2>5Lorem ipsum dolor</h2><p>sit amet, consectetur adipiscing elit. Praesent porttitor a turpis in sagittis.</p><p>Pellentesque convallis tortor non augue tempus, nec blandit neque interdum. Cras et erat mattis, iaculis lectus quis, pretium mi.</p>",
-      "date": "29/07/2017 22:38"
+      "date": "29/07/2017 22:38",
+      "isToggled": true
     }
   ]
 }
