@@ -1,15 +1,19 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 
 import './style.css';
 
 class MessagesListEl extends Component {
    render() {
       const { matchUrl, id, title, date, isToggled } = this.props;
+      const classes = classNames({
+         'disabled': isToggled
+      });
 
       return (
-         <Link to={`${matchUrl}/${id}`} className="list-group-item messages-list-item">
+         <Link to={`${matchUrl}/${id}`} className={`list-group-item messages-list-item ${classes}`}>
          <div>
             <h4 className="list-group-item-heading">{id}. {title}</h4>
             <p className="list-group-item-text">
