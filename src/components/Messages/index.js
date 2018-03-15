@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { fetchMessages } from 'actions/messages';
 import AsyncLoader from 'components/AsyncLoader';
@@ -22,8 +22,10 @@ class Messages extends Component {
          return (
             <div className="row panel-content">
                <div className="col-xs-12">
-                  <Route exact path={this.props.match.url} component={MessagesList} />
-                  <Route path={`${this.props.match.url}/:messageId`} component={SingleMessage} />
+                  <Switch>
+                     <Route exact path={this.props.match.url} component={MessagesList} />
+                     <Route path={`${this.props.match.url}/:messageId`} component={SingleMessage} />
+                  </Switch>
                </div>
             </div>
          );

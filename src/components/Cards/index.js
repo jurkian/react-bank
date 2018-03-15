@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { fetchCards } from 'actions/cards';
 import AsyncLoader from 'components/AsyncLoader';
@@ -24,10 +24,12 @@ class Cards extends Component {
          return (
             <div className="row panel-content">
                <div className="col-xs-12">
-                  <Route exact path={this.props.match.url} component={CardsList} />
-                  <Route exact path={`${this.props.match.url}/:cardId`} component={SingleCard} />
-                  <Route exact path={`${this.props.match.url}/:cardId/change-pin`} component={PINChange} />
-                  <Route exact path={`${this.props.match.url}/:cardId/change-limits`} component={LimitsChange} />
+                  <Switch>
+                     <Route exact path={this.props.match.url} component={CardsList} />
+                     <Route exact path={`${this.props.match.url}/:cardId`} component={SingleCard} />
+                     <Route path={`${this.props.match.url}/:cardId/change-pin`} component={PINChange} />
+                     <Route path={`${this.props.match.url}/:cardId/change-limits`} component={LimitsChange} />
+                  </Switch>
                </div>
             </div>
          );

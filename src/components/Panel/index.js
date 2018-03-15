@@ -5,7 +5,7 @@
 // Further checks will be during API connections, with Authentication headers
 
 import React, { Component } from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { fetchProfile } from 'actions/profile';
 import axios from 'axios';
@@ -48,15 +48,17 @@ class Panel extends Component {
          return (
             <div>
                <Route path="/panel" component={Navigation} />
-   
-               <Route exact path="/panel" component={PanelHome} />
-               <Route path="/panel/accounts" component={Accounts} />
-               <Route path="/panel/transactions" component={Transactions} />
-               <Route path="/panel/cards" component={Cards} />
-               <Route path="/panel/profile" component={Profile} />
-               <Route path="/panel/change-details" component={ProfileChangeDetails} />
-               <Route path="/panel/messages" component={Messages} />
-               <Route path="/panel/help" component={Help} />
+
+               <Switch>
+                  <Route exact path="/panel" component={PanelHome} />
+                  <Route path="/panel/accounts" component={Accounts} />
+                  <Route path="/panel/transactions" component={Transactions} />
+                  <Route path="/panel/cards" component={Cards} />
+                  <Route path="/panel/profile" component={Profile} />
+                  <Route path="/panel/change-details" component={ProfileChangeDetails} />
+                  <Route path="/panel/messages" component={Messages} />
+                  <Route path="/panel/help" component={Help} />
+               </Switch>
             </div>
          );
       }
