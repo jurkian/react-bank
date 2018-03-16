@@ -2,6 +2,7 @@
   "clients": [
     {
       "id": 1,
+      "role": "user",
       "first_name": "John",
       "last_name": "Laboune",
       "street_address": "29 Raven Street",
@@ -17,12 +18,29 @@
     },
     {
       "id": 2,
+      "role": "user",
       "first_name": "Mark",
       "last_name": "Matley",
       "street_address": "18 Denman St",
       "postcode": "W1A 1JT",
       "city": "Soho, London",
       "email": "email2@example.com",
+      "password": "example",
+      "created_on": "15/07/2017",
+      "last_login": "20/07/2017 17:23",
+      "messages_no": 5,
+      "cards_no": 2,
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwibmFtZSI6Ik1hcmsgTWF0bGV5IiwiZW1haWwiOiJlbWFpbDJAZXhhbXBsZS5jb20ifQ.KdoGm7qoThOBrCsXlAMITXCF-2OuUPIb7CftGMqmaQg"
+    },
+    {
+      "id": 3,
+      "role": "administrator",
+      "first_name": "Alek",
+      "last_name": "Hoppe",
+      "street_address": "18 Denman St",
+      "postcode": "W1A 1JT",
+      "city": "Soho, London",
+      "email": "admin@example.com",
       "password": "example",
       "created_on": "15/07/2017",
       "last_login": "20/07/2017 17:23",
