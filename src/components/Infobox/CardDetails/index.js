@@ -1,15 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { myPadStart, chunker } from 'components/Common/Tools';
 
 import './style.css';
 
-const CardDetails = (props) => {
+const CardDetails = ({ number, expires_month, expires_year }) => {
    return (
       <section className="card-details">
          <div className="card-details-row">
             <div>
                <span>Card number</span>
-               <p className="big">{props.number}</p>
+               <p className="big">{chunker(number, 4, '-')}</p>
             </div>
          </div>
 
@@ -20,7 +21,7 @@ const CardDetails = (props) => {
             </div>
             <div>
                <span>Expiration date</span>
-               <p>{props.expires_month} / {props.expires_year}</p>
+               <p>{myPadStart(expires_month, 2, 0)} / {expires_year}</p>
             </div>
          </div>
       </section>
@@ -28,9 +29,9 @@ const CardDetails = (props) => {
 }
 
 CardDetails.propTypes = {
-   number: PropTypes.string,
-   expires_month: PropTypes.string,
-   expires_year: PropTypes.string
+   number: PropTypes.number,
+   expires_month: PropTypes.number,
+   expires_year: PropTypes.number
 }
 
 export default CardDetails;

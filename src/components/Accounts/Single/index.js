@@ -1,15 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { chunker } from 'components/Common/Tools';
 
-const SingleAccount = (props) => {
+const SingleAccount = ({ singleAcc }) => {
    return (
       <section className="single-account module">
-         <h1>{props.singleAcc.type}</h1>
+         <h1>{singleAcc.type} account</h1>
          <ul>
-            <li>Sortcode: {props.singleAcc.sortcode}</li>
-            <li>Number: {props.singleAcc.number}</li>
-            <li>Currency: {props.singleAcc.currency}</li>
-            <li>Balance: {props.singleAcc.balance} {props.singleAcc.currency}</li>
+            <li>Sortcode: {chunker(singleAcc.sortcode, 2, '-')}</li>
+            <li>Number: {singleAcc.number}</li>
+            <li>Currency: {singleAcc.currency}</li>
+            <li>Balance: {singleAcc.balance} {singleAcc.currency}</li>
          </ul>
       </section>
    );

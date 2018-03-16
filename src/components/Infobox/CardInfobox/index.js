@@ -12,35 +12,38 @@ import AccountSummary from '../AccountSummary/index';
 import MultiModuleButtons from 'components/Buttons/MultiModuleButtons/index';
 import SingleMultiButton from 'components/Buttons/SingleMultiButton/index';
 
-const CardInfobox = (props) => {
+const CardInfobox = ({
+   number, expires_month, expires_year, balance, income_7_days, expenses_7_days, currentUrl
+}) => {
+
    return (
       <section className="infobox card-infobox module">
          <header>
             <CardLogos type="visa" />
             <CardDetails
-               number={props.number}
-               expires_month={props.expires_month}
-               expires_year={props.expires_year} />
+               number={number}
+               expires_month={expires_month}
+               expires_year={expires_year} />
          </header>
 
          <AccountName />
          <AccountSummary
-            balance={props.balance} 
-            income_7_days={props.income_7_days}
-            expenses_7_days={props.expenses_7_days} />
+            balance={balance} 
+            income_7_days={income_7_days}
+            expenses_7_days={expenses_7_days} />
 
          <MultiModuleButtons>
-            <SingleMultiButton text="Change PIN" href={`${props.currentUrl}/change-pin`} />
-            <SingleMultiButton text="Change limits" href={`${props.currentUrl}/change-limits`} />
+            <SingleMultiButton text="Change PIN" href={`${currentUrl}/change-pin`} />
+            <SingleMultiButton text="Change limits" href={`${currentUrl}/change-limits`} />
          </MultiModuleButtons>
       </section>
    );
 }
 
 CardInfobox.propTypes = {
-   number: PropTypes.string,
-   expires_month: PropTypes.string,
-   expires_year: PropTypes.string,
+   number: PropTypes.number,
+   expires_month: PropTypes.number,
+   expires_year: PropTypes.number,
    balance: PropTypes.number,
    income_7_days: PropTypes.number,
    expenses_7_days: PropTypes.number,

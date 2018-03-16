@@ -2,17 +2,17 @@ import React from 'react';
 import { connect } from 'react-redux';
 import CardsListEl from '../ListElement';
 
-const CardsList = (props) => {
-   const cards = props.cards.map(card => (
-      <CardsListEl key={card.id} {...card} matchUrl={props.match.url} />
+const CardsList = ({ cards, match }) => {
+   const cardsList = cards.map(card => (
+      <CardsListEl key={card.id} {...card} matchUrl={match.url} />
    ));
 
    return (
       <div>
          <h1>Cards</h1>
 
-         <p>You have {props.cards.length} active cards</p>
-         <div className="list-group">{cards}</div>
+         <p>You have {cardsList.length} active cards</p>
+         <div className="list-group">{cardsList}</div>
       </div>
    );
 };
