@@ -1,25 +1,14 @@
 import React from 'react';
 import { Form, Field, withFormik } from 'formik';
-import SingleModuleButton from 'components/Buttons/SingleModuleButton/index';
+import SingleModuleButton from 'components/Buttons/SingleModuleButton';
 import validations from './validations';
 
 const InnerForm = props => {
-   const {
-      values,
-      errors,
-      touched,
-      dirty,
-      handleChange,
-      handleBlur,
-      handleReset,
-      handleSubmit,
-      isSubmitting
-   } = props;
+   const { errors, touched } = props;
 
    return (
       <Form>
          <div>
-
             <div className="form-group">
                <label htmlFor="source-account">Choose your account</label>
 

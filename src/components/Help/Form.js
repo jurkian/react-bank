@@ -2,20 +2,10 @@ import React from 'react';
 import axios from 'axios';
 import { Form, Field, withFormik } from 'formik';
 import Yup from 'yup';
-import SingleModuleButton from 'components/Buttons/SingleModuleButton/index';
+import SingleModuleButton from 'components/Buttons/SingleModuleButton';
 
 const InnerForm = props => {
-   const {
-      values,
-      errors,
-      touched,
-      dirty,
-      handleChange,
-      handleBlur,
-      handleReset,
-      handleSubmit,
-      isSubmitting
-   } = props;
+   const { errors, touched } = props;
 
    return (
       <Form>

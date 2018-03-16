@@ -2,24 +2,13 @@ import React from 'react';
 import { Form, Field, withFormik } from 'formik';
 import Yup from 'yup';
 import 'components/Common/YupCustomValidations';
-import SingleModuleButton from 'components/Buttons/SingleModuleButton/index';
+import SingleModuleButton from 'components/Buttons/SingleModuleButton';
 
 const InnerForm = props => {
-   const {
-      values,
-      errors,
-      touched,
-      dirty,
-      handleChange,
-      handleBlur,
-      handleReset,
-      handleSubmit,
-      isSubmitting
-   } = props;
+   const { errors, touched } = props;
 
    return (
       <Form>
-
          <div>
             <div className="form-group">
                <label htmlFor="pin">Enter new PIN</label>
