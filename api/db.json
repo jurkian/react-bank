@@ -122,11 +122,11 @@
       "type": "Transfer",
       "status": "Done",
       "sourceAcc": 1,
-      "payeeAccNumber": "46838321",
-      "payeeSortCode": "72829",
+      "payeeAccNumber": 46838321,
+      "payeeSortCode": 72829,
       "payeeName": "Leora Bergstrom",
       "payeeAddress": "9595 Gladys Trafficway 64729 West Victoria",
-      "amount": "123.45",
+      "amount": 123.45,
       "reference": "lorem"
     },
     {
@@ -135,11 +135,11 @@
       "type": "Deposit",
       "status": "Done",
       "sourceAcc": 2,
-      "payeeAccNumber": "89207321",
-      "payeeSortCode": "882279",
+      "payeeAccNumber": 89207321,
+      "payeeSortCode": 882279,
       "payeeName": "Amanda Dickinson",
       "payeeAddress": "8194 Kessler Parks 18833-2237 Tressieside",
-      "amount": "123.45",
+      "amount": 123.45,
       "reference": "ipsum"
     },
     {
@@ -148,11 +148,11 @@
       "type": "Withdrawal",
       "status": "Done",
       "sourceAcc": 1,
-      "payeeAccNumber": "57815321",
-      "payeeSortCode": "134209",
+      "payeeAccNumber": 57815321,
+      "payeeSortCode": 134209,
       "payeeName": "Alexandro Davis",
       "payeeAddress": "5190 Gleason Ramp 74816 Weissnatview",
-      "amount": "123.45",
+      "amount": 123.45,
       "reference": "dolor"
     }
   ],

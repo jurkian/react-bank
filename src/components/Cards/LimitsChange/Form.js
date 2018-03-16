@@ -71,8 +71,8 @@ const LimitsChangeForm = withFormik({
       // DWL = Daily Withdrawal Limit
       // DOL = Daily Online Limit
 
-      const newDWL = parseInt(dailyOnlineLimit, 10);
-      const newDOL = parseInt(dailyWithdrawalLimit, 10);
+      const newDWL = parseFloat(dailyOnlineLimit).toFixed(2);
+      const newDOL = parseFloat(dailyWithdrawalLimit).toFixed(2);
 
       if (!newDWL && !newDOL) {
          setStatus('No limits changed');

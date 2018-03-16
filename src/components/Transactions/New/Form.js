@@ -137,7 +137,7 @@ const NewTransactionForm = withFormik({
       }
    ) => {
 
-      const {
+      let {
          sourceAcc,
          payeeAccNumber,
          payeeSortCode,
@@ -146,6 +146,11 @@ const NewTransactionForm = withFormik({
          reference,
          amount
       } = values;
+
+      // Convert strings (by default) to numbers
+      payeeAccNumber = parseInt(payeeAccNumber, 10);
+      payeeSortCode = parseInt(payeeSortCode, 10);
+      amount = parseFloat(amount).toFixed(2);
 
       const transactionData = {
          sourceAcc, payeeAccNumber, payeeSortCode, payeeName, payeeAddress, reference, amount
