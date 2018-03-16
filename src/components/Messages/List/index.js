@@ -13,7 +13,8 @@ class MessagesList extends Component {
 
       this.state = {
          search: '',
-         data: [],
+         allData: [],
+         currentData: [],
          url: 'http://localhost:3001/messages',
          currentPage: 1,
          perPage,
@@ -23,26 +24,46 @@ class MessagesList extends Component {
 
    componentWillMount() {
       // Set default data based on loaded messages
-      // Load first (perPage) items
-      this.setState({ data: this.props.messages.filter((el, i) => i < this.state.perPage) });
+      let allData = [];
+      allData[0] = this.props.messages.filter((el, i) => i < this.state.perPage);
+
+      // Prepare initial (perPage) items
+      // Also put them in allData array for caching purposes
+      this.setState({
+         allData,
+         currentData: allData[0]
+      });
    }
 
    // Internal Ajax, because pagination is only local and doesn't affect global state
-   fetchPaginationData() {
+   fetchPaginationData(selectedPage) {
       axios(`${this.state.url}?_page=${this.state.currentPage}&_limit=${this.state.perPage}`, {
          method: 'get',
          headers: { 'Content-Type': 'application/json' }
       })
          .then(res => res.data)
-         .then(data => this.setState({ data }))
+         .then(data => {
+            let allData = this.state.allData;
+            allData[selectedPage] = data;
+
+            this.setState({ allData, currentData: allData[selectedPage] });
+         })
          .catch(error => { });
    }
 
    handlePageClick = ({ selected }) => {
-      // On click: fetch new data from API, basing on selected page
-      // Always increment selected page, because pages in API start from 1
-      this.setState({ currentPage: selected + 1 }, () => {
-         this.fetchPaginationData();
+      const selectedPage = selected;
+
+      this.setState({ currentPage: selectedPage + 1 }, () => {
+         const selectedPageInState = this.state.allData[selectedPage];
+
+         // If the data is already in state/store - only return it
+         // Otherwise fetch new data from API, basing on selected page
+         if (selectedPageInState) {
+            this.setState({ currentData: selectedPageInState });
+         } else {
+            this.fetchPaginationData(selectedPage);
+         }
       });
    };
 
@@ -53,19 +74,18 @@ class MessagesList extends Component {
    render() {
       // Messages
       // Allow search for message title
-      const messages = this.state.data
+      const messages = this.state.currentData
          .filter(message => message.title.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1)
-         .map(message => {
-            return (
-               <MessagesListEl
-                  key={message.id}
-                  {...message}
-                  matchUrl={this.props.match.url}
-                  onToggle={this.props.messageToggle}
-                  onRemove={this.props.messageRemove}
-               />
-            )
-         });
+         .map(message => (
+            <MessagesListEl
+               key={message.id}
+               {...message}
+               matchUrl={this.props.match.url}
+               onToggle={this.props.messageToggle}
+               onRemove={this.props.messageRemove}
+            />
+         )
+      );
 
       return (
          <div>
@@ -106,6 +126,7 @@ class MessagesList extends Component {
 
 const mapStateToProps = (state) => {
    return {
+      // Messages = first part of data, NOT all of them
       messages: state.messages.data,
       messagesCount: state.messages.data.length
    }
