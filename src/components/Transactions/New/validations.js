@@ -8,12 +8,14 @@ export default Yup.object().shape({
       .required('Please enter the account number')
       .typeError('Account must be a number')
       .positive('Account must be a positive number')
+      .integer('Account must be an integer')
       .length(8, 'Account must be 8 numbers'),
 
    payeeSortCode: Yup.number()
       .required('Please enter the sort code')
       .typeError('Sort code must be a number')
       .positive('Sort code must be a positive number')
+      .integer('Sort code must be an integer')
       .length(6, 'Sort code must be 6 numbers'),
 
    payeeName: Yup.string()

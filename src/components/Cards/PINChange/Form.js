@@ -55,6 +55,7 @@ const PINChangeForm = withFormik({
       pin: Yup.number()
          .typeError('PIN must be a number')
          .positive('Please enter a positive number')
+         .integer('PIN must be an integer')
          .length(4, 'PIN must be 4 numbers'),
 
       pinConf: Yup.number()
