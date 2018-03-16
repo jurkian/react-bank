@@ -52,54 +52,166 @@
   "accounts": [
     {
       "id": 1,
-      "type": "Personal account",
-      "sortcode": "56-12-34",
-      "number": "12345678",
+      "type": "Personal",
+      "sortcode": 561234,
+      "number": 12345678,
       "currency": "GBP",
       "balance": 148.95,
       "income_expenses_7_days": [
-        { "date": "25.08.2017", "income": 2400, "expenses": 4000 },
-        { "date": "26.08.2017", "income": 1398, "expenses": 3000 },
-        { "date": "27.08.2017", "income": 9800, "expenses": 2000 },
-        { "date": "28.08.2017", "income": 3908, "expenses": 2780 },
-        { "date": "29.08.2017", "income": 4800, "expenses": 1890 },
-        { "date": "30.08.2017", "income": 3800, "expenses": 2390 },
-        { "date": "31.08.2017", "income": 4300, "expenses": 3490 }
+        {
+          "date": "25.08.2017",
+          "income": 2400,
+          "expenses": 4000
+        },
+        {
+          "date": "26.08.2017",
+          "income": 1398,
+          "expenses": 3000
+        },
+        {
+          "date": "27.08.2017",
+          "income": 9800,
+          "expenses": 2000
+        },
+        {
+          "date": "28.08.2017",
+          "income": 3908,
+          "expenses": 2780
+        },
+        {
+          "date": "29.08.2017",
+          "income": 4800,
+          "expenses": 1890
+        },
+        {
+          "date": "30.08.2017",
+          "income": 3800,
+          "expenses": 2390
+        },
+        {
+          "date": "31.08.2017",
+          "income": 4300,
+          "expenses": 3490
+        }
       ],
       "income_expenses_30_days": [
-        { "date": "1.08.2017", "income": 500, "expenses": 2000 },
-        { "date": "6.08.2017", "income": 1000, "expenses": 2500 },
-        { "date": "11.08.2017", "income": 1345, "expenses": 3000 },
-        { "date": "16.08.2017", "income": 3908, "expenses": 2780 },
-        { "date": "21.08.2017", "income": 4800, "expenses": 1890 },
-        { "date": "26.08.2017", "income": 1399, "expenses": 150 },
-        { "date": "31.08.2017", "income": 3800, "expenses": 433 }
+        {
+          "date": "1.08.2017",
+          "income": 500,
+          "expenses": 2000
+        },
+        {
+          "date": "6.08.2017",
+          "income": 1000,
+          "expenses": 2500
+        },
+        {
+          "date": "11.08.2017",
+          "income": 1345,
+          "expenses": 3000
+        },
+        {
+          "date": "16.08.2017",
+          "income": 3908,
+          "expenses": 2780
+        },
+        {
+          "date": "21.08.2017",
+          "income": 4800,
+          "expenses": 1890
+        },
+        {
+          "date": "26.08.2017",
+          "income": 1399,
+          "expenses": 150
+        },
+        {
+          "date": "31.08.2017",
+          "income": 3800,
+          "expenses": 433
+        }
       ]
     },
     {
       "id": 2,
-      "type": "Business account",
-      "sortcode": "46-43-21",
-      "number": "98765432",
+      "type": "Business",
+      "sortcode": 464321,
+      "number": 98765432,
       "currency": "GBP",
       "balance": 5401.34,
       "income_expenses_7_days": [
-        { "date": "25.08.2017", "income": 2400, "expenses": 4000 },
-        { "date": "26.08.2017", "income": 1398, "expenses": 3000 },
-        { "date": "27.08.2017", "income": 9800, "expenses": 2000 },
-        { "date": "28.08.2017", "income": 3908, "expenses": 2780 },
-        { "date": "29.08.2017", "income": 4800, "expenses": 1890 },
-        { "date": "30.08.2017", "income": 3800, "expenses": 2390 },
-        { "date": "31.08.2017", "income": 4300, "expenses": 3490 }
+        {
+          "date": "25.08.2017",
+          "income": 2400,
+          "expenses": 4000
+        },
+        {
+          "date": "26.08.2017",
+          "income": 1398,
+          "expenses": 3000
+        },
+        {
+          "date": "27.08.2017",
+          "income": 9800,
+          "expenses": 2000
+        },
+        {
+          "date": "28.08.2017",
+          "income": 3908,
+          "expenses": 2780
+        },
+        {
+          "date": "29.08.2017",
+          "income": 4800,
+          "expenses": 1890
+        },
+        {
+          "date": "30.08.2017",
+          "income": 3800,
+          "expenses": 2390
+        },
+        {
+          "date": "31.08.2017",
+          "income": 4300,
+          "expenses": 3490
+        }
       ],
       "income_expenses_30_days": [
-        { "date": "1.08.2017", "income": 500, "expenses": 2000 },
-        { "date": "6.08.2017", "income": 1000, "expenses": 2500 },
-        { "date": "11.08.2017", "income": 1345, "expenses": 3000 },
-        { "date": "16.08.2017", "income": 3908, "expenses": 2780 },
-        { "date": "21.08.2017", "income": 4800, "expenses": 1890 },
-        { "date": "26.08.2017", "income": 1399, "expenses": 150 },
-        { "date": "31.08.2017", "income": 3800, "expenses": 433 }
+        {
+          "date": "1.08.2017",
+          "income": 500,
+          "expenses": 2000
+        },
+        {
+          "date": "6.08.2017",
+          "income": 1000,
+          "expenses": 2500
+        },
+        {
+          "date": "11.08.2017",
+          "income": 1345,
+          "expenses": 3000
+        },
+        {
+          "date": "16.08.2017",
+          "income": 3908,
+          "expenses": 2780
+        },
+        {
+          "date": "21.08.2017",
+          "income": 4800,
+          "expenses": 1890
+        },
+        {
+          "date": "26.08.2017",
+          "income": 1399,
+          "expenses": 150
+        },
+        {
+          "date": "31.08.2017",
+          "income": 3800,
+          "expenses": 433
+        }
       ]
     }
   ],
@@ -107,9 +219,9 @@
     {
       "id": 1,
       "type": "debit",
-      "number": "4866-1234-0092-8832",
-      "expires_month": "09",
-      "expires_year": "2018",
+      "number": 4866123400928832,
+      "expires_month": 9,
+      "expires_year": 2018,
       "security_code": 395,
       "pin": 1234,
       "balance": 148.95,
@@ -121,9 +233,9 @@
     {
       "id": 2,
       "type": "credit",
-      "number": "4866-1209-0092-5678",
-      "expires_month": "12",
-      "expires_year": "2019",
+      "number": 4866120900925678,
+      "expires_month": 12,
+      "expires_year": 2019,
       "security_code": 823,
       "pin": 1234,
       "balance": 5401.34,
@@ -208,7 +320,7 @@
       "title": "Title 5",
       "content": "<h2>5Lorem ipsum dolor</h2><p>sit amet, consectetur adipiscing elit. Praesent porttitor a turpis in sagittis.</p><p>Pellentesque convallis tortor non augue tempus, nec blandit neque interdum. Cras et erat mattis, iaculis lectus quis, pretium mi.</p>",
       "date": "29/07/2017 22:38",
-      "isToggled": true
+      "isToggled": false
     }
   ]
 }
