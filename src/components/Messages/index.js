@@ -41,7 +41,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
    return {
-      fetchMessages: () => dispatch(fetchMessages())
+      fetchMessages: (page, perPage) => dispatch(fetchMessages(page, perPage))
    }
 }
 
