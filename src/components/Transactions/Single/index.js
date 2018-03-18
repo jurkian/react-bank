@@ -1,16 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-const SingleTransaction = (props) => {
+const SingleTransaction = ({ singleTrans }) => {
    return (
       <section className="single-transfer module">
-         <h1>{props.singleTrans.id}. {props.singleTrans.type}</h1>
+         <h1>{singleTrans.id}. {singleTrans.type}</h1>
          <ul>
-            <li>Date: {props.singleTrans.date}</li>
-            <li>Payee: {props.singleTrans.payeeName}</li>
-            <li>Amount: {props.singleTrans.amount}</li>
-            <li>Type: {props.singleTrans.type}</li>
-            <li>Status: {props.singleTrans.status}</li>
+            <li>Date: {singleTrans.date}</li>
+            <li>Payee: {singleTrans.payeeName}</li>
+            <li>Amount: {singleTrans.amount}</li>
+            <li>Type: {singleTrans.type}</li>
+            <li>Status: {singleTrans.status}</li>
          </ul>
       </section>
    );
@@ -18,9 +18,21 @@ const SingleTransaction = (props) => {
 
 const mapStateToProps = (state, ownProps) => {
    const transId = parseInt(ownProps.match.params.transId, 10);
+   let tempFoundTrans;
+   let foundTrans;
+
+   // Find the transaction
+   state.transactions.data.forEach(pageTransactions => {
+      tempFoundTrans = pageTransactions.find(trans => trans.id === transId);
+
+      if (tempFoundTrans) {
+         foundTrans = tempFoundTrans;
+         return;
+      }
+   })
 
    return {
-      singleTrans: state.transactions.data.find(el => el.id === transId)
+      singleTrans: foundTrans
    }
 };
 
