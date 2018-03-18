@@ -39,10 +39,6 @@ class MessagesList extends Component {
          .then(() => this.shouldFetchData());
    };
 
-   componentDidMount() {
-      this.shouldFetchData();
-   }
-
    findMessage() {
       this.setState({ search: this.refs.search.value });
    }
@@ -50,7 +46,6 @@ class MessagesList extends Component {
    render() {
       // Messages
       // Allow search for message title
-
       if (!this.props.fetchPaginationStatus) {
          return <AsyncLoader loaded={this.props.fetchPaginationStatus} />;
 
@@ -104,6 +99,10 @@ class MessagesList extends Component {
          );
       }
    }
+
+   componentDidMount() {
+      this.shouldFetchData();
+   }
 }
 
 const mapStateToProps = (state) => {
@@ -117,11 +116,11 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
    return {
-      messageToggle: (id, isToggled) => dispatch(messageToggle(id, isToggled)),
-      messageRemove: (id) => dispatch(messageRemove(id)),
       fetchMessages: (page, perPage) => dispatch(fetchMessages(page, perPage)),
       setFetchPaginationStatus: (status) => dispatch(setFetchPaginationStatus(status)),
-      setMessagesPage: (number) => dispatch(setMessagesPage(number))
+      setMessagesPage: (number) => dispatch(setMessagesPage(number)),
+      messageToggle: (id, isToggled) => dispatch(messageToggle(id, isToggled)),
+      messageRemove: (id) => dispatch(messageRemove(id)),
    }
 }
 

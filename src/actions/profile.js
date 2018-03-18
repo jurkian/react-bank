@@ -12,9 +12,7 @@ export function fetchProfile() {
             dispatch({ type: FETCH_PROFILE, data });
             dispatch(fetchProfileStatus(true));
          })
-         .catch(error => {
-            dispatch(fetchProfileStatus(0));
-         });
+         .catch(error => dispatch(fetchProfileStatus(false)));
    }
 }
 
@@ -25,12 +23,8 @@ export function fetchProfileStatus(status) {
    }
 }
 
-export function changeUserDetails(id, email, password) {
-   email = email || '';
-   password = password || '';
-
+export function changeUserDetails(id, email = '', password = '') {
    return dispatch => new Promise((resolve, reject) => {
-
       axios(`http://localhost:3001/clients/${id}`, {
          method: 'patch',
          headers: { 'Content-Type': 'application/json' },

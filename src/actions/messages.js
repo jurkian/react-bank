@@ -7,12 +7,7 @@ export const MESSAGE_TOGGLE = 'MESSAGE_TOGGLE';
 export const MESSAGE_REMOVE = 'MESSAGE_REMOVE';
 export const SET_MESSAGES_PAGE = 'SET_MESSAGES_PAGE';
 
-export function fetchMessages(page, perPage) {
-
-   // Set default values
-   page = page || 1;
-   perPage = perPage || 8;
-
+export function fetchMessages(page = 1, perPage = 8) {
    const baseUrl = 'http://localhost:3001/messages';
    let fetchUrl = `${baseUrl}?_page=${page}&_limit=${perPage}`;
 

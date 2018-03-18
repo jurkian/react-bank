@@ -6,14 +6,12 @@ export const FETCH_ACCOUNTS_STATUS = 'FETCH_ACCOUNTS_STATUS';
 export function fetchAccounts() {
    return function (dispatch) {
       axios.get('http://localhost:3001/accounts')
-      .then(res => res.data)
-      .then(data => {
-         dispatch({ type: FETCH_ACCOUNTS, data });
-         dispatch(fetchAccountsStatus(true));
-      })
-      .catch(error => {
-         dispatch(fetchAccountsStatus(0));
-      });
+         .then(res => res.data)
+         .then(data => {
+            dispatch({ type: FETCH_ACCOUNTS, data });
+            dispatch(fetchAccountsStatus(true));
+         })
+         .catch(error => dispatch(fetchAccountsStatus(false)));
    }
 }
 

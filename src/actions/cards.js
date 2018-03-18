@@ -8,14 +8,12 @@ export const CARD_CHANGE_LIMITS = 'CARD_CHANGE_LIMITS';
 export function fetchCards() {
    return dispatch => {
       axios.get('http://localhost:3001/cards')
-      .then(res => res.data)
-      .then(data => {
-         dispatch({ type: FETCH_CARDS, data });
-         dispatch(fetchCardsStatus(true));
-      })
-      .catch(error => {
-         dispatch(fetchCardsStatus(0));
-      });
+         .then(res => res.data)
+         .then(data => {
+            dispatch({ type: FETCH_CARDS, data });
+            dispatch(fetchCardsStatus(true));
+         })
+         .catch(error => dispatch(fetchCardsStatus(false)));
    }
 }
 
@@ -42,10 +40,7 @@ export function changeCardPin(id, newPin) {
    });
 }
 
-export function changeCardLimits(id, newWithdrawalLimit, newOnlineLimit) {
-   newWithdrawalLimit = newWithdrawalLimit || '';
-   newOnlineLimit = newOnlineLimit || '';
-
+export function changeCardLimits(id, newWithdrawalLimit = '', newOnlineLimit = '') {
    return dispatch => new Promise((resolve, reject) => {
       axios(`http://localhost:3001/cards/${id}`, {
          method: 'patch',
