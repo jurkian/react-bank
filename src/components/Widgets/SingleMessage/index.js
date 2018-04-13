@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import MultiModuleButtons from 'components/Buttons/MultiModuleButtons/index';
-import SingleMultiButton from 'components/Buttons/SingleMultiButton/index';
+import MultiModuleButtons from 'components/UI/Buttons/MultiModuleButtons';
+import SingleMultiButton from 'components/UI/Buttons/SingleMultiButton';
 
 import './style.scss';
 
@@ -21,7 +21,7 @@ const SingleMessage = (props) => {
             </div>
          </header>
 
-         <article dangerouslySetInnerHTML={{__html: props.content}} />
+         <article dangerouslySetInnerHTML={{ __html: props.content }} />
 
          <MultiModuleButtons>
             <SingleMultiButton text="Cancel" href="#" />

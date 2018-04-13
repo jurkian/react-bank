@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import AsyncLoader from 'components/AsyncLoader';
-import IncomeChart from '../Charts/IncomeChart/index';
+import AsyncLoader from 'components/UI/AsyncLoader';
+import IncomeChart from '../Charts/IncomeChart';
 
 class IncomeStats extends Component {
    state = { account: {}, chartData: [], loaded: false }

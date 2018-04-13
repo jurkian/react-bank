@@ -1,0 +1,11 @@
+@import 'components/App/variables';
+
+.home {
+   max-width: 50rem;
+}
+
+@media (min-width: $screen-md-min) {
+   .home {
+      max-width: 90rem;
+   }
+}

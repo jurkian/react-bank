@@ -5,7 +5,7 @@ import {
    fetchTransactions, setFetchPaginationStatus, setTransactionsPage
 } from 'actions/transactions';
 import ReactPaginate from 'react-paginate';
-import AsyncLoader from 'components/AsyncLoader';
+import AsyncLoader from 'components/UI/AsyncLoader';
 import TransactionsListEl from '../ListElement';
 
 class TransactionsList extends Component {

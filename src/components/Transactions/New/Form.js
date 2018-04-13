@@ -1,6 +1,6 @@
 import React from 'react';
 import { Form, Field, withFormik } from 'formik';
-import SingleModuleButton from 'components/Buttons/SingleModuleButton';
+import SingleModuleButton from 'components/UI/Buttons/SingleModuleButton';
 import validations from './validations';
 
 const InnerForm = props => {

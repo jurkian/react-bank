@@ -1,0 +1,52 @@
+@import 'components/App/variables';
+
+.login {
+   max-width: 36.5rem;
+   padding-bottom: 0;
+}
+
+// Icon
+
+.login-icon {
+   text-align: center;
+}
+
+.icon-container {
+   display: inline-flex;
+   justify-content: center;
+   align-items: center;
+   margin: 3.5rem 0 6rem;
+   padding: 4.8rem;
+   border-radius: 50%;
+   box-shadow: 0 0 6.5rem $navy-box-shadow;
+   background: #fff;
+}
+
+// Form
+
+.login form {
+   margin: 0;
+
+   > div:first-child {
+      padding-left: 2.5rem;
+      padding-right: 2.5rem;
+   }
+}
+
+.login-input, .password-input {
+   padding-left: 4.4rem;
+   background-position: 1.7rem;
+   background-repeat: no-repeat;
+}
+
+.login-input {
+   background-image: url('human-icon.svg');
+}
+
+.password-input {
+   background-image: url('lock-icon.svg');
+}
+
+.checkbox {
+   margin: 2rem 0;
+}

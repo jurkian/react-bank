@@ -4,13 +4,13 @@ import PropTypes from 'prop-types';
 import '../style.scss';
 import './style.scss';
 
-import CardLogos from '../CardLogos/index';
-import CardDetails from '../CardDetails/index';
-import AccountName from '../AccountName/index';
-import AccountSummary from '../AccountSummary/index';
+import CardLogos from '../CardLogos';
+import CardDetails from '../CardDetails';
+import AccountName from '../AccountName';
+import AccountSummary from '../AccountSummary';
 
-import MultiModuleButtons from 'components/Buttons/MultiModuleButtons/index';
-import SingleMultiButton from 'components/Buttons/SingleMultiButton/index';
+import MultiModuleButtons from 'components/UI/Buttons/MultiModuleButtons';
+import SingleMultiButton from 'components/UI/Buttons/SingleMultiButton';
 
 const CardInfobox = ({
    number, expires_month, expires_year, balance, income_7_days, expenses_7_days, currentUrl
@@ -28,7 +28,7 @@ const CardInfobox = ({
 
          <AccountName />
          <AccountSummary
-            balance={balance} 
+            balance={balance}
             income_7_days={income_7_days}
             expenses_7_days={expenses_7_days} />
 
@@ -49,5 +49,5 @@ CardInfobox.propTypes = {
    expenses_7_days: PropTypes.number,
    currentUrl: PropTypes.string
 }
- 
+
 export default CardInfobox;

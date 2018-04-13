@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import './style.scss';
-import SingleListItem from './SingleListItem/index';
+import SingleListItem from './ListItem';
 
 const IconedList = (props) => {
 
@@ -10,7 +10,7 @@ const IconedList = (props) => {
    const listItems = props.items.map((item, index) => {
 
       // Destructure data
-      const {...listData} = item;
+      const { ...listData } = item;
 
       return <SingleListItem key={index} {...listData} />;
    });

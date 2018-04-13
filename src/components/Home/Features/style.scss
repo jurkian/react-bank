@@ -1,0 +1,35 @@
+@import 'components/App/variables';
+
+.home-features {
+   display: flex;
+   justify-content: space-between;
+
+   .home-image, .home-text {
+      flex: 1;
+   }
+}
+
+.home-image { display: none; }
+
+.home-text { text-align: center; }
+
+.home-cta {
+   text-align: center;
+   margin-top: 2rem;
+}
+
+@media (min-width: $screen-md-min) {
+   .home-image {
+      display: inline;
+
+      img {
+         margin-left: auto;
+         margin-right: auto;
+      }
+   }
+
+   .home-text {
+      margin-left: 2.5rem;
+      text-align: left;
+   }
+}

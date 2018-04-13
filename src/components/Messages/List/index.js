@@ -4,7 +4,7 @@ import {
    fetchMessages, setFetchPaginationStatus, messageToggle, messageRemove, setMessagesPage
 } from 'actions/messages';
 import ReactPaginate from 'react-paginate';
-import AsyncLoader from 'components/AsyncLoader';
+import AsyncLoader from 'components/UI/AsyncLoader';
 import MessagesListEl from '../ListElement';
 
 const Fragment = React.Fragment;

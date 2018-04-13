@@ -3,9 +3,9 @@ import React from 'react';
 import '../style.scss';
 import './style.scss';
 
-import AccountDetails from '../AccountDetails/index';
-import AccountName from '../AccountName/index';
-import AccountSummary from '../AccountSummary/index';
+import AccountDetails from '../AccountDetails';
+import AccountName from '../AccountName';
+import AccountSummary from '../AccountSummary';
 
 const CardInfobox = () => {
    return (
@@ -19,5 +19,5 @@ const CardInfobox = () => {
       </section>
    );
 }
- 
+
 export default CardInfobox;

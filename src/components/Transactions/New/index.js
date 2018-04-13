@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchAccounts } from 'actions/accounts';
 import { addTransaction } from 'actions/transactions';
-import AsyncLoader from 'components/AsyncLoader';
+import AsyncLoader from 'components/UI/AsyncLoader';
 import Form from './Form';
 
 class NewTransaction extends Component {
