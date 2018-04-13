@@ -8,13 +8,13 @@
     "date-fns": "^1.29.0",
     "formik": "^0.11.11",
     "jwt-decode": "^2.2.0",
-    "promise-polyfill": "^7.1.0",
+    "promise-polyfill": "^7.1.2",
     "prop-types": "^15.6.1",
-    "react": "^16.2.0",
+    "react": "^16.3.1",
     "react-day-picker": "^7.1.4",
-    "react-dom": "^16.2.0",
-    "react-loading": "^1.0.3",
-    "react-paginate": "^5.1.0",
+    "react-dom": "^16.3.1",
+    "react-loading": "^1.0.4",
+    "react-paginate": "^5.2.2",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.2.2",
     "recharts": "^1.0.0-beta.10",
@@ -23,10 +23,10 @@
     "yup": "^0.24.1"
   },
   "devDependencies": {
-    "node-sass": "^4.7.2",
-    "node-sass-chokidar": "1.1.2",
+    "node-sass": "^4.8.3",
+    "node-sass-chokidar": "1.2.2",
     "npm-run-all": "^4.1.2",
-    "react-scripts": "1.1.1"
+    "react-scripts": "1.1.4"
   },
   "scripts": {
     "build-css": "node-sass-chokidar src/ -o src/",
