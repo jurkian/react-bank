@@ -1,4 +1,3 @@
-import './polyfills.js';
 import './vendor/custom-bootstrap.css';
 
 import React from 'react';
