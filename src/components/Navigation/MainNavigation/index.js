@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import classNames from 'classnames';
 
-import './style.css';
+import './style.scss';
 
 const MainNavigation = (props) => {
    let navClasses = classNames({

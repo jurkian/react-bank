@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { myPadStart, chunker } from 'components/Common/Tools';
 
-import './style.css';
+import './style.scss';
 
 const CardDetails = ({ number, expires_month, expires_year }) => {
    return (

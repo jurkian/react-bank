@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import '../style.css';
-import './style.css';
+import '../style.scss';
+import './style.scss';
 
 import CardLogos from '../CardLogos/index';
 import CardDetails from '../CardDetails/index';

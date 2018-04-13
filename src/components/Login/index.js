@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import LoginForm from './Form';
 import loginIcon from './login-icon.png';
-import './style.css';
+import './style.scss';
 
 class Login extends Component {
    render() {

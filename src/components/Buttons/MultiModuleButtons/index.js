@@ -1,7 +1,7 @@
 import React from 'react';
 
-import '../style.css';
-import './style.css';
+import '../style.scss';
+import './style.scss';
 
 const MultiModuleButtons = (props) => {
    return (

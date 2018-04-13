@@ -5,7 +5,7 @@ import format from 'date-fns/format';
 import DayPickerInput from 'react-day-picker/DayPickerInput';
 import 'react-day-picker/lib/style.css';
 
-import './style.css';
+import './style.scss';
 
 class CurrencySettings extends Component {
    render() {

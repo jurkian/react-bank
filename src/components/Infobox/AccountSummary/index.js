@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import './style.css';
+import './style.scss';
 
 const AccountSummary = (props) => {
    return (

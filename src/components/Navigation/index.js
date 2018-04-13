@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import './style.css';
+import './style.scss';
 
 import NavigationHeader from './NavigationHeader/index';
 import MainNavigation from './MainNavigation/index';

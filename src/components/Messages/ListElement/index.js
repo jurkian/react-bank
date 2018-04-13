@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import './style.css';
+import './style.scss';
 
 class MessagesListEl extends Component {
    render() {

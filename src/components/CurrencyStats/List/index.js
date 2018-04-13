@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import CurrencyBox from '../CurrencyBox';
 
-import './style.css';
+import './style.scss';
 
 const CurrencyList = ({ currencyData, baseCurrency }) => {
    const currencyRates = currencyData.rates;

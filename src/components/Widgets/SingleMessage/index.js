@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import MultiModuleButtons from 'components/Buttons/MultiModuleButtons/index';
 import SingleMultiButton from 'components/Buttons/SingleMultiButton/index';
 
-import './style.css';
+import './style.scss';
 
 const SingleMessage = (props) => {
    return (

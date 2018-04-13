@@ -1,7 +1,7 @@
 import React from 'react';
 import SingleButton from 'components/Buttons/SingleButton';
 
-import './style.css';
+import './style.scss';
 
 const HomeNewFeatures = () => {
    return (

@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import './style.css';
+import './style.scss';
 
 import ProfileHeader from './ProfileHeader';
 import ProfileStats from './ProfileStats';

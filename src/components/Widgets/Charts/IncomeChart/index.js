@@ -12,7 +12,7 @@ import {
    ResponsiveContainer
 } from 'recharts';
 
-import './style.css';
+import './style.scss';
 
 const IncomeChart = (props) => {
    return (

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import './style.css';
+import './style.scss';
 import SingleListItem from './SingleListItem/index';
 
 const IconedList = (props) => {

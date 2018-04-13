@@ -8,7 +8,7 @@ import CurrencyStatsSettings from './CurrencySettings';
 import CurrencyList from './List';
 import SingleButton from 'components/Buttons/SingleButton';
 
-import './style.css';
+import './style.scss';
 
 class CurrencyStats extends Component {
    state = {

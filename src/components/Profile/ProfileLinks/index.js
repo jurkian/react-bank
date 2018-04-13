@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-import './style.css';
+import './style.scss';
 
 const ProfileLinks = (props) => {
    const links = props.links.map((link, index) => {

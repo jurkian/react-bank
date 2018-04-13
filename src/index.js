@@ -1,4 +1,4 @@
-import './vendor/custom-bootstrap.css';
+import './vendor/custom-bootstrap.scss';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
