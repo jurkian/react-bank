@@ -39,7 +39,7 @@ class MessagesList extends Component {
          .then(() => this.shouldFetchData());
    };
 
-   findMessage() {
+   findMessage = () => {
       this.setState({ search: this.refs.search.value });
    }
 
@@ -72,7 +72,7 @@ class MessagesList extends Component {
                   <input
                      className="form-control"
                      placeholder="Search for..."
-                     onChange={this.findMessage.bind(this)}
+                     onChange={this.findMessage}
                      ref="search" />
                </div>
 

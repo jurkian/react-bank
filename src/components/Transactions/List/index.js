@@ -40,7 +40,7 @@ class TransactionsList extends Component {
          .then(() => this.shouldFetchData());
    };
 
-   findTransaction() {
+   findTransaction = () => {
       this.setState({ search: this.refs.search.value });
    }
 
@@ -67,7 +67,7 @@ class TransactionsList extends Component {
                   <input
                      className="form-control"
                      placeholder="Search for..."
-                     onChange={this.findTransaction.bind(this)}
+                     onChange={this.findTransaction}
                      ref="search" />
                </div>
 

@@ -14,34 +14,34 @@ class MessagesListEl extends Component {
 
       return (
          <Link to={`${matchUrl}/${id}`} className={`list-group-item messages-list-item ${classes}`}>
-         <div>
-            <h4 className="list-group-item-heading">{id}. {title}</h4>
-            <p className="list-group-item-text">
-               date: {date}
-            </p>
-         </div>
-         <aside>
-            <div className="checkbox-container" onClick={this.onCheckboxClick.bind(this)}>
-               <input
-                  type="checkbox"
-                  checked={isToggled}
-                  onChange={(e) => e.stopPropagation()}
-               />
+            <div>
+               <h4 className="list-group-item-heading">{id}. {title}</h4>
+               <p className="list-group-item-text">
+                  date: {date}
+               </p>
             </div>
-            <button
-               className="btn btn-danger btn-sm"
-               onClick={this.onButtonClick.bind(this)}>Remove</button>
-         </aside>
-      </Link>
+            <aside>
+               <div className="checkbox-container" onClick={this.onCheckboxClick}>
+                  <input
+                     type="checkbox"
+                     checked={isToggled}
+                     onChange={(e) => e.stopPropagation()}
+                  />
+               </div>
+               <button
+                  className="btn btn-danger btn-sm"
+                  onClick={this.onButtonClick}>Remove</button>
+            </aside>
+         </Link>
       );
    }
 
-   onCheckboxClick(e) {
+   onCheckboxClick = e => {
       e.preventDefault();
       this.props.onToggle(this.props.id, !this.props.isToggled);
    }
 
-   onButtonClick(e) {
+   onButtonClick = e => {
       e.preventDefault();
       this.props.onRemove(this.props.id);
    }

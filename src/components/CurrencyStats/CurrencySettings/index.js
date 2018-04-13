@@ -8,11 +8,6 @@ import 'react-day-picker/lib/style.css';
 import './style.css';
 
 class CurrencySettings extends Component {
-   constructor() {
-      super();
-      this.state = {};
-   }
-
    render() {
       const currencyEls = this.props.currencies.map((el, i) =>
          <option key={i}>{el}</option>);
@@ -26,7 +21,7 @@ class CurrencySettings extends Component {
                   <select
                      name="base-currency"
                      className="form-control"
-                     onChange={this.onBaseCurrencyChange.bind(this)}
+                     onChange={this.onBaseCurrencyChange}
                      value={this.props.baseCurrency}>
 
                      <option disabled>Select base currency</option>
@@ -55,7 +50,7 @@ class CurrencySettings extends Component {
       );
    }
 
-   onBaseCurrencyChange(e) {
+   onBaseCurrencyChange = e => {
       const newCurrency = e.target.value;
       this.props.onBaseCurrencyChange(newCurrency);
    }

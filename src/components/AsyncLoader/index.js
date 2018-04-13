@@ -3,11 +3,7 @@ import PropTypes from 'prop-types';
 import LoadingAnimation from 'components/LoadingAnimation';
 
 class AsyncLoader extends Component {
-   constructor() {
-      super();
-
-      this.state = { showError: false };
-   }
+   state = { showError: false }
 
    render() {
       // If no error text is passed in props, use default

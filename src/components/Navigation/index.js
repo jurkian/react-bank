@@ -7,19 +7,15 @@ import NavigationHeader from './NavigationHeader/index';
 import MainNavigation from './MainNavigation/index';
 
 class Navigation extends Component {
-   constructor() {
-      super();
-      
-      this.state = { isMobileNavVisible: false };
-   }
-   
+   state = { isMobileNavVisible: false }
+
    render() {
       return (
          <div className="row">
             <div className="col-xs-12">
                <section className="navigation module">
                   <NavigationHeader
-                     toggleMobileNav={this.toggleMobileNav.bind(this)}
+                     toggleMobileNav={this.toggleMobileNav}
                      user={this.props.user}
                   />
                   <MainNavigation isMobileNavVisible={this.state.isMobileNavVisible} />
@@ -29,7 +25,7 @@ class Navigation extends Component {
       );
    }
 
-   toggleMobileNav() {
+   toggleMobileNav = () => {
       this.setState({ isMobileNavVisible: !this.state.isMobileNavVisible });
    }
 }

@@ -11,16 +11,12 @@ import SingleButton from 'components/Buttons/SingleButton';
 import './style.css';
 
 class CurrencyStats extends Component {
-   constructor() {
-      super();
-
-      this.state = {
-         currencyData: [],
-         currencies: 'GBP,AUD,CAD,CHF,CZK,EUR,HUF,JPY,NOK,PLN,RUB,SEK,USD'.split(','),
-         baseCurrency: 'GBP',
-         date: subDays(new Date(), 1),
-         loaded: false
-      };
+   state = {
+      currencyData: [],
+      currencies: 'GBP,AUD,CAD,CHF,CZK,EUR,HUF,JPY,NOK,PLN,RUB,SEK,USD'.split(','),
+      baseCurrency: 'GBP',
+      date: subDays(new Date(), 1),
+      loaded: false
    }
 
    render() {
@@ -38,8 +34,8 @@ class CurrencyStats extends Component {
                            date={this.state.date}
                            currencies={this.state.currencies}
                            baseCurrency={this.state.baseCurrency}
-                           onBaseCurrencyChange={this.onBaseCurrencyChange.bind(this)}
-                           onCurrencyDateChange={this.onCurrencyDateChange.bind(this)} />
+                           onBaseCurrencyChange={this.onBaseCurrencyChange}
+                           onCurrencyDateChange={this.onCurrencyDateChange} />
                      </div>
 
                      <CurrencyList
@@ -84,13 +80,13 @@ class CurrencyStats extends Component {
          .catch(() => this.setState({ loaded: 0 }));
    }
 
-   onBaseCurrencyChange(baseCurrency) {
+   onBaseCurrencyChange = baseCurrency => {
       this.setState({ baseCurrency, loaded: false }, () => {
          this.makeAPIRequest();
       });
    }
 
-   onCurrencyDateChange(date) {
+   onCurrencyDateChange = date => {
       this.setState({ date, loaded: false }, () => {
          this.makeAPIRequest();
       });
