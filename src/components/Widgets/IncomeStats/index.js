@@ -46,9 +46,9 @@ class IncomeStats extends Component {
       let statsRange = this.refs.statsRange.value;
 
       if (statsRange === '7') {
-         this.setState({ chartData: this.state.account.income_expenses_7_days });
+         this.setState(prevState => ({ chartData: prevState.account.income_expenses_7_days }));
       } else if (statsRange === '30') {
-         this.setState({ chartData: this.state.account.income_expenses_30_days });
+         this.setState(prevState => ({ chartData: prevState.account.income_expenses_30_days }));
       }
    }
 }

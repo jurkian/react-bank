@@ -26,7 +26,7 @@ class Navigation extends Component {
    }
 
    toggleMobileNav = () => {
-      this.setState({ isMobileNavVisible: !this.state.isMobileNavVisible });
+      this.setState(prevState => ({ isMobileNavVisible: !prevState.isMobileNavVisible }));
    }
 }
 
