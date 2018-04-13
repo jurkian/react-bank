@@ -20,6 +20,7 @@ import Profile from 'containers/Profile';
 import ProfileChangeDetails from 'containers/Profile/ChangeDetails';
 import Messages from 'containers/Messages';
 import Help from 'components/Help';
+import PageNotFound from 'components/PageNotFound';
 
 const Fragment = React.Fragment;
 
@@ -61,6 +62,7 @@ class Panel extends Component {
                   <Route path="/panel/change-details" component={ProfileChangeDetails} />
                   <Route path="/panel/messages" component={Messages} />
                   <Route path="/panel/help" component={Help} />
+                  <Route component={PageNotFound} />
                </Switch>
             </Fragment>
          );

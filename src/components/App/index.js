@@ -9,6 +9,7 @@ import Login from 'containers/Login';
 import Logout from 'components/Logout';
 import CurrencyStats from 'containers/CurrencyStats';
 import Panel from 'containers/Panel';
+import PageNotFound from 'components/PageNotFound';
 
 const App = () => (
    <Layout>
@@ -18,6 +19,7 @@ const App = () => (
          <Route path="/currencies" component={CurrencyStats} />
          <Route path="/panel" component={Panel} />
          <Route exact path="/" component={Home} />
+         <Route component={PageNotFound} />
       </Switch>
    </Layout>
 );
