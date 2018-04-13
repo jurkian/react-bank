@@ -47,7 +47,7 @@ class TransactionsList extends Component {
    render() {
 
       if (!this.props.fetchPaginationStatus) {
-         return <AsyncLoader loaded={this.props.fetchPaginationStatus} />;
+         return <AsyncLoader />;
 
       } else {
 

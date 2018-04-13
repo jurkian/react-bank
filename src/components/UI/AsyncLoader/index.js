@@ -8,18 +8,12 @@ class AsyncLoader extends Component {
    state = { showError: false }
 
    render() {
-      // If no error text is passed in props, use default
-      const defaultError = 'If loading takes too long, please refresh the page...';
-      const error = this.props.errorText || defaultError;
-
-      if (!this.props.loaded) {
-         return (
-            <Fragment>
-               <LoadingAnimation />
-               {(this.state.showError) ? <p>{error}</p> : null}
-            </Fragment>
-         );
-      }
+      return (
+         <Fragment>
+            <LoadingAnimation />
+            {(this.state.showError) ? <p>If loading takes too long, please refresh the page...</p> : null}
+         </Fragment>
+      );
    }
 
    componentDidMount() {

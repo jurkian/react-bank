@@ -49,7 +49,7 @@ class MessagesList extends Component {
       // Messages
       // Allow search for message title
       if (!this.props.fetchPaginationStatus) {
-         return <AsyncLoader loaded={this.props.fetchPaginationStatus} />;
+         return <AsyncLoader />;
 
       } else {
          const messages = this.props.messages[this.props.pageNumber - 1]

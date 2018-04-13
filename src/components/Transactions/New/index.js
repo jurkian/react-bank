@@ -14,7 +14,7 @@ class NewTransaction extends Component {
 
    render() {
       if (!this.props.fetchAccountsStatus) {
-         return <AsyncLoader loaded={this.props.fetchAccountsStatus} />;
+         return <AsyncLoader />;
 
       } else {
          const accounts = this.props.accounts.data;

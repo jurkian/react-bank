@@ -18,7 +18,7 @@ class Cards extends Component {
 
    render() {
       if (!this.props.fetchCardsStatus) {
-         return <AsyncLoader loaded={this.props.fetchCardsStatus} />;
+         return <AsyncLoader />;
 
       } else {
          return (

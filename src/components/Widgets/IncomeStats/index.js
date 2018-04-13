@@ -7,9 +7,8 @@ class IncomeStats extends Component {
    state = { account: {}, chartData: [], loaded: false }
 
    render() {
-
       if (!this.state.loaded) {
-         return <AsyncLoader loaded={this.state.loaded} />;
+         return <AsyncLoader />;
 
       } else {
          return (
