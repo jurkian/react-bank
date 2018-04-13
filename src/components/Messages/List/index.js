@@ -7,6 +7,8 @@ import ReactPaginate from 'react-paginate';
 import AsyncLoader from 'components/AsyncLoader';
 import MessagesListEl from '../ListElement';
 
+const Fragment = React.Fragment;
+
 class MessagesList extends Component {
    constructor(props) {
       super(props);
@@ -63,7 +65,7 @@ class MessagesList extends Component {
             ));
 
          return (
-            <div>
+            <Fragment>
                <h1>Messages</h1>
 
                <p>There are {this.props.messagesCount} messages in your box</p>
@@ -95,7 +97,7 @@ class MessagesList extends Component {
                      forcePage={this.props.pageNumber - 1}
                   />
                </div>
-            </div>
+            </Fragment>
          );
       }
    }

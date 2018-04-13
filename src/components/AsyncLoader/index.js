@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import LoadingAnimation from 'components/LoadingAnimation';
 
+const Fragment = React.Fragment;
+
 class AsyncLoader extends Component {
    state = { showError: false }
 
@@ -12,10 +14,10 @@ class AsyncLoader extends Component {
 
       if (!this.props.loaded) {
          return (
-            <div>
+            <Fragment>
                <LoadingAnimation />
                {(this.state.showError) ? <p>{error}</p> : null}
-            </div>
+            </Fragment>
          );
       }
    }

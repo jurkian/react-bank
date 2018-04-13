@@ -2,6 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import AccountsListElement from '../ListElement';
 
+const Fragment = React.Fragment;
+
 const AccountsList = (props) => {
    // Prepare accounts list
    const accounts = props.accounts.map((acc, index) =>
@@ -9,14 +11,14 @@ const AccountsList = (props) => {
    );
 
    return (
-      <div>
+      <Fragment>
          <h1>Accounts</h1>
          <p>You have {props.accounts.length} accounts</p>
 
          <div className="list-group">
             {accounts}
          </div>
-      </div>
+      </Fragment>
    );
 };
 

@@ -7,13 +7,15 @@ import 'react-day-picker/lib/style.css';
 
 import './style.scss';
 
+const Fragment = React.Fragment;
+
 class CurrencySettings extends Component {
    render() {
       const currencyEls = this.props.currencies.map((el, i) =>
          <option key={i}>{el}</option>);
 
       return (
-         <div>
+         <Fragment>
             <p>Choose base currency and date...</p>
 
             <form className="currency-settings-form">
@@ -46,7 +48,7 @@ class CurrencySettings extends Component {
                   />
                </div>
             </form>
-         </div>
+         </Fragment>
       );
    }
 

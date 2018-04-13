@@ -20,6 +20,9 @@ import Profile from 'components/Profile';
 import ProfileChangeDetails from 'components/ProfileChangeDetails';
 import Messages from 'components/Messages';
 import Help from 'components/Help';
+
+const Fragment = React.Fragment;
+
 class Panel extends Component {
 
    // Get user's profile because we use it all over the panel
@@ -46,7 +49,7 @@ class Panel extends Component {
 
       } else {
          return (
-            <div>
+            <Fragment>
                <Route path="/panel" component={Navigation} />
 
                <Switch>
@@ -59,7 +62,7 @@ class Panel extends Component {
                   <Route path="/panel/messages" component={Messages} />
                   <Route path="/panel/help" component={Help} />
                </Switch>
-            </div>
+            </Fragment>
          );
       }
    }
