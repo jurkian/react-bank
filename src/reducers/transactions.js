@@ -1,10 +1,4 @@
-import {
-   FETCH_TRANSACTIONS,
-   FETCH_TRANSACTIONS_STATUS,
-   FETCH_PAGINATION_STATUS,
-   ADD_TRANSACTION,
-   SET_TRANSACTIONS_PAGE
-} from 'actions/transactions';
+import * as actions from 'actions/transactions';
 
 const initialState = {
    data: [],
@@ -14,40 +8,42 @@ const initialState = {
 };
 
 const transactions = (state = initialState, action) => {
-   switch (action.type) {
+   let transactionsData;
 
-      case FETCH_TRANSACTIONS:
-         const data = state.data;
+   switch (action.type) {
+      case actions.FETCH_TRANSACTIONS:
+         transactionsData = [...state.data];
 
          // -1, because pages start from 1
-         data[action.page - 1] = action.data;
+         transactionsData[action.page - 1] = action.data;
 
          return {
             ...state,
-            data
+            data: transactionsData
          };
 
-      case FETCH_TRANSACTIONS_STATUS:
+      case actions.FETCH_TRANSACTIONS_STATUS:
          return {
             ...state,
             status: action.status
          }
 
-      case FETCH_PAGINATION_STATUS:
+      case actions.FETCH_PAGINATION_STATUS:
          return {
             ...state,
             paginationStatus: action.status
          }
 
-      case ADD_TRANSACTION:
+      case actions.ADD_TRANSACTION:
+         transactionsData = [...state.data];
+         transactionsData.push(action.data);
+
          return {
             ...state,
-            data: [...state.data, {
-               ...action.data
-            }]
+            data: transactionsData
          }
 
-      case SET_TRANSACTIONS_PAGE:
+      case actions.SET_TRANSACTIONS_PAGE:
          return {
             ...state,
             pageNumber: action.pageNumber

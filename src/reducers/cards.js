@@ -1,9 +1,4 @@
-import {
-   FETCH_CARDS,
-   FETCH_CARDS_STATUS,
-   CARD_CHANGE_PIN,
-   CARD_CHANGE_LIMITS,
-} from 'actions/cards';
+import * as actions from 'actions/cards';
 
 const initialState = {
    data: [],
@@ -11,41 +6,48 @@ const initialState = {
 };
 
 const cards = (state = initialState, action) => {
-   let currentCard;
+   let modifiedCard;
 
    switch (action.type) {
-
-      case FETCH_CARDS:
+      case actions.FETCH_CARDS:
          return {
             ...state,
             data: [...action.data]
          }
 
-      case FETCH_CARDS_STATUS:
+      case actions.FETCH_CARDS_STATUS:
          return {
             ...state,
             status: action.status
          }
 
-      case CARD_CHANGE_PIN:
-         currentCard = state.data.find(el => el.id === action.id);
-         currentCard.pin = action.newPin;
+      case actions.CARD_CHANGE_PIN:
+         modifiedCard = [...state.data].find(el => el.id === action.id);
+         modifiedCard.pin = action.newPin;
 
          return {
-            ...state
+            ...state,
+            data: [
+               ...state.data,
+               modifiedCard
+            ]
          }
 
-      case CARD_CHANGE_LIMITS:
-         currentCard = state.data.find(el => el.id === action.id);
+      case actions.CARD_CHANGE_LIMITS:
+         modifiedCard = [...state.data].find(el => el.id === action.id);
 
-         currentCard.daily_withdrawal_limit = action.newWithdrawalLimit;
-         currentCard.daily_online_limit = action.newOnlineLimit;
+         modifiedCard.daily_withdrawal_limit = action.newWithdrawalLimit;
+         modifiedCard.daily_online_limit = action.newOnlineLimit;
 
          return {
-            ...state
+            ...state,
+            data: [
+               ...state.data,
+               modifiedCard
+            ]
          }
 
-      default: 
+      default:
          return state;
    }
 };

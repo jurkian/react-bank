@@ -1,11 +1,4 @@
-import {
-   FETCH_MESSAGES,
-   FETCH_MESSAGES_STATUS,
-   FETCH_PAGINATION_STATUS,
-   MESSAGE_TOGGLE,
-   MESSAGE_REMOVE,
-   SET_MESSAGES_PAGE
-} from 'actions/messages';
+import * as actions from 'actions/messages';
 
 const initialState = {
    data: [],
@@ -17,58 +10,53 @@ const initialState = {
 const messages = (state = initialState, action) => {
    switch (action.type) {
 
-      case FETCH_MESSAGES:
-         const data = state.data;
+      case actions.FETCH_MESSAGES:
+         const messagesData = [...state.data];
 
          // -1, because pages start from 1
-         data[action.page - 1] = action.data;
+         messagesData[action.page - 1] = action.data;
 
          return {
             ...state,
-            data
+            data: messagesData
          };
 
-      case FETCH_MESSAGES_STATUS:
+      case actions.FETCH_MESSAGES_STATUS:
          return {
             ...state,
             status: action.status
          }
 
-      case FETCH_PAGINATION_STATUS:
+      case actions.FETCH_PAGINATION_STATUS:
          return {
             ...state,
             paginationStatus: action.status
          }
 
-      case MESSAGE_TOGGLE:
-         let foundMessage;
+      case actions.MESSAGE_TOGGLE:
+         let foundMsgIndex;
 
          return Object.assign({}, state, {
-            data: state.data.map(pageMessages => {
+            data: state.data.map(messages => {
 
                // Find a place where message should be toggled
-               foundMessage = pageMessages.find(message => message.id === action.id);
+               foundMsgIndex = messages.findIndex(msg => msg.id === action.id);
 
                // Change the toggle
-               if (foundMessage) {
-                  foundMessage.isToggled = !foundMessage.isToggled;
+               if (foundMsgIndex) {
+                  messages[foundMsgIndex].isToggled = !messages[foundMsgIndex].isToggled;
                }
 
-               return pageMessages;
+               return messages;
             })
          });
 
-      case MESSAGE_REMOVE:
+      case actions.MESSAGE_REMOVE:
          return Object.assign({}, state, {
-            data: state.data.map(pageMessages => {
-
-               // Remove the message
-               pageMessages = pageMessages.filter(message => message.id !== action.id);
-               return pageMessages;
-            })
+            data: state.data.map(messages => messages.filter(msg => msg.id !== action.id))
          });
 
-      case SET_MESSAGES_PAGE:
+      case actions.SET_MESSAGES_PAGE:
          return {
             ...state,
             pageNumber: action.pageNumber

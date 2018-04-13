@@ -1,8 +1,4 @@
-import {
-   FETCH_PROFILE,
-   FETCH_PROFILE_STATUS,
-   USER_CHANGE_DETAILS
-} from 'actions/profile';
+import * as actions from 'actions/profile';
 
 const initialState = {
    data: [],
@@ -10,24 +6,21 @@ const initialState = {
 };
 
 const profile = (state = initialState, action) => {
-   let currentUser;
-
    switch (action.type) {
-
-      case FETCH_PROFILE:
+      case actions.FETCH_PROFILE:
          return {
             ...state,
             data: [...action.data]
          }
 
-      case FETCH_PROFILE_STATUS:
+      case actions.FETCH_PROFILE_STATUS:
          return {
             ...state,
             status: action.status
          }
 
-      case USER_CHANGE_DETAILS:
-         currentUser = state.data.find(el => el.id === action.id);
+      case actions.USER_CHANGE_DETAILS:
+         const currentUser = [...state.data].find(el => el.id === action.id);
 
          if (action.email) {
             currentUser.email = action.newEmail;
@@ -38,10 +31,14 @@ const profile = (state = initialState, action) => {
          }
 
          return {
-            ...state
+            ...state,
+            data: [
+               ...state.data,
+               currentUser
+            ]
          }
 
-      default: 
+      default:
          return state;
    }
 };
