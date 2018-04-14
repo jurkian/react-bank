@@ -1,6 +1,6 @@
 @import 'components/App/variables';
 
-.login {
+.small-form-module {
    max-width: 36.5rem;
    padding-bottom: 0;
 }
@@ -24,7 +24,7 @@
 
 // Form
 
-.login form {
+.small-form-module form {
    margin: 0;
 
    > div:first-child {
@@ -40,11 +40,11 @@
 }
 
 .login-input {
-   background-image: url('human-icon.svg');
+   background-image: url('../human-icon.svg');
 }
 
 .password-input {
-   background-image: url('lock-icon.svg');
+   background-image: url('../lock-icon.svg');
 }
 
 .checkbox {

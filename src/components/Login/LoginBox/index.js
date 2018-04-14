@@ -1,18 +1,11 @@
 import React from 'react';
+import SmallFormBox from 'components/UI/FormBoxes/Small';
 import LoginForm from './Form';
-import loginIcon from './login-icon.png';
-import './style.scss';
 
 const LoginBox = (props) => (
-   <section className="login module container-module">
-      <section className="login-icon">
-         <div className="icon-container">
-            <img src={loginIcon} className="img-responsive" alt="Login icon" />
-         </div>
-      </section>
-
+   <SmallFormBox>
       <LoginForm history={props.history} />
-   </section>
+   </SmallFormBox>
 );
 
 export default LoginBox;

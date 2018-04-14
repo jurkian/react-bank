@@ -2,22 +2,16 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { changeUserDetails } from 'actions/profile';
 
+import SmallFormBox from 'components/UI/FormBoxes/Small';
 import Form from './Form';
-import loginIcon from 'components/Login/LoginBox/login-icon.png';
 
 const ProfileChangeDetails = (props) => {
    return (
       <div className="row panel-content">
          <div className="col-xs-12">
-            <section className="login module">
-               <section className="login-icon">
-                  <div className="icon-container">
-                     <img src={loginIcon} className="img-responsive" alt="Login icon" />
-                  </div>
-               </section>
-
+            <SmallFormBox>
                <Form changeUserDetails={props.changeUserDetails} />
-            </section>
+            </SmallFormBox>
          </div>
       </div>
    );
