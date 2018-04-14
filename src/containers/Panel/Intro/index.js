@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import AsyncLoader from 'components/UI/AsyncLoader';
+import Loader from 'components/UI/Loader';
 
 import IncomeStats from 'components/Widgets/IncomeStats';
 import IconedList from 'components/Widgets/IconedList';
@@ -25,7 +25,7 @@ class PanelHome extends Component {
    render() {
 
       if (!this.state.loaded) {
-         return <AsyncLoader loaded={this.state.loaded} />;
+         return <Loader />;
 
       } else {
          return (

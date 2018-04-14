@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import LoadingAnimation from './LoadingAnimation';
 
 const Fragment = React.Fragment;
 
-class AsyncLoader extends Component {
+class Loader extends Component {
    state = { showError: false }
 
    render() {
@@ -28,11 +27,4 @@ class AsyncLoader extends Component {
    }
 }
 
-AsyncLoader.propTypes = {
-   loaded: PropTypes.oneOfType([
-      PropTypes.bool
-   ]).isRequired,
-   errorText: PropTypes.string
-}
-
-export default AsyncLoader;
+export default Loader;

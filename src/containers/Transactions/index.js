@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { fetchTransactions } from 'actions/transactions';
-import AsyncLoader from 'components/UI/AsyncLoader';
+import Loader from 'components/UI/Loader';
 
 import TransactionsList from 'components/Transactions/List';
 import SingleTransaction from 'components/Transactions/Single';
@@ -17,7 +17,7 @@ class Transactions extends Component {
 
    render() {
       if (!this.props.fetchTransactionsStatus) {
-         return <AsyncLoader loaded={this.props.fetchTransactionsStatus} />;
+         return <Loader />;
 
       } else {
          return (

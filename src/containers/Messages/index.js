@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { fetchMessages } from 'actions/messages';
-import AsyncLoader from 'components/UI/AsyncLoader';
+import Loader from 'components/UI/Loader';
 
 import MessagesList from 'components/Messages/List';
 import SingleMessage from 'components/Messages/Single';
@@ -16,7 +16,7 @@ class Messages extends Component {
 
    render() {
       if (!this.props.fetchMessagesStatus) {
-         return <AsyncLoader loaded={this.props.fetchMessagesStatus} />;
+         return <Loader />;
 
       } else {
          return (

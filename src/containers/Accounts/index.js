@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { fetchAccounts } from 'actions/accounts';
-import AsyncLoader from 'components/UI/AsyncLoader';
+import Loader from 'components/UI/Loader';
 
 import AccountsList from 'components/Accounts/List';
 import SingleAccount from 'components/Accounts/Single';
@@ -16,7 +16,7 @@ class Accounts extends Component {
 
    render() {
       if (!this.props.fetchAccountsStatus) {
-         return <AsyncLoader loaded={this.props.fetchAccountsStatus} />;
+         return <Loader />;
 
       } else {
          return (

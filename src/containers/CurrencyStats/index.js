@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import AsyncLoader from 'components/UI/AsyncLoader';
+import Loader from 'components/UI/Loader';
 
 import Header from 'components/CurrencyStats/Header';
 import CurrencySettings from 'components/CurrencyStats/CurrencySettings';
@@ -23,7 +23,7 @@ class CurrencyStats extends Component {
 
    render() {
       if (!this.state.loaded) {
-         return <AsyncLoader loaded={this.state.loaded} />;
+         return <Loader />;
 
       } else {
          return (

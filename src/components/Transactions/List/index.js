@@ -5,7 +5,7 @@ import {
    fetchTransactions, setFetchPaginationStatus, setTransactionsPage
 } from 'actions/transactions';
 import ReactPaginate from 'react-paginate';
-import AsyncLoader from 'components/UI/AsyncLoader';
+import Loader from 'components/UI/Loader';
 import TransactionsListEl from '../ListElement';
 
 class TransactionsList extends Component {
@@ -47,7 +47,7 @@ class TransactionsList extends Component {
    render() {
 
       if (!this.props.fetchPaginationStatus) {
-         return <AsyncLoader />;
+         return <Loader />;
 
       } else {
 

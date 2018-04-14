@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { fetchCards } from 'actions/cards';
-import AsyncLoader from 'components/UI/AsyncLoader';
+import Loader from 'components/UI/Loader';
 
 import CardsList from 'components/Cards/List';
 import SingleCard from 'components/Cards/Single';
@@ -18,7 +18,7 @@ class Cards extends Component {
 
    render() {
       if (!this.props.fetchCardsStatus) {
-         return <AsyncLoader />;
+         return <Loader />;
 
       } else {
          return (

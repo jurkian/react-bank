@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import AsyncLoader from 'components/UI/AsyncLoader';
+import Loader from 'components/UI/Loader';
 import IncomeChart from '../Charts/IncomeChart';
 
 class IncomeStats extends Component {
@@ -8,7 +8,7 @@ class IncomeStats extends Component {
 
    render() {
       if (!this.state.loaded) {
-         return <AsyncLoader />;
+         return <Loader />;
 
       } else {
          return (

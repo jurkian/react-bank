@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-import AsyncLoader from 'components/UI/AsyncLoader';
+import Loader from 'components/UI/Loader';
 import Header from 'components/Home/Header';
 import Features from 'components/Home/Features';
 import NewFeatures from 'components/Home/NewFeatures';
@@ -15,7 +15,7 @@ class Home extends Component {
 
    render() {
       if (!this.state.loaded) {
-         return <AsyncLoader loaded={this.state.loaded} />;
+         return <Loader />;
 
       } else {
          return (

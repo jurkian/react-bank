@@ -4,7 +4,7 @@ import {
    fetchMessages, setFetchPaginationStatus, messageToggle, messageRemove, setMessagesPage
 } from 'actions/messages';
 import ReactPaginate from 'react-paginate';
-import AsyncLoader from 'components/UI/AsyncLoader';
+import Loader from 'components/UI/Loader';
 import MessagesListEl from '../ListElement';
 
 const Fragment = React.Fragment;
@@ -49,7 +49,7 @@ class MessagesList extends Component {
       // Messages
       // Allow search for message title
       if (!this.props.fetchPaginationStatus) {
-         return <AsyncLoader />;
+         return <Loader />;
 
       } else {
          const messages = this.props.messages[this.props.pageNumber - 1]
