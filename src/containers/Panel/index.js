@@ -8,19 +8,49 @@ import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { fetchProfile } from 'actions/profile';
+
 import axios from 'axios';
-import AsyncLoader from 'components/UI/AsyncLoader';
+import Loadable from 'react-loadable';
+import Loader from 'components/UI/Loader';
 
 import Navigation from 'containers/Navigation';
 import PanelIntro from 'containers/Panel/Intro';
-import Accounts from 'containers/Accounts';
-import Transactions from 'containers/Transactions';
-import Cards from 'containers/Cards';
-import Profile from 'containers/Profile';
-import ProfileChangeDetails from 'containers/Profile/ChangeDetails';
-import Messages from 'containers/Messages';
-import Help from 'components/Help';
 import PageNotFound from 'components/PageNotFound';
+
+const Accounts = Loadable({
+   loader: () => import('containers/Accounts'),
+   loading: Loader,
+});
+
+const Transactions = Loadable({
+   loader: () => import('containers/Transactions'),
+   loading: Loader,
+});
+
+const Cards = Loadable({
+   loader: () => import('containers/Cards'),
+   loading: Loader,
+});
+
+const Profile = Loadable({
+   loader: () => import('containers/Profile'),
+   loading: Loader,
+});
+
+const ProfileChangeDetails = Loadable({
+   loader: () => import('containers/Profile/ChangeDetails'),
+   loading: Loader,
+});
+
+const Messages = Loadable({
+   loader: () => import('containers/Messages'),
+   loading: Loader,
+});
+
+const Help = Loadable({
+   loader: () => import('components/Help'),
+   loading: Loader,
+});
 
 const Fragment = React.Fragment;
 
@@ -46,7 +76,7 @@ class Panel extends Component {
       axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
       if (!this.props.fetchProfileStatus) {
-         return <AsyncLoader loaded={this.props.fetchProfileStatus} />;
+         return <Loader />;
 
       } else {
          return (
