@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { myPadStart, chunker } from 'components/Common/Tools';
+import { myPadStart, chunker } from 'components/Utilities/Tools';
 
 import './style.scss';
 

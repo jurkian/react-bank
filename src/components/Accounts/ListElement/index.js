@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { chunker } from 'components/Common/Tools';
+import { chunker } from 'components/Utilities/Tools';
 
 const AccountsListEl = ({ matchUrl, id, type, sortcode, currency, balance }) => {
    return (

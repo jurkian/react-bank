@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { chunker } from 'components/Common/Tools';
+import { chunker } from 'components/Utilities/Tools';
 
 const SingleAccount = ({ singleAcc }) => {
    return (
