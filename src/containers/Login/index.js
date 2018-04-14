@@ -6,7 +6,7 @@ class Login extends Component {
       return (
          <div className="row">
             <div className="col-xs-12">
-               <LoginBox />
+               <LoginBox history={this.props.history} />
             </div>
          </div>
       );

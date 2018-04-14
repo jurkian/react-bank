@@ -3,7 +3,7 @@ import LoginForm from './Form';
 import loginIcon from './login-icon.png';
 import './style.scss';
 
-const LoginBox = () => (
+const LoginBox = (props) => (
    <section className="login module container-module">
       <section className="login-icon">
          <div className="icon-container">
@@ -11,7 +11,7 @@ const LoginBox = () => (
          </div>
       </section>
 
-      <LoginForm history={this.props.history} />
+      <LoginForm history={props.history} />
    </section>
 );
 
