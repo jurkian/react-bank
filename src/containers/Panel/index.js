@@ -10,52 +10,44 @@ import { connect } from 'react-redux';
 import { fetchProfile } from 'actions/profile';
 
 import axios from 'axios';
-import Loadable from 'react-loadable';
 import Loader from 'components/UI/Loader';
+import AsyncComponentLoader from 'components/Utilities/AsyncComponentLoader';
 
 import Navigation from 'containers/Navigation';
 import PanelIntro from 'containers/Panel/Intro';
 import PageNotFound from 'components/PageNotFound';
 
-const Accounts = Loadable({
-   loader: () => import('containers/Accounts'),
-   loading: Loader,
+const Accounts = AsyncComponentLoader({
+   loader: () => import('containers/Accounts')
 });
 
-const Transactions = Loadable({
-   loader: () => import('containers/Transactions'),
-   loading: Loader,
+const Transactions = AsyncComponentLoader({
+   loader: () => import('containers/Transactions')
 });
 
-const Cards = Loadable({
-   loader: () => import('containers/Cards'),
-   loading: Loader,
+const Cards = AsyncComponentLoader({
+   loader: () => import('containers/Cards')
 });
 
-const Profile = Loadable({
-   loader: () => import('containers/Profile'),
-   loading: Loader,
+const Profile = AsyncComponentLoader({
+   loader: () => import('containers/Profile')
 });
 
-const ProfileChangeDetails = Loadable({
-   loader: () => import('containers/Profile/ChangeDetails'),
-   loading: Loader,
+const ProfileChangeDetails = AsyncComponentLoader({
+   loader: () => import('containers/Profile/ChangeDetails')
 });
 
-const Messages = Loadable({
-   loader: () => import('containers/Messages'),
-   loading: Loader,
+const Messages = AsyncComponentLoader({
+   loader: () => import('containers/Messages')
 });
 
-const Help = Loadable({
-   loader: () => import('components/Help'),
-   loading: Loader,
+const Help = AsyncComponentLoader({
+   loader: () => import('components/Help')
 });
 
 const Fragment = React.Fragment;
 
 class Panel extends Component {
-
    // Get user's profile because we use it all over the panel
    componentWillMount() {
       if (!this.props.fetchProfileStatus) {
@@ -77,7 +69,6 @@ class Panel extends Component {
 
       if (!this.props.fetchProfileStatus) {
          return <Loader />;
-
       } else {
          return (
             <Fragment>
@@ -89,7 +80,10 @@ class Panel extends Component {
                   <Route path="/panel/transactions" component={Transactions} />
                   <Route path="/panel/cards" component={Cards} />
                   <Route path="/panel/profile" component={Profile} />
-                  <Route path="/panel/change-details" component={ProfileChangeDetails} />
+                  <Route
+                     path="/panel/change-details"
+                     component={ProfileChangeDetails}
+                  />
                   <Route path="/panel/messages" component={Messages} />
                   <Route path="/panel/help" component={Help} />
                   <Route component={PageNotFound} />
@@ -100,19 +94,16 @@ class Panel extends Component {
    }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
    return {
       fetchProfileStatus: state.profile.status
-   }
+   };
 };
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
    return {
       fetchProfile: () => dispatch(fetchProfile())
-   }
-}
+   };
+};
 
-export default connect(
-   mapStateToProps,
-   mapDispatchToProps
-)(Panel);
+export default connect(mapStateToProps, mapDispatchToProps)(Panel);

@@ -1,8 +1,7 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 
-import Loadable from 'react-loadable';
-import Loader from 'components/UI/Loader';
+import AsyncComponentLoader from 'components/Utilities/AsyncComponentLoader';
 import Layout from 'hoc/Layout';
 
 import Logout from 'components/Logout';
@@ -10,24 +9,20 @@ import PageNotFound from 'components/PageNotFound';
 
 import './app.scss';
 
-const Home = Loadable({
-   loader: () => import('containers/Home'),
-   loading: Loader,
+const Home = AsyncComponentLoader({
+   loader: () => import('containers/Home')
 });
 
-const Login = Loadable({
-   loader: () => import('containers/Login'),
-   loading: Loader,
+const Login = AsyncComponentLoader({
+   loader: () => import('containers/Login')
 });
 
-const CurrencyStats = Loadable({
-   loader: () => import('containers/CurrencyStats'),
-   loading: Loader,
+const CurrencyStats = AsyncComponentLoader({
+   loader: () => import('containers/CurrencyStats')
 });
 
-const Panel = Loadable({
-   loader: () => import('containers/Panel'),
-   loading: Loader,
+const Panel = AsyncComponentLoader({
+   loader: () => import('containers/Panel')
 });
 
 const App = () => (
