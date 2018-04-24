@@ -43,12 +43,11 @@ const InnerForm = props => {
 
          <SingleModuleButton text="Log in now" type="submit" />
       </Form>
-   )
+   );
 };
 
 // Wrap our form with the using withFormik HoC
 const LoginForm = withFormik({
-
    // Transform outer props into form values
    mapPropsToValues: props => ({ email: '', password: '' }),
 
@@ -63,45 +62,35 @@ const LoginForm = withFormik({
    }),
 
    // Submission handler
-   handleSubmit: (
-     values,
-      {
-         props,
-         setStatus
-      }
-   ) => {
+   handleSubmit: (values, { props, setStatus }) => {
       const { email, password, remember } = values;
 
       setStatus('Sending...');
 
       // Current fake API doesn't support JWT tokens, so... SIMULATE IT
       // Use GET instead of POST
-      axios(`http://localhost:3001/clients/1`, {
-         method: 'get',
+      axios(`http://localhost:3001/users_data/1`, {
+         method: 'get'
          // headers: { 'Content-Type': 'application/json' },
          // data: { email, password, remember }
       })
-      .then(res => res.data)
-      .then(res => {
+         .then(res => res.data)
+         .then(res => {
+            let decodedToken = jwtDecode(res.token);
 
-         let decodedToken = jwtDecode(res.token);
+            // Check server response
+            if (email === decodedToken.email) {
+               // Store the token
+               localStorage.setItem('user_token', res.token);
 
-         // Check server response
-         if (email === decodedToken.email) {
-
-            // Store the token
-            localStorage.setItem('user_token', res.token);
-
-            // Redirect to panel
-            props.history.push('/panel');
-
-         } else {
-            // Else show errors
-            setStatus('Login unsuccessful');
-         }
-      });
-   },
-
+               // Redirect to panel
+               props.history.push('/panel');
+            } else {
+               // Else show errors
+               setStatus('Login unsuccessful');
+            }
+         });
+   }
 })(InnerForm);
 
 export default LoginForm;

@@ -11,12 +11,11 @@ class Home extends Component {
       clients: [],
       lastClient: {},
       loaded: false
-   }
+   };
 
    render() {
       if (!this.state.loaded) {
          return <Loader />;
-
       } else {
          return (
             <div className="row">
@@ -33,7 +32,8 @@ class Home extends Component {
    }
 
    componentDidMount() {
-      axios.get('http://localhost:3001/clients')
+      axios
+         .get('http://localhost:3001/users_data')
          .then(res => res.data)
          .then(clients => {
             this.setState({

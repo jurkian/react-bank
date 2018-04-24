@@ -1,5 +1,5 @@
 {
-  "clients": [
+  "users_data": [
     {
       "id": 1,
       "role": "user",
@@ -8,13 +8,10 @@
       "street_address": "29 Raven Street",
       "postcode": "33852",
       "city": "Plumtree",
-      "email": "email@example.com",
-      "password": "example",
       "created_on": "20/07/2017",
       "last_login": "23/07/2017 22:38",
       "messages_no": 5,
-      "cards_no": 2,
-      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6IkpvaG4gTGFib3VuZSIsImVtYWlsIjoiZW1haWxAZXhhbXBsZS5jb20ifQ.zVUEZd48wY1zwPHAuglWIo21ls14U9hvy-Xlbyhvoys"
+      "cards_no": 2
     },
     {
       "id": 2,
@@ -24,13 +21,10 @@
       "street_address": "18 Denman St",
       "postcode": "W1A 1JT",
       "city": "Soho, London",
-      "email": "email2@example.com",
-      "password": "example",
       "created_on": "15/07/2017",
       "last_login": "20/07/2017 17:23",
       "messages_no": 5,
-      "cards_no": 2,
-      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwibmFtZSI6Ik1hcmsgTWF0bGV5IiwiZW1haWwiOiJlbWFpbDJAZXhhbXBsZS5jb20ifQ.KdoGm7qoThOBrCsXlAMITXCF-2OuUPIb7CftGMqmaQg"
+      "cards_no": 2
     },
     {
       "id": 3,
@@ -40,13 +34,10 @@
       "street_address": "18 Denman St",
       "postcode": "W1A 1JT",
       "city": "Soho, London",
-      "email": "admin@example.com",
-      "password": "example",
       "created_on": "15/07/2017",
       "last_login": "20/07/2017 17:23",
       "messages_no": 5,
-      "cards_no": 2,
-      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwibmFtZSI6Ik1hcmsgTWF0bGV5IiwiZW1haWwiOiJlbWFpbDJAZXhhbXBsZS5jb20ifQ.KdoGm7qoThOBrCsXlAMITXCF-2OuUPIb7CftGMqmaQg"
+      "cards_no": 2
     }
   ],
   "accounts": [
@@ -227,8 +218,8 @@
       "balance": 148.95,
       "income_7_days": 2400,
       "expenses_7_days": 297,
-      "daily_withdrawal_limit": 1234,
-      "daily_online_limit": 5678
+      "daily_withdrawal_limit": "NaN",
+      "daily_online_limit": "NaN"
     },
     {
       "id": 2,
@@ -422,7 +413,7 @@
       "title": "Lorem ipsum dolor sit amet",
       "content": "<h2>1Lorem ipsum dolor</h2><p>sit amet, consectetur adipiscing elit. Praesent porttitor a turpis in sagittis.</p><p>Pellentesque convallis tortor non augue tempus, nec blandit neque interdum. Cras et erat mattis, iaculis lectus quis, pretium mi.</p>",
       "date": "25/07/2017 22:38",
-      "isToggled": false
+      "isToggled": true
     },
     {
       "id": 2,

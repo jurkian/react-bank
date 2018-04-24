@@ -7,6 +7,8 @@
       "classnames": "^2.2.5",
       "formik": "^0.11.11",
       "jest": "20.0.4",
+      "json-server": "^0.12.1",
+      "jsonwebtoken": "^8.2.1",
       "jwt-decode": "^2.2.0",
       "prop-types": "^15.6.1",
       "react": "^16.3.1",
@@ -66,6 +68,8 @@
    },
    "scripts": {
       "start": "node scripts/start.js",
+      "start-api": "json-server --watch api/db.json --port 3001",
+      "start-auth": "node auth-server.js",
       "build": "node scripts/build.js",
       "test": "node scripts/test.js --env=jsdom"
    },
