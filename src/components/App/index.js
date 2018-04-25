@@ -17,6 +17,10 @@ const Login = AsyncComponentLoader({
    loader: () => import('containers/Auth/Login')
 });
 
+const Register = AsyncComponentLoader({
+   loader: () => import('containers/Auth/Register')
+});
+
 const CurrencyStats = AsyncComponentLoader({
    loader: () => import('containers/CurrencyStats')
 });
@@ -32,6 +36,7 @@ const App = () => (
          <Route path="/currencies" component={CurrencyStats} />
          <Route path="/login" component={Login} />
          <Route path="/logout" component={Logout} />
+         <Route path="/register" component={Register} />
          <Route exact path="/" component={Home} />
          <Route component={PageNotFound} />
       </Switch>
