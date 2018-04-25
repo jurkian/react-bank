@@ -1,19 +1,21 @@
 // By: https://github.com/techiediaries/fake-api-jwt-json-server
 
-const fs = require('fs');
-const bodyParser = require('body-parser');
 const jsonServer = require('json-server');
-const jwt = require('jsonwebtoken');
-
 const server = jsonServer.create();
 const router = jsonServer.router('./api/db.json');
+const middlewares = jsonServer.defaults();
+const jwt = require('jsonwebtoken');
+const fs = require('fs');
+const bodyParser = require('body-parser');
+
 const userdb = JSON.parse(fs.readFileSync('./api/users.json', 'UTF-8'));
 
+const SECRET_KEY = '349b31aea64aaf6d9ab49441e22a60a5';
+const expiresIn = '1h';
+
+server.use(middlewares);
 server.use(bodyParser.urlencoded({ extended: true }));
 server.use(bodyParser.json());
-
-const SECRET_KEY = '123456789';
-const expiresIn = '1h';
 
 // Create a token from a payload
 function createToken(payload) {
@@ -32,6 +34,7 @@ function isAuthenticated({ email, password }) {
 
 server.post('/auth/login', (req, res) => {
    const { email, password } = req.body;
+
    if (isAuthenticated({ email, password }) === false) {
       const status = 401;
       const message = 'Incorrect email or password';
@@ -52,6 +55,7 @@ server.use(/^(?!\/auth).*$/, (req, res, next) => {
       res.status(status).json({ status, message });
       return;
    }
+
    try {
       verifyToken(req.headers.authorization.split(' ')[1]);
       next();
@@ -64,6 +68,6 @@ server.use(/^(?!\/auth).*$/, (req, res, next) => {
 
 server.use(router);
 
-server.listen(3002, () => {
+server.listen(3001, () => {
    console.log('Run Auth API Server');
 });
