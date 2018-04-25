@@ -1,10 +1,12 @@
-import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import React, { Component } from 'react';
+import { Route, Switch, withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+import * as actions from 'actions';
 
 import AsyncComponentLoader from 'components/Utilities/AsyncComponentLoader';
 import Layout from 'hoc/Layout';
 
-import Logout from 'components/Logout';
+import Logout from 'components/Auth/Logout';
 import PageNotFound from 'components/PageNotFound';
 
 import './app.scss';
@@ -29,18 +31,33 @@ const Panel = AsyncComponentLoader({
    loader: () => import('containers/Panel')
 });
 
-const App = () => (
-   <Layout>
-      <Switch>
-         <Route path="/panel" component={Panel} />
-         <Route path="/currencies" component={CurrencyStats} />
-         <Route path="/login" component={Login} />
-         <Route path="/logout" component={Logout} />
-         <Route path="/register" component={Register} />
-         <Route exact path="/" component={Home} />
-         <Route component={PageNotFound} />
-      </Switch>
-   </Layout>
-);
+class App extends Component {
+   componentDidMount() {
+      // If there is a previous, valid token, try to log the user in
+      this.props.tryAutoSignup();
+   }
 
-export default App;
+   render() {
+      return (
+         <Layout>
+            <Switch>
+               <Route path="/panel" component={Panel} />
+               <Route path="/currencies" component={CurrencyStats} />
+               <Route path="/login" component={Login} />
+               <Route path="/logout" component={Logout} />
+               <Route path="/register" component={Register} />
+               <Route exact path="/" component={Home} />
+               <Route component={PageNotFound} />
+            </Switch>
+         </Layout>
+      );
+   }
+}
+
+const mapDispatchToProps = dispatch => {
+   return {
+      tryAutoSignup: () => dispatch(actions.authCheckState())
+   };
+};
+
+export default withRouter(connect(null, mapDispatchToProps)(App));

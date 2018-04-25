@@ -22,13 +22,18 @@ export const authFail = error => {
    };
 };
 
-// Log user out after expirationTime
+// Log user out
 export const logout = () => {
+   localStorage.removeItem('token');
+   localStorage.removeItem('tokenExpirationDate');
+   localStorage.removeItem('userId');
+
    return {
       type: actionTypes.AUTH_LOGOUT
    };
 };
 
+// Log out also after expirationTime (1h with Firebase)
 export const checkAuthTimeout = expirationTime => {
    return dispatch => {
       setTimeout(() => {
@@ -57,15 +62,48 @@ export const auth = (email, password, isSignUp) => {
             )
             .then(res => {
                const { localId, idToken, expiresIn } = res.data;
+               const expirationDate = new Date(new Date().getTime() + expiresIn * 1000);
+
+               localStorage.setItem('token', idToken);
+               localStorage.setItem('tokenExpirationDate', expirationDate);
+               localStorage.setItem('userId', localId);
 
                dispatch(authSuccess(idToken, localId));
                dispatch(checkAuthTimeout(expiresIn));
 
-               resolve(idToken);
+               resolve();
             })
             .catch(err => {
                dispatch(authFail(err.response.data.error));
             });
       });
+   };
+};
+
+// Do an auth state check when app loads/reloads
+// If there is a token, but expired, do the logout()
+// If there is a valid token, log the user in
+export const authCheckState = () => {
+   return dispatch => {
+      const token = localStorage.getItem('token');
+
+      // No token = log out (reset the auth)
+      if (!token) {
+         dispatch(logout());
+      } else {
+         const expirationDate = new Date(localStorage.getItem('tokenExpirationDate'));
+
+         // If token expiration date is in the past, it's no longer valid
+         // Log out
+         if (expirationDate <= new Date()) {
+            dispatch(logout());
+         } else {
+            // Here it's all valid, log the user in
+            const userId = localStorage.getItem('userId');
+
+            dispatch(authSuccess(token, userId));
+            dispatch(checkAuthTimeout((expirationDate.getTime() - new Date().getTime()) / 1000));
+         }
+      }
    };
 };

@@ -66,8 +66,7 @@ const LoginForm = withFormik({
       setStatus('Sending...');
 
       // If auth is successful, store the token and redirect to panel
-      props.onAuth(email, password).then(token => {
-         localStorage.setItem('user_token', token);
+      props.onAuth(email, password).then(() => {
          props.history.push('/panel');
       });
    }
