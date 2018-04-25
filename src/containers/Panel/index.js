@@ -50,17 +50,17 @@ class Panel extends Component {
       if (!this.props.fetchProfileStatus) {
          this.props.fetchProfile();
       }
-   }
 
-   render() {
-      // Authorization
-      const token = localStorage.getItem('user_token');
+      // If user is logged out, redirect to login
+      const token = localStorage.getItem('token');
 
       if (!token) {
          this.props.history.push('/login');
-         return;
+         return null;
       }
+   }
 
+   render() {
       if (!this.props.fetchProfileStatus) {
          return <Loader />;
       } else {
