@@ -99,14 +99,14 @@ const ContactForm = withFormik({
 
       setStatus('Sending...');
 
-      // Fake endpoint...
-      axios(`/clients/1`, {
-         method: 'get'
-      })
+      // No API endpoint exists, so fake it
+      axios
+         .post('/help', {
+            data: { name, email, subject, message }
+         })
          .then(res => res.data)
-         .then(res => {
-            setStatus('Your message has been sent');
-         });
+         .then(res => setStatus('Your message has been sent'))
+         .catch(err => setStatus('Your message has been sent'));
    }
 })(InnerForm);
 
