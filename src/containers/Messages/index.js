@@ -17,7 +17,6 @@ class Messages extends Component {
    render() {
       if (!this.props.fetchMessagesStatus) {
          return <Loader />;
-
       } else {
          return (
             <div className="row panel-content">
@@ -33,19 +32,16 @@ class Messages extends Component {
    }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
    return {
       fetchMessagesStatus: state.messages.status
-   }
+   };
 };
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
    return {
       fetchMessages: (page, perPage) => dispatch(fetchMessages(page, perPage))
-   }
-}
+   };
+};
 
-export default connect(
-   mapStateToProps,
-   mapDispatchToProps
-)(Messages);
+export default connect(mapStateToProps, mapDispatchToProps)(Messages);

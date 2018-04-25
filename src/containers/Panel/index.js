@@ -77,10 +77,7 @@ class Panel extends Component {
                   <Route path="/panel/transactions" component={Transactions} />
                   <Route path="/panel/cards" component={Cards} />
                   <Route path="/panel/profile" component={Profile} />
-                  <Route
-                     path="/panel/change-details"
-                     component={ProfileChangeDetails}
-                  />
+                  <Route path="/panel/change-details" component={ProfileChangeDetails} />
                   <Route path="/panel/messages" component={Messages} />
                   <Route path="/panel/help" component={Help} />
                   <Route component={PageNotFound} />

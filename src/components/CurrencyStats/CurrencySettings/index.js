@@ -11,8 +11,7 @@ const Fragment = React.Fragment;
 
 class CurrencySettings extends Component {
    render() {
-      const currencyEls = this.props.currencies.map((el, i) =>
-         <option key={i}>{el}</option>);
+      const currencyEls = this.props.currencies.map((el, i) => <option key={i}>{el}</option>);
 
       return (
          <Fragment>
@@ -24,8 +23,8 @@ class CurrencySettings extends Component {
                      name="base-currency"
                      className="form-control"
                      onChange={this.onBaseCurrencyChange}
-                     value={this.props.baseCurrency}>
-
+                     value={this.props.baseCurrency}
+                  >
                      <option disabled>Select base currency</option>
                      {currencyEls}
                   </select>
@@ -55,7 +54,7 @@ class CurrencySettings extends Component {
    onBaseCurrencyChange = e => {
       const newCurrency = e.target.value;
       this.props.onBaseCurrencyChange(newCurrency);
-   }
+   };
 }
 
 CurrencySettings.propTypes = {
@@ -64,6 +63,6 @@ CurrencySettings.propTypes = {
    baseCurrency: PropTypes.string.isRequired,
    onBaseCurrencyChange: PropTypes.func.isRequired,
    onCurrencyDateChange: PropTypes.func.isRequired
-}
+};
 
 export default CurrencySettings;

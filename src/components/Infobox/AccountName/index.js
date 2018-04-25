@@ -9,6 +9,6 @@ const AccountName = () => {
          <span>Summary for last 7 days</span>
       </section>
    );
-}
- 
+};
+
 export default AccountName;

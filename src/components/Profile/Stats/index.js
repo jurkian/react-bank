@@ -18,6 +18,6 @@ const ProfileStats = () => {
          </div>
       </section>
    );
-}
+};
 
 export default ProfileStats;

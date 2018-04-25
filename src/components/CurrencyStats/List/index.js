@@ -7,23 +7,22 @@ import './style.scss';
 const CurrencyList = ({ currencyData, baseCurrency }) => {
    const currencyRates = currencyData.rates;
    const currencyBoxes = Object.keys(currencyRates).map((currency, i) => {
-      return <CurrencyBox
-         key={i}
-         baseCurrency={baseCurrency}
-         currency={currency}
-         value={currencyRates[currency]} />
+      return (
+         <CurrencyBox
+            key={i}
+            baseCurrency={baseCurrency}
+            currency={currency}
+            value={currencyRates[currency]}
+         />
+      );
    });
-   
-   return (
-      <div className="currency-boxes-container row">
-         {currencyBoxes}
-      </div>
-   );
-}
+
+   return <div className="currency-boxes-container row">{currencyBoxes}</div>;
+};
 
 CurrencyList.propTypes = {
    currencyData: PropTypes.object.isRequired,
-   baseCurrency: PropTypes.string.isRequired,
-}
+   baseCurrency: PropTypes.string.isRequired
+};
 
 export default CurrencyList;

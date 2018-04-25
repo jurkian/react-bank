@@ -13,13 +13,13 @@ const cards = (state = initialState, action) => {
          return {
             ...state,
             data: [...action.data]
-         }
+         };
 
       case actions.FETCH_CARDS_STATUS:
          return {
             ...state,
             status: action.status
-         }
+         };
 
       case actions.CARD_CHANGE_PIN:
          modifiedCard = [...state.data].find(el => el.id === action.id);
@@ -27,11 +27,8 @@ const cards = (state = initialState, action) => {
 
          return {
             ...state,
-            data: [
-               ...state.data,
-               modifiedCard
-            ]
-         }
+            data: [...state.data, modifiedCard]
+         };
 
       case actions.CARD_CHANGE_LIMITS:
          modifiedCard = [...state.data].find(el => el.id === action.id);
@@ -41,11 +38,8 @@ const cards = (state = initialState, action) => {
 
          return {
             ...state,
-            data: [
-               ...state.data,
-               modifiedCard
-            ]
-         }
+            data: [...state.data, modifiedCard]
+         };
 
       default:
          return state;

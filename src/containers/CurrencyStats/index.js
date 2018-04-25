@@ -19,12 +19,11 @@ class CurrencyStats extends Component {
       baseCurrency: 'GBP',
       date: subDays(new Date(), 1),
       loaded: false
-   }
+   };
 
    render() {
       if (!this.state.loaded) {
          return <Loader />;
-
       } else {
          return (
             <div className="row">
@@ -37,12 +36,14 @@ class CurrencyStats extends Component {
                            currencies={this.state.currencies}
                            baseCurrency={this.state.baseCurrency}
                            onBaseCurrencyChange={this.onBaseCurrencyChange}
-                           onCurrencyDateChange={this.onCurrencyDateChange} />
+                           onCurrencyDateChange={this.onCurrencyDateChange}
+                        />
                      </div>
 
                      <CurrencyList
                         currencyData={this.state.currencyData}
-                        baseCurrency={this.state.baseCurrency} />
+                        baseCurrency={this.state.baseCurrency}
+                     />
 
                      <div className="currency-stats-leave-section">
                         <SingleButton text="Go back to home page &raquo;" href="/" size="lg" />
@@ -61,20 +62,22 @@ class CurrencyStats extends Component {
    makeAPIRequest() {
       // Remove baseCurrency from currencies list - it wouldn't make any sense
       // Then, convert it from array to string (needed for API request)
-      const currencies = this.state.currencies.filter(curr =>
-         curr !== this.state.baseCurrency).join(',');
+      const currencies = this.state.currencies
+         .filter(curr => curr !== this.state.baseCurrency)
+         .join(',');
 
       let apiParams = {
          symbols: currencies,
          base: this.state.baseCurrency
-      }
+      };
 
       // If date is set - add it to request
       if (this.state.date) {
          apiParams.date = format(this.state.date, 'YYYY-MM-DD');
       }
 
-      axios.get('https://api.fixer.io/latest', { params: apiParams })
+      axios
+         .get('https://api.fixer.io/latest', { params: apiParams })
          .then(res => res.data)
          .then(currencyData => {
             this.setState({ currencyData, loaded: true });
@@ -86,13 +89,13 @@ class CurrencyStats extends Component {
       this.setState({ baseCurrency, loaded: false }, () => {
          this.makeAPIRequest();
       });
-   }
+   };
 
    onCurrencyDateChange = date => {
       this.setState({ date, loaded: false }, () => {
          this.makeAPIRequest();
       });
-   }
+   };
 }
 
 export default CurrencyStats;

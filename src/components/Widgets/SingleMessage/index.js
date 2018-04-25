@@ -6,7 +6,7 @@ import SingleMultiButton from 'components/UI/Buttons/SingleMultiButton';
 
 import './style.scss';
 
-const SingleMessage = (props) => {
+const SingleMessage = props => {
    return (
       <section className="message module">
          <header className="message-header">
@@ -36,6 +36,6 @@ SingleMessage.propTypes = {
    sender: PropTypes.string,
    recipient: PropTypes.string,
    content: PropTypes.string
-}
+};
 
 export default SingleMessage;

@@ -43,11 +43,10 @@ const InnerForm = props => {
 
          <SingleModuleButton text="Change PIN" type="submit" />
       </Form>
-   )
+   );
 };
 
 const PINChangeForm = withFormik({
-
    // Transform outer props into form values
    mapPropsToValues: props => ({ pin: '', pinConf: '' }),
 
@@ -66,28 +65,21 @@ const PINChangeForm = withFormik({
                .required('Please confirm your PIN')
                .typeError('PIN confirmation must be a number')
                .oneOf([Yup.ref('pin')], 'PINs must be the same')
-         }),
+         })
    }),
 
    // Submission handler
-   handleSubmit: (
-      values,
-      {
-         props,
-         setStatus
-      }
-   ) => {
-
+   handleSubmit: (values, { props, setStatus }) => {
       const { pin } = values;
       const newPin = parseInt(pin, 10);
 
       setStatus('Sending...');
 
-      props.changeCardPin(pin)
+      props
+         .changeCardPin(pin)
          .then(data => setStatus('PIN successfully changed!'))
          .catch(error => setStatus('Problems, try again...'));
-   },
-
+   }
 })(InnerForm);
 
 export default PINChangeForm;

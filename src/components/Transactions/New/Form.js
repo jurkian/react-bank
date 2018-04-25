@@ -18,7 +18,9 @@ const InnerForm = props => {
                   id="source-account"
                   name="sourceAcc"
                   placeholder="Your new email..."
-               >{props.userAccountsList}</Field>
+               >
+                  {props.userAccountsList}
+               </Field>
 
                {touched.sourceAcc && errors.sourceAcc && <p>{errors.sourceAcc}</p>}
             </div>
@@ -109,12 +111,11 @@ const InnerForm = props => {
 
          <SingleModuleButton text="Confirm transfer" type="submit" />
       </Form>
-   )
+   );
 };
 
 // Wrap our form with the using withFormik HoC
 const NewTransactionForm = withFormik({
-
    // Transform outer props into form values
    mapPropsToValues: props => ({
       sourceAcc: 0,
@@ -129,14 +130,7 @@ const NewTransactionForm = withFormik({
    validationSchema: validations,
 
    // Submission handler
-   handleSubmit: (
-      values,
-      {
-         props,
-         setStatus
-      }
-   ) => {
-
+   handleSubmit: (values, { props, setStatus }) => {
       let {
          sourceAcc,
          payeeAccNumber,
@@ -153,16 +147,22 @@ const NewTransactionForm = withFormik({
       amount = parseFloat(amount).toFixed(2);
 
       const transactionData = {
-         sourceAcc, payeeAccNumber, payeeSortCode, payeeName, payeeAddress, reference, amount
+         sourceAcc,
+         payeeAccNumber,
+         payeeSortCode,
+         payeeName,
+         payeeAddress,
+         reference,
+         amount
       };
 
       setStatus('Sending...');
 
-      props.addTransaction(transactionData)
+      props
+         .addTransaction(transactionData)
          .then(data => setStatus('Transfer done!'))
          .catch(error => setStatus('Problems, try again...'));
-   },
-
+   }
 })(InnerForm);
 
 export default NewTransactionForm;

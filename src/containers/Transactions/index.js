@@ -18,7 +18,6 @@ class Transactions extends Component {
    render() {
       if (!this.props.fetchTransactionsStatus) {
          return <Loader />;
-
       } else {
          return (
             <div className="row panel-content">
@@ -35,19 +34,16 @@ class Transactions extends Component {
    }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
    return {
       fetchTransactionsStatus: state.transactions.status
-   }
+   };
 };
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
    return {
       fetchTransactions: (page, perPage) => dispatch(fetchTransactions(page, perPage))
-   }
-}
+   };
+};
 
-export default connect(
-   mapStateToProps,
-   mapDispatchToProps
-)(Transactions);
+export default connect(mapStateToProps, mapDispatchToProps)(Transactions);

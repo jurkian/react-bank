@@ -42,11 +42,7 @@ export function changeCardPin(id, newPin) {
       });
 }
 
-export function changeCardLimits(
-   id,
-   newWithdrawalLimit = '',
-   newOnlineLimit = ''
-) {
+export function changeCardLimits(id, newWithdrawalLimit = '', newOnlineLimit = '') {
    return dispatch =>
       new Promise((resolve, reject) => {
          axios(`/cards/${id}`, {

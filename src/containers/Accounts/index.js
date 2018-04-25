@@ -17,7 +17,6 @@ class Accounts extends Component {
    render() {
       if (!this.props.fetchAccountsStatus) {
          return <Loader />;
-
       } else {
          return (
             <div className="row panel-content">
@@ -33,19 +32,16 @@ class Accounts extends Component {
    }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
    return {
       fetchAccountsStatus: state.accounts.status
-   }
+   };
 };
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
    return {
       fetchAccounts: () => dispatch(fetchAccounts())
-   }
-}
+   };
+};
 
-export default connect(
-   mapStateToProps,
-   mapDispatchToProps
-)(Accounts);
+export default connect(mapStateToProps, mapDispatchToProps)(Accounts);

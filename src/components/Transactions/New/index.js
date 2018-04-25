@@ -15,7 +15,6 @@ class NewTransaction extends Component {
    render() {
       if (!this.props.fetchAccountsStatus) {
          return <Loader />;
-
       } else {
          const accounts = this.props.accounts.data;
          const userAccountsList = accounts.map((acc, index) => (
@@ -42,21 +41,18 @@ class NewTransaction extends Component {
    }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
    return {
       accounts: state.accounts,
       fetchAccountsStatus: state.accounts.status
-   }
+   };
 };
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
    return {
       fetchAccounts: () => dispatch(fetchAccounts()),
-      addTransaction: (data) => dispatch(addTransaction(data))
-   }
-}
+      addTransaction: data => dispatch(addTransaction(data))
+   };
+};
 
-export default connect(
-   mapStateToProps,
-   mapDispatchToProps
-)(NewTransaction);
+export default connect(mapStateToProps, mapDispatchToProps)(NewTransaction);

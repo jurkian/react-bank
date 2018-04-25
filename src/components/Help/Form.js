@@ -38,12 +38,7 @@ const InnerForm = props => {
 
             <div className="form-group">
                <label htmlFor="subject">Subject</label>
-               <Field
-                  id="subject"
-                  component="select"
-                  className="form-control"
-                  name="subject"
-               >
+               <Field id="subject" component="select" className="form-control" name="subject">
                   <option value="" disabled>
                      Choose subject
                   </option>

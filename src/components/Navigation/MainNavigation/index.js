@@ -4,7 +4,7 @@ import classNames from 'classnames';
 
 import './style.scss';
 
-const MainNavigation = (props) => {
+const MainNavigation = props => {
    let navClasses = classNames({
       'main-nav': true,
       'navigation-visible': props.isMobileNavVisible
@@ -86,6 +86,6 @@ const MainNavigation = (props) => {
          </ul>
       </nav>
    );
-}
+};
 
 export default MainNavigation;

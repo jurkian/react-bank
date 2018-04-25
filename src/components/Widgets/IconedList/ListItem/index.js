@@ -4,8 +4,7 @@ import PropTypes from 'prop-types';
 import ListContainer from '../ListContainer';
 
 // Single list item
-const SingleListItem = (props) => {
-
+const SingleListItem = props => {
    // Default type: comment
    const listType = props.type ? props.type : 'comment';
 
@@ -17,13 +16,13 @@ const SingleListItem = (props) => {
          </ListContainer>
       </li>
    );
-}
+};
 
 SingleListItem.propTypes = {
    type: PropTypes.string,
    href: PropTypes.string,
    title: PropTypes.string,
    subtitle: PropTypes.string
-}
+};
 
 export default SingleListItem;

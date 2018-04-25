@@ -4,7 +4,9 @@ import { connect } from 'react-redux';
 const SingleTransaction = ({ singleTrans }) => {
    return (
       <section className="single-transfer module">
-         <h1>{singleTrans.id}. {singleTrans.type}</h1>
+         <h1>
+            {singleTrans.id}. {singleTrans.type}
+         </h1>
          <ul>
             <li>Date: {singleTrans.date}</li>
             <li>Payee: {singleTrans.payeeName}</li>
@@ -29,11 +31,11 @@ const mapStateToProps = (state, ownProps) => {
          foundTrans = tempFoundTrans;
          return;
       }
-   })
+   });
 
    return {
       singleTrans: foundTrans
-   }
+   };
 };
 
 export default connect(mapStateToProps)(SingleTransaction);

@@ -5,7 +5,7 @@ import { changeUserDetails } from 'actions/profile';
 import SmallFormBox from 'components/UI/FormBoxes/Small';
 import Form from './Form';
 
-const ProfileChangeDetails = (props) => {
+const ProfileChangeDetails = props => {
    return (
       <div className="row panel-content">
          <div className="col-xs-12">
@@ -17,11 +17,11 @@ const ProfileChangeDetails = (props) => {
    );
 };
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
    return {
       changeUserDetails: (newEmail, newPassword) =>
          dispatch(changeUserDetails(1, newEmail, newPassword))
-   }
-}
+   };
+};
 
-export default connect(null, mapDispatchToProps)(ProfileChangeDetails); 
+export default connect(null, mapDispatchToProps)(ProfileChangeDetails);

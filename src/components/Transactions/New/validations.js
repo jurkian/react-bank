@@ -3,7 +3,6 @@ import 'components/Utilities/YupCustomValidations';
 
 // New transaction validations
 export default Yup.object().shape({
-
    payeeAccNumber: Yup.number()
       .required('Please enter the account number')
       .typeError('Account must be a number')

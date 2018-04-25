@@ -4,7 +4,9 @@ import { connect } from 'react-redux';
 const SingleMessage = ({ singleMessage }) => {
    return (
       <section className="single-message module">
-         <h1>{singleMessage.id}. {singleMessage.title}</h1>
+         <h1>
+            {singleMessage.id}. {singleMessage.title}
+         </h1>
          <p>Date: {singleMessage.date}</p>
 
          <hr />
@@ -27,11 +29,11 @@ const mapStateToProps = (state, ownProps) => {
          foundMessage = tempFoundMessage;
          return;
       }
-   })
+   });
 
    return {
       singleMessage: foundMessage
-   }
+   };
 };
 
 export default connect(mapStateToProps)(SingleMessage);

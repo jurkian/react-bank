@@ -7,7 +7,7 @@ const InnerForm = props => {
    const { errors, touched } = props;
 
    return (
-      <Form>         
+      <Form>
          <div>
             <div className="form-group">
                <Field
@@ -34,30 +34,21 @@ const InnerForm = props => {
 
          <SingleModuleButton text="Save details" type="submit" />
       </Form>
-   )
+   );
 };
 
 // Wrap our form with the using withFormik HoC
 const ChangeDetailsForm = withFormik({
-
    // Transform outer props into form values
    mapPropsToValues: props => ({ email: '', password: '' }),
 
    validationSchema: Yup.object().shape({
-      email: Yup.string()
-         .email('This is not a valid email'),
-      password: Yup.string()
-         .min(6, 'Your password has to be at least 6 characters')
+      email: Yup.string().email('This is not a valid email'),
+      password: Yup.string().min(6, 'Your password has to be at least 6 characters')
    }),
 
    // Submission handler
-   handleSubmit: (
-     values,
-      {
-         props,
-         setStatus
-      }
-   ) => {
+   handleSubmit: (values, { props, setStatus }) => {
       const { email, password } = values;
 
       if (!email && !password) {
@@ -67,11 +58,11 @@ const ChangeDetailsForm = withFormik({
 
       setStatus('Sending...');
 
-      props.changeUserDetails(email, password)
+      props
+         .changeUserDetails(email, password)
          .then(data => setStatus('Details successfully changed!'))
          .catch(error => setStatus('Problems, try again...'));
-   },
-
+   }
 })(InnerForm);
 
 export default ChangeDetailsForm;

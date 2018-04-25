@@ -4,13 +4,15 @@ import LoadingAnimation from './LoadingAnimation';
 const Fragment = React.Fragment;
 
 class Loader extends Component {
-   state = { showError: false }
+   state = { showError: false };
 
    render() {
       return (
          <Fragment>
             <LoadingAnimation />
-            {(this.state.showError) ? <p>If loading takes too long, please refresh the page...</p> : null}
+            {this.state.showError ? (
+               <p>If loading takes too long, please refresh the page...</p>
+            ) : null}
          </Fragment>
       );
    }

@@ -7,10 +7,14 @@ import ProfileHeader from 'components/Profile/Header';
 import ProfileStats from 'components/Profile/Stats';
 import ProfileLinks from 'components/Profile/Links';
 
-const Profile = (props) => {
+const Profile = props => {
    const links = [
       { href: '/panel/transactions', text: 'Transactions', icon: 'ion-card' },
-      { href: '/panel/change-details', text: 'Change details', icon: 'ion-android-checkbox-outline' }
+      {
+         href: '/panel/change-details',
+         text: 'Change details',
+         icon: 'ion-android-checkbox-outline'
+      }
    ];
 
    return (
@@ -26,10 +30,10 @@ const Profile = (props) => {
    );
 };
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
    return {
       profile: state.profile.data[0]
-   }
+   };
 };
 
 export default connect(mapStateToProps)(Profile);

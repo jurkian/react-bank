@@ -7,8 +7,14 @@ const Help = () => (
          <section className="help module">
             <h1>Do you need help?</h1>
 
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Et beatae temporibus quasi natus consectetur illum perferendis commodi neque molestiae recusandae.</p>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Et beatae temporibus quasi natus consectetur illum perferendis commodi neque molestiae recusandae.</p>
+            <p>
+               Lorem ipsum dolor sit amet consectetur adipisicing elit. Et beatae temporibus quasi
+               natus consectetur illum perferendis commodi neque molestiae recusandae.
+            </p>
+            <p>
+               Lorem ipsum dolor sit amet consectetur adipisicing elit. Et beatae temporibus quasi
+               natus consectetur illum perferendis commodi neque molestiae recusandae.
+            </p>
 
             <h2>Contact us</h2>
 

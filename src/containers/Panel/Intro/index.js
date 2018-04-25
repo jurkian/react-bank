@@ -41,8 +41,7 @@ class PanelHome extends Component {
             <div className="row panel-content">
                <div className="col-md-12">
                   <h1>
-                     Welcome {this.state.client.first_name}{' '}
-                     {this.state.client.last_name}
+                     Welcome {this.state.client.first_name} {this.state.client.last_name}
                   </h1>
                </div>
 

@@ -21,17 +21,19 @@ const CardDetails = ({ number, expires_month, expires_year }) => {
             </div>
             <div>
                <span>Expiration date</span>
-               <p>{myPadStart(expires_month, 2, 0)} / {expires_year}</p>
+               <p>
+                  {myPadStart(expires_month, 2, 0)} / {expires_year}
+               </p>
             </div>
          </div>
       </section>
    );
-}
+};
 
 CardDetails.propTypes = {
    number: PropTypes.number,
    expires_month: PropTypes.number,
    expires_year: PropTypes.number
-}
+};
 
 export default CardDetails;

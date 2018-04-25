@@ -10,7 +10,9 @@ const SingleAccount = ({ singleAcc }) => {
             <li>Sortcode: {chunker(singleAcc.sortcode, 2, '-')}</li>
             <li>Number: {singleAcc.number}</li>
             <li>Currency: {singleAcc.currency}</li>
-            <li>Balance: {singleAcc.balance} {singleAcc.currency}</li>
+            <li>
+               Balance: {singleAcc.balance} {singleAcc.currency}
+            </li>
          </ul>
       </section>
    );
@@ -21,7 +23,7 @@ const mapStateToProps = (state, ownProps) => {
 
    return {
       singleAcc: state.accounts.data.find(el => el.id === accId)
-   }
+   };
 };
 
 export default connect(mapStateToProps)(SingleAccount);

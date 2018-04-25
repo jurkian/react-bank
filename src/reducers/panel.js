@@ -1,7 +1,6 @@
 const panel = (state = [], action) => {
    switch (action.type) {
-
-      default: 
+      default:
          return state;
    }
 };

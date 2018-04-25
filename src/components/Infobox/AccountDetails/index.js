@@ -24,6 +24,6 @@ const AccountDetails = () => {
          </div>
       </section>
    );
-}
- 
+};
+
 export default AccountDetails;

@@ -19,7 +19,8 @@ const InnerForm = props => {
                   name="dailyWithdrawalLimit"
                   placeholder="New daily withdrawal limit..."
                />
-               {touched.dailyWithdrawalLimit && errors.dailyWithdrawalLimit && <p>{errors.dailyWithdrawalLimit}</p>}
+               {touched.dailyWithdrawalLimit &&
+                  errors.dailyWithdrawalLimit && <p>{errors.dailyWithdrawalLimit}</p>}
             </div>
 
             <div className="form-group">
@@ -32,7 +33,8 @@ const InnerForm = props => {
                   name="dailyOnlineLimit"
                   placeholder="New daily online limit..."
                />
-               {touched.dailyOnlineLimit && errors.dailyOnlineLimit && <p>{errors.dailyOnlineLimit}</p>}
+               {touched.dailyOnlineLimit &&
+                  errors.dailyOnlineLimit && <p>{errors.dailyOnlineLimit}</p>}
             </div>
 
             <p className="validation-info">{props.status}</p>
@@ -40,13 +42,15 @@ const InnerForm = props => {
 
          <SingleModuleButton text="Change limits" type="submit" />
       </Form>
-   )
+   );
 };
 
 const LimitsChangeForm = withFormik({
-
    // Transform outer props into form values
-   mapPropsToValues: props => ({ dailyWithdrawalLimit: '', dailyOnlineLimit: '' }),
+   mapPropsToValues: props => ({
+      dailyWithdrawalLimit: '',
+      dailyOnlineLimit: ''
+   }),
 
    validationSchema: Yup.object().shape({
       dailyWithdrawalLimit: Yup.number()
@@ -54,18 +58,11 @@ const LimitsChangeForm = withFormik({
          .positive('Please enter a positive number'),
       dailyOnlineLimit: Yup.number()
          .typeError('New limit must be a number')
-         .positive('Please enter a positive number'),
+         .positive('Please enter a positive number')
    }),
 
    // Submission handler
-   handleSubmit: (
-      values,
-      {
-         props,
-         setStatus
-      }
-   ) => {
-
+   handleSubmit: (values, { props, setStatus }) => {
       const { dailyOnlineLimit, dailyWithdrawalLimit } = values;
 
       // DWL = Daily Withdrawal Limit
@@ -81,11 +78,11 @@ const LimitsChangeForm = withFormik({
 
       setStatus('Sending...');
 
-      props.changeCardLimits(newDWL, newDOL)
+      props
+         .changeCardLimits(newDWL, newDOL)
          .then(data => setStatus('Limits successfully changed!'))
          .catch(error => setStatus('Problems, try again...'));
-   },
-
+   }
 })(InnerForm);
 
 export default LimitsChangeForm;

@@ -14,8 +14,7 @@ class IncomeStats extends Component {
             <section className="module stats-widget">
                <h3>Income change stats</h3>
                <p>
-                  <strong>Account: </strong> {this.state.account.id}{' '}
-                  {this.state.account.type}
+                  <strong>Account: </strong> {this.state.account.id} {this.state.account.type}
                </p>
                <p>
                   <strong>Balance: </strong> {this.state.account.balance}{' '}

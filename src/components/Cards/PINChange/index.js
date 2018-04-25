@@ -3,11 +3,13 @@ import { connect } from 'react-redux';
 import { changeCardPin } from 'actions/cards';
 import Form from './Form';
 
-const PINChange = (props) => {
+const PINChange = props => {
    return (
       <div className="col-sm-6 col-sm-offset-3">
          <section className="pin-change module">
-            <h1>PIN change for {props.singleCard.id}. {props.singleCard.type} card</h1>
+            <h1>
+               PIN change for {props.singleCard.id}. {props.singleCard.type} card
+            </h1>
 
             <Form changeCardPin={props.changeCardPin} />
          </section>
@@ -20,7 +22,7 @@ const mapStateToProps = (state, ownProps) => {
 
    return {
       singleCard: state.cards.data.find(el => el.id === cardId)
-   }
+   };
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
@@ -28,10 +30,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 
    return {
       changeCardPin: pin => dispatch(changeCardPin(cardId, pin))
-   }
-}
+   };
+};
 
-export default connect(
-   mapStateToProps,
-   mapDispatchToProps
-)(PINChange);
+export default connect(mapStateToProps, mapDispatchToProps)(PINChange);

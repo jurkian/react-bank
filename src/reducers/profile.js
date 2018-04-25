@@ -11,13 +11,13 @@ const profile = (state = initialState, action) => {
          return {
             ...state,
             data: [...action.data]
-         }
+         };
 
       case actions.FETCH_PROFILE_STATUS:
          return {
             ...state,
             status: action.status
-         }
+         };
 
       case actions.USER_CHANGE_DETAILS:
          const currentUser = [...state.data].find(el => el.id === action.id);
@@ -32,11 +32,8 @@ const profile = (state = initialState, action) => {
 
          return {
             ...state,
-            data: [
-               ...state.data,
-               currentUser
-            ]
-         }
+            data: [...state.data, currentUser]
+         };
 
       default:
          return state;

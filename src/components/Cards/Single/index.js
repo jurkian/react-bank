@@ -17,7 +17,7 @@ const mapStateToProps = (state, ownProps) => {
 
    return {
       singleCard: state.cards.data.find(el => el.id === cardId)
-   }
+   };
 };
 
 export default connect(mapStateToProps)(SingleCard);

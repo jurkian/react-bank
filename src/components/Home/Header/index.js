@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import './style.scss';
 
-const HomeHeader = (props) => (
+const HomeHeader = props => (
    <header className="home-header">
       <h1>Welcome to react-bank</h1>
 
@@ -19,6 +19,6 @@ const HomeHeader = (props) => (
 HomeHeader.propTypes = {
    clients: PropTypes.array,
    lastClient: PropTypes.object
-}
+};
 
 export default HomeHeader;

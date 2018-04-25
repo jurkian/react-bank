@@ -9,7 +9,6 @@ const initialState = {
 
 const messages = (state = initialState, action) => {
    switch (action.type) {
-
       case actions.FETCH_MESSAGES:
          const messagesData = [...state.data];
 
@@ -25,20 +24,19 @@ const messages = (state = initialState, action) => {
          return {
             ...state,
             status: action.status
-         }
+         };
 
       case actions.FETCH_PAGINATION_STATUS:
          return {
             ...state,
             paginationStatus: action.status
-         }
+         };
 
       case actions.MESSAGE_TOGGLE:
          let foundMsgIndex;
 
          return Object.assign({}, state, {
             data: state.data.map(messages => {
-
                // Find a place where message should be toggled
                foundMsgIndex = messages.findIndex(msg => msg.id === action.id);
 
@@ -60,7 +58,7 @@ const messages = (state = initialState, action) => {
          return {
             ...state,
             pageNumber: action.pageNumber
-         }
+         };
 
       default:
          return state;

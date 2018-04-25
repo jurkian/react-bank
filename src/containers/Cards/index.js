@@ -19,7 +19,6 @@ class Cards extends Component {
    render() {
       if (!this.props.fetchCardsStatus) {
          return <Loader />;
-
       } else {
          return (
             <div className="row panel-content">
@@ -27,8 +26,14 @@ class Cards extends Component {
                   <Switch>
                      <Route exact path={this.props.match.url} component={CardsList} />
                      <Route exact path={`${this.props.match.url}/:cardId`} component={SingleCard} />
-                     <Route path={`${this.props.match.url}/:cardId/change-pin`} component={PINChange} />
-                     <Route path={`${this.props.match.url}/:cardId/change-limits`} component={LimitsChange} />
+                     <Route
+                        path={`${this.props.match.url}/:cardId/change-pin`}
+                        component={PINChange}
+                     />
+                     <Route
+                        path={`${this.props.match.url}/:cardId/change-limits`}
+                        component={LimitsChange}
+                     />
                   </Switch>
                </div>
             </div>
@@ -37,19 +42,16 @@ class Cards extends Component {
    }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
    return {
       fetchCardsStatus: state.cards.status
-   }
+   };
 };
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
    return {
       fetchCards: () => dispatch(fetchCards())
-   }
-}
+   };
+};
 
-export default connect(
-   mapStateToProps,
-   mapDispatchToProps
-)(Cards);
+export default connect(mapStateToProps, mapDispatchToProps)(Cards);

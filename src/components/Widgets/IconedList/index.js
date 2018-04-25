@@ -4,11 +4,9 @@ import PropTypes from 'prop-types';
 import './style.scss';
 import SingleListItem from './ListItem';
 
-const IconedList = (props) => {
-
+const IconedList = props => {
    // Prepare list items
    const listItems = props.items.map((item, index) => {
-
       // Destructure data
       const { ...listData } = item;
 
@@ -25,6 +23,6 @@ const IconedList = (props) => {
 
 IconedList.propTypes = {
    items: PropTypes.array
-}
+};
 
 export default IconedList;

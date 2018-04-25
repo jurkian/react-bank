@@ -26,13 +26,13 @@ const transactions = (state = initialState, action) => {
          return {
             ...state,
             status: action.status
-         }
+         };
 
       case actions.FETCH_PAGINATION_STATUS:
          return {
             ...state,
             paginationStatus: action.status
-         }
+         };
 
       case actions.ADD_TRANSACTION:
          transactionsData = [...state.data];
@@ -41,13 +41,13 @@ const transactions = (state = initialState, action) => {
          return {
             ...state,
             data: transactionsData
-         }
+         };
 
       case actions.SET_TRANSACTIONS_PAGE:
          return {
             ...state,
             pageNumber: action.pageNumber
-         }
+         };
 
       default:
          return state;

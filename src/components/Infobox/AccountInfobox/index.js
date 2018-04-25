@@ -18,6 +18,6 @@ const CardInfobox = () => {
          <AccountSummary />
       </section>
    );
-}
+};
 
 export default CardInfobox;
