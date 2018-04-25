@@ -9,7 +9,6 @@ import { Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { fetchProfile } from 'actions/profile';
 
-import axios from 'axios';
 import Loader from 'components/UI/Loader';
 import AsyncComponentLoader from 'components/Utilities/AsyncComponentLoader';
 
