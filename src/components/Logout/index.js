@@ -5,7 +5,7 @@ class Logout extends Component {
    componentWillMount() {
       // Let the server know
       axios
-         .get(`http://localhost:3001/users_data/1`)
+         .get(`/users_data/1`)
          .then(res => res.data)
          .then(res => {
             // Read the status

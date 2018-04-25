@@ -9,14 +9,22 @@ import thunk from 'redux-thunk';
 import rootReducer from 'reducers';
 
 import App from './components/App';
+import axios from 'axios';
 import registerServiceWorker from './registerServiceWorker';
 
-// Activate Redux DevTools only in dev mode
-const composeEnhancers = process.env.NODE_ENV === 'development' ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : null || compose;
+// Default axios settings
+axios.defaults.baseURL = 'http://localhost:3001';
 
-const store = createStore(rootReducer, composeEnhancers(
-   applyMiddleware(thunk)
-));
+// Activate Redux DevTools only in dev mode
+const composeEnhancers =
+   process.env.NODE_ENV === 'development'
+      ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
+      : null || compose;
+
+const store = createStore(
+   rootReducer,
+   composeEnhancers(applyMiddleware(thunk))
+);
 
 ReactDOM.render(
    <Provider store={store}>

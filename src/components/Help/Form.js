@@ -43,8 +43,10 @@ const InnerForm = props => {
                   component="select"
                   className="form-control"
                   name="subject"
-                  >
-                  <option value="" disabled>Choose subject</option>
+               >
+                  <option value="" disabled>
+                     Choose subject
+                  </option>
                   <option>Subject 1</option>
                   <option>Subject 2</option>
                   <option>Subject 3</option>
@@ -55,7 +57,13 @@ const InnerForm = props => {
 
             <div className="form-group">
                <label htmlFor="message">Message</label>
-               <Field id="message" component="textarea" rows="6" className="form-control" name="message" />
+               <Field
+                  id="message"
+                  component="textarea"
+                  rows="6"
+                  className="form-control"
+                  name="message"
+               />
 
                {touched.message && errors.message && <p>{errors.message}</p>}
             </div>
@@ -65,53 +73,46 @@ const InnerForm = props => {
 
          <SingleModuleButton text="Send message" type="submit" />
       </Form>
-   )
+   );
 };
 
 // Wrap our form with the using withFormik HoC
 const ContactForm = withFormik({
-
    // Transform outer props into form values
    mapPropsToValues: props => ({
-      name: '', email: '', subject: '', message: ''
+      name: '',
+      email: '',
+      subject: '',
+      message: ''
    }),
 
    // Add a custom validation function (this can be async too!)
    validationSchema: Yup.object().shape({
-      name: Yup.string()
-         .required('Name is required'),
+      name: Yup.string().required('Name is required'),
       email: Yup.string()
          .required('Email is required')
          .email('This is not a valid email'),
-      subject: Yup.string()
-         .required('Subject is required'),
+      subject: Yup.string().required('Subject is required'),
       message: Yup.string()
          .required('Message is required')
          .min(6, 'Please enter at least 6 characters')
    }),
 
    // Submission handler
-   handleSubmit: (
-     values,
-      {
-         props,
-         setStatus
-      }
-   ) => {
+   handleSubmit: (values, { props, setStatus }) => {
       const { name, email, subject, message } = values;
 
       setStatus('Sending...');
-   
+
       // Fake endpoint...
-      axios(`http://localhost:3001/clients/1`, {
+      axios(`/clients/1`, {
          method: 'get'
       })
-      .then(res => res.data)
-      .then(res => {
-         setStatus('Your message has been sent');
-      });
-   },
-
+         .then(res => res.data)
+         .then(res => {
+            setStatus('Your message has been sent');
+         });
+   }
 })(InnerForm);
 
 export default ContactForm;

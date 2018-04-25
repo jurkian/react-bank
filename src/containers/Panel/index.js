@@ -64,9 +64,6 @@ class Panel extends Component {
          return;
       }
 
-      // Set default Authorization header for axios
-      axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-
       if (!this.props.fetchProfileStatus) {
          return <Loader />;
       } else {

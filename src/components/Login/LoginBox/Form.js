@@ -69,7 +69,7 @@ const LoginForm = withFormik({
 
       // Current fake API doesn't support JWT tokens, so... SIMULATE IT
       // Use GET instead of POST
-      axios(`http://localhost:3001/users_data/1`, {
+      axios(`/users_data/1`, {
          method: 'get'
          // headers: { 'Content-Type': 'application/json' },
          // data: { email, password, remember }

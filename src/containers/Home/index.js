@@ -33,7 +33,7 @@ class Home extends Component {
 
    componentDidMount() {
       axios
-         .get('http://localhost:3001/users_data')
+         .get('/users_data')
          .then(res => res.data)
          .then(clients => {
             this.setState({

@@ -67,7 +67,7 @@ class PanelHome extends Component {
    componentDidMount() {
       // Get logged in client info
       axios
-         .get('http://localhost:3001/users_data/1')
+         .get('/users_data/1')
          .then(res => res.data)
          .then(client => this.setState({ client, loaded: true }))
          .catch(() => this.setState({ loaded: 0 }));

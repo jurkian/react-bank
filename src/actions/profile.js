@@ -7,7 +7,7 @@ export const USER_CHANGE_DETAILS = 'USER_CHANGE_DETAILS';
 export function fetchProfile() {
    return dispatch => {
       axios
-         .get('http://localhost:3001/users_data')
+         .get('/users_data')
          .then(res => res.data)
          .then(data => {
             dispatch({ type: FETCH_PROFILE, data });
@@ -27,7 +27,7 @@ export function fetchProfileStatus(status) {
 export function changeUserDetails(id, email = '', password = '') {
    return dispatch =>
       new Promise((resolve, reject) => {
-         axios(`http://localhost:3001/users_data/${id}`, {
+         axios(`/users_data/${id}`, {
             method: 'patch',
             headers: { 'Content-Type': 'application/json' },
             data: { email, password }
