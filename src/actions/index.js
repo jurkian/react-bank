@@ -1,5 +1,7 @@
 export { fetchAccounts, fetchAccountsStatus } from './accounts';
 
+export { auth } from './auth';
+
 export { fetchCards, fetchCardsStatus, changeCardPin, changeCardLimits } from './cards';
 
 export {

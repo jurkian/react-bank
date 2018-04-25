@@ -9,7 +9,6 @@
       "jest": "20.0.4",
       "json-server": "^0.12.1",
       "jsonwebtoken": "^8.2.1",
-      "jwt-decode": "^2.2.0",
       "prop-types": "^15.6.1",
       "react": "^16.3.1",
       "react-day-picker": "^7.1.4",

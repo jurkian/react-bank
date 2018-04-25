@@ -2,6 +2,12 @@
 export const FETCH_ACCOUNTS = 'FETCH_ACCOUNTS';
 export const FETCH_ACCOUNTS_STATUS = 'FETCH_ACCOUNTS_STATUS';
 
+// Auth
+export const AUTH_START = 'AUTH_START';
+export const AUTH_SUCCESS = 'AUTH_SUCCESS';
+export const AUTH_FAIL = 'AUTH_FAIL';
+export const AUTH_LOGOUT = 'AUTH_LOGOUT';
+
 // Cards
 export const FETCH_CARDS = 'FETCH_CARDS';
 export const FETCH_CARDS_STATUS = 'FETCH_CARDS_STATUS';

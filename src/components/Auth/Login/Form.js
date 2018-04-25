@@ -1,9 +1,7 @@
 import React from 'react';
-import axios from 'axios';
 import { Form, Field, withFormik } from 'formik';
 import Yup from 'yup';
 import SingleModuleButton from 'components/UI/Buttons/SingleModuleButton';
-import jwtDecode from 'jwt-decode';
 
 const InnerForm = props => {
    const { errors, touched } = props;
@@ -67,29 +65,11 @@ const LoginForm = withFormik({
 
       setStatus('Sending...');
 
-      // Current fake API doesn't support JWT tokens, so... SIMULATE IT
-      // Use GET instead of POST
-      axios(`/users_data/1`, {
-         method: 'get'
-         // headers: { 'Content-Type': 'application/json' },
-         // data: { email, password, remember }
-      })
-         .then(res => res.data)
-         .then(res => {
-            let decodedToken = jwtDecode(res.token);
-
-            // Check server response
-            if (email === decodedToken.email) {
-               // Store the token
-               localStorage.setItem('user_token', res.token);
-
-               // Redirect to panel
-               props.history.push('/panel');
-            } else {
-               // Else show errors
-               setStatus('Login unsuccessful');
-            }
-         });
+      // If auth is successful, store the token and redirect to panel
+      props.onAuth(email, password).then(token => {
+         localStorage.setItem('user_token', token);
+         props.history.push('/panel');
+      });
    }
 })(InnerForm);
 

@@ -14,7 +14,7 @@ const Home = AsyncComponentLoader({
 });
 
 const Login = AsyncComponentLoader({
-   loader: () => import('containers/Login')
+   loader: () => import('containers/Auth/Login')
 });
 
 const CurrencyStats = AsyncComponentLoader({
@@ -28,10 +28,10 @@ const Panel = AsyncComponentLoader({
 const App = () => (
    <Layout>
       <Switch>
+         <Route path="/panel" component={Panel} />
+         <Route path="/currencies" component={CurrencyStats} />
          <Route path="/login" component={Login} />
          <Route path="/logout" component={Logout} />
-         <Route path="/currencies" component={CurrencyStats} />
-         <Route path="/panel" component={Panel} />
          <Route exact path="/" component={Home} />
          <Route component={PageNotFound} />
       </Switch>
