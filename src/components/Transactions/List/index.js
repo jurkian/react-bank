@@ -1,11 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import {
-   fetchTransactions,
-   setFetchPaginationStatus,
-   setTransactionsPage
-} from 'actions/transactions';
+import * as actions from 'actions';
 import ReactPaginate from 'react-paginate';
 import Loader from 'components/UI/Loader';
 import TransactionsListEl from '../ListElement';
@@ -29,14 +25,14 @@ class TransactionsList extends Component {
       if (!this.props.transactions[this.props.pageNumber - 1]) {
          this.props
             .fetchTransactions(this.props.pageNumber, this.state.perPage)
-            .then(() => this.props.setFetchPaginationStatus(true));
+            .then(() => this.props.fetchTransactionsPaginationStatus(true));
       } else {
-         this.props.setFetchPaginationStatus(true);
+         this.props.fetchTransactionsPaginationStatus(true);
       }
    }
 
    handlePageClick = ({ selected }) => {
-      this.props.setFetchPaginationStatus(false);
+      this.props.fetchTransactionsPaginationStatus(false);
 
       this.props.setTransactionsPage(selected + 1).then(() => this.shouldFetchData());
    };
@@ -117,9 +113,10 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
    return {
-      fetchTransactions: (page, perPage) => dispatch(fetchTransactions(page, perPage)),
-      setFetchPaginationStatus: status => dispatch(setFetchPaginationStatus(status)),
-      setTransactionsPage: number => dispatch(setTransactionsPage(number))
+      fetchTransactions: (page, perPage) => dispatch(actions.fetchTransactions(page, perPage)),
+      fetchTransactionsPaginationStatus: status =>
+         dispatch(actions.fetchTransactionsPaginationStatus(status)),
+      setTransactionsPage: number => dispatch(actions.setTransactionsPage(number))
    };
 };
 

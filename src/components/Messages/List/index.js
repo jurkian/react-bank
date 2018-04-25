@@ -1,12 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
-import {
-   fetchMessages,
-   setFetchPaginationStatus,
-   messageToggle,
-   messageRemove,
-   setMessagesPage
-} from 'actions/messages';
+import * as actions from 'actions';
 import ReactPaginate from 'react-paginate';
 import Loader from 'components/UI/Loader';
 import MessagesListEl from '../ListElement';
@@ -30,14 +24,14 @@ class MessagesList extends Component {
       if (!this.props.messages[this.props.pageNumber - 1]) {
          this.props
             .fetchMessages(this.props.pageNumber, this.state.perPage)
-            .then(() => this.props.setFetchPaginationStatus(true));
+            .then(() => this.props.fetchMessagesPaginationStatus(true));
       } else {
-         this.props.setFetchPaginationStatus(true);
+         this.props.fetchMessagesPaginationStatus(true);
       }
    }
 
    handlePageClick = ({ selected }) => {
-      this.props.setFetchPaginationStatus(false);
+      this.props.fetchMessagesPaginationStatus(false);
 
       this.props.setMessagesPage(selected + 1).then(() => this.shouldFetchData());
    };
@@ -120,11 +114,12 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
    return {
-      fetchMessages: (page, perPage) => dispatch(fetchMessages(page, perPage)),
-      setFetchPaginationStatus: status => dispatch(setFetchPaginationStatus(status)),
-      setMessagesPage: number => dispatch(setMessagesPage(number)),
-      messageToggle: (id, isToggled) => dispatch(messageToggle(id, isToggled)),
-      messageRemove: id => dispatch(messageRemove(id))
+      fetchMessages: (page, perPage) => dispatch(actions.fetchMessages(page, perPage)),
+      messageToggle: (id, isToggled) => dispatch(actions.messageToggle(id, isToggled)),
+      messageRemove: id => dispatch(actions.messageRemove(id)),
+      fetchMessagesPaginationStatus: status =>
+         dispatch(actions.fetchMessagesPaginationStatus(status)),
+      setMessagesPage: number => dispatch(actions.setMessagesPage(number))
    };
 };
 

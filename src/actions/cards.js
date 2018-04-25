@@ -1,9 +1,5 @@
 import axios from 'axios';
-
-export const FETCH_CARDS = 'FETCH_CARDS';
-export const FETCH_CARDS_STATUS = 'FETCH_CARDS_STATUS';
-export const CARD_CHANGE_PIN = 'CARD_CHANGE_PIN';
-export const CARD_CHANGE_LIMITS = 'CARD_CHANGE_LIMITS';
+import * as actionTypes from './actionTypes';
 
 export function fetchCards() {
    return dispatch => {
@@ -11,7 +7,7 @@ export function fetchCards() {
          .get('/cards')
          .then(res => res.data)
          .then(data => {
-            dispatch({ type: FETCH_CARDS, data });
+            dispatch({ type: actionTypes.FETCH_CARDS, data });
             dispatch(fetchCardsStatus(true));
          })
          .catch(error => dispatch(fetchCardsStatus(false)));
@@ -20,7 +16,7 @@ export function fetchCards() {
 
 export function fetchCardsStatus(status) {
    return {
-      type: FETCH_CARDS_STATUS,
+      type: actionTypes.FETCH_CARDS_STATUS,
       status
    };
 }
@@ -35,7 +31,7 @@ export function changeCardPin(id, newPin) {
          })
             .then(res => res.data)
             .then(data => {
-               dispatch({ type: CARD_CHANGE_PIN, id, newPin });
+               dispatch({ type: actionTypes.CARD_CHANGE_PIN, id, newPin });
                resolve(data);
             })
             .catch(err => reject(err));
@@ -56,7 +52,7 @@ export function changeCardLimits(id, newWithdrawalLimit = '', newOnlineLimit = '
             .then(res => res.data)
             .then(data => {
                dispatch({
-                  type: CARD_CHANGE_LIMITS,
+                  type: actionTypes.CARD_CHANGE_LIMITS,
                   id,
                   newWithdrawalLimit,
                   newOnlineLimit

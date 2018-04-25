@@ -1,7 +1,5 @@
 import axios from 'axios';
-
-export const FETCH_ACCOUNTS = 'FETCH_ACCOUNTS';
-export const FETCH_ACCOUNTS_STATUS = 'FETCH_ACCOUNTS_STATUS';
+import * as actionTypes from './actionTypes';
 
 export function fetchAccounts() {
    return function(dispatch) {
@@ -9,7 +7,7 @@ export function fetchAccounts() {
          .get('/accounts')
          .then(res => res.data)
          .then(data => {
-            dispatch({ type: FETCH_ACCOUNTS, data });
+            dispatch({ type: actionTypes.FETCH_ACCOUNTS, data });
             dispatch(fetchAccountsStatus(true));
          })
          .catch(error => dispatch(fetchAccountsStatus(false)));
@@ -18,7 +16,7 @@ export function fetchAccounts() {
 
 export function fetchAccountsStatus(status) {
    return {
-      type: FETCH_ACCOUNTS_STATUS,
+      type: actionTypes.FETCH_ACCOUNTS_STATUS,
       status
    };
 }

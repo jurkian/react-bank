@@ -1,4 +1,4 @@
-import * as actions from 'actions/profile';
+import * as actionTypes from 'actions/actionTypes';
 
 const initialState = {
    data: [],
@@ -7,19 +7,19 @@ const initialState = {
 
 const profile = (state = initialState, action) => {
    switch (action.type) {
-      case actions.FETCH_PROFILE:
+      case actionTypes.FETCH_PROFILE:
          return {
             ...state,
             data: [...action.data]
          };
 
-      case actions.FETCH_PROFILE_STATUS:
+      case actionTypes.FETCH_PROFILE_STATUS:
          return {
             ...state,
             status: action.status
          };
 
-      case actions.USER_CHANGE_DETAILS:
+      case actionTypes.USER_CHANGE_DETAILS:
          const currentUser = [...state.data].find(el => el.id === action.id);
 
          if (action.email) {

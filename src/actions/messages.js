@@ -1,11 +1,5 @@
 import axios from 'axios';
-
-export const FETCH_MESSAGES = 'FETCH_MESSAGES';
-export const FETCH_MESSAGES_STATUS = 'FETCH_MESSAGES_STATUS';
-export const FETCH_PAGINATION_STATUS = 'FETCH_PAGINATION_STATUS';
-export const MESSAGE_TOGGLE = 'MESSAGE_TOGGLE';
-export const MESSAGE_REMOVE = 'MESSAGE_REMOVE';
-export const SET_MESSAGES_PAGE = 'SET_MESSAGES_PAGE';
+import * as actionTypes from './actionTypes';
 
 export function fetchMessages(page = 1, perPage = 8) {
    const fetchUrl = `/messages?_page=${page}&_limit=${perPage}`;
@@ -19,7 +13,7 @@ export function fetchMessages(page = 1, perPage = 8) {
             .get(fetchUrl)
             .then(res => res.data)
             .then(data => {
-               dispatch({ type: FETCH_MESSAGES, data, page });
+               dispatch({ type: actionTypes.FETCH_MESSAGES, data, page });
                dispatch(fetchMessagesStatus(true));
                resolve(data);
             })
@@ -29,14 +23,7 @@ export function fetchMessages(page = 1, perPage = 8) {
 
 export function fetchMessagesStatus(status) {
    return {
-      type: FETCH_MESSAGES_STATUS,
-      status
-   };
-}
-
-export function setFetchPaginationStatus(status) {
-   return {
-      type: FETCH_PAGINATION_STATUS,
+      type: actionTypes.FETCH_MESSAGES_STATUS,
       status
    };
 }
@@ -49,7 +36,7 @@ export function messageToggle(id, isToggled) {
          data: { isToggled }
       })
          .then(res => res.data)
-         .then(data => dispatch({ type: MESSAGE_TOGGLE, id }))
+         .then(data => dispatch({ type: actionTypes.MESSAGE_TOGGLE, id }))
          .catch(error => {});
    };
 }
@@ -61,8 +48,16 @@ export function messageRemove(id) {
          headers: { 'Content-Type': 'application/json' }
       })
          .then(res => res.data)
-         .then(data => dispatch({ type: MESSAGE_REMOVE, id }))
+         .then(data => dispatch({ type: actionTypes.MESSAGE_REMOVE, id }))
          .catch(error => {});
+   };
+}
+
+// Pagination
+export function fetchMessagesPaginationStatus(status) {
+   return {
+      type: actionTypes.FETCH_MESSAGES_PAGINATION_STATUS,
+      status
    };
 }
 
@@ -70,7 +65,7 @@ export function setMessagesPage(pageNumber) {
    return dispatch =>
       new Promise((resolve, reject) => {
          dispatch({
-            type: SET_MESSAGES_PAGE,
+            type: actionTypes.SET_MESSAGES_PAGE,
             pageNumber
          });
 

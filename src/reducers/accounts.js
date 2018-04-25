@@ -1,4 +1,4 @@
-import * as actions from 'actions/accounts';
+import * as actionTypes from 'actions/actionTypes';
 
 const initialState = {
    data: [],
@@ -7,13 +7,13 @@ const initialState = {
 
 const accounts = (state = initialState, action) => {
    switch (action.type) {
-      case actions.FETCH_ACCOUNTS:
+      case actionTypes.FETCH_ACCOUNTS:
          return {
             ...state,
             data: [...action.data]
          };
 
-      case actions.FETCH_ACCOUNTS_STATUS:
+      case actionTypes.FETCH_ACCOUNTS_STATUS:
          return {
             ...state,
             status: action.status

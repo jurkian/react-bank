@@ -1,4 +1,4 @@
-import * as actions from 'actions/messages';
+import * as actionTypes from 'actions/actionTypes';
 
 const initialState = {
    data: [],
@@ -9,7 +9,7 @@ const initialState = {
 
 const messages = (state = initialState, action) => {
    switch (action.type) {
-      case actions.FETCH_MESSAGES:
+      case actionTypes.FETCH_MESSAGES:
          const messagesData = [...state.data];
 
          // -1, because pages start from 1
@@ -20,19 +20,13 @@ const messages = (state = initialState, action) => {
             data: messagesData
          };
 
-      case actions.FETCH_MESSAGES_STATUS:
+      case actionTypes.FETCH_MESSAGES_STATUS:
          return {
             ...state,
             status: action.status
          };
 
-      case actions.FETCH_PAGINATION_STATUS:
-         return {
-            ...state,
-            paginationStatus: action.status
-         };
-
-      case actions.MESSAGE_TOGGLE:
+      case actionTypes.MESSAGE_TOGGLE:
          let foundMsgIndex;
 
          return Object.assign({}, state, {
@@ -49,12 +43,18 @@ const messages = (state = initialState, action) => {
             })
          });
 
-      case actions.MESSAGE_REMOVE:
+      case actionTypes.MESSAGE_REMOVE:
          return Object.assign({}, state, {
             data: state.data.map(messages => messages.filter(msg => msg.id !== action.id))
          });
 
-      case actions.SET_MESSAGES_PAGE:
+      case actionTypes.FETCH_MESSAGES_PAGINATION_STATUS:
+         return {
+            ...state,
+            paginationStatus: action.status
+         };
+
+      case actionTypes.SET_MESSAGES_PAGE:
          return {
             ...state,
             pageNumber: action.pageNumber

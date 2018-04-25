@@ -1,11 +1,6 @@
 import axios from 'axios';
 import format from 'date-fns/format';
-
-export const FETCH_TRANSACTIONS = 'FETCH_TRANSACTIONS';
-export const FETCH_TRANSACTIONS_STATUS = 'FETCH_TRANSACTIONS_STATUS';
-export const ADD_TRANSACTION = 'ADD_TRANSACTION';
-export const FETCH_PAGINATION_STATUS = 'FETCH_PAGINATION_STATUS';
-export const SET_TRANSACTIONS_PAGE = 'SET_TRANSACTIONS_PAGE';
+import * as actionTypes from './actionTypes';
 
 export function fetchTransactions(page = 1, perPage = 8) {
    const fetchUrl = `/transactions?_page=${page}&_limit=${perPage}`;
@@ -19,7 +14,7 @@ export function fetchTransactions(page = 1, perPage = 8) {
             .get(fetchUrl)
             .then(res => res.data)
             .then(data => {
-               dispatch({ type: FETCH_TRANSACTIONS, data, page });
+               dispatch({ type: actionTypes.FETCH_TRANSACTIONS, data, page });
                dispatch(fetchTransactionsStatus(true));
                resolve(data);
             })
@@ -29,14 +24,7 @@ export function fetchTransactions(page = 1, perPage = 8) {
 
 export function fetchTransactionsStatus(status) {
    return {
-      type: FETCH_TRANSACTIONS_STATUS,
-      status
-   };
-}
-
-export function setFetchPaginationStatus(status) {
-   return {
-      type: FETCH_PAGINATION_STATUS,
+      type: actionTypes.FETCH_TRANSACTIONS_STATUS,
       status
    };
 }
@@ -56,18 +44,26 @@ export function addTransaction(data) {
          })
             .then(res => res.data)
             .then(data => {
-               dispatch({ type: ADD_TRANSACTION, data });
+               dispatch({ type: actionTypes.ADD_TRANSACTION, data });
                resolve(data);
             })
             .catch(err => reject(err));
       });
 }
 
+// Pagination
+export function fetchTransactionsPaginationStatus(status) {
+   return {
+      type: actionTypes.FETCH_TRANSACTIONS_PAGINATION_STATUS,
+      status
+   };
+}
+
 export function setTransactionsPage(pageNumber) {
    return dispatch =>
       new Promise((resolve, reject) => {
          dispatch({
-            type: SET_TRANSACTIONS_PAGE,
+            type: actionTypes.SET_TRANSACTIONS_PAGE,
             pageNumber
          });
 

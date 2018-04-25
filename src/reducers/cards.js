@@ -1,4 +1,4 @@
-import * as actions from 'actions/cards';
+import * as actionTypes from 'actions/actionTypes';
 
 const initialState = {
    data: [],
@@ -9,19 +9,19 @@ const cards = (state = initialState, action) => {
    let modifiedCard;
 
    switch (action.type) {
-      case actions.FETCH_CARDS:
+      case actionTypes.FETCH_CARDS:
          return {
             ...state,
             data: [...action.data]
          };
 
-      case actions.FETCH_CARDS_STATUS:
+      case actionTypes.FETCH_CARDS_STATUS:
          return {
             ...state,
             status: action.status
          };
 
-      case actions.CARD_CHANGE_PIN:
+      case actionTypes.CARD_CHANGE_PIN:
          modifiedCard = [...state.data].find(el => el.id === action.id);
          modifiedCard.pin = action.newPin;
 
@@ -30,7 +30,7 @@ const cards = (state = initialState, action) => {
             data: [...state.data, modifiedCard]
          };
 
-      case actions.CARD_CHANGE_LIMITS:
+      case actionTypes.CARD_CHANGE_LIMITS:
          modifiedCard = [...state.data].find(el => el.id === action.id);
 
          modifiedCard.daily_withdrawal_limit = action.newWithdrawalLimit;
