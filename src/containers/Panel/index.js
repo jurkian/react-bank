@@ -4,7 +4,7 @@
 // This is just a general check if user has access
 // Further checks will be during API connections, with Authentication headers
 
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { fetchProfile } from 'actions/profile';
@@ -44,8 +44,6 @@ const Messages = AsyncComponentLoader({
 const Help = AsyncComponentLoader({
    loader: () => import('components/Help')
 });
-
-const Fragment = React.Fragment;
 
 class Panel extends Component {
    // Get user's profile because we use it all over the panel

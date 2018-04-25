@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import {
    fetchMessages,
@@ -10,8 +10,6 @@ import {
 import ReactPaginate from 'react-paginate';
 import Loader from 'components/UI/Loader';
 import MessagesListEl from '../ListElement';
-
-const Fragment = React.Fragment;
 
 class MessagesList extends Component {
    constructor(props) {

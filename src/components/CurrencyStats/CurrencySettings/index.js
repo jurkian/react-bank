@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import subDays from 'date-fns/sub_days';
 import format from 'date-fns/format';
@@ -6,8 +6,6 @@ import DayPickerInput from 'react-day-picker/DayPickerInput';
 import 'react-day-picker/lib/style.css';
 
 import './style.scss';
-
-const Fragment = React.Fragment;
 
 class CurrencySettings extends Component {
    render() {

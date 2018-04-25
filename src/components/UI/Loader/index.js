@@ -1,7 +1,5 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import LoadingAnimation from './LoadingAnimation';
-
-const Fragment = React.Fragment;
 
 class Loader extends Component {
    state = { showError: false };

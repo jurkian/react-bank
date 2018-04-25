@@ -1,8 +1,6 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
 import CardsListEl from '../ListElement';
-
-const Fragment = React.Fragment;
 
 const CardsList = ({ cards, match }) => {
    const cardsList = cards.map(card => (
