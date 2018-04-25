@@ -1,5 +1,6 @@
 import React from 'react';
 import { Form, Field, withFormik } from 'formik';
+import { Link } from 'react-router-dom';
 import Yup from 'yup';
 import SingleModuleButton from 'components/UI/Buttons/SingleModuleButton';
 
@@ -36,7 +37,9 @@ const InnerForm = props => {
                </label>
             </div>
 
-            <p className="validation-info">{props.status}</p>
+            <p>
+               <Link to="/register">Don't have an account?</Link>
+            </p>
          </div>
 
          <SingleModuleButton text="Log in now" type="submit" />
@@ -62,8 +65,6 @@ const LoginForm = withFormik({
    // Submission handler
    handleSubmit: (values, { props, setStatus }) => {
       const { email, password, remember } = values;
-
-      setStatus('Sending...');
 
       // If auth is successful, store the token and redirect to panel
       props.onAuth(email, password).then(() => {
