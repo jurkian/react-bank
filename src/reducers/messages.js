@@ -35,7 +35,7 @@ const messages = (state = initialState, action) => {
                foundMsgIndex = messages.findIndex(msg => msg.id === action.id);
 
                // Change the toggle
-               if (foundMsgIndex) {
+               if (foundMsgIndex >= 0) {
                   messages[foundMsgIndex].isToggled = !messages[foundMsgIndex].isToggled;
                }
 
