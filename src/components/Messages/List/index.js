@@ -46,11 +46,9 @@ class MessagesList extends Component {
       if (!this.props.fetchPaginationStatus) {
          return <Loader />;
       } else {
+         const searchText = this.state.search.toLowerCase();
          const messages = this.props.messages[this.props.pageNumber - 1]
-            .filter(
-               message =>
-                  message.title.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1
-            )
+            .filter(message => message.title.toLowerCase().includes(searchText))
             .map(message => (
                <MessagesListEl
                   key={message.id}
