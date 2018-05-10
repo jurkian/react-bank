@@ -5,6 +5,8 @@ import * as actions from 'actions';
 
 import AsyncComponentLoader from 'components/Utilities/AsyncComponentLoader';
 import Layout from 'hoc/Layout';
+import Modal from 'components/UI/Modal';
+import NewsletterBox from 'components/NewsletterBox';
 
 import Logout from 'components/Auth/Logout';
 import PageNotFound from 'components/PageNotFound';
@@ -40,6 +42,11 @@ class App extends Component {
    render() {
       return (
          <Layout>
+            <Modal
+               isVisible={this.props.isModalVisible}
+               type={this.props.modalType}
+               close={this.props.closeModal}
+            />
             <Switch>
                <Route path="/panel" component={Panel} />
                <Route path="/currencies" component={CurrencyStats} />
@@ -49,15 +56,25 @@ class App extends Component {
                <Route exact path="/" component={Home} />
                <Route component={PageNotFound} />
             </Switch>
+            <NewsletterBox clicked={this.props.showNewsletterModal} />
          </Layout>
       );
    }
 }
 
-const mapDispatchToProps = dispatch => {
+const mapStateToProps = state => {
    return {
-      tryAutoSignup: () => dispatch(actions.authCheckState())
+      isModalVisible: state.modal.isVisible,
+      modalType: state.modal.type
    };
 };
 
-export default withRouter(connect(null, mapDispatchToProps)(App));
+const mapDispatchToProps = dispatch => {
+   return {
+      tryAutoSignup: () => dispatch(actions.authCheckState()),
+      showNewsletterModal: () => dispatch(actions.showModal('newsletter')),
+      closeModal: () => dispatch(actions.closeModal())
+   };
+};
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));

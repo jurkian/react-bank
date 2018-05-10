@@ -22,3 +22,5 @@ export {
    fetchTransactionsPaginationStatus,
    setTransactionsPage
 } from './transactions';
+
+export { showModal, closeModal } from './modal';

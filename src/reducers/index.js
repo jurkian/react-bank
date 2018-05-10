@@ -7,6 +7,7 @@ import cards from './cards';
 import messages from './messages';
 import profile from './profile';
 import transactions from './transactions';
+import modal from './modal';
 
 const reducers = combineReducers({
    auth,
@@ -15,7 +16,8 @@ const reducers = combineReducers({
    cards,
    messages,
    profile,
-   transactions
+   transactions,
+   modal
 });
 
 export default reducers;
