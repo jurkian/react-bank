@@ -1,0 +1,30 @@
+@import 'components/App/variables';
+
+.newsletter-box {
+   display: none;
+}
+
+@media (min-width: $screen-md-min) {
+   .newsletter-box {
+      display: block;
+      line-height: 1;
+      padding: 0 1.5rem;
+      border: 0;
+      background: 0;
+      cursor: pointer;
+   
+      position: fixed;
+      bottom: 1rem;
+      right: 1rem;
+   
+      &:hover {
+         .icon {
+            color: darken($light-blue, 15%);
+         }
+      }
+      
+      .icon {
+         font-size: 60px;
+      }
+   }
+}
