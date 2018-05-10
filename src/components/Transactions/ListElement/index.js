@@ -2,14 +2,14 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-const TransactionsListEl = ({ matchUrl, id, type, payeeName, date, amount, status }) => {
+const TransactionsListEl = ({ matchUrl, id, type, payeeName, date, amount, status, reference }) => {
    return (
       <Link to={`${matchUrl}/${id}`} className="list-group-item">
          <h4 className="list-group-item-heading">
             {id}. {type}
          </h4>
          <p className="list-group-item-text">
-            Payee: {payeeName}, date: {date}, amount: {amount}, status: {status}
+            Payee: {payeeName}, date: {date}, amount: {amount}, status: {status}, ref: {reference}
          </p>
       </Link>
    );

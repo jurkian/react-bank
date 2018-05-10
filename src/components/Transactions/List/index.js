@@ -45,11 +45,13 @@ class TransactionsList extends Component {
       if (!this.props.fetchPaginationStatus) {
          return <Loader />;
       } else {
-         // Allow filtering by payee's name
+         // Allow filtering by payee's name or transaction reference
+         const searchText = this.state.search.toLowerCase();
          const transactions = this.props.transactions[this.props.pageNumber - 1]
             .filter(
                trans =>
-                  trans.payeeName.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1
+                  trans.payeeName.toLowerCase().includes(searchText) ||
+                  trans.reference.toLowerCase().includes(searchText)
             )
             .map(trans => (
                <TransactionsListEl key={trans.id} {...trans} matchUrl={this.props.match.url} />
@@ -69,7 +71,7 @@ class TransactionsList extends Component {
                <div className="form-group">
                   <input
                      className="form-control"
-                     placeholder="Search for..."
+                     placeholder="Search for (payee/reference)..."
                      onChange={this.findTransaction}
                      ref="search"
                   />
