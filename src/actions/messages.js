@@ -36,19 +36,18 @@ export function messageToggle(id, isToggled) {
          .collection('messages')
          .doc(id)
          .update({ isToggled })
-         .then(data => dispatch({ type: actionTypes.MESSAGE_TOGGLE, id }))
+         .then(() => dispatch({ type: actionTypes.MESSAGE_TOGGLE, id }))
          .catch(error => {});
    };
 }
 
 export function messageRemove(id) {
    return dispatch => {
-      axios(`/messages/${id}`, {
-         method: 'delete',
-         headers: { 'Content-Type': 'application/json' }
-      })
-         .then(res => res.data)
-         .then(data => dispatch({ type: actionTypes.MESSAGE_REMOVE, id }))
+      db
+         .collection('messages')
+         .doc(id)
+         .delete()
+         .then(() => dispatch({ type: actionTypes.MESSAGE_REMOVE, id }))
          .catch(error => {});
    };
 }

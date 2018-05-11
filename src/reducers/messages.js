@@ -28,8 +28,6 @@ const messages = (state = initialState, action) => {
          };
 
       case actionTypes.MESSAGE_TOGGLE:
-         let foundMsgIndex;
-
          return Object.assign({}, state, {
             data: state.data.map(messagesPage => {
                // Find a place where message should be toggled
@@ -43,7 +41,13 @@ const messages = (state = initialState, action) => {
 
       case actionTypes.MESSAGE_REMOVE:
          return Object.assign({}, state, {
-            data: state.data.map(messages => messages.filter(msg => msg.id !== action.id))
+            data: state.data.map(messagesPage => {
+               if (messagesPage[action.id]) {
+                  delete messagesPage[action.id];
+               }
+
+               return messagesPage;
+            })
          });
 
       case actionTypes.FETCH_MESSAGES_PAGINATION_STATUS:
