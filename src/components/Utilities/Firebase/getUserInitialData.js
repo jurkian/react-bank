@@ -26,6 +26,7 @@ const users = email =>
          .then(data => {
             // User data
             initialData.user = data.docs[0].data();
+            initialData.user.id = data.docs[0].id;
             userId = data.docs[0].id;
 
             resolve();
@@ -41,14 +42,24 @@ const accounts = () =>
          .limit(10)
          .get()
          .then(accounts => {
-            // Get accounts IDs
-            accounts.docs.forEach(doc => accIds.push(doc.id));
+            let accData;
 
             // Get accounts data
-            accounts.forEach(acc => initialData.accounts.push(acc.data()));
+            accounts.docs.forEach(doc => {
+               accIds.push(doc.id);
+
+               accData = doc.data();
+               accData.id = doc.id;
+               delete accData.user_id;
+
+               initialData.accounts.push(accData);
+            });
          })
          .then(() => {
             accIds.forEach(accId => {
+               let transData;
+               let cardsData;
+
                // Transactions (we need account IDs)
                db
                   .collection('transactions')
@@ -57,7 +68,11 @@ const accounts = () =>
                   .get()
                   .then(transactions => {
                      // Get transactions
-                     transactions.forEach(trans => initialData.transactions.push(trans.data()));
+                     transactions.docs.forEach(doc => {
+                        transData = doc.data();
+                        transData.id = doc.id;
+                        initialData.transactions.push(transData);
+                     });
                   });
 
                // Cards (we need account IDs)
@@ -68,7 +83,11 @@ const accounts = () =>
                   .get()
                   .then(cards => {
                      // Get cards
-                     cards.forEach(card => initialData.cards.push(card.data()));
+                     cards.docs.forEach(doc => {
+                        cardsData = doc.data();
+                        cardsData.id = doc.id;
+                        initialData.cards.push(cardsData);
+                     });
                   });
             });
 
@@ -85,8 +104,16 @@ const messages = () =>
          .limit(10)
          .get()
          .then(messages => {
+            let messagesData;
+
             // Get messages
-            messages.forEach(message => initialData.messages.push(message.data()));
+            messages.forEach(doc => {
+               messagesData = doc.data();
+               messagesData.id = doc.id;
+               delete messagesData.user_id;
+
+               initialData.messages.push(messagesData);
+            });
 
             resolve();
          });
