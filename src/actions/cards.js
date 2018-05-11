@@ -8,7 +8,6 @@ export function fetchCards() {
          .then(res => res.data)
          .then(data => {
             dispatch({ type: actionTypes.FETCH_CARDS, data });
-            dispatch(fetchCardsStatus(true));
          })
          .catch(error => dispatch(fetchCardsStatus(false)));
    };

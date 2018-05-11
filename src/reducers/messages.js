@@ -2,7 +2,7 @@ import * as actionTypes from 'actions/actionTypes';
 
 const initialState = {
    data: [],
-   status: false,
+   status: true,
    paginationStatus: false,
    pageNumber: 1
 };
@@ -17,7 +17,8 @@ const messages = (state = initialState, action) => {
 
          return {
             ...state,
-            data: messagesData
+            data: messagesData,
+            status: true
          };
 
       case actionTypes.FETCH_MESSAGES_STATUS:

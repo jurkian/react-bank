@@ -8,7 +8,6 @@ export function fetchAccounts() {
          .then(res => res.data)
          .then(data => {
             dispatch({ type: actionTypes.FETCH_ACCOUNTS, data });
-            dispatch(fetchAccountsStatus(true));
          })
          .catch(error => dispatch(fetchAccountsStatus(false)));
    };

@@ -2,7 +2,7 @@ import * as actionTypes from 'actions/actionTypes';
 
 const initialState = {
    data: [],
-   status: false,
+   status: true,
    paginationStatus: false,
    pageNumber: 1
 };
@@ -19,7 +19,8 @@ const transactions = (state = initialState, action) => {
 
          return {
             ...state,
-            data: transactionsData
+            data: transactionsData,
+            status: true
          };
 
       case actionTypes.FETCH_TRANSACTIONS_STATUS:

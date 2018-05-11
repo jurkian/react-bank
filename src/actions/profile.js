@@ -8,7 +8,6 @@ export function fetchProfile() {
          .then(res => res.data)
          .then(data => {
             dispatch({ type: actionTypes.FETCH_PROFILE, data });
-            dispatch(fetchProfileStatus(true));
          })
          .catch(error => dispatch(fetchProfileStatus(false)));
    };

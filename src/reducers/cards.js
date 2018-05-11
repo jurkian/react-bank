@@ -2,7 +2,7 @@ import * as actionTypes from 'actions/actionTypes';
 
 const initialState = {
    data: [],
-   status: false
+   status: true
 };
 
 const cards = (state = initialState, action) => {
@@ -12,7 +12,8 @@ const cards = (state = initialState, action) => {
       case actionTypes.FETCH_CARDS:
          return {
             ...state,
-            data: [...action.data]
+            data: [...action.data],
+            status: true
          };
 
       case actionTypes.FETCH_CARDS_STATUS:

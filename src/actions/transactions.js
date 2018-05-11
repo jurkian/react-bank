@@ -15,7 +15,6 @@ export function fetchTransactions(page = 1, perPage = 8) {
             .then(res => res.data)
             .then(data => {
                dispatch({ type: actionTypes.FETCH_TRANSACTIONS, data, page });
-               dispatch(fetchTransactionsStatus(true));
                resolve(data);
             })
             .catch(err => reject(err));

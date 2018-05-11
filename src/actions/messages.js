@@ -14,7 +14,6 @@ export function fetchMessages(page = 1, perPage = 8) {
             .then(res => res.data)
             .then(data => {
                dispatch({ type: actionTypes.FETCH_MESSAGES, data, page });
-               dispatch(fetchMessagesStatus(true));
                resolve(data);
             })
             .catch(err => reject(err));

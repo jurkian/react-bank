@@ -1,8 +1,8 @@
 import * as actionTypes from 'actions/actionTypes';
 
 const initialState = {
-   data: [],
-   status: false
+   data: {},
+   status: true
 };
 
 const profile = (state = initialState, action) => {
@@ -10,7 +10,8 @@ const profile = (state = initialState, action) => {
       case actionTypes.FETCH_PROFILE:
          return {
             ...state,
-            data: [...action.data]
+            data: { ...action.data },
+            status: true
          };
 
       case actionTypes.FETCH_PROFILE_STATUS:
