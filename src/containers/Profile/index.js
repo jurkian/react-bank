@@ -32,7 +32,7 @@ const Profile = props => {
 
 const mapStateToProps = state => {
    return {
-      profile: state.profile.data[0]
+      profile: state.profile.data
    };
 };
 
