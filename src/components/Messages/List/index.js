@@ -49,9 +49,9 @@ class MessagesList extends Component {
          const searchText = this.state.search.toLowerCase();
          const messages = this.props.messages[this.props.pageNumber - 1]
             .filter(message => message.title.toLowerCase().includes(searchText))
-            .map(message => (
+            .map((message, i) => (
                <MessagesListEl
-                  key={message.id}
+                  key={i}
                   {...message}
                   matchUrl={this.props.match.url}
                   onToggle={this.props.messageToggle}

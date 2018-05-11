@@ -1,17 +1,20 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import format from 'date-fns/format';
 
-const SingleMessage = ({ singleMessage }) => {
+const SingleMessage = ({ singleMessage: { id, title, date, content } }) => {
+   date = format(date, 'DD/MM/YYYY HH:mm');
+
    return (
       <section className="single-message module">
          <h1>
-            {singleMessage.id}. {singleMessage.title}
+            {id}. {title}
          </h1>
-         <p>Date: {singleMessage.date}</p>
+         <p>Date: {date}</p>
 
          <hr />
 
-         <article dangerouslySetInnerHTML={{ __html: singleMessage.content }} />
+         <article dangerouslySetInnerHTML={{ __html: content }} />
       </section>
    );
 };

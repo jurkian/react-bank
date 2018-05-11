@@ -33,7 +33,6 @@ class TransactionsList extends Component {
 
    handlePageClick = ({ selected }) => {
       this.props.fetchTransactionsPaginationStatus(false);
-
       this.props.setTransactionsPage(selected + 1).then(() => this.shouldFetchData());
    };
 
@@ -50,11 +49,11 @@ class TransactionsList extends Component {
          const transactions = this.props.transactions[this.props.pageNumber - 1]
             .filter(
                trans =>
-                  trans.payeeName.toLowerCase().includes(searchText) ||
+                  trans.payee_name.toLowerCase().includes(searchText) ||
                   trans.reference.toLowerCase().includes(searchText)
             )
-            .map(trans => (
-               <TransactionsListEl key={trans.id} {...trans} matchUrl={this.props.match.url} />
+            .map((trans, i) => (
+               <TransactionsListEl key={i} {...trans} matchUrl={this.props.match.url} />
             ));
 
          return (

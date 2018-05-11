@@ -2,15 +2,17 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import format from 'date-fns/format';
 
 import './style.scss';
 
 class MessagesListEl extends Component {
    render() {
-      const { matchUrl, id, title, date, isToggled } = this.props;
+      const { matchUrl, id, title, isToggled } = this.props;
       const classes = classNames({
          disabled: isToggled
       });
+      let date = format(this.props.date, 'DD/MM/YYYY HH:mm');
 
       return (
          <Link to={`${matchUrl}/${id}`} className={`list-group-item messages-list-item ${classes}`}>
@@ -47,7 +49,7 @@ MessagesListEl.propTypes = {
    matchUrl: PropTypes.string,
    id: PropTypes.number,
    title: PropTypes.string,
-   date: PropTypes.string
+   date: PropTypes.instanceOf(Date)
 };
 
 export default MessagesListEl;

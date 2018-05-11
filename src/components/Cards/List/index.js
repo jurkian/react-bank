@@ -3,9 +3,7 @@ import { connect } from 'react-redux';
 import CardsListEl from '../ListElement';
 
 const CardsList = ({ cards, match }) => {
-   const cardsList = cards.map(card => (
-      <CardsListEl key={card.id} {...card} matchUrl={match.url} />
-   ));
+   const cardsList = cards.map((card, i) => <CardsListEl key={i} {...card} matchUrl={match.url} />);
 
    return (
       <Fragment>
