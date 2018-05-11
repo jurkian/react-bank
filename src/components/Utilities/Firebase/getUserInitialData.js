@@ -5,7 +5,7 @@ const db = firebase.firestore();
 let userId = '';
 let accIds = [];
 const initialData = {
-   userData: '',
+   user: {},
    accounts: [],
    cards: [],
    transactions: [],
@@ -17,68 +17,80 @@ const initialData = {
 
 // Users
 const users = email =>
-   db
-      .collection('users')
-      .where('email', '==', email)
-      .limit(1)
-      .get()
-      .then(data => {
-         // User data
-         initialData.userData = data.docs[0].data();
-         userId = data.docs[0].id;
-      });
+   new Promise(resolve => {
+      db
+         .collection('users')
+         .where('email', '==', email)
+         .limit(1)
+         .get()
+         .then(data => {
+            // User data
+            initialData.user = data.docs[0].data();
+            userId = data.docs[0].id;
+
+            resolve();
+         });
+   });
 
 // Accounts
 const accounts = () =>
-   db
-      .collection('accounts')
-      .where('user_id', '==', userId)
-      .limit(10)
-      .get()
-      .then(accounts => {
-         // Get accounts IDs
-         accounts.docs.forEach(doc => accIds.push(doc.id));
+   new Promise(resolve => {
+      db
+         .collection('accounts')
+         .where('user_id', '==', userId)
+         .limit(10)
+         .get()
+         .then(accounts => {
+            // Get accounts IDs
+            accounts.docs.forEach(doc => accIds.push(doc.id));
 
-         // Get accounts data
-         accounts.forEach(acc => initialData.accounts.push(acc.data()));
-      })
-      .then(() => {
-         accIds.forEach(accId => {
-            // Transactions (we need account IDs)
-            db
-               .collection('transactions')
-               .where('source_acc_id', '==', accId)
-               .limit(10)
-               .get()
-               .then(transactions => {
-                  // Get transactions
-                  transactions.forEach(trans => initialData.transactions.push(trans.data()));
-               });
+            // Get accounts data
+            accounts.forEach(acc => initialData.accounts.push(acc.data()));
+         })
+         .then(() => {
+            accIds.forEach(accId => {
+               // Transactions (we need account IDs)
+               db
+                  .collection('transactions')
+                  .where('source_acc_id', '==', accId)
+                  .limit(10)
+                  .get()
+                  .then(transactions => {
+                     // Get transactions
+                     transactions.forEach(trans => initialData.transactions.push(trans.data()));
+                  });
 
-            // Cards (we need account IDs)
-            db
-               .collection('cards')
-               .where('source_acc_id', '==', accId)
-               .limit(10)
-               .get()
-               .then(cards => {
-                  // Get cards
-                  cards.forEach(card => initialData.cards.push(card.data()));
-               });
+               // Cards (we need account IDs)
+               db
+                  .collection('cards')
+                  .where('source_acc_id', '==', accId)
+                  .limit(10)
+                  .get()
+                  .then(cards => {
+                     // Get cards
+                     cards.forEach(card => initialData.cards.push(card.data()));
+                  });
+            });
+
+            resolve();
          });
-      });
+   });
 
 // Messages
 const messages = () =>
-   db
-      .collection('messages')
-      .where('user_id', '==', userId)
-      .limit(10)
-      .get()
-      .then(messages => {
-         // Get messages
-         messages.forEach(message => initialData.messages.push(message.data()));
-      });
+   new Promise(resolve => {
+      db
+         .collection('messages')
+         .where('user_id', '==', userId)
+         .limit(10)
+         .get()
+         .then(messages => {
+            // Get messages
+            messages.forEach(message => initialData.messages.push(message.data()));
+
+            resolve();
+         });
+   });
 
 // Return Promise with initialData
 export default email =>
