@@ -8,6 +8,7 @@ import messages from './messages';
 import profile from './profile';
 import transactions from './transactions';
 import modal from './modal';
+import user from './user';
 
 const reducers = combineReducers({
    auth,
@@ -17,7 +18,8 @@ const reducers = combineReducers({
    messages,
    profile,
    transactions,
-   modal
+   modal,
+   user
 });
 
 export default reducers;

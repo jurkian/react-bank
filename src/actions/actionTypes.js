@@ -37,3 +37,6 @@ export const SET_TRANSACTIONS_PAGE = 'SET_TRANSACTIONS_PAGE';
 // Modal
 export const SHOW_MODAL = 'SHOW_MODAL';
 export const CLOSE_MODAL = 'CLOSE_MODAL';
+
+// User
+export const SET_USER_INITIAL_DATA = 'SET_USER_INITIAL_DATA';

@@ -24,3 +24,5 @@ export {
 } from './transactions';
 
 export { showModal, closeModal } from './modal';
+
+export { setUserInitialData } from './user';

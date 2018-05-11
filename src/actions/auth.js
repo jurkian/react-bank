@@ -1,5 +1,8 @@
 import axios from 'axios';
+import * as actions from 'actions';
 import * as actionTypes from './actionTypes';
+
+import getUserInitialData from 'components/Utilities/Firebase/getUserInitialData';
 
 export const authStart = () => {
    return {
@@ -61,6 +64,7 @@ export const auth = (email, password, isSignUp) => {
                authData
             )
             .then(res => {
+               // Auth successful
                const { localId, idToken, expiresIn } = res.data;
                const expirationDate = new Date(new Date().getTime() + expiresIn * 1000);
 
@@ -68,10 +72,16 @@ export const auth = (email, password, isSignUp) => {
                localStorage.setItem('tokenExpirationDate', expirationDate);
                localStorage.setItem('userId', localId);
 
-               dispatch(authSuccess(idToken, localId));
-               dispatch(checkAuthTimeout(expiresIn));
+               // Get initial data from Firestore
+               // Continue only if data is available
+               getUserInitialData.then(data => {
+                  dispatch(authSuccess(idToken, localId));
+                  dispatch(checkAuthTimeout(expiresIn));
 
-               resolve();
+                  dispatch(actions.setUserInitialData(data));
+
+                  resolve();
+               });
             })
             .catch(err => {
                dispatch(authFail(err.response.data.error));

@@ -3,10 +3,6 @@ import { Route, Switch, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from 'actions';
 
-import firebase from 'firebase/app';
-import '@firebase/firestore';
-import firebaseConfig from './firebase-config';
-
 import AsyncComponentLoader from 'components/Utilities/AsyncComponentLoader';
 import Layout from 'hoc/Layout';
 import Modal from 'components/UI/Modal';
@@ -41,9 +37,6 @@ class App extends Component {
    componentDidMount() {
       // If there is a previous, valid token, try to log the user in
       this.props.tryAutoSignup();
-
-      // Initialize Firebase
-      firebase.initializeApp(firebaseConfig);
    }
 
    render() {
