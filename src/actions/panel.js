@@ -1,0 +1,28 @@
+import * as actionTypes from './actionTypes';
+import getUserInitialData from 'components/Utilities/Firebase/getUserInitialData';
+
+export function fetchInitialData() {
+   const email = localStorage.getItem('userEmail');
+
+   return dispatch => {
+      getUserInitialData(email)
+         .then(data => {
+            // Set initial data
+            dispatch({ type: actionTypes.FETCH_ACCOUNTS, data: data.accounts });
+            dispatch({ type: actionTypes.FETCH_TRANSACTIONS, data: data.transactions, page: 1 });
+            dispatch({ type: actionTypes.FETCH_CARDS, data: data.cards });
+            dispatch({ type: actionTypes.FETCH_MESSAGES, data: data.messages, page: 1 });
+            dispatch({ type: actionTypes.FETCH_PROFILE, data: data.user });
+
+            dispatch(initialDataStatus(true));
+         })
+         .catch(error => dispatch(initialDataStatus(false)));
+   };
+}
+
+export function initialDataStatus(status) {
+   return {
+      type: actionTypes.FETCH_INITIAL_DATA_STATUS,
+      status
+   };
+}

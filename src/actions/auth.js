@@ -1,8 +1,5 @@
 import axios from 'axios';
-import * as actions from 'actions';
 import * as actionTypes from './actionTypes';
-
-import getUserInitialData from 'components/Utilities/Firebase/getUserInitialData';
 
 export const authStart = () => {
    return {
@@ -30,6 +27,7 @@ export const logout = () => {
    localStorage.removeItem('token');
    localStorage.removeItem('tokenExpirationDate');
    localStorage.removeItem('userId');
+   localStorage.removeItem('userEmail');
 
    return {
       type: actionTypes.AUTH_LOGOUT
@@ -71,17 +69,12 @@ export const auth = (email, password, isSignUp) => {
                localStorage.setItem('token', idToken);
                localStorage.setItem('tokenExpirationDate', expirationDate);
                localStorage.setItem('userId', localId);
+               localStorage.setItem('userEmail', email);
 
-               // Get initial data from Firestore
-               // Continue only if data is available
-               getUserInitialData(email).then(data => {
-                  dispatch(authSuccess(idToken, localId));
-                  dispatch(checkAuthTimeout(expiresIn));
+               dispatch(authSuccess(idToken, localId));
+               dispatch(checkAuthTimeout(expiresIn));
 
-                  dispatch(actions.setUserInitialData(data));
-
-                  resolve();
-               });
+               resolve();
             })
             .catch(err => {
                dispatch(authFail(err.response.data.error));

@@ -7,7 +7,7 @@
 import React, { Component, Fragment } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { fetchProfile } from 'actions/profile';
+import * as actions from 'actions';
 
 import Loader from 'components/UI/Loader';
 import AsyncComponentLoader from 'components/Utilities/AsyncComponentLoader';
@@ -45,23 +45,24 @@ const Help = AsyncComponentLoader({
 });
 
 class Panel extends Component {
-   // Get user's profile because we use it all over the panel
    componentWillMount() {
-      if (!this.props.fetchProfileStatus) {
-         this.props.fetchProfile();
-      }
-
       // If user is logged out, redirect to login
       const token = localStorage.getItem('token');
+      const userEmail = localStorage.getItem('userEmail');
 
-      if (!token) {
+      if (!token || !userEmail) {
          this.props.history.push('/login');
          return null;
       }
    }
 
+   // Get all user's initial data
+   componentDidMount() {
+      this.props.fetchInitialData();
+   }
+
    render() {
-      if (!this.props.fetchProfileStatus) {
+      if (!this.props.initialDataStatus) {
          return <Loader />;
       } else {
          return (
@@ -87,13 +88,13 @@ class Panel extends Component {
 
 const mapStateToProps = state => {
    return {
-      fetchProfileStatus: state.profile.status
+      initialDataStatus: state.panel.initialDataStatus
    };
 };
 
 const mapDispatchToProps = dispatch => {
    return {
-      fetchProfile: () => dispatch(fetchProfile())
+      fetchInitialData: () => dispatch(actions.fetchInitialData())
    };
 };
 

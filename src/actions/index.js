@@ -25,4 +25,4 @@ export {
 
 export { showModal, closeModal } from './modal';
 
-export { setUserInitialData } from './user';
+export { fetchInitialData } from './panel';

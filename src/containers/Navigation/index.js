@@ -29,7 +29,7 @@ class Navigation extends Component {
 
 const mapStateToProps = state => {
    return {
-      user: state.profile.data[0]
+      user: state.profile.data
    };
 };
 
