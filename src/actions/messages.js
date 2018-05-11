@@ -1,5 +1,8 @@
 import axios from 'axios';
 import * as actionTypes from './actionTypes';
+import firebase from 'components/Utilities/Firebase';
+
+const db = firebase.firestore();
 
 export function fetchMessages(page = 1, perPage = 8) {
    const fetchUrl = `/messages?_page=${page}&_limit=${perPage}`;
@@ -29,12 +32,10 @@ export function fetchMessagesStatus(status) {
 
 export function messageToggle(id, isToggled) {
    return dispatch => {
-      axios(`/messages/${id}`, {
-         method: 'patch',
-         headers: { 'Content-Type': 'application/json' },
-         data: { isToggled }
-      })
-         .then(res => res.data)
+      db
+         .collection('messages')
+         .doc(id)
+         .update({ isToggled })
          .then(data => dispatch({ type: actionTypes.MESSAGE_TOGGLE, id }))
          .catch(error => {});
    };

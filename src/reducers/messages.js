@@ -31,16 +31,13 @@ const messages = (state = initialState, action) => {
          let foundMsgIndex;
 
          return Object.assign({}, state, {
-            data: state.data.map(messages => {
+            data: state.data.map(messagesPage => {
                // Find a place where message should be toggled
-               foundMsgIndex = messages.findIndex(msg => msg.id === action.id);
-
-               // Change the toggle
-               if (foundMsgIndex >= 0) {
-                  messages[foundMsgIndex].isToggled = !messages[foundMsgIndex].isToggled;
+               if (messagesPage[action.id]) {
+                  messagesPage[action.id].isToggled = !messagesPage[action.id].isToggled;
                }
 
-               return messages;
+               return messagesPage;
             })
          });
 
