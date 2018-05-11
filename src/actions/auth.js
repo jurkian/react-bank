@@ -74,7 +74,7 @@ export const auth = (email, password, isSignUp) => {
 
                // Get initial data from Firestore
                // Continue only if data is available
-               getUserInitialData.then(data => {
+               getUserInitialData(email).then(data => {
                   dispatch(authSuccess(idToken, localId));
                   dispatch(checkAuthTimeout(expiresIn));
 

@@ -16,16 +16,17 @@ const initialData = {
 // user data, accounts, cards, transactions, messages
 
 // Users
-const users = db
-   .collection('users')
-   .where('email', '==', 'email@example.com')
-   .limit(1)
-   .get()
-   .then(data => {
-      // User data
-      initialData.user = data.docs[0].data();
-      userId = data.docs[0].id;
-   });
+const users = email =>
+   db
+      .collection('users')
+      .where('email', '==', email)
+      .limit(1)
+      .get()
+      .then(data => {
+         // User data
+         initialData.userData = data.docs[0].data();
+         userId = data.docs[0].id;
+      });
 
 // Accounts
 const accounts = () =>
@@ -80,7 +81,8 @@ const messages = () =>
       });
 
 // Return Promise with initialData
-export default users
-   .then(accounts)
-   .then(messages)
-   .then(() => initialData);
+export default email =>
+   users(email)
+      .then(accounts)
+      .then(messages)
+      .then(() => initialData);
