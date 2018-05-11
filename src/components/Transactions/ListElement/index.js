@@ -17,9 +17,7 @@ const TransactionsListEl = ({
 
    return (
       <Link to={`${matchUrl}/${id}`} className="list-group-item">
-         <h4 className="list-group-item-heading">
-            {id}. {type}
-         </h4>
+         <h4 className="list-group-item-heading">{type}</h4>
          <p className="list-group-item-text">
             Payee: {payee_name}, date: {date}, amount: {amount}, status: {status}, ref: {reference}
          </p>
@@ -29,7 +27,7 @@ const TransactionsListEl = ({
 
 TransactionsListEl.propTypes = {
    matchUrl: PropTypes.string,
-   id: PropTypes.number,
+   id: PropTypes.string,
    type: PropTypes.string,
    payee_name: PropTypes.string,
    date: PropTypes.instanceOf(Date),

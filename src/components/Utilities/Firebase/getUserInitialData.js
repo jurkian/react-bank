@@ -52,7 +52,7 @@ const accounts = () =>
                accData.id = doc.id;
                delete accData.user_id;
 
-               initialData.accounts.push(accData);
+               initialData.accounts[doc.id] = accData;
             });
          })
          .then(() => {
@@ -71,7 +71,7 @@ const accounts = () =>
                      transactions.docs.forEach(doc => {
                         transData = doc.data();
                         transData.id = doc.id;
-                        initialData.transactions.push(transData);
+                        initialData.transactions[doc.id] = transData;
                      });
                   });
 
@@ -86,7 +86,7 @@ const accounts = () =>
                      cards.docs.forEach(doc => {
                         cardsData = doc.data();
                         cardsData.id = doc.id;
-                        initialData.cards.push(cardsData);
+                        initialData.cards[doc.id] = cardsData;
                      });
                   });
             });
@@ -112,7 +112,7 @@ const messages = () =>
                messagesData.id = doc.id;
                delete messagesData.user_id;
 
-               initialData.messages.push(messagesData);
+               initialData.messages[doc.id] = messagesData;
             });
 
             resolve();

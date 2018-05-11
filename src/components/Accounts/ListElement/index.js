@@ -6,11 +6,9 @@ import { chunker } from 'components/Utilities/Tools';
 const AccountsListEl = ({ matchUrl, id, type, sortcode, currency, balance }) => {
    return (
       <Link to={`${matchUrl}/${id}`} className="list-group-item">
-         <h4 className="list-group-item-heading">
-            {id}. {type} account
-         </h4>
+         <h4 className="list-group-item-heading">{type} account</h4>
          <p className="list-group-item-text">
-            Sortcode: {chunker(sortcode, 2, '-')}, currency: {currency}, balance: {balance}{' '}
+            Sortcode: {chunker(sortcode, 2, '-')}, currency: {currency}, balance: {balance}
             {currency}
          </p>
       </Link>
@@ -18,7 +16,7 @@ const AccountsListEl = ({ matchUrl, id, type, sortcode, currency, balance }) => 
 };
 
 AccountsListEl.propTypes = {
-   id: PropTypes.number,
+   id: PropTypes.string,
    type: PropTypes.string,
    sortcode: PropTypes.number,
    currency: PropTypes.string,

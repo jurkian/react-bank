@@ -7,7 +7,6 @@ import SingleListItem from './ListItem';
 const IconedList = props => {
    // Prepare list items
    const listItems = props.items.map((item, index) => {
-      // Destructure data
       const { ...listData } = item;
 
       return <SingleListItem key={index} {...listData} />;

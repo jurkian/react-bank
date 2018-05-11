@@ -19,10 +19,10 @@ const SingleAccount = ({ singleAcc }) => {
 };
 
 const mapStateToProps = (state, ownProps) => {
-   const accId = parseInt(ownProps.match.params.accId, 10);
+   const accId = ownProps.match.params.accId;
 
    return {
-      singleAcc: state.accounts.data.find(el => el.id === accId)
+      singleAcc: state.accounts.data[accId]
    };
 };
 

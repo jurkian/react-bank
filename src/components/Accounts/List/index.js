@@ -1,19 +1,19 @@
 import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
-import AccountsListElement from '../ListElement';
+import AccountsListEl from '../ListElement';
 
-const AccountsList = props => {
+const AccountsList = ({ accounts, match }) => {
    // Prepare accounts list
-   const accounts = props.accounts.map((acc, index) => (
-      <AccountsListElement key={index} {...acc} matchUrl={props.match.url} />
+   const accountsList = Object.entries(accounts).map(([key, value]) => (
+      <AccountsListEl key={key} {...value} matchUrl={match.url} />
    ));
 
    return (
       <Fragment>
          <h1>Accounts</h1>
-         <p>You have {props.accounts.length} accounts</p>
+         <p>You have {accountsList.length} accounts</p>
 
-         <div className="list-group">{accounts}</div>
+         <div className="list-group">{accountsList}</div>
       </Fragment>
    );
 };

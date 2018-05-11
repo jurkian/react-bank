@@ -46,14 +46,14 @@ class TransactionsList extends Component {
       } else {
          // Allow filtering by payee's name or transaction reference
          const searchText = this.state.search.toLowerCase();
-         const transactions = this.props.transactions[this.props.pageNumber - 1]
+         const transactionsList = Object.entries(this.props.transactions[this.props.pageNumber - 1])
             .filter(
-               trans =>
+               ([key, trans]) =>
                   trans.payee_name.toLowerCase().includes(searchText) ||
                   trans.reference.toLowerCase().includes(searchText)
             )
-            .map((trans, i) => (
-               <TransactionsListEl key={i} {...trans} matchUrl={this.props.match.url} />
+            .map(([key, trans]) => (
+               <TransactionsListEl key={key} {...trans} matchUrl={this.props.match.url} />
             ));
 
          return (
@@ -76,7 +76,7 @@ class TransactionsList extends Component {
                   />
                </div>
 
-               <div className="list-group">{transactions}</div>
+               <div className="list-group">{transactionsList}</div>
 
                <div className="pagination-container">
                   <ReactPaginate

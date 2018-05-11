@@ -12,7 +12,7 @@ const cards = (state = initialState, action) => {
       case actionTypes.FETCH_CARDS:
          return {
             ...state,
-            data: [...action.data],
+            data: { ...action.data },
             status: true
          };
 

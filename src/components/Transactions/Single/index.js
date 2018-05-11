@@ -1,31 +1,32 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import format from 'date-fns/format';
 
-const SingleTransaction = ({ singleTrans }) => {
+const SingleTransaction = ({ singleTrans: { type, date, payeeName, amount, status } }) => {
+   date = format(date, 'DD/MM/YYYY HH:mm');
+
    return (
       <section className="single-transfer module">
-         <h1>
-            {singleTrans.id}. {singleTrans.type}
-         </h1>
+         <h1>{type}</h1>
          <ul>
-            <li>Date: {singleTrans.date}</li>
-            <li>Payee: {singleTrans.payeeName}</li>
-            <li>Amount: {singleTrans.amount}</li>
-            <li>Type: {singleTrans.type}</li>
-            <li>Status: {singleTrans.status}</li>
+            <li>Date: {date}</li>
+            <li>Payee: {payeeName}</li>
+            <li>Amount: {amount}</li>
+            <li>Type: {type}</li>
+            <li>Status: {status}</li>
          </ul>
       </section>
    );
 };
 
 const mapStateToProps = (state, ownProps) => {
-   const transId = parseInt(ownProps.match.params.transId, 10);
+   const transId = ownProps.match.params.transId;
    let tempFoundTrans;
    let foundTrans;
 
    // Find the transaction
    state.transactions.data.forEach(pageTransactions => {
-      tempFoundTrans = pageTransactions.find(trans => trans.id === transId);
+      tempFoundTrans = Object.values(pageTransactions).find(trans => trans.id === transId);
 
       if (tempFoundTrans) {
          foundTrans = tempFoundTrans;

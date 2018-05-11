@@ -7,9 +7,7 @@ const SingleMessage = ({ singleMessage: { id, title, date, content } }) => {
 
    return (
       <section className="single-message module">
-         <h1>
-            {id}. {title}
-         </h1>
+         <h1>{title}</h1>
          <p>Date: {date}</p>
 
          <hr />
@@ -20,13 +18,13 @@ const SingleMessage = ({ singleMessage: { id, title, date, content } }) => {
 };
 
 const mapStateToProps = (state, ownProps) => {
-   const messageId = parseInt(ownProps.match.params.messageId, 10);
+   const messageId = ownProps.match.params.messageId;
    let tempFoundMessage;
    let foundMessage;
 
    // Find the message
    state.messages.data.forEach(pageMessages => {
-      tempFoundMessage = pageMessages.find(message => message.id === messageId);
+      tempFoundMessage = Object.values(pageMessages).find(message => message.id === messageId);
 
       if (tempFoundMessage) {
          foundMessage = tempFoundMessage;

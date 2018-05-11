@@ -47,11 +47,11 @@ class MessagesList extends Component {
          return <Loader />;
       } else {
          const searchText = this.state.search.toLowerCase();
-         const messages = this.props.messages[this.props.pageNumber - 1]
-            .filter(message => message.title.toLowerCase().includes(searchText))
-            .map((message, i) => (
+         const messagesList = Object.entries(this.props.messages[this.props.pageNumber - 1])
+            .filter(([key, message]) => message.title.toLowerCase().includes(searchText))
+            .map(([key, message]) => (
                <MessagesListEl
-                  key={i}
+                  key={key}
                   {...message}
                   matchUrl={this.props.match.url}
                   onToggle={this.props.messageToggle}
@@ -74,7 +74,7 @@ class MessagesList extends Component {
                   />
                </div>
 
-               <div className="list-group">{messages}</div>
+               <div className="list-group">{messagesList}</div>
 
                <div className="pagination-container">
                   <ReactPaginate

@@ -17,9 +17,7 @@ class MessagesListEl extends Component {
       return (
          <Link to={`${matchUrl}/${id}`} className={`list-group-item messages-list-item ${classes}`}>
             <div>
-               <h4 className="list-group-item-heading">
-                  {id}. {title}
-               </h4>
+               <h4 className="list-group-item-heading">{title}</h4>
                <p className="list-group-item-text">date: {date}</p>
             </div>
             <aside>
@@ -47,7 +45,7 @@ class MessagesListEl extends Component {
 
 MessagesListEl.propTypes = {
    matchUrl: PropTypes.string,
-   id: PropTypes.number,
+   id: PropTypes.string,
    title: PropTypes.string,
    date: PropTypes.instanceOf(Date)
 };
