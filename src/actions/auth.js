@@ -50,15 +50,10 @@ export const auth = (email, password, isSignUp) => {
       const apiKey = 'AIzaSyBH89-DxQWuo7xVc3zi48h1I6IewVOU0R4';
       const authData = { email, password, returnSecureToken: true };
 
-      const signUpUrlPart = 'signupNewUser';
-      const signInUrlPart = 'verifyPassword';
-
-      const authUrlPart = isSignUp ? signUpUrlPart : signInUrlPart;
-
       return new Promise((resolve, reject) => {
          axios
             .post(
-               `https://www.googleapis.com/identitytoolkit/v3/relyingparty/${authUrlPart}?key=${apiKey}`,
+               `https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=${apiKey}`,
                authData
             )
             .then(res => {

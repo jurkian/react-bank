@@ -10,25 +10,9 @@ const InnerForm = props => {
    return (
       <Form className="register-form">
          <div>
-            <div className="form-group">
-               <Field
-                  type="email"
-                  className="form-control login-input"
-                  name="email"
-                  placeholder="Your email..."
-               />
-               {touched.email && errors.email && <p>{errors.email}</p>}
-            </div>
-
-            <div className="form-group">
-               <Field
-                  type="password"
-                  className="form-control password-input"
-                  name="password"
-                  placeholder="Your password..."
-               />
-               {touched.password && errors.password && <p>{errors.password}</p>}
-            </div>
+            <p>
+               <b>Registration is currently inactive</b>
+            </p>
 
             <p>
                <Link to="/login">Already have an account?</Link>
