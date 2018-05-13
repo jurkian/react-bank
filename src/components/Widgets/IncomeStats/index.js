@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import { connect } from 'react-redux';
+import firebase from 'tools/firebase';
+import subDays from 'date-fns/sub_days';
+
 import Loader from 'components/UI/Loader';
 import IncomeChart from '../Charts/IncomeChart';
 
@@ -12,19 +15,12 @@ class IncomeStats extends Component {
       } else {
          return (
             <section className="module stats-widget">
-               <h3>Income change stats</h3>
+               <h3>Income change stats (30 days)</h3>
                <p>
-                  <strong>Account: </strong> {this.state.account.id} {this.state.account.type}
+                  <strong>{this.state.account.type} account</strong> /{' '}
+                  {this.state.account.currency.toUpperCase()}
+                  / {this.state.account.number}
                </p>
-               <p>
-                  <strong>Balance: </strong> {this.state.account.balance}{' '}
-                  {this.state.account.currency}
-               </p>
-
-               <select onChange={this.changeStatsRange} ref="statsRange">
-                  <option value="7">Last 7 days</option>
-                  <option value="30">Last 30 days</option>
-               </select>
 
                <IncomeChart data={this.state.chartData} />
             </section>
@@ -33,34 +29,39 @@ class IncomeStats extends Component {
    }
 
    componentDidMount() {
-      // Get default account's info
-      // Set income and expenses stats to 7 days, by default
-      axios
-         .get('/accounts/1')
-         .then(res => res.data)
-         .then(account =>
+      // Get account stats for the last 30 days
+      // For the first user's account
+      const db = firebase.firestore();
+      const startDate = subDays(new Date(), 30);
+
+      db
+         .collection('account_stats')
+         .where('account_id', '==', this.props.account.id)
+         .where('date', '>', startDate)
+         .get()
+         .then(stats => {
+            let statsData = [];
+
+            stats.docs.forEach(doc => {
+               statsData.push(doc.data());
+            });
+
             this.setState({
-               account,
-               chartData: account.income_expenses_7_days,
-               loaded: true
-            })
-         )
-         .catch(() => this.setState({ loaded: 0 }));
+               loaded: true,
+               account: this.props.account,
+               chartData: statsData
+            });
+         })
+         .catch(err => err);
    }
-
-   changeStatsRange = () => {
-      let statsRange = this.refs.statsRange.value;
-
-      if (statsRange === '7') {
-         this.setState(prevState => ({
-            chartData: prevState.account.income_expenses_7_days
-         }));
-      } else if (statsRange === '30') {
-         this.setState(prevState => ({
-            chartData: prevState.account.income_expenses_30_days
-         }));
-      }
-   };
 }
 
-export default IncomeStats;
+const mapStateToProps = state => {
+   const firstAccId = Object.keys(state.accounts.data)[0];
+
+   return {
+      account: state.accounts.data[firstAccId]
+   };
+};
+
+export default connect(mapStateToProps)(IncomeStats);
