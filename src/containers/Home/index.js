@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import firebase from 'tools/firebase';
 
 import Loader from 'components/UI/Loader';
 import Header from 'components/Home/Header';
@@ -8,8 +8,7 @@ import NewFeatures from 'components/Home/NewFeatures';
 
 class Home extends Component {
    state = {
-      clients: [],
-      lastClient: {},
+      clientsCount: 0,
       loaded: false
    };
 
@@ -21,7 +20,7 @@ class Home extends Component {
             <div className="row">
                <div className="col-xs-12">
                   <section className="home module">
-                     <Header {...this.state} />
+                     <Header clientsCount={this.state.clientsCount} />
                      <Features />
                      <NewFeatures />
                   </section>
@@ -32,17 +31,18 @@ class Home extends Component {
    }
 
    componentDidMount() {
-      axios
-         .get('/users_data')
-         .then(res => res.data)
-         .then(clients => {
+      const db = firebase.firestore();
+
+      db
+         .collection('users')
+         .get()
+         .then(querySnapshot => {
             this.setState({
-               clients,
-               lastClient: clients[clients.length - 1],
+               clientsCount: querySnapshot.size,
                loaded: true
             });
          })
-         .catch(() => this.setState({ loaded: 0 }));
+         .catch(error => this.setState({ loaded: false }));
    }
 }
 
