@@ -1,5 +1,5 @@
 import * as actionTypes from './actionTypes';
-import getUserInitialData from 'components/Utilities/Firebase/getUserInitialData';
+import getUserInitialData from 'tools/firebase/getUserInitialData';
 
 export function fetchInitialData(userEmail) {
    return dispatch => {

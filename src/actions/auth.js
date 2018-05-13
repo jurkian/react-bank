@@ -1,4 +1,4 @@
-import firebase from 'components/Utilities/Firebase';
+import firebase from 'tools/firebase';
 import * as actionTypes from './actionTypes';
 
 export const setAuthStatus = (status, email = null) => {

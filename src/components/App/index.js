@@ -3,9 +3,9 @@ import { Route, Switch, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from 'actions';
 
-import firebase from 'components/Utilities/Firebase';
+import firebase from 'tools/firebase';
 
-import AsyncComponentLoader from 'components/Utilities/AsyncComponentLoader';
+import AsyncComponentLoader from 'tools/AsyncComponentLoader';
 import Layout from 'hoc/Layout';
 import Modal from 'components/UI/Modal';
 import NewsletterBox from 'components/NewsletterBox';

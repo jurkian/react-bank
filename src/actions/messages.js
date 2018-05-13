@@ -1,6 +1,6 @@
 import axios from 'axios';
 import * as actionTypes from './actionTypes';
-import firebase from 'components/Utilities/Firebase';
+import firebase from 'tools/firebase';
 
 const db = firebase.firestore();
 

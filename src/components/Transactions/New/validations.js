@@ -1,5 +1,5 @@
 import Yup from 'yup';
-import 'components/Utilities/YupCustomValidations';
+import 'tools/validations/YupCustomValidations';
 
 // New transaction validations
 export default Yup.object().shape({

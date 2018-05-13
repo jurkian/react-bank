@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { myPadStart, chunker } from 'components/Utilities/Tools';
+import { myPadStart, chunker } from 'tools';
 
 const CardsListEl = ({ matchUrl, id, type, number, expires_month, expires_year }) => {
    return (

@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import * as actions from 'actions';
 
 import Loader from 'components/UI/Loader';
-import AsyncComponentLoader from 'components/Utilities/AsyncComponentLoader';
+import AsyncComponentLoader from 'tools/AsyncComponentLoader';
 
 import Navigation from 'containers/Navigation';
 import PanelIntro from 'containers/Panel/Intro';

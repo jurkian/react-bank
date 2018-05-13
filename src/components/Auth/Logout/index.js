@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import firebase from 'components/Utilities/Firebase';
+import firebase from 'tools/firebase';
 
 class Logout extends Component {
    componentDidMount() {

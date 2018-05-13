@@ -17,7 +17,7 @@ const initialData = {
 
 // Users
 const users = email =>
-   new Promise(resolve => {
+   new Promise((resolve, reject) => {
       db
          .collection('users')
          .where('email', '==', email)
@@ -30,7 +30,8 @@ const users = email =>
             userId = data.docs[0].id;
 
             resolve();
-         });
+         })
+         .catch(err => reject(err));
    });
 
 // Accounts

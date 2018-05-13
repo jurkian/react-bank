@@ -1,4 +1,5 @@
 import firebase from 'firebase/app';
+import 'firebase/auth';
 import '@firebase/firestore';
 
 // Initalize and export Firebase.
@@ -10,4 +11,7 @@ const config = {
    storageBucket: 'react-bank-f7cc8.appspot.com',
    messagingSenderId: '576297099205'
 };
-export default firebase.initializeApp(config);
+
+firebase.initializeApp(config);
+
+export default firebase;
