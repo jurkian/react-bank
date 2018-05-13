@@ -32,7 +32,6 @@ class MessagesList extends Component {
 
    handlePageClick = ({ selected }) => {
       this.props.fetchMessagesPaginationStatus(false);
-
       this.props.setMessagesPage(selected + 1).then(() => this.shouldFetchData());
    };
 

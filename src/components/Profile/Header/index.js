@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import format from 'date-fns/format';
+import { formatFirebaseDate } from 'tools';
 
 import './style.scss';
 
 const ProfileHeader = props => {
    const { first_name, last_name, street_address, postcode, city, email } = props.profile;
-   let { created_on } = props.profile;
+   let created_on = props.profile.created_on.seconds;
 
-   created_on = format(created_on, 'DD/MM/YYYY HH:mm');
+   created_on = formatFirebaseDate(created_on, 'DD/MM/YYYY HH:mm');
 
    return (
       <header className="profile-header">

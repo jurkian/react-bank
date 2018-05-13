@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import format from 'date-fns/format';
+import { formatFirebaseDate } from 'tools';
 
 const TransactionsListEl = ({
    matchUrl,
@@ -13,7 +13,7 @@ const TransactionsListEl = ({
    status,
    reference
 }) => {
-   date = format(date, 'DD/MM/YYYY HH:mm');
+   date = formatFirebaseDate(date.seconds, 'DD/MM/YYYY HH:mm');
 
    return (
       <Link to={`${matchUrl}/${id}`} className="list-group-item">
@@ -30,7 +30,7 @@ TransactionsListEl.propTypes = {
    id: PropTypes.string,
    type: PropTypes.string,
    payee_name: PropTypes.string,
-   date: PropTypes.instanceOf(Date),
+   date: PropTypes.object,
    amount: PropTypes.number,
    status: PropTypes.string
 };

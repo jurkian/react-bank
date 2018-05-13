@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import format from 'date-fns/format';
+import { formatFirebaseDate } from 'tools';
 
 const SingleTransaction = ({ singleTrans: { type, date, payeeName, amount, status } }) => {
-   date = format(date, 'DD/MM/YYYY HH:mm');
+   date = formatFirebaseDate(date.seconds, 'DD/MM/YYYY HH:mm');
 
    return (
       <section className="single-transfer module">

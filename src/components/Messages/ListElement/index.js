@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import format from 'date-fns/format';
+import { formatFirebaseDate } from 'tools';
 
 import './style.scss';
 
@@ -12,7 +12,7 @@ class MessagesListEl extends Component {
       const classes = classNames({
          disabled: isToggled
       });
-      let date = format(this.props.date, 'DD/MM/YYYY HH:mm');
+      let date = formatFirebaseDate(this.props.date.seconds, 'DD/MM/YYYY HH:mm');
 
       return (
          <Link to={`${matchUrl}/${id}`} className={`list-group-item messages-list-item ${classes}`}>
@@ -47,7 +47,7 @@ MessagesListEl.propTypes = {
    matchUrl: PropTypes.string,
    id: PropTypes.string,
    title: PropTypes.string,
-   date: PropTypes.instanceOf(Date)
+   date: PropTypes.object
 };
 
 export default MessagesListEl;
