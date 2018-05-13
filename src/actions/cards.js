@@ -1,5 +1,8 @@
 import axios from 'axios';
 import * as actionTypes from './actionTypes';
+import firebase from 'tools/firebase';
+
+const db = firebase.firestore();
 
 export function fetchCards() {
    return dispatch => {
@@ -23,42 +26,46 @@ export function fetchCardsStatus(status) {
 export function changeCardPin(id, newPin) {
    return dispatch =>
       new Promise((resolve, reject) => {
-         axios(`/cards/${id}`, {
-            method: 'patch',
-            headers: { 'Content-Type': 'application/json' },
-            data: { pin: newPin }
-         })
-            .then(res => res.data)
-            .then(data => {
+         db
+            .collection('cards')
+            .doc(id)
+            .update({ pin: newPin })
+            .then(() => {
                dispatch({ type: actionTypes.CARD_CHANGE_PIN, id, newPin });
-               resolve(data);
+               resolve();
             })
             .catch(err => reject(err));
       });
 }
 
-export function changeCardLimits(id, newWithdrawalLimit = '', newOnlineLimit = '') {
+export function changeCardLimits(id, newOnlineLimit, newWithdrawalLimit) {
    return dispatch =>
       new Promise((resolve, reject) => {
-         axios(`/cards/${id}`, {
-            method: 'patch',
-            headers: { 'Content-Type': 'application/json' },
-            data: {
-               daily_withdrawal_limit: newWithdrawalLimit,
-               daily_online_limit: newOnlineLimit
-            }
-         })
-            .then(res => res.data)
-            .then(data => {
-               dispatch({
-                  type: actionTypes.CARD_CHANGE_LIMITS,
-                  id,
-                  newWithdrawalLimit,
-                  newOnlineLimit
-               });
+         if (newOnlineLimit || newWithdrawalLimit) {
+            const limits = {};
 
-               resolve(data);
-            })
-            .catch(err => reject(err));
+            if (newOnlineLimit) {
+               limits.daily_online_limit = parseFloat(newOnlineLimit).toFixed(2);
+            }
+
+            if (newWithdrawalLimit) {
+               limits.daily_withdrawal_limit = parseFloat(newWithdrawalLimit).toFixed(2);
+            }
+
+            db
+               .collection('cards')
+               .doc(id)
+               .update(limits)
+               .then(() => {
+                  dispatch({
+                     type: actionTypes.CARD_CHANGE_LIMITS,
+                     id,
+                     newWithdrawalLimit,
+                     newOnlineLimit
+                  });
+                  resolve();
+               })
+               .catch(err => reject(err));
+         }
       });
 }

@@ -1,36 +1,46 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { changeCardLimits } from 'actions/cards';
+import * as actions from 'actions';
+import { chunker } from 'tools';
 import Form from './Form';
 
 const LimitsChange = props => {
    return (
       <div className="col-sm-6 col-sm-offset-3">
          <section className="limits-change module">
-            <h1>
-               Limits change for {props.singleCard.id}. {props.singleCard.type} card
-            </h1>
+            <h1>Limits change</h1>
+            <p>
+               <strong>{props.singleCard.type} card</strong>
+            </p>
+            <p>Number: {chunker(props.singleCard.number, 4, '-')}</p>
 
-            <Form changeCardLimits={props.changeCardLimits} />
+            <Form
+               changeCardLimits={props.changeCardLimits}
+               currentOnlineLimit={props.currentOnlineLimit}
+               currentWithdrawalLimit={props.currentWithdrawalLimit}
+            />
          </section>
       </div>
    );
 };
 
 const mapStateToProps = (state, ownProps) => {
-   const cardId = parseInt(ownProps.match.params.cardId, 10);
+   const cardId = ownProps.match.params.cardId;
+   const singleCard = Object.values(state.cards.data).find(el => el.id === cardId);
 
    return {
-      singleCard: state.cards.data.find(el => el.id === cardId)
+      singleCard,
+      currentOnlineLimit: singleCard.daily_online_limit,
+      currentWithdrawalLimit: singleCard.daily_withdrawal_limit
    };
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-   const cardId = parseInt(ownProps.match.params.cardId, 10);
+   const cardId = ownProps.match.params.cardId;
 
    return {
-      changeCardLimits: (newWithdrawalLimit, newOnlineLimit) =>
-         dispatch(changeCardLimits(cardId, newWithdrawalLimit, newOnlineLimit))
+      changeCardLimits: (newOnlineLimit, newWithdrawalLimit) =>
+         dispatch(actions.changeCardLimits(cardId, newOnlineLimit, newWithdrawalLimit))
    };
 };
 

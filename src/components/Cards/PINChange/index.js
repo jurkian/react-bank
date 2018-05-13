@@ -1,15 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { changeCardPin } from 'actions/cards';
+import * as actions from 'actions';
+import { chunker } from 'tools';
 import Form from './Form';
 
 const PINChange = props => {
    return (
       <div className="col-sm-6 col-sm-offset-3">
          <section className="pin-change module">
-            <h1>
-               PIN change for {props.singleCard.id}. {props.singleCard.type} card
-            </h1>
+            <h1>PIN change</h1>
+            <p>
+               <strong>{props.singleCard.type} card</strong>
+            </p>
+            <p>Number: {chunker(props.singleCard.number, 4, '-')}</p>
 
             <Form changeCardPin={props.changeCardPin} />
          </section>
@@ -18,18 +21,18 @@ const PINChange = props => {
 };
 
 const mapStateToProps = (state, ownProps) => {
-   const cardId = parseInt(ownProps.match.params.cardId, 10);
+   const cardId = ownProps.match.params.cardId;
 
    return {
-      singleCard: state.cards.data.find(el => el.id === cardId)
+      singleCard: Object.values(state.cards.data).find(el => el.id === cardId)
    };
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-   const cardId = parseInt(ownProps.match.params.cardId, 10);
+   const cardId = ownProps.match.params.cardId;
 
    return {
-      changeCardPin: pin => dispatch(changeCardPin(cardId, pin))
+      changeCardPin: pin => dispatch(actions.changeCardPin(cardId, pin))
    };
 };
 

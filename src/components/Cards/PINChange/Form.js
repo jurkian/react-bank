@@ -70,8 +70,12 @@ const PINChangeForm = withFormik({
 
    // Submission handler
    handleSubmit: (values, { props, setStatus }) => {
-      const { pin } = values;
-      const newPin = parseInt(pin, 10);
+      const pin = parseInt(values.pin, 10);
+
+      if (!pin) {
+         setStatus('No PIN changed');
+         return;
+      }
 
       setStatus('Sending...');
 
