@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { changeUserDetails } from 'actions/profile';
+import * as actions from 'actions';
 
 import SmallFormBox from 'components/UI/FormBoxes/Small';
 import Form from './Form';
@@ -10,18 +10,24 @@ const ProfileChangeDetails = props => {
       <div className="row panel-content">
          <div className="col-xs-12">
             <SmallFormBox>
-               <Form changeUserDetails={props.changeUserDetails} />
+               <Form changeUserDetails={props.changeUserDetails} userEmail={props.userEmail} />
             </SmallFormBox>
          </div>
       </div>
    );
 };
 
-const mapDispatchToProps = dispatch => {
+const mapStateToProps = state => {
    return {
-      changeUserDetails: (newEmail, newPassword) =>
-         dispatch(changeUserDetails(1, newEmail, newPassword))
+      userEmail: state.auth.userEmail
    };
 };
 
-export default connect(null, mapDispatchToProps)(ProfileChangeDetails);
+const mapDispatchToProps = dispatch => {
+   return {
+      changeUserDetails: (newEmail, newPassword) =>
+         dispatch(actions.changeUserDetails(newEmail, newPassword))
+   };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProfileChangeDetails);

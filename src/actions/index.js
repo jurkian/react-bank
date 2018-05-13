@@ -13,7 +13,7 @@ export {
    setMessagesPage
 } from './messages';
 
-export { fetchProfile, fetchProfileStatus, changeUserDetails } from './profile';
+export { fetchProfileStatus, changeUserDetails } from './profile';
 
 export {
    fetchTransactions,

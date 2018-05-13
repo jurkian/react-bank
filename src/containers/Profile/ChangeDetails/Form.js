@@ -9,14 +9,9 @@ const InnerForm = props => {
    return (
       <Form>
          <div>
+            <p>If you want to change email, contact the administrator</p>
             <div className="form-group">
-               <Field
-                  type="email"
-                  className="form-control login-input"
-                  name="email"
-                  placeholder="Your new email..."
-               />
-               {touched.email && errors.email && <p>{errors.email}</p>}
+               <Field type="email" className="form-control login-input" name="email" disabled />
             </div>
 
             <div className="form-group">
@@ -40,7 +35,7 @@ const InnerForm = props => {
 // Wrap our form with the using withFormik HoC
 const ChangeDetailsForm = withFormik({
    // Transform outer props into form values
-   mapPropsToValues: props => ({ email: '', password: '' }),
+   mapPropsToValues: props => ({ email: props.userEmail, password: '' }),
 
    validationSchema: Yup.object().shape({
       email: Yup.string().email('This is not a valid email'),
@@ -51,7 +46,7 @@ const ChangeDetailsForm = withFormik({
    handleSubmit: (values, { props, setStatus }) => {
       const { email, password } = values;
 
-      if (!email && !password) {
+      if (!password) {
          setStatus('No details changed');
          return;
       }
@@ -60,8 +55,8 @@ const ChangeDetailsForm = withFormik({
 
       props
          .changeUserDetails(email, password)
-         .then(data => setStatus('Details successfully changed!'))
-         .catch(error => setStatus('Problems, try again...'));
+         .then(() => setStatus('Details successfully changed!'))
+         .catch(error => setStatus('Problems... please log out and try again'));
    }
 })(InnerForm);
 
