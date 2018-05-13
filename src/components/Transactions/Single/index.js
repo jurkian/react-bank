@@ -24,15 +24,15 @@ const mapStateToProps = (state, ownProps) => {
    let tempFoundTrans;
    let foundTrans;
 
-   // Find the transaction
-   state.transactions.data.forEach(pageTransactions => {
+   // Find the transaction among the pages (remember about pagination!)
+   for (const pageTransactions of state.transactions.data) {
       tempFoundTrans = Object.values(pageTransactions).find(trans => trans.id === transId);
 
       if (tempFoundTrans) {
          foundTrans = tempFoundTrans;
-         return;
+         break;
       }
-   });
+   }
 
    return {
       singleTrans: foundTrans
