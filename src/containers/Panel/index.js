@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
+import * as actions from 'actions';
 import withAuth from 'hoc/WithAuth';
 
 import Loader from 'components/UI/Loader';
@@ -41,6 +42,10 @@ const Help = AsyncComponentLoader({
 // Get all user's initial data or redirect back to /login if not logged in
 // This is all handled in withAuth HOC
 class Panel extends Component {
+   componentDidMount() {
+      this.props.fetchInitialData(this.props.userEmail);
+   }
+
    render() {
       if (!this.props.initialDataStatus) {
          return <Loader />;
@@ -68,8 +73,15 @@ class Panel extends Component {
 
 const mapStateToProps = state => {
    return {
-      initialDataStatus: state.panel.initialDataStatus
+      initialDataStatus: state.panel.initialDataStatus,
+      userEmail: state.auth.userEmail
    };
 };
 
-export default connect(mapStateToProps)(withAuth(Panel));
+const mapDispatchToProps = dispatch => {
+   return {
+      fetchInitialData: email => dispatch(actions.fetchInitialData(email))
+   };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(withAuth(Panel));
