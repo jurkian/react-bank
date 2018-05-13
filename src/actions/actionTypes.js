@@ -3,10 +3,7 @@ export const FETCH_ACCOUNTS = 'FETCH_ACCOUNTS';
 export const FETCH_ACCOUNTS_STATUS = 'FETCH_ACCOUNTS_STATUS';
 
 // Auth
-export const AUTH_START = 'AUTH_START';
-export const AUTH_SUCCESS = 'AUTH_SUCCESS';
-export const AUTH_FAIL = 'AUTH_FAIL';
-export const AUTH_LOGOUT = 'AUTH_LOGOUT';
+export const SET_AUTH_STATUS = 'SET_AUTH_STATUS';
 
 // Cards
 export const FETCH_CARDS = 'FETCH_CARDS';

@@ -1,107 +1,19 @@
-import axios from 'axios';
+import firebase from 'components/Utilities/Firebase';
 import * as actionTypes from './actionTypes';
 
-export const authStart = () => {
+export const setAuthStatus = (status, email = null) => {
    return {
-      type: actionTypes.AUTH_START
+      type: actionTypes.SET_AUTH_STATUS,
+      status,
+      email
    };
 };
 
-export const authSuccess = (idToken, userId) => {
-   return {
-      type: actionTypes.AUTH_SUCCESS,
-      idToken,
-      userId
-   };
-};
-
-export const authFail = error => {
-   return {
-      type: actionTypes.AUTH_FAIL,
-      error
-   };
-};
-
-// Log user out
-export const logout = () => {
-   localStorage.removeItem('token');
-   localStorage.removeItem('tokenExpirationDate');
-   localStorage.removeItem('userId');
-   localStorage.removeItem('userEmail');
-
-   return {
-      type: actionTypes.AUTH_LOGOUT
-   };
-};
-
-// Log out also after expirationTime (1h with Firebase)
-export const checkAuthTimeout = expirationTime => {
-   return dispatch => {
-      setTimeout(() => {
-         dispatch(logout());
-      }, expirationTime * 1000);
-   };
-};
-
-export const auth = (email, password, isSignUp) => {
-   return dispatch => {
-      dispatch(authStart());
-
-      const apiKey = 'AIzaSyBH89-DxQWuo7xVc3zi48h1I6IewVOU0R4';
-      const authData = { email, password, returnSecureToken: true };
-
-      return new Promise((resolve, reject) => {
-         axios
-            .post(
-               `https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=${apiKey}`,
-               authData
-            )
-            .then(res => {
-               // Auth successful
-               const { localId, idToken, expiresIn } = res.data;
-               const expirationDate = new Date(new Date().getTime() + expiresIn * 1000);
-
-               localStorage.setItem('token', idToken);
-               localStorage.setItem('tokenExpirationDate', expirationDate);
-               localStorage.setItem('userId', localId);
-               localStorage.setItem('userEmail', email);
-
-               dispatch(authSuccess(idToken, localId));
-               dispatch(checkAuthTimeout(expiresIn));
-
-               resolve();
-            })
-            .catch(err => {
-               dispatch(authFail(err.response.data.error));
-            });
-      });
-   };
-};
-
-// Do an auth state check when app loads/reloads
-// If there is a token, but expired, do the logout()
-// If there is a valid token, log the user in
-export const authCheckState = () => {
-   return dispatch => {
-      const token = localStorage.getItem('token');
-
-      // No token = log out (reset the auth)
-      if (!token) {
-         dispatch(logout());
-      } else {
-         const expirationDate = new Date(localStorage.getItem('tokenExpirationDate'));
-
-         // If token expiration date is in the past, it's no longer valid
-         // Log out
-         if (expirationDate <= new Date()) {
-            dispatch(logout());
-         } else {
-            // Here it's all valid, log the user in
-            const userId = localStorage.getItem('userId');
-
-            dispatch(authSuccess(token, userId));
-            dispatch(checkAuthTimeout((expirationDate.getTime() - new Date().getTime()) / 1000));
-         }
-      }
-   };
-};
+export const auth = (email, password) => dispatch =>
+   new Promise((resolve, reject) => {
+      firebase
+         .auth()
+         .signInWithEmailAndPassword(email, password)
+         .then(() => resolve())
+         .catch(err => reject(err.code));
+   });

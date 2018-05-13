@@ -1,9 +1,3 @@
-// Every logged in user has a JWT token in localStorage
-// If it doesn't exist, redirect to /login
-
-// This is just a general check if user has access
-// Further checks will be during API connections, with Authentication headers
-
 import React, { Component, Fragment } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -45,20 +39,29 @@ const Help = AsyncComponentLoader({
 });
 
 class Panel extends Component {
-   componentWillMount() {
-      // If user is logged out, redirect to login
-      const token = localStorage.getItem('token');
-      const userEmail = localStorage.getItem('userEmail');
-
-      if (!token || !userEmail) {
-         this.props.history.push('/login');
-         return null;
+   // Get all user's initial data
+   // Or redirect back to /login if not logged in
+   componentDidMount() {
+      if (this.props.authStatus) {
+         this.props.fetchInitialData(this.props.userEmail);
+      } else {
+         this.doRedirect();
       }
    }
 
-   // Get all user's initial data
-   componentDidMount() {
-      this.props.fetchInitialData();
+   shouldComponentUpdate(nextProps) {
+      // If user is logged out, redirect to /login
+      // Second check to make sure props were available at the moment
+      if (!nextProps.authStatus) {
+         this.doRedirect();
+      }
+
+      return true;
+   }
+
+   doRedirect() {
+      this.props.history.push('/login');
+      return false;
    }
 
    render() {
@@ -88,13 +91,15 @@ class Panel extends Component {
 
 const mapStateToProps = state => {
    return {
-      initialDataStatus: state.panel.initialDataStatus
+      initialDataStatus: state.panel.initialDataStatus,
+      authStatus: state.auth.status,
+      userEmail: state.auth.userEmail
    };
 };
 
 const mapDispatchToProps = dispatch => {
    return {
-      fetchInitialData: () => dispatch(actions.fetchInitialData())
+      fetchInitialData: email => dispatch(actions.fetchInitialData(email))
    };
 };
 

@@ -64,12 +64,7 @@ const LoginForm = withFormik({
 
    // Submission handler
    handleSubmit: (values, { props, setStatus }) => {
-      const { email, password, remember } = values;
-
-      // If auth is successful, store the token and redirect to panel
-      props.onAuth(email, password).then(() => {
-         props.history.push('/panel');
-      });
+      props.onLoginSubmit(values.email, values.password);
    }
 })(InnerForm);
 

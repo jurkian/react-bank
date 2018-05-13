@@ -1,11 +1,9 @@
 import * as actionTypes from './actionTypes';
 import getUserInitialData from 'components/Utilities/Firebase/getUserInitialData';
 
-export function fetchInitialData() {
-   const email = localStorage.getItem('userEmail');
-
+export function fetchInitialData(userEmail) {
    return dispatch => {
-      getUserInitialData(email)
+      getUserInitialData(userEmail)
          .then(data => {
             // Set initial data
             dispatch({ type: actionTypes.FETCH_ACCOUNTS, data: data.accounts });

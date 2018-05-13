@@ -3,6 +3,8 @@ import { Route, Switch, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from 'actions';
 
+import firebase from 'components/Utilities/Firebase';
+
 import AsyncComponentLoader from 'components/Utilities/AsyncComponentLoader';
 import Layout from 'hoc/Layout';
 import Modal from 'components/UI/Modal';
@@ -35,8 +37,16 @@ const Panel = AsyncComponentLoader({
 
 class App extends Component {
    componentDidMount() {
-      // If there is a previous, valid token, try to log the user in
-      this.props.tryAutoSignup();
+      // Auth state changed
+      firebase.auth().onAuthStateChanged(user => {
+         if (user) {
+            // User logged in - store status and his email
+            this.props.setAuthStatus(true, user.email);
+         } else {
+            // Not logged in - set status to false
+            this.props.setAuthStatus(false);
+         }
+      });
    }
 
    render() {
@@ -71,7 +81,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
    return {
-      tryAutoSignup: () => dispatch(actions.authCheckState()),
+      setAuthStatus: (status, email) => dispatch(actions.setAuthStatus(status, email)),
       showNewsletterModal: () => dispatch(actions.showModal('newsletter')),
       closeModal: () => dispatch(actions.closeModal())
    };
