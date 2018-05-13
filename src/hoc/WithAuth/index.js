@@ -24,7 +24,7 @@ const withAuth = WrappedComponent => {
          // Otherwise redirect to /login
          if ((path === '/login' || path === '/register') && props.authStatus) {
             this.props.history.push('/panel');
-         } else if (path === '/panel') {
+         } else if (path.startsWith('/panel')) {
             if (!props.authStatus) {
                this.props.history.push('/login');
             } else {
