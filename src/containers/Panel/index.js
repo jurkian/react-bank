@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
-import * as actions from 'actions';
+import withAuth from 'hoc/WithAuth';
 
 import Loader from 'components/UI/Loader';
 import AsyncComponentLoader from 'tools/AsyncComponentLoader';
@@ -38,32 +38,9 @@ const Help = AsyncComponentLoader({
    loader: () => import('components/Help')
 });
 
+// Get all user's initial data or redirect back to /login if not logged in
+// This is all handled in withAuth HOC
 class Panel extends Component {
-   // Get all user's initial data
-   // Or redirect back to /login if not logged in
-   componentDidMount() {
-      if (this.props.authStatus) {
-         this.props.fetchInitialData(this.props.userEmail);
-      } else {
-         this.doRedirect();
-      }
-   }
-
-   shouldComponentUpdate(nextProps) {
-      // If user is logged out, redirect to /login
-      // Second check to make sure props were available at the moment
-      if (!nextProps.authStatus) {
-         this.doRedirect();
-      }
-
-      return true;
-   }
-
-   doRedirect() {
-      this.props.history.push('/login');
-      return false;
-   }
-
    render() {
       if (!this.props.initialDataStatus) {
          return <Loader />;
@@ -91,16 +68,8 @@ class Panel extends Component {
 
 const mapStateToProps = state => {
    return {
-      initialDataStatus: state.panel.initialDataStatus,
-      authStatus: state.auth.status,
-      userEmail: state.auth.userEmail
+      initialDataStatus: state.panel.initialDataStatus
    };
 };
 
-const mapDispatchToProps = dispatch => {
-   return {
-      fetchInitialData: email => dispatch(actions.fetchInitialData(email))
-   };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Panel);
+export default connect(mapStateToProps)(withAuth(Panel));

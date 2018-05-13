@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from 'actions';
+import withAuth from 'hoc/WithAuth';
 
 import RegisterBox from 'components/Auth/Register';
 
@@ -26,35 +27,7 @@ class Register extends Component {
    }
 
    onRegisterSubmit = (email, password) => {};
-
-   componentDidMount() {
-      // If user is logged in, redirect to panel
-      if (this.props.authStatus) {
-         this.doRedirect();
-      }
-   }
-
-   shouldComponentUpdate(nextProps) {
-      // If user is logged in, redirect to panel
-      // Second check to make sure props were available at the moment
-      if (nextProps.authStatus) {
-         this.doRedirect();
-      }
-
-      return true;
-   }
-
-   doRedirect() {
-      this.props.history.push('/panel');
-      return false;
-   }
 }
-
-const mapStateToProps = state => {
-   return {
-      authStatus: state.auth.status
-   };
-};
 
 const mapDispatchToProps = dispatch => {
    return {
@@ -62,4 +35,4 @@ const mapDispatchToProps = dispatch => {
    };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Register);
+export default connect(null, mapDispatchToProps)(withAuth(Register));

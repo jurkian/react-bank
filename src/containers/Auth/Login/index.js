@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from 'actions';
+import withAuth from 'hoc/WithAuth';
 
 import LoginBox from 'components/Auth/Login';
 
@@ -29,38 +30,10 @@ class Login extends Component {
       this.setState({ loading: true, error: null });
 
       // Dispatch auth action
-      // There will be automatic redirect to panel, in SCU
+      // There will be automatic redirect to panel, in HOC
       this.props.auth(email, password).catch(error => this.setState({ loading: false, error }));
    };
-
-   componentDidMount() {
-      // If user is logged in, redirect to panel
-      if (this.props.authStatus) {
-         this.doRedirect();
-      }
-   }
-
-   shouldComponentUpdate(nextProps) {
-      // If user is logged in, redirect to panel
-      // Second check to make sure props were available at the moment
-      if (nextProps.authStatus) {
-         this.doRedirect();
-      }
-
-      return true;
-   }
-
-   doRedirect() {
-      this.props.history.push('/panel');
-      return false;
-   }
 }
-
-const mapStateToProps = state => {
-   return {
-      authStatus: state.auth.status
-   };
-};
 
 const mapDispatchToProps = dispatch => {
    return {
@@ -68,4 +41,4 @@ const mapDispatchToProps = dispatch => {
    };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default connect(null, mapDispatchToProps)(withAuth(Login));
