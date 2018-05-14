@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { formatFirebaseDate } from 'tools';
 
-const SingleTransaction = ({ singleTrans: { type, date, payeeName, amount, status } }) => {
+const SingleTransaction = ({ singleTrans: { type, date, payee_name, amount, status } }) => {
    date = formatFirebaseDate(date, 'DD/MM/YYYY HH:mm');
 
    return (
@@ -10,7 +10,7 @@ const SingleTransaction = ({ singleTrans: { type, date, payeeName, amount, statu
          <h1>{type}</h1>
          <ul>
             <li>Date: {date}</li>
-            <li>Payee: {payeeName}</li>
+            <li>Payee: {payee_name}</li>
             <li>Amount: {amount}</li>
             <li>Type: {type}</li>
             <li>Status: {status}</li>

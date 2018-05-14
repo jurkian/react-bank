@@ -1,6 +1,8 @@
 import axios from 'axios';
-import format from 'date-fns/format';
+import firebase from 'tools/firebase';
 import * as actionTypes from './actionTypes';
+
+const db = firebase.firestore();
 
 export function fetchTransactions(page = 1, perPage = 8) {
    const fetchUrl = `/transactions?_page=${page}&_limit=${perPage}`;
@@ -29,22 +31,31 @@ export function fetchTransactionsStatus(status) {
 }
 
 export function addTransaction(data) {
+   const transData = {
+      amount: parseFloat(data.amount).toFixed(2),
+      date: new Date(),
+      payee_acc_number: parseInt(data.payeeAccNumber, 10),
+      payee_address: data.payeeAddress,
+      payee_name: data.payeeName,
+      payee_sortcode: parseInt(data.payeeSortcode, 10),
+      reference: data.reference,
+      source_acc_id: data.sourceAcc,
+      status: 'Done',
+      type: 'Transfer'
+   };
+
    return dispatch =>
       new Promise((resolve, reject) => {
-         axios(`/transactions`, {
-            method: 'post',
-            headers: { 'Content-Type': 'application/json' },
-            data: {
-               date: format(new Date(), 'DD/MM/YYYY HH:mm'),
-               type: 'Transfer',
-               status: 'Done',
-               ...data
-            }
-         })
-            .then(res => res.data)
-            .then(data => {
-               dispatch({ type: actionTypes.ADD_TRANSACTION, data });
-               resolve(data);
+         db
+            .collection('transactions')
+            .add(transData)
+            .then(newTrans => {
+               dispatch({
+                  type: actionTypes.ADD_TRANSACTION,
+                  transId: newTrans.id,
+                  data: transData
+               });
+               resolve(newTrans);
             })
             .catch(err => reject(err));
       });

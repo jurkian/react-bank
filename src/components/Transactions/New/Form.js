@@ -46,11 +46,11 @@ const InnerForm = props => {
                   type="text"
                   className="form-control"
                   id="payee-sort-code"
-                  name="payeeSortCode"
+                  name="payeeSortcode"
                   maxLength="6"
                   placeholder="Recipient's sort code..."
                />
-               {touched.payeeSortCode && errors.payeeSortCode && <p>{errors.payeeSortCode}</p>}
+               {touched.payeeSortcode && errors.payeeSortcode && <p>{errors.payeeSortcode}</p>}
             </div>
 
             <div className="form-group">
@@ -88,6 +88,7 @@ const InnerForm = props => {
                   className="form-control"
                   id="reference"
                   name="reference"
+                  maxLength="50"
                   placeholder="Reference..."
                />
                {touched.reference && errors.reference && <p>{errors.reference}</p>}
@@ -118,9 +119,9 @@ const InnerForm = props => {
 const NewTransactionForm = withFormik({
    // Transform outer props into form values
    mapPropsToValues: props => ({
-      sourceAcc: 0,
+      sourceAcc: props.firstAccId,
       payeeAccNumber: '',
-      payeeSortCode: '',
+      payeeSortcode: '',
       payeeName: '',
       payeeAddress: '',
       reference: '',
@@ -131,35 +132,10 @@ const NewTransactionForm = withFormik({
 
    // Submission handler
    handleSubmit: (values, { props, setStatus }) => {
-      let {
-         sourceAcc,
-         payeeAccNumber,
-         payeeSortCode,
-         payeeName,
-         payeeAddress,
-         reference,
-         amount
-      } = values;
-
-      // Convert strings (by default) to numbers
-      payeeAccNumber = parseInt(payeeAccNumber, 10);
-      payeeSortCode = parseInt(payeeSortCode, 10);
-      amount = parseFloat(amount).toFixed(2);
-
-      const transactionData = {
-         sourceAcc,
-         payeeAccNumber,
-         payeeSortCode,
-         payeeName,
-         payeeAddress,
-         reference,
-         amount
-      };
-
       setStatus('Sending...');
 
       props
-         .addTransaction(transactionData)
+         .addTransaction(values)
          .then(data => setStatus('Transfer done!'))
          .catch(error => setStatus('Problems, try again...'));
    }

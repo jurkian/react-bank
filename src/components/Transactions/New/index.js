@@ -1,24 +1,17 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchAccounts } from 'actions/accounts';
-import { addTransaction } from 'actions/transactions';
+import * as actions from 'actions';
 import Loader from 'components/UI/Loader';
 import Form from './Form';
 
 class NewTransaction extends Component {
-   componentWillMount() {
-      if (!this.props.fetchAccountsStatus) {
-         this.props.fetchAccounts();
-      }
-   }
-
    render() {
       if (!this.props.fetchAccountsStatus) {
          return <Loader />;
       } else {
-         const accounts = this.props.accounts.data;
-         const userAccountsList = accounts.map((acc, index) => (
-            <option key={index} value={index}>
+         const accounts = this.props.accounts;
+         const userAccountsList = Object.entries(accounts).map(([key, acc]) => (
+            <option key={key} value={key}>
                {`${acc.type}, ${acc.sortcode}, ${acc.balance} ${acc.currency}`}
             </option>
          ));
@@ -31,6 +24,7 @@ class NewTransaction extends Component {
 
                      <Form
                         userAccountsList={userAccountsList}
+                        firstAccId={this.props.firstAccId}
                         addTransaction={this.props.addTransaction}
                      />
                   </section>
@@ -43,15 +37,15 @@ class NewTransaction extends Component {
 
 const mapStateToProps = state => {
    return {
-      accounts: state.accounts,
+      accounts: state.accounts.data,
+      firstAccId: Object.keys(state.accounts.data)[0],
       fetchAccountsStatus: state.accounts.status
    };
 };
 
 const mapDispatchToProps = dispatch => {
    return {
-      fetchAccounts: () => dispatch(fetchAccounts()),
-      addTransaction: data => dispatch(addTransaction(data))
+      addTransaction: data => dispatch(actions.addTransaction(data))
    };
 };
 

@@ -10,7 +10,7 @@ export default Yup.object().shape({
       .integer('Account must be an integer')
       .length(8, 'Account must be 8 numbers'),
 
-   payeeSortCode: Yup.number()
+   payeeSortcode: Yup.number()
       .required('Please enter the sort code')
       .typeError('Sort code must be a number')
       .positive('Sort code must be a positive number')
