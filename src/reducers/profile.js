@@ -20,22 +20,6 @@ const profile = (state = initialState, action) => {
             status: action.status
          };
 
-      case actionTypes.USER_CHANGE_DETAILS:
-         const currentUser = [...state.data].find(el => el.id === action.id);
-
-         if (action.email) {
-            currentUser.email = action.newEmail;
-         }
-
-         if (action.password) {
-            currentUser.password = action.password;
-         }
-
-         return {
-            ...state,
-            data: [...state.data, currentUser]
-         };
-
       default:
          return state;
    }
