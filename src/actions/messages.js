@@ -15,15 +15,10 @@ export function fetchMessages(page = 1, perPage = 8) {
             .get()
             .then(messages => {
                // Get messages
-               let messData = [];
-               let temp;
-
-               messages.docs.forEach(doc => {
-                  temp = doc.data();
-                  temp.id = doc.id;
-
-                  messData[doc.id] = temp;
-               });
+               let messData = messages.docs.map(doc => ({
+                  ...doc.data(),
+                  id: doc.id
+               }));
 
                dispatch({ type: actionTypes.FETCH_MESSAGES, data: messData, page });
                resolve(messData);

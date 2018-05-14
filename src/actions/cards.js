@@ -10,15 +10,10 @@ export function fetchCards() {
          .get()
          .then(cards => {
             // Get cards
-            let cardsData = [];
-            let temp;
-
-            cards.docs.forEach(doc => {
-               temp = doc.data();
-               temp.id = doc.id;
-
-               cardsData[doc.id] = temp;
-            });
+            let cardsData = cards.docs.map(doc => ({
+               ...doc.data(),
+               id: doc.id
+            }));
 
             dispatch({ type: actionTypes.FETCH_CARDS, data: cardsData });
          })

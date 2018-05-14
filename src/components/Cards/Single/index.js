@@ -16,7 +16,7 @@ const mapStateToProps = (state, ownProps) => {
    const cardId = ownProps.match.params.cardId;
 
    return {
-      singleCard: state.cards.data[cardId]
+      singleCard: state.cards.data.find(el => el.id === cardId)
    };
 };
 

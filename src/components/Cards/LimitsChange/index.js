@@ -26,7 +26,7 @@ const LimitsChange = props => {
 
 const mapStateToProps = (state, ownProps) => {
    const cardId = ownProps.match.params.cardId;
-   const singleCard = Object.values(state.cards.data).find(el => el.id === cardId);
+   const singleCard = state.cards.data.find(el => el.id === cardId);
 
    return {
       singleCard,

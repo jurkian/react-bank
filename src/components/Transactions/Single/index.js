@@ -26,7 +26,7 @@ const mapStateToProps = (state, ownProps) => {
 
    // Find the transaction among the pages (remember about pagination!)
    for (const pageTransactions of state.transactions.data) {
-      tempFoundTrans = Object.values(pageTransactions).find(trans => trans.id === transId);
+      tempFoundTrans = pageTransactions.find(trans => trans.id === transId);
 
       if (tempFoundTrans) {
          foundTrans = tempFoundTrans;

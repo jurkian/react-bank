@@ -10,7 +10,7 @@ const accounts = (state = initialState, action) => {
       case actionTypes.FETCH_ACCOUNTS:
          return {
             ...state,
-            data: { ...action.data },
+            data: [...action.data],
             status: true
          };
 

@@ -6,8 +6,9 @@ import Form from './Form';
 class NewTransaction extends Component {
    render() {
       const accounts = this.props.accounts;
-      const userAccountsList = Object.entries(accounts).map(([key, acc]) => (
-         <option key={key} value={key}>
+      const firstAccId = accounts[0].id;
+      const userAccountsList = accounts.map(acc => (
+         <option key={acc.id} value={acc.id}>
             {`${acc.type}, ${acc.sortcode}, ${acc.balance} ${acc.currency}`}
          </option>
       ));
@@ -20,7 +21,7 @@ class NewTransaction extends Component {
 
                   <Form
                      userAccountsList={userAccountsList}
-                     firstAccId={this.props.firstAccId}
+                     firstAccId={firstAccId}
                      addTransaction={this.props.addTransaction}
                   />
                </section>
@@ -32,8 +33,7 @@ class NewTransaction extends Component {
 
 const mapStateToProps = state => {
    return {
-      accounts: state.accounts.data,
-      firstAccId: Object.keys(state.accounts.data)[0]
+      accounts: state.accounts.data
    };
 };
 

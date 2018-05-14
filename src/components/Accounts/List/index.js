@@ -4,8 +4,8 @@ import AccountsListEl from '../ListElement';
 
 const AccountsList = ({ accounts, match }) => {
    // Prepare accounts list
-   const accountsList = Object.entries(accounts).map(([key, value]) => (
-      <AccountsListEl key={key} {...value} matchUrl={match.url} />
+   const accountsList = accounts.map(acc => (
+      <AccountsListEl key={acc.id} {...acc} matchUrl={match.url} />
    ));
 
    return (

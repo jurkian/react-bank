@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import CardsListEl from '../ListElement';
 
 const CardsList = ({ cards, match }) => {
-   const cardsList = Object.entries(cards).map(([key, value]) => (
-      <CardsListEl key={key} {...value} matchUrl={match.url} />
+   const cardsList = cards.map(card => (
+      <CardsListEl key={card.id} {...card} matchUrl={match.url} />
    ));
 
    return (

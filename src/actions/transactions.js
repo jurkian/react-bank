@@ -15,15 +15,10 @@ export function fetchTransactions(page = 1, perPage = 8) {
             .get()
             .then(transactions => {
                // Get transactions
-               let transData = [];
-               let temp;
-
-               transactions.docs.forEach(doc => {
-                  temp = doc.data();
-                  temp.id = doc.id;
-
-                  transData[doc.id] = temp;
-               });
+               let transData = transactions.docs.map(doc => ({
+                  ...doc.data(),
+                  id: doc.id
+               }));
 
                dispatch({ type: actionTypes.FETCH_TRANSACTIONS, data: transData, page });
                resolve(transData);

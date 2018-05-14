@@ -43,24 +43,18 @@ const accounts = () =>
          .limit(10)
          .get()
          .then(accounts => {
-            let accData;
-
             // Get accounts data
-            accounts.docs.forEach(doc => {
+            initialData.accounts = accounts.docs.map(doc => {
                accIds.push(doc.id);
 
-               accData = doc.data();
-               accData.id = doc.id;
-               delete accData.user_id;
-
-               initialData.accounts[doc.id] = accData;
+               return {
+                  ...doc.data(),
+                  id: doc.id
+               };
             });
          })
          .then(() => {
-            accIds.forEach(accId => {
-               let transData;
-               let cardsData;
-
+            for (const accId of accIds) {
                // Transactions (we need account IDs)
                db
                   .collection('transactions')
@@ -69,28 +63,26 @@ const accounts = () =>
                   .get()
                   .then(transactions => {
                      // Get transactions
-                     transactions.docs.forEach(doc => {
-                        transData = doc.data();
-                        transData.id = doc.id;
-                        initialData.transactions[doc.id] = transData;
-                     });
+                     initialData.transactions = transactions.docs.map(doc => ({
+                        ...doc.data(),
+                        id: doc.id
+                     }));
                   });
 
                // Cards (we need account IDs)
                db
                   .collection('cards')
-                  .where('source_acc_id', '==', accId)
+                  .where('user_id', '==', userId)
                   .limit(10)
                   .get()
                   .then(cards => {
                      // Get cards
-                     cards.docs.forEach(doc => {
-                        cardsData = doc.data();
-                        cardsData.id = doc.id;
-                        initialData.cards[doc.id] = cardsData;
-                     });
+                     initialData.cards = cards.docs.map(doc => ({
+                        ...doc.data(),
+                        id: doc.id
+                     }));
                   });
-            });
+            }
 
             resolve();
          });
@@ -105,16 +97,11 @@ const messages = () =>
          .limit(10)
          .get()
          .then(messages => {
-            let messagesData;
-
             // Get messages
-            messages.forEach(doc => {
-               messagesData = doc.data();
-               messagesData.id = doc.id;
-               delete messagesData.user_id;
-
-               initialData.messages[doc.id] = messagesData;
-            });
+            initialData.messages = messages.docs.map(doc => ({
+               ...doc.data(),
+               id: doc.id
+            }));
 
             resolve();
          });

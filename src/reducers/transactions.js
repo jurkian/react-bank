@@ -37,26 +37,28 @@ const transactions = (state = initialState, action) => {
          const len = transData.length;
          let lastPageElementsCount = 0;
 
-         Object.keys(transData[len - 1]).forEach(() => lastPageElementsCount++);
+         for (const el of transData[len - 1]) {
+            lastPageElementsCount++;
+         }
 
          if (lastPageElementsCount > 20) {
             // If it contains more than 20 elements, add a new page
-            transData[len] = {
+            transData[len] = [
                ...transData[len],
-               [action.transId]: {
+               {
                   ...action.data,
                   id: action.transId
                }
-            };
+            ];
          } else {
             // If there is a place for a new element, just add it
-            transData[len - 1] = {
+            transData[len - 1] = [
                ...transData[len - 1],
-               [action.transId]: {
+               {
                   ...action.data,
                   id: action.transId
                }
-            };
+            ];
          }
 
          return {

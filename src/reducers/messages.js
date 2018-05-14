@@ -12,7 +12,6 @@ const messages = (state = initialState, action) => {
       case actionTypes.FETCH_MESSAGES:
          const messagesData = [...state.data];
 
-         // -1, because pages start from 1
          messagesData[action.page - 1] = action.data;
 
          return {
@@ -28,11 +27,16 @@ const messages = (state = initialState, action) => {
          };
 
       case actionTypes.MESSAGE_TOGGLE:
+         let foundMsgIndex;
+
          return Object.assign({}, state, {
             data: state.data.map(messagesPage => {
                // Find a place where message should be toggled
-               if (messagesPage[action.id]) {
-                  messagesPage[action.id].isToggled = !messagesPage[action.id].isToggled;
+               foundMsgIndex = messagesPage.findIndex(msg => msg.id === action.id);
+
+               // Change the toggle
+               if (foundMsgIndex >= 0) {
+                  messagesPage[foundMsgIndex].isToggled = !messagesPage[foundMsgIndex].isToggled;
                }
 
                return messagesPage;
@@ -41,13 +45,7 @@ const messages = (state = initialState, action) => {
 
       case actionTypes.MESSAGE_REMOVE:
          return Object.assign({}, state, {
-            data: state.data.map(messagesPage => {
-               if (messagesPage[action.id]) {
-                  delete messagesPage[action.id];
-               }
-
-               return messagesPage;
-            })
+            data: state.data.map(messages => messages.filter(msg => msg.id !== action.id))
          });
 
       case actionTypes.FETCH_MESSAGES_PAGINATION_STATUS:

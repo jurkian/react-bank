@@ -40,16 +40,12 @@ class IncomeStats extends Component {
          .where('date', '>', startDate)
          .get()
          .then(stats => {
-            let statsData = [];
-
-            stats.docs.forEach(doc => {
-               statsData.push(doc.data());
-            });
+            let chartData = stats.docs.map(doc => doc.data());
 
             this.setState({
                loaded: true,
                account: this.props.account,
-               chartData: statsData
+               chartData
             });
          })
          .catch(err => err);
@@ -57,10 +53,8 @@ class IncomeStats extends Component {
 }
 
 const mapStateToProps = state => {
-   const firstAccId = Object.keys(state.accounts.data)[0];
-
    return {
-      account: state.accounts.data[firstAccId]
+      account: state.accounts.data[0]
    };
 };
 

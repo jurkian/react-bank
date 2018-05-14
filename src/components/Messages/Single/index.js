@@ -24,7 +24,7 @@ const mapStateToProps = (state, ownProps) => {
 
    // Find the message among the pages (remember about pagination!)
    for (const pageMessages of state.messages.data) {
-      tempFoundMessage = Object.values(pageMessages).find(message => message.id === messageId);
+      tempFoundMessage = pageMessages.find(message => message.id === messageId);
 
       if (tempFoundMessage) {
          foundMessage = tempFoundMessage;

@@ -10,15 +10,10 @@ export function fetchAccounts() {
          .get()
          .then(accounts => {
             // Get accounts
-            let accData = [];
-            let temp;
-
-            accounts.docs.forEach(doc => {
-               temp = doc.data();
-               temp.id = doc.id;
-
-               accData[doc.id] = temp;
-            });
+            let accData = accounts.docs.map(doc => ({
+               ...doc.data(),
+               id: doc.id
+            }));
 
             dispatch({ type: actionTypes.FETCH_ACCOUNTS, data: accData });
          })
