@@ -13,7 +13,7 @@ const TransactionsListEl = ({
    status,
    reference
 }) => {
-   date = formatFirebaseDate(date.seconds, 'DD/MM/YYYY HH:mm');
+   date = formatFirebaseDate(date, 'DD/MM/YYYY HH:mm');
 
    return (
       <Link to={`${matchUrl}/${id}`} className="list-group-item">

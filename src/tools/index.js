@@ -17,5 +17,9 @@ export function chunker(el, step, string) {
 
 // Format date from Firebase (in seconds)
 export function formatFirebaseDate(date, dateFormat) {
-   return format(parse(date * 1000), dateFormat);
+   if (date.seconds) {
+      date = date.seconds * 1000;
+   }
+
+   return format(parse(date), dateFormat);
 }
