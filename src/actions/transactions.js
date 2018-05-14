@@ -1,23 +1,32 @@
-import axios from 'axios';
 import firebase from 'tools/firebase';
 import * as actionTypes from './actionTypes';
 
 const db = firebase.firestore();
 
 export function fetchTransactions(page = 1, perPage = 8) {
-   const fetchUrl = `/transactions?_page=${page}&_limit=${perPage}`;
-
    return dispatch =>
       new Promise((resolve, reject) => {
          // Set status to false on every start, so it can be reusable
          dispatch(fetchTransactionsStatus(false));
 
-         axios
-            .get(fetchUrl)
-            .then(res => res.data)
-            .then(data => {
-               dispatch({ type: actionTypes.FETCH_TRANSACTIONS, data, page });
-               resolve(data);
+         db
+            .collection('transactions')
+            .orderBy('date')
+            .get()
+            .then(transactions => {
+               // Get transactions
+               let transData = [];
+               let temp;
+
+               transactions.docs.forEach(doc => {
+                  temp = doc.data();
+                  temp.id = doc.id;
+
+                  transData[doc.id] = temp;
+               });
+
+               dispatch({ type: actionTypes.FETCH_TRANSACTIONS, data: transData, page });
+               resolve(transData);
             })
             .catch(err => reject(err));
       });

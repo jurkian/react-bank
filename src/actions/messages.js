@@ -1,23 +1,32 @@
-import axios from 'axios';
 import * as actionTypes from './actionTypes';
 import firebase from 'tools/firebase';
 
 const db = firebase.firestore();
 
 export function fetchMessages(page = 1, perPage = 8) {
-   const fetchUrl = `/messages?_page=${page}&_limit=${perPage}`;
-
    return dispatch =>
       new Promise((resolve, reject) => {
          // Set status to false on every start, so it can be reusable
          dispatch(fetchMessagesStatus(false));
 
-         axios
-            .get(fetchUrl)
-            .then(res => res.data)
-            .then(data => {
-               dispatch({ type: actionTypes.FETCH_MESSAGES, data, page });
-               resolve(data);
+         db
+            .collection('messages')
+            .orderBy('date')
+            .get()
+            .then(messages => {
+               // Get messages
+               let messData = [];
+               let temp;
+
+               messages.docs.forEach(doc => {
+                  temp = doc.data();
+                  temp.id = doc.id;
+
+                  messData[doc.id] = temp;
+               });
+
+               dispatch({ type: actionTypes.FETCH_MESSAGES, data: messData, page });
+               resolve(messData);
             })
             .catch(err => reject(err));
       });
