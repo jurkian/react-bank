@@ -1,4 +1,3 @@
-import axios from 'axios';
 import * as actionTypes from './actionTypes';
 import firebase from 'tools/firebase';
 
@@ -6,11 +5,22 @@ const db = firebase.firestore();
 
 export function fetchCards() {
    return dispatch => {
-      axios
-         .get('/cards')
-         .then(res => res.data)
-         .then(data => {
-            dispatch({ type: actionTypes.FETCH_CARDS, data });
+      db
+         .collection('cards')
+         .get()
+         .then(cards => {
+            // Get cards
+            let cardsData = [];
+            let temp;
+
+            cards.docs.forEach(doc => {
+               temp = doc.data();
+               temp.id = doc.id;
+
+               cardsData[doc.id] = temp;
+            });
+
+            dispatch({ type: actionTypes.FETCH_CARDS, data: cardsData });
          })
          .catch(error => dispatch(fetchCardsStatus(false)));
    };

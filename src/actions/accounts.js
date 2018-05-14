@@ -1,13 +1,26 @@
-import axios from 'axios';
+import firebase from 'tools/firebase';
 import * as actionTypes from './actionTypes';
 
+const db = firebase.firestore();
+
 export function fetchAccounts() {
-   return function(dispatch) {
-      axios
-         .get('/accounts')
-         .then(res => res.data)
-         .then(data => {
-            dispatch({ type: actionTypes.FETCH_ACCOUNTS, data });
+   return dispatch => {
+      db
+         .collection('accounts')
+         .get()
+         .then(accounts => {
+            // Get accounts
+            let accData = [];
+            let temp;
+
+            accounts.docs.forEach(doc => {
+               temp = doc.data();
+               temp.id = doc.id;
+
+               accData[doc.id] = temp;
+            });
+
+            dispatch({ type: actionTypes.FETCH_ACCOUNTS, data: accData });
          })
          .catch(error => dispatch(fetchAccountsStatus(false)));
    };
