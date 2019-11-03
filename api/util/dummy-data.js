@@ -16,7 +16,6 @@ const Transaction = require('@models/transaction');
 
 const createUser = () => {
    const user = new User({
-      username: faker.lorem.slug(1),
       email: faker.internet.email(),
       password: 'admin123',
       firstName: faker.name.firstName(),

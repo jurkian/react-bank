@@ -8,12 +8,6 @@ const Transaction = require('@models/transaction');
 
 const userSchema = new mongoose.Schema(
    {
-      username: {
-         type: String,
-         required: true,
-         trim: true,
-         lowercase: true
-      },
       email: {
          type: String,
          unique: true,
@@ -83,7 +77,10 @@ const userSchema = new mongoose.Schema(
 userSchema.methods.getBasic = function() {
    const userObject = this.toObject();
 
+   delete userObject._id;
    delete userObject.password;
+   delete userObject.createdAt;
+   delete userObject.updatedAt;
 
    return userObject;
 };

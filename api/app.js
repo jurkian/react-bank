@@ -9,7 +9,7 @@ const authRouter = require('@routes/auth');
 const userRouter = require('@routes/users');
 const cardRouter = require('@routes/cards');
 const messageRouter = require('@routes/messages');
-const transactionRouter = require('@routes/transactions');
+const transferRouter = require('@routes/transfers');
 
 // Others
 const express = require('express');
@@ -30,9 +30,6 @@ const createDummyData = require('@util/dummy-data');
 // App
 const app = express();
 
-// Maintenance mode
-// app.use(maintenance());
-
 app.use(bodyParser.json({ limit: '5mb' }));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(helmet());
@@ -41,18 +38,21 @@ app.use(compression());
 // CORS
 app.use(cors());
 
+// Maintenance mode
+// app.use(maintenance());
+
 // Routes
 // No auth routes
 app.use('/auth', authRouter);
 
 // Verify JWT and add user data to next requests
-// app.use(auth);
+app.use(auth);
 
 // Auth routes
-app.use('/user', userRouter);
-app.use('/card', cardRouter);
-app.use('/message', messageRouter);
-app.use('/transaction', transactionRouter);
+app.use('/users', userRouter);
+app.use('/cards', cardRouter);
+app.use('/messages', messageRouter);
+app.use('/transfers', transferRouter);
 
 // Handle errors only in development
 if (process.env.CURRENT_ENV === 'development') {

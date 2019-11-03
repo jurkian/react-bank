@@ -1,9 +1,17 @@
 const express = require('express');
-const Users = require('../models/user');
-const router = new express.Router();
 
-router.get('/users/:id', async (req, res) => {
-   res.status(200).json({ user: 'user' });
-});
+// Controllers
+const userCtrl = require('@controllers/users');
+
+// App
+const router = express.Router();
+
+// => GET /user/me
+// Get myself
+router.get('/me', userCtrl.getMyself);
+
+// => PUT /user/me
+// Update myself
+router.put('/me', userCtrl.updateMyself);
 
 module.exports = router;
