@@ -1,7 +1,17 @@
 const express = require('express');
-const Messages = require('../models/message');
-const router = new express.Router();
 
-router.get('/messages/:id', async (req, res) => {});
+// Controllers
+const messagesCtrl = require('@controllers/messages');
+
+// App
+const router = express.Router();
+
+// => GET /messages/my
+// Get my messages list
+router.get('/my', messagesCtrl.getMy);
+
+// => GET /messages/:id
+// Get single message
+router.get('/:id', messagesCtrl.getSingle);
 
 module.exports = router;
