@@ -36,6 +36,36 @@ const userSchema = new mongoose.Schema(
          type: String,
          required: true,
          minlength: 2
+      },
+      dateOfBirth: {
+         type: Date,
+         required: true
+      },
+      phone: {
+         type: String,
+         required: true,
+         minlength: 2,
+         maxlength: 20
+      },
+      picture: {
+         type: String,
+         required: true,
+         minlength: 2
+      },
+      streetAddr: {
+         type: String,
+         required: true,
+         minlength: 2
+      },
+      postcode: {
+         type: String,
+         required: true,
+         minlength: 2
+      },
+      city: {
+         type: String,
+         required: true,
+         minlength: 2
       }
    },
    {

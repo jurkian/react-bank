@@ -23,6 +23,9 @@ const auth = require('@middleware/auth');
 const errorHandler = require('@middleware/error-handler');
 // const maintenance = require('@middleware/maintenance');
 
+// Utilities
+const createDummyData = require('@util/dummy-data');
+
 // App
 const app = express();
 
@@ -54,14 +57,17 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 // Start the app
-app.listen(CONFIG.port, () => {
+app.listen(CONFIG.port, async () => {
    console.log(
       '%s App is running at http://localhost:%d in %s mode',
       chalk.green('✓'),
       process.env.PORT,
       process.env.NODE_ENV
    );
+
    console.log('  Press CTRL-C to stop\n');
+
+   await createDummyData();
 });
 
 module.exports = app;

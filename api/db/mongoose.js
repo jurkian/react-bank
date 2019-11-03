@@ -5,7 +5,8 @@ const chalk = require('chalk');
 mongoose.connect(`${CONFIG.mongodb_uri}`, {
    useNewUrlParser: true,
    useCreateIndex: true,
-   useFindAndModify: false
+   useFindAndModify: false,
+   useUnifiedTopology: true
 });
 
 mongoose.connection.on('error', err => {
