@@ -42,7 +42,13 @@ app.use(compression());
 app.use(cors());
 
 // Routes
+// No auth routes
 app.use('/auth', authRouter);
+
+// Verify JWT and add user data to next requests
+// app.use(auth);
+
+// Auth routes
 app.use('/user', userRouter);
 app.use('/card', cardRouter);
 app.use('/message', messageRouter);
