@@ -3,9 +3,8 @@
    "version": "1.0.0",
    "private": true,
    "scripts": {
-      "start": "node app.js",
-      "start-server": "node app.js",
-      "start-dev": "nodemon app.js",
+      "start": "node -r dotenv/config app.js",
+      "start-dev": "nodemon -r dotenv/config app.js",
       "debug": "nodemon --inspect app.js"
    },
    "dependencies": {

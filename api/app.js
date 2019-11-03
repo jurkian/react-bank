@@ -42,15 +42,15 @@ app.use(compression());
 app.use(cors());
 
 // Routes
-app.use(authRouter);
-app.use(userRouter);
-app.use(cardRouter);
-app.use(messageRouter);
-app.use(transactionRouter);
+app.use('/auth', authRouter);
+app.use('/user', userRouter);
+app.use('/card', cardRouter);
+app.use('/message', messageRouter);
+app.use('/transaction', transactionRouter);
 
 // Handle errors only in development
-if (process.env.NODE_ENV === 'development') {
-   app.use(errorHandler());
+if (process.env.CURRENT_ENV === 'development') {
+   app.use(errorHandler);
 } else {
    app.use((err, req, res, next) => {
       console.error(err);
@@ -64,7 +64,7 @@ app.listen(CONFIG.port, async () => {
       '%s App is running at http://localhost:%d in %s mode',
       chalk.green('✓'),
       process.env.PORT,
-      process.env.NODE_ENV
+      process.env.CURRENT_ENV
    );
 
    console.log('  Press CTRL-C to stop\n');
