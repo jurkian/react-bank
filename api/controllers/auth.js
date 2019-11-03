@@ -24,7 +24,7 @@ exports.register = async (req, res, next) => {
          throwError('Problems creating a user', 422);
       }
 
-      // Send welcome email + verification link (expires in 7 days)
+      // Send welcome email
       // sendNotification('email', 'welcome', {
       //    to: user.email,
       //    firstName: user.firstName
@@ -58,6 +58,70 @@ exports.login = async (req, res, next) => {
       });
 
       res.status(200).json({ token });
+   } catch (err) {
+      passError(err, next);
+   }
+};
+
+// Remind password
+// Step 1 - send verification link
+exports.remindPassword = async (req, res, next) => {
+   try {
+      const { email } = req.body;
+      let token = await crypto.randomBytes(16).toString('hex');
+      let user = await User.findOne({ email });
+
+      if (!user) {
+         throwError('No account with that email found', 401);
+      }
+
+      let expireTime = new Date();
+
+      expireTime.setDate(expireTime.getDate() + 7);
+      user.resetToken = token;
+      user.resetTokenExpiration = expireTime;
+
+      await user.save();
+
+      // Send pass remind notification
+      // sendNotification('email', 'password-remind', {
+      //    to: user.email
+      // });
+
+      res.status(200).json({ status: 'Verification link sent' });
+   } catch (err) {
+      passError(err, next);
+   }
+};
+
+// Set new user's password
+// Step 2
+exports.resetPassword = async (req, res, next) => {
+   try {
+      const { email, password, token } = req.body;
+      let user = await User.findOne({
+         email,
+         resetToken: token,
+         resetTokenExpiration: { $gte: Date.now() }
+      });
+
+      if (!user) {
+         throwError('No user found or token has expired', 401);
+      }
+
+      user.password = password;
+      user.resetToken = undefined;
+      user.resetTokenExpiration = undefined;
+
+      await user.save();
+
+      // Send pass reset notification
+      // sendNotification('email', 'password-reset', {
+      //    to: user.email,
+      //    firstName: user.firstName
+      // });
+
+      res.status(200).json({ status: 'New password has been set' });
    } catch (err) {
       passError(err, next);
    }

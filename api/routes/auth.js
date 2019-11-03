@@ -22,8 +22,4 @@ router.post('/remind-password', authController.remindPassword);
 // Send user a new password
 router.post('/reset-password', authController.resetPassword);
 
-// => POST /auth/verify/:userId
-// Verify a user
-router.post('/verify/:userId', authController.verifyUser);
-
 module.exports = router;
