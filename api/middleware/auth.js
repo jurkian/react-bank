@@ -18,7 +18,7 @@ const auth = async (req, res, next) => {
       token = token.replace('Bearer ', '');
 
       const decoded = jwt.verify(token, CONFIG.jwt_secret_key);
-      const user = await User.findByPk(decoded.id);
+      const user = await User.findOne({ _id: decoded.id });
 
       if (!user) {
          throwError('No user found or token is incorrect', 422);
