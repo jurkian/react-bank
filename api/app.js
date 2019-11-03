@@ -5,6 +5,7 @@ const CONFIG = require('@config/config');
 require('./db/mongoose');
 
 // Routes
+const authRouter = require('@routes/auth');
 const userRouter = require('@routes/users');
 const cardRouter = require('@routes/cards');
 const messageRouter = require('@routes/messages');
@@ -41,6 +42,7 @@ app.use(compression());
 app.use(cors());
 
 // Routes
+app.use(authRouter);
 app.use(userRouter);
 app.use(cardRouter);
 app.use(messageRouter);

@@ -46,7 +46,7 @@ const createMessage = user => {
 // Cards
 const createCard = user => {
    const card = new Card({
-      number: faker.random.number({ min: 2000000000000000, max: 6000000000000000 }),
+      number: faker.finance.mask(16, false, false),
       pin: faker.finance.mask(4, false, false),
       isActive: faker.random.boolean(),
       owner: user._id,
