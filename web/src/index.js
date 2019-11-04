@@ -4,7 +4,6 @@ import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 
 import App from 'components/App';
-import axios from 'axios';
 import registerServiceWorker from './registerServiceWorker';
 
 // Styles
@@ -15,9 +14,6 @@ import configureStore, { history } from 'store';
 import { ConnectedRouter } from 'connected-react-router';
 
 export const store = configureStore();
-
-// Default axios settings
-axios.defaults.baseURL = 'http://localhost:3001';
 
 // Render
 ReactDOM.render(
