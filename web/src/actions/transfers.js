@@ -3,38 +3,37 @@ import * as actionTypes from './actionTypes';
 
 const db = firebase.firestore();
 
-export function fetchTransactions(page = 1, perPage = 8) {
+export function fetchTransfers(page = 1, perPage = 8) {
    return dispatch =>
       new Promise((resolve, reject) => {
          // Set status to false on every start, so it can be reusable
-         dispatch(fetchTransactionsStatus(false));
+         dispatch(fetchTransfersStatus(false));
 
-         db
-            .collection('transactions')
+         db.collection('transfers')
             .orderBy('date')
             .get()
-            .then(transactions => {
-               // Get transactions
-               let transData = transactions.docs.map(doc => ({
+            .then(transfers => {
+               // Get transfers
+               let transData = transfers.docs.map(doc => ({
                   ...doc.data(),
                   id: doc.id
                }));
 
-               dispatch({ type: actionTypes.FETCH_TRANSACTIONS, data: transData, page });
+               dispatch({ type: actionTypes.FETCH_TRANSFERS, data: transData, page });
                resolve(transData);
             })
             .catch(err => reject(err));
       });
 }
 
-export function fetchTransactionsStatus(status) {
+export function fetchTransfersStatus(status) {
    return {
-      type: actionTypes.FETCH_TRANSACTIONS_STATUS,
+      type: actionTypes.FETCH_TRANSFERS_STATUS,
       status
    };
 }
 
-export function addTransaction(data) {
+export function addTransfer(data) {
    const transData = {
       amount: parseFloat(data.amount).toFixed(2),
       date: new Date(),
@@ -50,12 +49,11 @@ export function addTransaction(data) {
 
    return dispatch =>
       new Promise((resolve, reject) => {
-         db
-            .collection('transactions')
+         db.collection('transfers')
             .add(transData)
             .then(newTrans => {
                dispatch({
-                  type: actionTypes.ADD_TRANSACTION,
+                  type: actionTypes.ADD_TRANSFER,
                   transId: newTrans.id,
                   data: transData
                });
@@ -66,18 +64,18 @@ export function addTransaction(data) {
 }
 
 // Pagination
-export function fetchTransactionsPaginationStatus(status) {
+export function fetchTransfersPaginStatus(status) {
    return {
-      type: actionTypes.FETCH_TRANSACTIONS_PAGINATION_STATUS,
+      type: actionTypes.FETCH_TRANSFERS_PAGIN_STATUS,
       status
    };
 }
 
-export function setTransactionsPage(pageNumber) {
+export function setTransfersPage(pageNumber) {
    return dispatch =>
       new Promise((resolve, reject) => {
          dispatch({
-            type: actionTypes.SET_TRANSACTIONS_PAGE,
+            type: actionTypes.SET_TRANSFERS_PAGE,
             pageNumber
          });
 

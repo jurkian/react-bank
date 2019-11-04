@@ -3,7 +3,7 @@ import * as actionTypes from 'actions/actionTypes';
 const initialState = {
    data: [],
    status: true,
-   paginationStatus: false,
+   paginStatus: false,
    pageNumber: 1
 };
 
@@ -48,10 +48,10 @@ const messages = (state = initialState, action) => {
             data: state.data.map(messages => messages.filter(msg => msg.id !== action.id))
          });
 
-      case actionTypes.FETCH_MESSAGES_PAGINATION_STATUS:
+      case actionTypes.FETCH_MESSAGES_PAGIN_STATUS:
          return {
             ...state,
-            paginationStatus: action.status
+            paginStatus: action.status
          };
 
       case actionTypes.SET_MESSAGES_PAGE:

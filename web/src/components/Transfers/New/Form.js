@@ -135,7 +135,7 @@ const NewTransactionForm = withFormik({
       setStatus('Sending...');
 
       props
-         .addTransaction(values)
+         .addTransfer(values)
          .then(data => setStatus('Transfer done!'))
          .catch(error => setStatus('Problems, try again...'));
    }

@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { formatFirebaseDate } from 'tools';
 
-const SingleTransaction = ({ singleTrans: { type, date, payee_name, amount, status } }) => {
+const SingleTransfer = ({ singleTrans: { type, date, payee_name, amount, status } }) => {
    date = formatFirebaseDate(date, 'DD/MM/YYYY HH:mm');
 
    return (
@@ -25,8 +25,8 @@ const mapStateToProps = (state, ownProps) => {
    let foundTrans;
 
    // Find the transaction among the pages (remember about pagination!)
-   for (const pageTransactions of state.transactions.data) {
-      tempFoundTrans = pageTransactions.find(trans => trans.id === transId);
+   for (const pageTransfers of state.transfers.data) {
+      tempFoundTrans = pageTransfers.find(trans => trans.id === transId);
 
       if (tempFoundTrans) {
          foundTrans = tempFoundTrans;
@@ -39,4 +39,4 @@ const mapStateToProps = (state, ownProps) => {
    };
 };
 
-export default connect(mapStateToProps)(SingleTransaction);
+export default connect(mapStateToProps)(SingleTransfer);

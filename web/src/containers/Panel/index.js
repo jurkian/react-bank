@@ -15,8 +15,8 @@ const Accounts = AsyncComponentLoader({
    loader: () => import('containers/Accounts')
 });
 
-const Transactions = AsyncComponentLoader({
-   loader: () => import('containers/Transactions')
+const Transfers = AsyncComponentLoader({
+   loader: () => import('containers/Transfers')
 });
 
 const Cards = AsyncComponentLoader({
@@ -57,7 +57,7 @@ class Panel extends Component {
                <Switch>
                   <Route exact path="/panel" component={PanelIntro} />
                   <Route path="/panel/accounts" component={Accounts} />
-                  <Route path="/panel/transactions" component={Transactions} />
+                  <Route path="/panel/transfers" component={Transfers} />
                   <Route path="/panel/cards" component={Cards} />
                   <Route path="/panel/profile" component={Profile} />
                   <Route path="/panel/change-details" component={ProfileChangeDetails} />
@@ -84,4 +84,7 @@ const mapDispatchToProps = dispatch => {
    };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(withAuth(Panel));
+export default connect(
+   mapStateToProps,
+   mapDispatchToProps
+)(withAuth(Panel));

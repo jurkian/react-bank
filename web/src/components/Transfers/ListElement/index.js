@@ -3,16 +3,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { formatFirebaseDate } from 'tools';
 
-const TransactionsListEl = ({
-   matchUrl,
-   id,
-   type,
-   payee_name,
-   date,
-   amount,
-   status,
-   reference
-}) => {
+const TransfersListEl = ({ matchUrl, id, type, payee_name, date, amount, status, reference }) => {
    date = formatFirebaseDate(date, 'DD/MM/YYYY HH:mm');
 
    return (
@@ -25,7 +16,7 @@ const TransactionsListEl = ({
    );
 };
 
-TransactionsListEl.propTypes = {
+TransfersListEl.propTypes = {
    matchUrl: PropTypes.string,
    id: PropTypes.string,
    type: PropTypes.string,
@@ -35,4 +26,4 @@ TransactionsListEl.propTypes = {
    status: PropTypes.string
 };
 
-export default TransactionsListEl;
+export default TransfersListEl;

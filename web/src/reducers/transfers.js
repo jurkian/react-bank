@@ -3,15 +3,15 @@ import * as actionTypes from 'actions/actionTypes';
 const initialState = {
    data: [],
    status: true,
-   paginationStatus: false,
+   paginStatus: false,
    pageNumber: 1
 };
 
-const transactions = (state = initialState, action) => {
+const transfers = (state = initialState, action) => {
    let transData;
 
    switch (action.type) {
-      case actionTypes.FETCH_TRANSACTIONS:
+      case actionTypes.FETCH_TRANSFERS:
          // Get current state and add a new page
          transData = [...state.data];
          transData[action.page - 1] = action.data;
@@ -22,13 +22,13 @@ const transactions = (state = initialState, action) => {
             status: true
          };
 
-      case actionTypes.FETCH_TRANSACTIONS_STATUS:
+      case actionTypes.FETCH_TRANSFERS_STATUS:
          return {
             ...state,
             status: action.status
          };
 
-      case actionTypes.ADD_TRANSACTION:
+      case actionTypes.ADD_TRANSFER:
          // If the last page reached the elements limit, say 20-30, then create new one
          // And add the transaction here
          transData = [...state.data];
@@ -66,13 +66,13 @@ const transactions = (state = initialState, action) => {
             data: transData
          };
 
-      case actionTypes.FETCH_TRANSACTIONS_PAGINATION_STATUS:
+      case actionTypes.FETCH_TRANSFERS_PAGIN_STATUS:
          return {
             ...state,
-            paginationStatus: action.status
+            paginStatus: action.status
          };
 
-      case actionTypes.SET_TRANSACTIONS_PAGE:
+      case actionTypes.SET_TRANSFERS_PAGE:
          return {
             ...state,
             pageNumber: action.pageNumber
@@ -83,4 +83,4 @@ const transactions = (state = initialState, action) => {
    }
 };
 
-export default transactions;
+export default transfers;

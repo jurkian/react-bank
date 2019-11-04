@@ -4,9 +4,9 @@ import { connect } from 'react-redux';
 import * as actions from 'actions';
 import ReactPaginate from 'react-paginate';
 import Loader from 'components/UI/Loader';
-import TransactionsListEl from '../ListElement';
+import TransfersListEl from '../ListElement';
 
-class TransactionsList extends Component {
+class TransfersList extends Component {
    constructor(props) {
       super(props);
 
@@ -14,7 +14,7 @@ class TransactionsList extends Component {
 
       this.state = {
          search: '',
-         pageCount: Math.ceil(props.transactionsCount / perPage)
+         pageCount: Math.ceil(props.transfersCount / perPage)
       };
    }
 
@@ -22,18 +22,18 @@ class TransactionsList extends Component {
       // If the data is already in state/store - only return it
       // Otherwise fetch new data from API, basing on selected page
 
-      if (!this.props.transactions[this.props.pageNumber - 1]) {
+      if (!this.props.transfers[this.props.pageNumber - 1]) {
          this.props
-            .fetchTransactions(this.props.pageNumber, this.state.perPage)
-            .then(() => this.props.fetchTransactionsPaginationStatus(true));
+            .fetchTransfers(this.props.pageNumber, this.state.perPage)
+            .then(() => this.props.fetchTransfersPaginStatus(true));
       } else {
-         this.props.fetchTransactionsPaginationStatus(true);
+         this.props.fetchTransfersPaginStatus(true);
       }
    }
 
    handlePageClick = ({ selected }) => {
-      this.props.fetchTransactionsPaginationStatus(false);
-      this.props.setTransactionsPage(selected + 1).then(() => this.shouldFetchData());
+      this.props.fetchTransfersPaginStatus(false);
+      this.props.setTransfersPage(selected + 1).then(() => this.shouldFetchData());
    };
 
    findTransaction = () => {
@@ -41,26 +41,26 @@ class TransactionsList extends Component {
    };
 
    render() {
-      if (!this.props.fetchPaginationStatus) {
+      if (!this.props.fetchPaginStatus) {
          return <Loader />;
       } else {
          // Allow filtering by payee's name or transaction reference
          const searchText = this.state.search.toLowerCase();
-         const transactionsList = this.props.transactions[this.props.pageNumber - 1]
+         const transfersList = this.props.transfers[this.props.pageNumber - 1]
             .filter(
                trans =>
                   trans.payee_name.toLowerCase().includes(searchText) ||
                   trans.reference.toLowerCase().includes(searchText)
             )
             .map(trans => (
-               <TransactionsListEl key={trans.id} {...trans} matchUrl={this.props.match.url} />
+               <TransfersListEl key={trans.id} {...trans} matchUrl={this.props.match.url} />
             ));
 
          return (
             <div>
-               <h1>Transactions</h1>
+               <h1>Transfers</h1>
 
-               <p>There are {this.props.transactionsCount} transactions right now!</p>
+               <p>There are {this.props.transfersCount} transfers right now!</p>
                <p>
                   <Link to={`${this.props.match.url}/new`} className="btn btn-primary">
                      New transfer
@@ -76,7 +76,7 @@ class TransactionsList extends Component {
                   />
                </div>
 
-               <div className="list-group">{transactionsList}</div>
+               <div className="list-group">{transfersList}</div>
 
                <div className="pagination-container">
                   <ReactPaginate
@@ -105,20 +105,22 @@ class TransactionsList extends Component {
 
 const mapStateToProps = state => {
    return {
-      transactions: state.transactions.data,
-      transactionsCount: 20, // FAKE IT: better API needed
-      pageNumber: state.transactions.pageNumber,
-      fetchPaginationStatus: state.transactions.paginationStatus
+      transfers: state.transfers.data,
+      transfersCount: 20, // FAKE IT: better API needed
+      pageNumber: state.transfers.pageNumber,
+      fetchPaginStatus: state.transfers.paginStatus
    };
 };
 
 const mapDispatchToProps = dispatch => {
    return {
-      fetchTransactions: (page, perPage) => dispatch(actions.fetchTransactions(page, perPage)),
-      fetchTransactionsPaginationStatus: status =>
-         dispatch(actions.fetchTransactionsPaginationStatus(status)),
-      setTransactionsPage: number => dispatch(actions.setTransactionsPage(number))
+      fetchTransfers: (page, perPage) => dispatch(actions.fetchTransfers(page, perPage)),
+      fetchTransfersPaginStatus: status => dispatch(actions.fetchTransfersPaginStatus(status)),
+      setTransfersPage: number => dispatch(actions.setTransfersPage(number))
    };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(TransactionsList);
+export default connect(
+   mapStateToProps,
+   mapDispatchToProps
+)(TransfersList);

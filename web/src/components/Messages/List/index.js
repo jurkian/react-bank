@@ -24,14 +24,14 @@ class MessagesList extends Component {
       if (!this.props.messages[this.props.pageNumber - 1]) {
          this.props
             .fetchMessages(this.props.pageNumber, this.state.perPage)
-            .then(() => this.props.fetchMessagesPaginationStatus(true));
+            .then(() => this.props.fetchMessagesPaginStatus(true));
       } else {
-         this.props.fetchMessagesPaginationStatus(true);
+         this.props.fetchMessagesPaginStatus(true);
       }
    }
 
    handlePageClick = ({ selected }) => {
-      this.props.fetchMessagesPaginationStatus(false);
+      this.props.fetchMessagesPaginStatus(false);
       this.props.setMessagesPage(selected + 1).then(() => this.shouldFetchData());
    };
 
@@ -42,7 +42,7 @@ class MessagesList extends Component {
    render() {
       // Messages
       // Allow search for message title
-      if (!this.props.fetchPaginationStatus) {
+      if (!this.props.fetchPaginStatus) {
          return <Loader />;
       } else {
          const searchText = this.state.search.toLowerCase();
@@ -105,7 +105,7 @@ const mapStateToProps = state => {
       messages: state.messages.data, // first part of messages data
       messagesCount: 20, // FAKE IT: better API needed
       pageNumber: state.messages.pageNumber,
-      fetchPaginationStatus: state.messages.paginationStatus
+      fetchPaginStatus: state.messages.paginStatus
    };
 };
 
@@ -114,10 +114,12 @@ const mapDispatchToProps = dispatch => {
       fetchMessages: (page, perPage) => dispatch(actions.fetchMessages(page, perPage)),
       messageToggle: (id, isToggled) => dispatch(actions.messageToggle(id, isToggled)),
       messageRemove: id => dispatch(actions.messageRemove(id)),
-      fetchMessagesPaginationStatus: status =>
-         dispatch(actions.fetchMessagesPaginationStatus(status)),
+      fetchMessagesPaginStatus: status => dispatch(actions.fetchMessagesPaginStatus(status)),
       setMessagesPage: number => dispatch(actions.setMessagesPage(number))
    };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(MessagesList);
+export default connect(
+   mapStateToProps,
+   mapDispatchToProps
+)(MessagesList);

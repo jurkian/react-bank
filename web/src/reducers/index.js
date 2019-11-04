@@ -7,7 +7,7 @@ import panel from './panel';
 import cards from './cards';
 import messages from './messages';
 import profile from './profile';
-import transactions from './transactions';
+import transfers from './transfers';
 import modal from './modal';
 
 export default history =>
@@ -19,6 +19,6 @@ export default history =>
       cards,
       messages,
       profile,
-      transactions,
+      transfers,
       modal
    });

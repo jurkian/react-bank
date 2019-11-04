@@ -31,14 +31,19 @@ class Login extends Component {
 
       // Dispatch auth action
       // There will be automatic redirect to panel, in HOC
-      this.props.auth(email, password).catch(error => this.setState({ loading: false, error }));
+      this.props
+         .login({ email, password })
+         .catch(error => this.setState({ loading: false, error }));
    };
 }
 
 const mapDispatchToProps = dispatch => {
    return {
-      auth: (email, password) => dispatch(actions.auth(email, password))
+      login: data => dispatch(actions.login(data))
    };
 };
 
-export default connect(null, mapDispatchToProps)(withAuth(Login));
+export default connect(
+   null,
+   mapDispatchToProps
+)(withAuth(Login));

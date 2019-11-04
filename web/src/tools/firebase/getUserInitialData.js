@@ -8,12 +8,12 @@ const initialData = {
    user: {},
    accounts: [],
    cards: [],
-   transactions: [],
+   transfers: [],
    messages: []
 };
 
 // Fetching data for all the sections
-// user data, accounts, cards, transactions, messages
+// user data, accounts, cards, transfers, messages
 
 // Users
 const users = email =>
@@ -49,15 +49,15 @@ const accounts = () =>
          });
       });
 
-// Transactions (we will need account IDs - in the future!)
-const transactions = () =>
+// Transfers (we will need account IDs - in the future!)
+const transfers = () =>
    db
-      .collection('transactions')
+      .collection('transfers')
       .limit(10)
       .get()
-      .then(transactions => {
-         // Get transactions
-         initialData.transactions = transactions.docs.map(doc => ({
+      .then(transfers => {
+         // Get transfers
+         initialData.transfers = transfers.docs.map(doc => ({
             ...doc.data(),
             id: doc.id
          }));
@@ -97,7 +97,7 @@ const messages = () =>
 export default email =>
    users(email)
       .then(accounts)
-      .then(transactions)
+      .then(transfers)
       .then(cards)
       .then(messages)
       .then(() => initialData);

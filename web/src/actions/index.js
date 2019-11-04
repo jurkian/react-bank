@@ -1,6 +1,6 @@
 export { fetchAccounts, fetchAccountsStatus } from './accounts';
 
-export { auth, setAuthStatus } from './auth';
+export { auth, login, register, setAuthStatus } from './auth';
 
 export { fetchCards, fetchCardsStatus, changeCardPin, changeCardLimits } from './cards';
 
@@ -9,19 +9,19 @@ export {
    fetchMessagesStatus,
    messageToggle,
    messageRemove,
-   fetchMessagesPaginationStatus,
+   fetchMessagesPaginStatus,
    setMessagesPage
 } from './messages';
 
 export { fetchProfileStatus, changeUserDetails } from './profile';
 
 export {
-   fetchTransactions,
-   fetchTransactionsStatus,
-   addTransaction,
-   fetchTransactionsPaginationStatus,
-   setTransactionsPage
-} from './transactions';
+   fetchTransfers,
+   fetchTransfersStatus,
+   addTransfer,
+   fetchTransfersPaginStatus,
+   setTransfersPage
+} from './transfers';
 
 export { showModal, closeModal } from './modal';
 

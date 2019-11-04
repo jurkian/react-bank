@@ -9,8 +9,7 @@ export function fetchMessages(page = 1, perPage = 8) {
          // Set status to false on every start, so it can be reusable
          dispatch(fetchMessagesStatus(false));
 
-         db
-            .collection('messages')
+         db.collection('messages')
             .orderBy('date')
             .get()
             .then(messages => {
@@ -36,8 +35,7 @@ export function fetchMessagesStatus(status) {
 
 export function messageToggle(id, isToggled) {
    return dispatch => {
-      db
-         .collection('messages')
+      db.collection('messages')
          .doc(id)
          .update({ isToggled })
          .then(() => dispatch({ type: actionTypes.MESSAGE_TOGGLE, id }))
@@ -47,8 +45,7 @@ export function messageToggle(id, isToggled) {
 
 export function messageRemove(id) {
    return dispatch => {
-      db
-         .collection('messages')
+      db.collection('messages')
          .doc(id)
          .delete()
          .then(() => dispatch({ type: actionTypes.MESSAGE_REMOVE, id }))
@@ -57,9 +54,9 @@ export function messageRemove(id) {
 }
 
 // Pagination
-export function fetchMessagesPaginationStatus(status) {
+export function fetchMessagesPaginStatus(status) {
    return {
-      type: actionTypes.FETCH_MESSAGES_PAGINATION_STATUS,
+      type: actionTypes.FETCH_MESSAGES_PAGIN_STATUS,
       status
    };
 }

@@ -34,12 +34,12 @@ const MainNavigation = props => {
                </NavLink>
             </li>
             <li>
-               <NavLink to="/panel/transactions">
+               <NavLink to="/panel/transfers">
                   <div className="main-nav-widget">
                      <div className="main-nav-box">
                         <i className="ion-arrow-swap" />
                      </div>
-                     <span>Transactions</span>
+                     <span>Transfers</span>
                   </div>
                </NavLink>
             </li>

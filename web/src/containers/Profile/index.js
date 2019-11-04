@@ -9,7 +9,7 @@ import ProfileLinks from 'components/Profile/Links';
 
 const Profile = props => {
    const links = [
-      { href: '/panel/transactions', text: 'Transactions', icon: 'ion-card' },
+      { href: '/panel/transfers', text: 'Transfers', icon: 'ion-card' },
       {
          href: '/panel/change-details',
          text: 'Change details',

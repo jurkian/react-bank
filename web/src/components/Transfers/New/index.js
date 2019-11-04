@@ -22,7 +22,7 @@ class NewTransaction extends Component {
                   <Form
                      userAccountsList={userAccountsList}
                      firstAccId={firstAccId}
-                     addTransaction={this.props.addTransaction}
+                     addTransfer={this.props.addTransfer}
                   />
                </section>
             </div>
@@ -39,8 +39,11 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
    return {
-      addTransaction: data => dispatch(actions.addTransaction(data))
+      addTransfer: data => dispatch(actions.addTransfer(data))
    };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(NewTransaction);
+export default connect(
+   mapStateToProps,
+   mapDispatchToProps
+)(NewTransaction);
