@@ -2,6 +2,15 @@ const mongoose = require('mongoose');
 
 const cardSchema = new mongoose.Schema(
    {
+      owner: {
+         type: mongoose.Schema.Types.ObjectId,
+         required: true,
+         ref: 'User'
+      },
+      isActive: {
+         type: Boolean,
+         default: true
+      },
       number: {
          type: Number,
          required: true
@@ -10,14 +19,13 @@ const cardSchema = new mongoose.Schema(
          type: Number,
          required: true
       },
-      isActive: {
-         type: Boolean,
-         default: true
+      expiresMonth: {
+         type: Number,
+         required: true
       },
-      owner: {
-         type: mongoose.Schema.Types.ObjectId,
-         required: true,
-         ref: 'User'
+      expiresYear: {
+         type: Number,
+         required: true
       },
       dailyOnlineLimit: {
          type: Number,

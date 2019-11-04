@@ -2,8 +2,24 @@ const mongoose = require('mongoose');
 
 const transferSchema = new mongoose.Schema(
    {
+      type: {
+         type: String,
+         required: true
+      },
+      payeeName: {
+         type: String,
+         required: true
+      },
+      date: {
+         type: Date,
+         required: true
+      },
       amount: {
          type: Number,
+         required: true
+      },
+      status: {
+         type: String,
          required: true
       },
       reference: {
@@ -18,7 +34,7 @@ const transferSchema = new mongoose.Schema(
          required: true,
          ref: 'User'
       },
-      receiver: {
+      recipient: {
          type: mongoose.Schema.Types.ObjectId,
          required: true,
          ref: 'User'

@@ -36,10 +36,12 @@ const createUser = () => {
 // Accounts
 const createAccount = user => {
    const account = new Account({
-      number: faker.finance.mask(16, false, false),
-      isActive: faker.random.boolean(),
       owner: user._id,
-      currentMoney: faker.finance.amount(1, 10000, 2)
+      isActive: faker.random.boolean(),
+      sortcode: faker.finance.mask(6, false, false),
+      number: faker.finance.mask(8, false, false),
+      currency: faker.finance.currencyCode(),
+      balance: faker.finance.amount(1, 10000, 2)
    });
 
    return account.save();
@@ -48,10 +50,12 @@ const createAccount = user => {
 // Cards
 const createCard = user => {
    const card = new Card({
+      owner: user._id,
+      isActive: faker.random.boolean(),
       number: faker.finance.mask(16, false, false),
       pin: faker.finance.mask(4, false, false),
-      isActive: faker.random.boolean(),
-      owner: user._id,
+      expiresMonth: faker.random.number({ min: 1, max: 12 }),
+      expiresYear: faker.random.number({ min: 2020, max: 2030 }),
       dailyOnlineLimit: faker.random.number({ min: 1, max: 10000 }),
       dailyWithdrawalLimit: faker.random.number({ min: 1, max: 10000 }),
       monthlyOnlineLimit: faker.random.number({ min: 1, max: 10000 }),
@@ -64,10 +68,14 @@ const createCard = user => {
 // Transfers
 const createTransfer = user => {
    const transfer = new Transfer({
+      type: faker.random.arrayElement(['normal', 'turbo']),
+      payeeName: `${faker.name.firstName()} ${faker.name.lastName()}`,
+      date: faker.date.between('2020-01-01', '2020-12-31'),
       amount: faker.finance.amount(1, 2500, 2),
-      reference: faker.lorem.word(3).substring(0, 20),
+      status: faker.random.arrayElement(['planned', 'done']),
+      reference: faker.lorem.words(3).substring(0, 20),
       sender: user._id,
-      receiver: mongoose.Types.ObjectId()
+      recipient: mongoose.Types.ObjectId()
    });
 
    return transfer.save();
@@ -76,7 +84,9 @@ const createTransfer = user => {
 // Messages
 const createMessage = user => {
    const message = new Message({
-      receiver: user._id,
+      title: faker.lorem.words(5),
+      sentDate: faker.date.between('2020-01-01', '2020-12-31'),
+      recipient: user._id,
       content: faker.lorem.paragraph(),
       isRead: faker.random.boolean()
    });

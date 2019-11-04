@@ -105,8 +105,8 @@ userSchema.pre('remove', async function(next) {
 
    await Account.deleteMany({ owner: user._id });
    await Card.deleteMany({ owner: user._id });
-   await Message.deleteMany({ sender: user._id, receiver: user._id });
-   await Transfer.deleteMany({ sender: user._id, receiver: user._id });
+   await Message.deleteMany({ sender: user._id, recipient: user._id });
+   await Transfer.deleteMany({ sender: user._id, recipient: user._id });
 
    next();
 });
