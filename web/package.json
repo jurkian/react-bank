@@ -9,6 +9,7 @@
       "date-fns": "^1.29.0",
       "formik": "^0.11.11",
       "jsonwebtoken": "^8.2.1",
+      "lodash": "^4.17.15",
       "promise": "8.0.1",
       "promise-polyfill": "^7.1.2",
       "prop-types": "^15.6.1",

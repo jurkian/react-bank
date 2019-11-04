@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import { getMyCards, changePin, changeLimits } from 'api/cards';
 import * as actionTypes from './actionTypes';
 
@@ -50,7 +51,7 @@ export const changeCardLimits = (id, newOnlineLimit, newWithdrawalLimit) => asyn
          data.dailyWithdrawalLimit = parseFloat(newWithdrawalLimit).toFixed(2);
       }
 
-      if (data.length) {
+      if (!_.isEmpty(data)) {
          const card = await changeLimits(id, data);
 
          if (!card) {

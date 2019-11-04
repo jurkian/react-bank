@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import { getMyself, updateMyself } from 'api/user';
 import * as actionTypes from './actionTypes';
 
@@ -44,7 +45,7 @@ export const changeUserDetails = (
          data.phone = phone;
       }
 
-      if (data.length) {
+      if (!_.isEmpty(data)) {
          const user = await updateMyself(data);
 
          if (!user) {
