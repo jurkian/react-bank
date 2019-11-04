@@ -8,7 +8,7 @@ const router = express.Router();
 
 // => GET /messages/my
 // Get my messages list
-router.get('/my', messagesCtrl.getMy);
+router.get('/my', messagesCtrl.getMyMessages);
 
 // => GET /messages/:id
 // Get single message

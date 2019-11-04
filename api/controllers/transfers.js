@@ -5,7 +5,7 @@ const { checkUpdatesValid, applyUpdates } = require('@util/updates');
 // App
 
 // Get all my transfers
-exports.getMy = async (req, res, next) => {};
+exports.getMyTransfers = async (req, res, next) => {};
 
 // Get single transfer
 exports.getSingle = async (req, res, next) => {};

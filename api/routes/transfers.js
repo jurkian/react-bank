@@ -8,7 +8,7 @@ const router = express.Router();
 
 // => GET /transfers/my
 // Get my transfers list
-router.get('/my', transfersCtrl.getMy);
+router.get('/my', transfersCtrl.getMyTransfers);
 
 // => GET /transfers/:id
 // Get single transfer

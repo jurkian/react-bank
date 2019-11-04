@@ -4,11 +4,8 @@ const { checkUpdatesValid, applyUpdates } = require('@util/updates');
 
 // App
 
-// Get all my cards
-exports.getMyCards = async (req, res, next) => {};
+// Get all my messages
+exports.getMyAccounts = async (req, res, next) => {};
 
-// Get single card
+// Get single message
 exports.getSingle = async (req, res, next) => {};
-
-// Update a card
-exports.update = async (req, res, next) => {};

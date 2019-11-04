@@ -2,17 +2,19 @@ const faker = require('faker');
 const chalk = require('chalk');
 const _ = require('lodash');
 
-// Models
 const mongoose = require('mongoose');
+
+// Models
+const Account = require('@models/account');
 const User = require('@models/user');
 const Card = require('@models/card');
 const Message = require('@models/message');
-const Transaction = require('@models/transaction');
+const Transfer = require('@models/transfer');
 
 // Create a user
 
 // For each user
-// Create 1-3 cards, add 1-5 messages, add 1-10 transactions with random data
+// Create 1-2 accounts, 1-3 cards, add 1-5 messages, add 1-10 transfers with random data
 
 const createUser = () => {
    const user = new User({
@@ -31,15 +33,16 @@ const createUser = () => {
    return user.save();
 };
 
-// Messages
-const createMessage = user => {
-   const message = new Message({
-      receiver: user._id,
-      content: faker.lorem.paragraph(),
-      isRead: faker.random.boolean()
+// Accounts
+const createAccount = user => {
+   const account = new Account({
+      number: faker.finance.mask(16, false, false),
+      isActive: faker.random.boolean(),
+      owner: user._id,
+      currentMoney: faker.finance.amount(1, 10000, 2)
    });
 
-   return message.save();
+   return account.save();
 };
 
 // Cards
@@ -58,16 +61,27 @@ const createCard = user => {
    return card.save();
 };
 
-// Transactions
-const createTransaction = user => {
-   const transaction = new Transaction({
+// Transfers
+const createTransfer = user => {
+   const transfer = new Transfer({
       amount: faker.finance.amount(1, 2500, 2),
       reference: faker.lorem.word(3).substring(0, 20),
       sender: user._id,
       receiver: mongoose.Types.ObjectId()
    });
 
-   return transaction.save();
+   return transfer.save();
+};
+
+// Messages
+const createMessage = user => {
+   const message = new Message({
+      receiver: user._id,
+      content: faker.lorem.paragraph(),
+      isRead: faker.random.boolean()
+   });
+
+   return message.save();
 };
 
 module.exports = async () => {
@@ -77,10 +91,10 @@ module.exports = async () => {
       _.times(5, async () => {
          let user = await createUser();
 
-         // Messages
-         _.times(_.random(1, 5, false), async () => {
+         // Accounts
+         _.times(_.random(1, 2, false), async () => {
             try {
-               await createMessage(user);
+               await createAccount(user);
             } catch (e) {
                console.log(e);
             }
@@ -95,10 +109,19 @@ module.exports = async () => {
             }
          });
 
-         // Transactions
+         // Transfers
          _.times(_.random(1, 10, false), async () => {
             try {
-               await createTransaction(user);
+               await createTransfer(user);
+            } catch (e) {
+               console.log(e);
+            }
+         });
+
+         // Messages
+         _.times(_.random(1, 5, false), async () => {
+            try {
+               await createMessage(user);
             } catch (e) {
                console.log(e);
             }

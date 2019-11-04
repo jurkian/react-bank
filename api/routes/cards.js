@@ -8,7 +8,7 @@ const router = express.Router();
 
 // => GET /cards/my
 // Get my cards list
-router.get('/my', cardsCtrl.getMy);
+router.get('/my', cardsCtrl.getMyCards);
 
 // => GET /cards/:id
 // Get single card

@@ -2,9 +2,10 @@ const bcrypt = require('bcryptjs');
 const mongoose = require('mongoose');
 
 // Models
-const Message = require('@models/message');
+const Account = require('@models/account');
 const Card = require('@models/card');
-const Transaction = require('@models/transaction');
+const Message = require('@models/message');
+const Transfer = require('@models/transfer');
 
 const userSchema = new mongoose.Schema(
    {
@@ -97,14 +98,15 @@ userSchema.pre('save', async function(next) {
 });
 
 // Experimental
-// Delete all user related cards, messages and transactions when he is removed
+// Delete all user related accounts, cards, messages and transfers when he is removed
 // It probably won't happen in a real world banking app
 userSchema.pre('remove', async function(next) {
    const user = this;
 
+   await Account.deleteMany({ owner: user._id });
    await Card.deleteMany({ owner: user._id });
    await Message.deleteMany({ sender: user._id, receiver: user._id });
-   await Transaction.deleteMany({ sender: user._id, receiver: user._id });
+   await Transfer.deleteMany({ sender: user._id, receiver: user._id });
 
    next();
 });
