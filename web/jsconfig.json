@@ -1,10 +1,17 @@
 {
-  "compilerOptions": {
-    "baseUrl": ".",
-    "paths": {
-      "*": [
-        "src/*"
-      ]
-    }
-  }
-}
+   "compilerOptions": {
+     "baseUrl": ".",
+     "paths": {
+       "*": ["src/*"],
+       "actions/*": ["./src/actions"],
+       "api/*": ["./src/api"],
+       "components/*": ["./src/components"],
+       "containers/*": ["./src/containers"],
+       "hoc/*": ["./src/hoc"],
+       "reducers/*": ["./src/reducers"],
+       "store/*": ["./src/store"],
+       "tools/*": ["./src/tools"],
+       "vendor/*": ["./src/vendor"]
+     }
+   }
+ }
