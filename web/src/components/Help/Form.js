@@ -1,8 +1,10 @@
 import React from 'react';
-import axios from 'axios';
 import { Form, Field, withFormik } from 'formik';
 import Yup from 'yup';
 import SingleModuleButton from 'components/UI/Buttons/SingleModuleButton';
+
+// API
+import { sendHelpForm } from 'api/forms';
 
 const InnerForm = props => {
    const { errors, touched } = props;
@@ -99,11 +101,7 @@ const ContactForm = withFormik({
 
       setStatus('Sending...');
 
-      // No API endpoint exists, so fake it
-      axios
-         .post('/help', {
-            data: { name, email, subject, message }
-         })
+      sendHelpForm({ name, email, subject, message })
          .then(res => res.data)
          .then(res => setStatus('Your message has been sent'))
          .catch(err => setStatus('Your message has been sent'));

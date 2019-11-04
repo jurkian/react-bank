@@ -10,6 +10,7 @@ const userRouter = require('@routes/users');
 const cardRouter = require('@routes/cards');
 const messageRouter = require('@routes/messages');
 const transferRouter = require('@routes/transfers');
+const formsRouter = require('@routes/forms');
 
 // Others
 const express = require('express');
@@ -49,6 +50,7 @@ app.use('/auth', authRouter);
 app.use(auth);
 
 // Auth routes
+app.use('/forms', formsRouter);
 app.use('/users', userRouter);
 app.use('/cards', cardRouter);
 app.use('/messages', messageRouter);
