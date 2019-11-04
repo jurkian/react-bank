@@ -6,7 +6,8 @@ require('./db/mongoose');
 
 // Routes
 const authRouter = require('@routes/auth');
-const userRouter = require('@routes/users');
+const userRouter = require('@routes/user');
+const accountsRouter = require('@routes/accounts');
 const cardRouter = require('@routes/cards');
 const messageRouter = require('@routes/messages');
 const transferRouter = require('@routes/transfers');
@@ -50,11 +51,12 @@ app.use('/auth', authRouter);
 app.use(auth);
 
 // Auth routes
-app.use('/forms', formsRouter);
-app.use('/users', userRouter);
+app.use('/user', userRouter);
+app.use('/accounts', accountsRouter);
 app.use('/cards', cardRouter);
 app.use('/messages', messageRouter);
 app.use('/transfers', transferRouter);
+app.use('/forms', formsRouter);
 
 // Handle errors only in development
 if (process.env.CURRENT_ENV === 'development') {

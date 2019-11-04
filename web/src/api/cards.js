@@ -1,7 +1,7 @@
 import { callAPI } from './base';
 
 // Get user's cards
-export const getMyCards = (params = '') => callAPI(`/cards/${params}`);
+export const getMyCards = (params = '') => callAPI(`/cards/my/${params}`);
 
 // Change card's PIN
 export const changePin = (id, data) => callAPI(`/cards/${id}`, 'put', data);
