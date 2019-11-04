@@ -1,29 +1,26 @@
-import firebase from 'tools/firebase';
+import { getMyAccounts } from 'api/accounts';
 import * as actionTypes from './actionTypes';
 
-const db = firebase.firestore();
+export const fetchAccounts = () => async dispatch => {
+   try {
+      const accounts = await getMyAccounts();
 
-export function fetchAccounts() {
-   return dispatch => {
-      db
-         .collection('accounts')
-         .get()
-         .then(accounts => {
-            // Get accounts
-            let accData = accounts.docs.map(doc => ({
-               ...doc.data(),
-               id: doc.id
-            }));
+      if (!accounts) {
+         dispatch(fetchAccountsStatus(false));
+      }
 
-            dispatch({ type: actionTypes.FETCH_ACCOUNTS, data: accData });
-         })
-         .catch(error => dispatch(fetchAccountsStatus(false)));
-   };
-}
+      dispatch({ type: actionTypes.FETCH_ACCOUNTS, data: accounts });
 
-export function fetchAccountsStatus(status) {
-   return {
-      type: actionTypes.FETCH_ACCOUNTS_STATUS,
-      status
-   };
-}
+      // let accData = accounts.docs.map(doc => ({
+      //    ...doc.data(),
+      //    id: doc.id
+      // }));
+   } catch (err) {
+      throw new Error('Accounts fetch failed');
+   }
+};
+
+export const fetchAccountsStatus = status => ({
+   type: actionTypes.FETCH_ACCOUNTS_STATUS,
+   status
+});

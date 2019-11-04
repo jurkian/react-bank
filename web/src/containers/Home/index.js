@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import firebase from 'tools/firebase';
 
 import Loader from 'components/UI/Loader';
 import Header from 'components/Home/Header';
@@ -31,18 +30,17 @@ class Home extends Component {
    }
 
    componentDidMount() {
-      const db = firebase.firestore();
-
-      db
-         .collection('users')
-         .get()
-         .then(querySnapshot => {
-            this.setState({
-               clientsCount: querySnapshot.size,
-               loaded: true
-            });
-         })
-         .catch(error => this.setState({ loaded: false }));
+      // const db = firebase.firestore();
+      // db
+      //    .collection('users')
+      //    .get()
+      //    .then(querySnapshot => {
+      //       this.setState({
+      //          clientsCount: querySnapshot.size,
+      //          loaded: true
+      //       });
+      //    })
+      //    .catch(error => this.setState({ loaded: false }));
    }
 }
 

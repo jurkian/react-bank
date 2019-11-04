@@ -1,7 +1,4 @@
-import firebase from 'tools/firebase';
 import * as actionTypes from './actionTypes';
-
-const db = firebase.firestore();
 
 export function fetchTransfers(page = 1, perPage = 8) {
    return dispatch =>
@@ -9,20 +6,20 @@ export function fetchTransfers(page = 1, perPage = 8) {
          // Set status to false on every start, so it can be reusable
          dispatch(fetchTransfersStatus(false));
 
-         db.collection('transfers')
-            .orderBy('date')
-            .get()
-            .then(transfers => {
-               // Get transfers
-               let transData = transfers.docs.map(doc => ({
-                  ...doc.data(),
-                  id: doc.id
-               }));
+         // db.collection('transfers')
+         //    .orderBy('date')
+         //    .get()
+         //    .then(transfers => {
+         //       // Get transfers
+         //       let transData = transfers.docs.map(doc => ({
+         //          ...doc.data(),
+         //          id: doc.id
+         //       }));
 
-               dispatch({ type: actionTypes.FETCH_TRANSFERS, data: transData, page });
-               resolve(transData);
-            })
-            .catch(err => reject(err));
+         //       dispatch({ type: actionTypes.FETCH_TRANSFERS, data: transData, page });
+         //       resolve(transData);
+         //    })
+         //    .catch(err => reject(err));
       });
 }
 
@@ -49,17 +46,17 @@ export function addTransfer(data) {
 
    return dispatch =>
       new Promise((resolve, reject) => {
-         db.collection('transfers')
-            .add(transData)
-            .then(newTrans => {
-               dispatch({
-                  type: actionTypes.ADD_TRANSFER,
-                  transId: newTrans.id,
-                  data: transData
-               });
-               resolve(newTrans);
-            })
-            .catch(err => reject(err));
+         // db.collection('transfers')
+         //    .add(transData)
+         //    .then(newTrans => {
+         //       dispatch({
+         //          type: actionTypes.ADD_TRANSFER,
+         //          transId: newTrans.id,
+         //          data: transData
+         //       });
+         //       resolve(newTrans);
+         //    })
+         //    .catch(err => reject(err));
       });
 }
 

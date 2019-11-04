@@ -3,8 +3,6 @@ import { Route, Switch, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from 'actions';
 
-import firebase from 'tools/firebase';
-
 import AsyncComponentLoader from 'tools/AsyncComponentLoader';
 import Layout from 'hoc/Layout';
 import Modal from 'components/UI/Modal';
@@ -36,18 +34,18 @@ const Panel = AsyncComponentLoader({
 });
 
 class App extends Component {
-   componentDidMount() {
-      // Auth state changed
-      firebase.auth().onAuthStateChanged(user => {
-         if (user) {
-            // User logged in - store status and his email
-            this.props.setAuthStatus(true, user.email);
-         } else {
-            // Not logged in - set status to false
-            this.props.setAuthStatus(false);
-         }
-      });
-   }
+   // componentDidMount() {
+   //    // Auth state changed
+   //    firebase.auth().onAuthStateChanged(user => {
+   //       if (user) {
+   //          // User logged in - store status and his email
+   //          this.props.setAuthStatus(true, user.email);
+   //       } else {
+   //          // Not logged in - set status to false
+   //          this.props.setAuthStatus(false);
+   //       }
+   //    });
+   // }
 
    render() {
       return (

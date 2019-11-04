@@ -43,7 +43,7 @@ const Help = AsyncComponentLoader({
 // This is all handled in withAuth HOC
 class Panel extends Component {
    componentDidMount() {
-      this.props.fetchInitialData(this.props.userEmail);
+      this.props.fetchInitialData();
    }
 
    render() {
@@ -73,14 +73,13 @@ class Panel extends Component {
 
 const mapStateToProps = state => {
    return {
-      initialDataStatus: state.panel.initialDataStatus,
-      userEmail: state.auth.userEmail
+      initialDataStatus: state.panel.initialDataStatus
    };
 };
 
 const mapDispatchToProps = dispatch => {
    return {
-      fetchInitialData: email => dispatch(actions.fetchInitialData(email))
+      fetchInitialData: () => dispatch(actions.fetchInitialData())
    };
 };
 
