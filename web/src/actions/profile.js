@@ -1,22 +1,62 @@
+import { getMyself, updateMyself } from 'api/user';
 import * as actionTypes from './actionTypes';
 
-export function fetchProfileStatus(status) {
-   return {
-      type: actionTypes.FETCH_PROFILE_STATUS,
-      status
-   };
-}
+// Get myself
+export const getProfile = () => async dispatch => {
+   try {
+      const data = await getMyself();
 
-export function changeUserDetails(email = null, password = null) {
-   // return dispatch =>
-   //    new Promise((resolve, reject) => {
-   //       if (email) {
-   //       }
-   //       if (password) {
-   //          user
-   //             .updatePassword(password.trim())
-   //             .then(() => resolve())
-   //             .catch(err => reject(err));
-   //       }
-   //    });
-}
+      if (!data) {
+         dispatch(fetchProfileStatus(false));
+         return;
+      }
+
+      dispatch({ type: actionTypes.FETCH_PROFILE, data });
+   } catch (err) {
+      throw new Error('Accounts fetch failed');
+   }
+};
+
+// Status
+export const fetchProfileStatus = status => ({
+   type: actionTypes.FETCH_PROFILE_STATUS,
+   status
+});
+
+// Change user's details
+export const changeUserDetails = (
+   email = null,
+   password = null,
+   phone = null
+) => async dispatch => {
+   try {
+      const data = {};
+
+      if (email) {
+         data.email = email;
+      }
+
+      if (password) {
+         data.password = password;
+      }
+
+      if (phone) {
+         data.phone = phone;
+      }
+
+      if (data.length) {
+         const user = await updateMyself(data);
+
+         if (!user) {
+            dispatch(fetchProfileStatus(false));
+            return;
+         }
+
+         dispatch({
+            type: actionTypes.USER_CHANGE_DETAILS
+         });
+      }
+   } catch (err) {
+      dispatch(fetchProfileStatus(false));
+   }
+};

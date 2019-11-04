@@ -34,8 +34,8 @@ const cards = (state = initialState, action) => {
       case actionTypes.CARD_CHANGE_LIMITS:
          modifiedCard = [...state.data].find(el => el.id === action.id);
 
-         modifiedCard.daily_withdrawal_limit = action.newWithdrawalLimit;
-         modifiedCard.daily_online_limit = action.newOnlineLimit;
+         modifiedCard.dailyWithdrawalLimit = action.data.newWithdrawalLimit;
+         modifiedCard.dailyOnlineLimit = action.data.newOnlineLimit;
 
          return {
             ...state,

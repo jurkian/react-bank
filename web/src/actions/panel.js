@@ -24,7 +24,6 @@ export const fetchInitialData = () => async dispatch => {
       dispatch(initialDataStatus(true));
    } catch (err) {
       dispatch(initialDataStatus(false));
-      throw new Error(err);
    }
 };
 

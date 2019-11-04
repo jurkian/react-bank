@@ -3,20 +3,17 @@ import * as actionTypes from './actionTypes';
 
 export const fetchAccounts = () => async dispatch => {
    try {
-      const accounts = await getMyAccounts();
+      const data = await getMyAccounts();
 
-      if (!accounts) {
+      if (!data) {
          dispatch(fetchAccountsStatus(false));
+         return;
       }
 
-      dispatch({ type: actionTypes.FETCH_ACCOUNTS, data: accounts });
-
-      // let accData = accounts.docs.map(doc => ({
-      //    ...doc.data(),
-      //    id: doc.id
-      // }));
+      dispatch({ type: actionTypes.FETCH_ACCOUNTS, data });
    } catch (err) {
-      throw new Error('Accounts fetch failed');
+      dispatch(fetchAccountsStatus(false));
+      // throw new Error('Accounts fetch failed');
    }
 };
 

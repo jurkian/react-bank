@@ -28,8 +28,8 @@ export const callAPI = (endpoint, method = 'get', data) => {
          .then(res => resolve(res.data))
          .catch(err => {
             reject({
-               status: err.response.status,
-               message: err.message
+               status: err.response.status || '',
+               message: err.message || ''
             });
          });
    });

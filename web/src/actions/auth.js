@@ -1,4 +1,4 @@
-import { loginUser } from 'api/auth';
+import { loginUser, registerUser } from 'api/auth';
 import * as actionTypes from './actionTypes';
 
 export const setAuthStatus = (status, email = null) => ({
@@ -7,19 +7,34 @@ export const setAuthStatus = (status, email = null) => ({
    email
 });
 
+// Login
 export const login = data => async dispatch => {
    try {
       const user = await loginUser(data);
 
       if (!user) {
          dispatch(setAuthStatus(false));
+         return;
       }
 
       dispatch(setAuthStatus(true));
-
-      return Promise.resolve();
    } catch (err) {
       dispatch(setAuthStatus(false));
-      return Promise.reject();
+   }
+};
+
+// Register
+export const register = data => async dispatch => {
+   try {
+      const user = await registerUser(data);
+
+      if (!user) {
+         dispatch(setAuthStatus(false));
+         return;
+      }
+
+      dispatch(setAuthStatus(true));
+   } catch (err) {
+      dispatch(setAuthStatus(false));
    }
 };

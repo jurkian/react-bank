@@ -1,71 +1,71 @@
+import { getMyMessages, toggleMessageRead, removeMessage } from 'api/messages';
 import * as actionTypes from './actionTypes';
 
-export function fetchMessages(page = 1, perPage = 8) {
-   return dispatch =>
-      new Promise((resolve, reject) => {
-         // Set status to false on every start, so it can be reusable
+// Fetch messages
+export const fetchMessages = (page = 1, perPage = 8) => async dispatch => {
+   try {
+      // Set status to false on every start, so it can be reusable
+      dispatch(fetchMessagesStatus(false));
+
+      const data = await getMyMessages();
+
+      if (!data) {
          dispatch(fetchMessagesStatus(false));
+         return;
+      }
 
-         // db.collection('messages')
-         //    .orderBy('date')
-         //    .get()
-         //    .then(messages => {
-         //       // Get messages
-         //       let messData = messages.docs.map(doc => ({
-         //          ...doc.data(),
-         //          id: doc.id
-         //       }));
+      dispatch({ type: actionTypes.FETCH_MESSAGES, data, page });
+   } catch (err) {
+      dispatch(fetchMessagesStatus(false));
+      // throw new Error('Messages fetch failed');
+   }
+};
 
-         //       dispatch({ type: actionTypes.FETCH_MESSAGES, data: messData, page });
-         //       resolve(messData);
-         //    })
-         //    .catch(err => reject(err));
-      });
-}
+export const fetchMessagesStatus = status => ({
+   type: actionTypes.FETCH_MESSAGES_STATUS,
+   status
+});
 
-export function fetchMessagesStatus(status) {
-   return {
-      type: actionTypes.FETCH_MESSAGES_STATUS,
-      status
-   };
-}
+// Toggle message read
+export const messageToggle = id => async dispatch => {
+   try {
+      const message = await toggleMessageRead(id);
 
-export function messageToggle(id, isToggled) {
-   return dispatch => {
-      // db.collection('messages')
-      //    .doc(id)
-      //    .update({ isToggled })
-      //    .then(() => dispatch({ type: actionTypes.MESSAGE_TOGGLE, id }))
-      //    .catch(error => {});
-   };
-}
+      if (!message) {
+         // dispatch(fetchMessagesStatus(false));
+         return;
+      }
 
-export function messageRemove(id) {
-   return dispatch => {
-      // db.collection('messages')
-      //    .doc(id)
-      //    .delete()
-      //    .then(() => dispatch({ type: actionTypes.MESSAGE_REMOVE, id }))
-      //    .catch(error => {});
-   };
-}
+      dispatch({ type: actionTypes.MESSAGE_TOGGLE, id });
+   } catch (err) {
+      // dispatch(fetchMessagesStatus(false));
+   }
+};
+
+// Remove message
+export const messageRemove = id => async dispatch => {
+   try {
+      const message = await removeMessage(id);
+
+      if (!message) {
+         // dispatch(fetchMessagesStatus(false));
+         return;
+      }
+
+      dispatch({ type: actionTypes.MESSAGE_REMOVE, id });
+   } catch (err) {
+      // dispatch(fetchMessagesStatus(false));
+   }
+};
 
 // Pagination
-export function fetchMessagesPaginStatus(status) {
-   return {
-      type: actionTypes.FETCH_MESSAGES_PAGIN_STATUS,
-      status
-   };
-}
+export const fetchMessagesPaginStatus = status => ({
+   type: actionTypes.FETCH_MESSAGES_PAGIN_STATUS,
+   status
+});
 
-export function setMessagesPage(pageNumber) {
-   return dispatch =>
-      new Promise((resolve, reject) => {
-         dispatch({
-            type: actionTypes.SET_MESSAGES_PAGE,
-            pageNumber
-         });
-
-         resolve();
-      });
-}
+export const setMessagesPage = pageNumber => dispatch =>
+   dispatch({
+      type: actionTypes.SET_MESSAGES_PAGE,
+      pageNumber
+   });
