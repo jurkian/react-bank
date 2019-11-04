@@ -5,7 +5,7 @@ const initialState = {
    userEmail: null
 };
 
-const reducer = (state = initialState, action) => {
+const auth = (state = initialState, action) => {
    switch (action.type) {
       case actionTypes.SET_AUTH_STATUS:
          return Object.assign({}, state, {
@@ -18,4 +18,4 @@ const reducer = (state = initialState, action) => {
    }
 };
 
-export default reducer;
+export default auth;

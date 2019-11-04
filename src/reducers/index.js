@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux';
+import { connectRouter } from 'connected-react-router';
 
 import auth from './auth';
 import accounts from './accounts';
@@ -9,15 +10,15 @@ import profile from './profile';
 import transactions from './transactions';
 import modal from './modal';
 
-const reducers = combineReducers({
-   auth,
-   accounts,
-   panel,
-   cards,
-   messages,
-   profile,
-   transactions,
-   modal
-});
-
-export default reducers;
+export default history =>
+   combineReducers({
+      router: connectRouter(history),
+      auth,
+      accounts,
+      panel,
+      cards,
+      messages,
+      profile,
+      transactions,
+      modal
+   });
