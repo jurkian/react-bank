@@ -1,3 +1,6 @@
+// Models
+const User = require('@models/user');
+
 // Utilities
 const { throwError, passError, handleValidationErrors } = require('@util/errors');
 const { checkUpdatesValid, applyUpdates } = require('@util/updates');
@@ -25,6 +28,17 @@ exports.updateMyself = async (req, res, next) => {
       await req.user.save();
 
       res.status(201).json({ message: 'User has been updated' });
+   } catch (err) {
+      passError(err, next);
+   }
+};
+
+// Get users count
+exports.getUsersCount = async (req, res, next) => {
+   try {
+      const usersCount = await User.countDocuments();
+
+      res.status(200).json({ data: usersCount });
    } catch (err) {
       passError(err, next);
    }

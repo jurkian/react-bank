@@ -14,4 +14,8 @@ router.get('/me', userCtrl.getMyself);
 // Update myself
 router.put('/me', userCtrl.updateMyself);
 
+// => GET /user/countAll
+// Get users count
+router.get('/countAll', userCtrl.getUsersCount);
+
 module.exports = router;

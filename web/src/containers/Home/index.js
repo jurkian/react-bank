@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { getUsersCount } from 'api/user';
 
 import Loader from 'components/UI/Loader';
 import Header from 'components/Home/Header';
@@ -29,18 +30,15 @@ class Home extends Component {
       }
    }
 
-   componentDidMount() {
-      // const db = firebase.firestore();
-      // db
-      //    .collection('users')
-      //    .get()
-      //    .then(querySnapshot => {
-      //       this.setState({
-      //          clientsCount: querySnapshot.size,
-      //          loaded: true
-      //       });
-      //    })
-      //    .catch(error => this.setState({ loaded: false }));
+   async componentDidMount() {
+      const usersCount = await getUsersCount();
+
+      if (usersCount) {
+         this.setState({
+            clientsCount: usersCount.data,
+            loaded: true
+         });
+      }
    }
 }
 
