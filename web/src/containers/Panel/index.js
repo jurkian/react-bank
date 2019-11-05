@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import * as actions from 'actions';
 import withAuth from 'hoc/WithAuth';
 
+import { isValidToken } from 'tools';
+
 import Loader from 'components/UI/Loader';
 import AsyncComponentLoader from 'tools/AsyncComponentLoader';
 
@@ -43,7 +45,14 @@ const Help = AsyncComponentLoader({
 // This is all handled in withAuth HOC
 class Panel extends Component {
    componentDidMount() {
-      this.props.fetchInitialData();
+      isValidToken()
+         .then(() => {
+            this.props.setAuthStatus(true);
+            this.props.fetchInitialData();
+         })
+         .catch(() => {
+            this.props.setAuthStatus(false);
+         });
    }
 
    render() {
@@ -79,6 +88,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
    return {
+      setAuthStatus: status => dispatch(actions.setAuthStatus(status)),
       fetchInitialData: () => dispatch(actions.fetchInitialData())
    };
 };

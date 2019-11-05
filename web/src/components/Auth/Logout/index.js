@@ -2,10 +2,8 @@ import { Component } from 'react';
 
 class Logout extends Component {
    componentDidMount() {
-      // firebase
-      //    .auth()
-      //    .signOut()
-      //    .then(() => this.props.history.push('/'));
+      localStorage.removeItem('token');
+      this.props.history.push('/');
    }
 
    render() {

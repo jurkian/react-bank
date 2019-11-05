@@ -40,4 +40,7 @@ const mapStateToProps = state => {
    };
 };
 
-export default compose(connect(mapStateToProps), withAuth);
+export default compose(
+   connect(mapStateToProps),
+   withAuth
+);

@@ -3,6 +3,9 @@ import { Route, Switch, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from 'actions';
 
+import { updateAPIConfig } from 'api/base';
+import { isValidToken } from 'tools';
+
 import AsyncComponentLoader from 'tools/AsyncComponentLoader';
 import Layout from 'hoc/Layout';
 import Modal from 'components/UI/Modal';
@@ -34,18 +37,16 @@ const Panel = AsyncComponentLoader({
 });
 
 class App extends Component {
-   // componentDidMount() {
-   //    // Auth state changed
-   //    firebase.auth().onAuthStateChanged(user => {
-   //       if (user) {
-   //          // User logged in - store status and his email
-   //          this.props.setAuthStatus(true, user.email);
-   //       } else {
-   //          // Not logged in - set status to false
-   //          this.props.setAuthStatus(false);
-   //       }
-   //    });
-   // }
+   componentDidMount() {
+      isValidToken()
+         .then(token => {
+            updateAPIConfig({ authToken: token });
+            this.props.setAuthStatus(true);
+         })
+         .catch(() => {
+            this.props.setAuthStatus(false);
+         });
+   }
 
    render() {
       return (
@@ -79,7 +80,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
    return {
-      setAuthStatus: (status, email) => dispatch(actions.setAuthStatus(status, email)),
+      setAuthStatus: status => dispatch(actions.setAuthStatus(status)),
       showNewsletterModal: () => dispatch(actions.showModal('newsletter')),
       closeModal: () => dispatch(actions.closeModal())
    };

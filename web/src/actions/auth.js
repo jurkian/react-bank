@@ -1,3 +1,4 @@
+import { updateAPIConfig } from 'api/base';
 import { loginUser, registerUser } from 'api/auth';
 import * as actionTypes from './actionTypes';
 
@@ -10,13 +11,15 @@ export const setAuthStatus = (status, email = null) => ({
 // Login
 export const login = data => async dispatch => {
    try {
-      const user = await loginUser(data);
+      const token = await loginUser(data);
 
-      if (!user) {
+      if (!token) {
          dispatch(setAuthStatus(false));
          return;
       }
 
+      localStorage.setItem('token', token);
+      updateAPIConfig({ authToken: token });
       dispatch(setAuthStatus(true));
    } catch (err) {
       dispatch(setAuthStatus(false));
