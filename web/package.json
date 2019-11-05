@@ -73,7 +73,7 @@
    "scripts": {
       "start": "node scripts/start.js",
       "build": "node scripts/build.js",
-      "deploy": "npm run build && firebase deploy",
+      "deploy": "npm run build",
       "test": "node scripts/test.js --env=jsdom"
    },
    "jest": {

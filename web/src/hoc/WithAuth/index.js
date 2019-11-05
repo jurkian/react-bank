@@ -3,7 +3,6 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 
 // Handle redirects for /login, /register and /panel
-// Depending on auth data loaded from Firebase
 const withAuth = WrappedComponent => {
    return class extends Component {
       componentDidMount() {
