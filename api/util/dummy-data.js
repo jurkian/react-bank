@@ -110,27 +110,28 @@ const createMessage = user => {
 // Generate data
 const generateData = user => {
    // Accounts
-   _.times(_.random(1, 2, false), async () => {
-      try {
-         await createAccount(user);
-      } catch (e) {
-         console.log(e);
-      }
-   });
-
-   // Cards
    _.times(_.random(1, 3, false), async () => {
       try {
-         await createCard(user);
-      } catch (e) {
-         console.log(e);
-      }
-   });
+         const account = await createAccount(user);
+         const accId = account._id;
 
-   // Transfers
-   _.times(_.random(1, 10, false), async () => {
-      try {
-         await createTransfer(user);
+         // Cards
+         _.times(_.random(1, 3, false), async () => {
+            try {
+               await createCard(user, accId);
+            } catch (e) {
+               console.log(e);
+            }
+         });
+
+         // Transfers
+         _.times(_.random(1, 10, false), async () => {
+            try {
+               await createTransfer(user, accId);
+            } catch (e) {
+               console.log(e);
+            }
+         });
       } catch (e) {
          console.log(e);
       }
@@ -151,11 +152,15 @@ module.exports = async () => {
 
    try {
       // Create controlled user
-      const controlledUser = await createControlledUser();
+      const doesCtrldExist = await User.countDocuments({ email: 'email@example.com' });
 
-      generateData(controlledUser);
+      if (!doesCtrldExist) {
+         const controlledUser = await createControlledUser();
 
-      // Create other 5 users
+         generateData(controlledUser);
+      }
+
+      // Create 5 other users
       _.times(5, async () => {
          let user = await createUser();
 
