@@ -2,21 +2,15 @@ import * as actionTypes from 'actions/actionTypes';
 
 const initialState = {
    data: [],
-   status: true,
-   paginStatus: false,
-   pageNumber: 1
+   status: true
 };
 
 const messages = (state = initialState, action) => {
    switch (action.type) {
       case actionTypes.FETCH_MESSAGES:
-         const messagesData = [...state.data];
-
-         messagesData[action.page - 1] = action.data;
-
          return {
             ...state,
-            data: messagesData,
+            data: [...action.data],
             status: true
          };
 
@@ -47,18 +41,6 @@ const messages = (state = initialState, action) => {
          return Object.assign({}, state, {
             data: state.data.map(messages => messages.filter(msg => msg.id !== action.id))
          });
-
-      case actionTypes.FETCH_MESSAGES_PAGIN_STATUS:
-         return {
-            ...state,
-            paginStatus: action.status
-         };
-
-      case actionTypes.SET_MESSAGES_PAGE:
-         return {
-            ...state,
-            pageNumber: action.pageNumber
-         };
 
       default:
          return state;

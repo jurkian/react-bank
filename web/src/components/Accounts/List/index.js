@@ -11,8 +11,8 @@ const AccountsList = ({ accounts, match }) => {
    return (
       <Fragment>
          <h1>Accounts</h1>
-         <p>You have {accountsList.length} accounts</p>
 
+         <p>You have {accountsList.length} accounts</p>
          <div className="list-group">{accountsList}</div>
       </Fragment>
    );

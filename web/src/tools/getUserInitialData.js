@@ -1,12 +1,10 @@
-import { getMyself } from 'api/user';
+import { getMyself } from 'api/users';
 import { getMyAccounts } from 'api/accounts';
 import { getMyCards } from 'api/cards';
 import { getMyTransfers } from 'api/transfers';
 import { getMyMessages } from 'api/messages';
 
 // Fetch data for all the sections
-// TODO: limit 10, pagination
-
 export default async () => {
    try {
       const data = {

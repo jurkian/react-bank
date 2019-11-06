@@ -1,16 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { formatFirebaseDate } from 'tools';
+import { formatDate } from 'tools';
 
-const SingleTransfer = ({ singleTrans: { type, date, payee_name, amount, status } }) => {
-   date = formatFirebaseDate(date, 'DD/MM/YYYY HH:mm');
+const SingleTransfer = ({ singleTrans: { type, date, payeeName, amount, status } }) => {
+   date = formatDate(date, 'DD/MM/YYYY HH:mm');
 
    return (
       <section className="single-transfer module">
          <h1>{type}</h1>
          <ul>
             <li>Date: {date}</li>
-            <li>Payee: {payee_name}</li>
+            <li>Payee: {payeeName}</li>
             <li>Amount: {amount}</li>
             <li>Type: {type}</li>
             <li>Status: {status}</li>

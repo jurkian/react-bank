@@ -14,29 +14,25 @@ import SingleMultiButton from 'components/UI/Buttons/SingleMultiButton';
 
 const CardInfobox = ({
    number,
-   expires_month,
-   expires_year,
+   expiresMonth,
+   expiresYear,
    balance,
-   income_7_days,
-   expenses_7_days,
+   income7Days,
+   expenses7Days,
    currentUrl
 }) => {
    return (
       <section className="infobox card-infobox module">
          <header>
             <CardLogos type="visa" />
-            <CardDetails
-               number={number}
-               expires_month={expires_month}
-               expires_year={expires_year}
-            />
+            <CardDetails number={number} expiresMonth={expiresMonth} expiresYear={expiresYear} />
          </header>
 
          <AccountName />
          <AccountSummary
             balance={balance}
-            income_7_days={income_7_days}
-            expenses_7_days={expenses_7_days}
+            income7Days={income7Days}
+            expenses7Days={expenses7Days}
          />
 
          <MultiModuleButtons>
@@ -49,11 +45,11 @@ const CardInfobox = ({
 
 CardInfobox.propTypes = {
    number: PropTypes.number,
-   expires_month: PropTypes.number,
-   expires_year: PropTypes.number,
+   expiresMonth: PropTypes.number,
+   expiresYear: PropTypes.number,
    balance: PropTypes.number,
-   income_7_days: PropTypes.number,
-   expenses_7_days: PropTypes.number,
+   income7Days: PropTypes.number,
+   expenses7Days: PropTypes.number,
    currentUrl: PropTypes.string
 };
 

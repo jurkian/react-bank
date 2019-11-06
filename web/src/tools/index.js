@@ -17,13 +17,7 @@ export function chunker(el, step, string) {
 }
 
 // Format date from Firebase (in seconds)
-export function formatFirebaseDate(date, dateFormat) {
-   if (date.seconds) {
-      date = date.seconds * 1000;
-   }
-
-   return format(parse(date), dateFormat);
-}
+export const formatDate = (date, dateFormat) => format(parse(date), dateFormat);
 
 // Token checker
 export const isValidToken = () => {

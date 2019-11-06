@@ -18,9 +18,9 @@ export const fetchInitialData = () => async dispatch => {
 
       dispatch({ type: actionTypes.FETCH_PROFILE, data: data.user });
       dispatch({ type: actionTypes.FETCH_ACCOUNTS, data: data.accounts });
-      dispatch({ type: actionTypes.FETCH_TRANSFERS, data: data.transfers, page: 1 });
+      dispatch({ type: actionTypes.FETCH_TRANSFERS, data: data.transfers });
       dispatch({ type: actionTypes.FETCH_CARDS, data: data.cards });
-      dispatch({ type: actionTypes.FETCH_MESSAGES, data: data.messages, page: 1 });
+      dispatch({ type: actionTypes.FETCH_MESSAGES, data: data.messages });
       dispatch(initialDataStatus(true));
    } catch (err) {
       dispatch(initialDataStatus(false));

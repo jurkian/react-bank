@@ -4,7 +4,7 @@ import { myPadStart, chunker } from 'tools';
 
 import './style.scss';
 
-const CardDetails = ({ number, expires_month, expires_year }) => {
+const CardDetails = ({ number, expiresMonth, expiresYear }) => {
    return (
       <section className="card-details">
          <div className="card-details-row">
@@ -22,7 +22,7 @@ const CardDetails = ({ number, expires_month, expires_year }) => {
             <div>
                <span>Expiration date</span>
                <p>
-                  {myPadStart(expires_month, 2, 0)} / {expires_year}
+                  {myPadStart(expiresMonth, 2, 0)} / {expiresYear}
                </p>
             </div>
          </div>
@@ -32,8 +32,8 @@ const CardDetails = ({ number, expires_month, expires_year }) => {
 
 CardDetails.propTypes = {
    number: PropTypes.number,
-   expires_month: PropTypes.number,
-   expires_year: PropTypes.number
+   expiresMonth: PropTypes.number,
+   expiresYear: PropTypes.number
 };
 
 export default CardDetails;

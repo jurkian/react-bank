@@ -1,7 +1,7 @@
 import { getMyTransfers, createTransfer } from 'api/transfers';
 import * as actionTypes from './actionTypes';
 
-export const fetchTransfers = (page = 1, perPage = 8) => async dispatch => {
+export const fetchTransfers = () => async dispatch => {
    try {
       // Set status to false on every start, so it can be reusable
       dispatch(fetchTransfersStatus(false));
@@ -13,7 +13,7 @@ export const fetchTransfers = (page = 1, perPage = 8) => async dispatch => {
          return;
       }
 
-      dispatch({ type: actionTypes.FETCH_TRANSFERS, data, page });
+      dispatch({ type: actionTypes.FETCH_TRANSFERS, data });
    } catch (err) {
       dispatch(fetchTransfersStatus(false));
    }
@@ -50,17 +50,4 @@ export const addTransfer = data => async dispatch => {
    } catch (err) {
       dispatch(fetchTransfersStatus(false));
    }
-};
-
-// Pagination
-export const fetchTransfersPaginStatus = status => ({
-   type: actionTypes.FETCH_TRANSFERS_PAGIN_STATUS,
-   status
-});
-
-export const setTransfersPage = pageNumber => dispatch => {
-   dispatch({
-      type: actionTypes.SET_TRANSFERS_PAGE,
-      pageNumber
-   });
 };

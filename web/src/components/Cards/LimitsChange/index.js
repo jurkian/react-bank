@@ -30,8 +30,8 @@ const mapStateToProps = (state, ownProps) => {
 
    return {
       singleCard,
-      currentOnlineLimit: singleCard.daily_online_limit,
-      currentWithdrawalLimit: singleCard.daily_withdrawal_limit
+      currentOnlineLimit: singleCard.dailyOnlineLimit,
+      currentWithdrawalLimit: singleCard.dailyWithdrawalLimit
    };
 };
 
@@ -44,4 +44,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
    };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(LimitsChange);
+export default connect(
+   mapStateToProps,
+   mapDispatchToProps
+)(LimitsChange);

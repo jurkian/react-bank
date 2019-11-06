@@ -19,7 +19,6 @@
       "react-dom": "^16.11.0",
       "react-loadable": "^5.4.0",
       "react-loading": "^1.0.4",
-      "react-paginate": "^5.2.2",
       "react-redux": "^7.1.1",
       "react-router-dom": "^5.1.2",
       "recharts": "^1.0.0-beta.10",

@@ -34,7 +34,7 @@ const PanelHome = ({ user }) => {
       <div className="row panel-content">
          <div className="col-md-12">
             <h1>
-               Welcome {user.first_name} {user.last_name}
+               Welcome {user.firstName} {user.lastName}
             </h1>
          </div>
 

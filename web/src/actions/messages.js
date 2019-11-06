@@ -2,7 +2,7 @@ import { getMyMessages, toggleMessageRead, removeMessage } from 'api/messages';
 import * as actionTypes from './actionTypes';
 
 // Fetch messages
-export const fetchMessages = (page = 1, perPage = 8) => async dispatch => {
+export const fetchMessages = () => async dispatch => {
    try {
       // Set status to false on every start, so it can be reusable
       dispatch(fetchMessagesStatus(false));
@@ -14,7 +14,7 @@ export const fetchMessages = (page = 1, perPage = 8) => async dispatch => {
          return;
       }
 
-      dispatch({ type: actionTypes.FETCH_MESSAGES, data, page });
+      dispatch({ type: actionTypes.FETCH_MESSAGES, data });
    } catch (err) {
       dispatch(fetchMessagesStatus(false));
       // throw new Error('Messages fetch failed');
@@ -57,15 +57,3 @@ export const messageRemove = id => async dispatch => {
       // dispatch(fetchMessagesStatus(false));
    }
 };
-
-// Pagination
-export const fetchMessagesPaginStatus = status => ({
-   type: actionTypes.FETCH_MESSAGES_PAGIN_STATUS,
-   status
-});
-
-export const setMessagesPage = pageNumber => dispatch =>
-   dispatch({
-      type: actionTypes.SET_MESSAGES_PAGE,
-      pageNumber
-   });

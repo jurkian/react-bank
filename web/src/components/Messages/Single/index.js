@@ -1,14 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { formatFirebaseDate } from 'tools';
+import { formatDate } from 'tools';
 
-const SingleMessage = ({ singleMessage: { id, title, date, content } }) => {
-   date = formatFirebaseDate(date, 'DD/MM/YYYY HH:mm');
+const SingleMessage = ({ singleMessage: { id, title, sentDate, content } }) => {
+   sentDate = formatDate(sentDate, 'DD/MM/YYYY HH:mm');
 
    return (
       <section className="single-message module">
          <h1>{title}</h1>
-         <p>Date: {date}</p>
+         <p>Date: {sentDate}</p>
 
          <hr />
 

@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import { getMyself, updateMyself } from 'api/user';
+import { getMyself, updateMyself } from 'api/users';
 import * as actionTypes from './actionTypes';
 
 // Get myself

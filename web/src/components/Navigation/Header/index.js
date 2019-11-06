@@ -10,7 +10,7 @@ const NavigationHeader = props => {
             <Link to="/panel/profile">
                <img src="https://placehold.it/60x60" alt="User profile" />
                <span>
-                  {props.user.first_name} {props.user.last_name}
+                  {props.user.firstName} {props.user.lastName}
                </span>
             </Link>
          </div>

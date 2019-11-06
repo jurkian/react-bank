@@ -9,11 +9,11 @@ const AccountSummary = props => {
          <section className="account-summary-boxes">
             <div>
                <span>Income</span>
-               <strong>&pound; {props.income_7_days}</strong>
+               <strong>&pound; {props.income7Days}</strong>
             </div>
             <div>
                <span>Expenses</span>
-               <strong>&pound; {props.expenses_7_days}</strong>
+               <strong>&pound; {props.expenses7Days}</strong>
             </div>
          </section>
 
@@ -26,8 +26,8 @@ const AccountSummary = props => {
 };
 
 AccountSummary.propTypes = {
-   income_7_days: PropTypes.number,
-   expenses_7_days: PropTypes.number,
+   income7Days: PropTypes.number,
+   expenses7Days: PropTypes.number,
    balance: PropTypes.number
 };
 
