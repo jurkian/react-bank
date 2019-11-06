@@ -5,7 +5,7 @@ import { formatDate } from 'tools';
 import './style.scss';
 
 const ProfileHeader = props => {
-   const { firstName, lastName, streetAdds, postcode, city, email } = props.profile;
+   const { firstName, lastName, streetAddr, postcode, city, email } = props.profile;
    let createdAt = props.profile.createdAt;
 
    createdAt = formatDate(createdAt, 'DD/MM/YYYY HH:mm');
@@ -17,7 +17,7 @@ const ProfileHeader = props => {
                {firstName} {lastName}
             </h3>
             <p>
-               {streetAdds}, {postcode} {city}
+               {streetAddr}, {postcode} {city}
             </p>
             <p>
                <strong>Email: </strong> {email}

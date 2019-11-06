@@ -26,7 +26,7 @@ const messages = (state = initialState, action) => {
          return Object.assign({}, state, {
             data: state.data.map(messagesPage => {
                // Find a place where message should be toggled
-               foundMsgIndex = messagesPage.findIndex(msg => msg.id === action.id);
+               foundMsgIndex = messagesPage.findIndex(msg => msg._id === action._id);
 
                // Change the toggle
                if (foundMsgIndex >= 0) {
@@ -39,7 +39,7 @@ const messages = (state = initialState, action) => {
 
       case actionTypes.MESSAGE_REMOVE:
          return Object.assign({}, state, {
-            data: state.data.map(messages => messages.filter(msg => msg.id !== action.id))
+            data: state.data.map(messages => messages.filter(msg => msg._id !== action._id))
          });
 
       default:

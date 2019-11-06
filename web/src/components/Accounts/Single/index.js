@@ -22,7 +22,7 @@ const mapStateToProps = (state, ownProps) => {
    const accId = ownProps.match.params.accId;
 
    return {
-      singleAcc: state.accounts.data.find(el => el.id === accId)
+      singleAcc: state.accounts.data.find(el => el._id === accId)
    };
 };
 

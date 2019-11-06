@@ -8,14 +8,17 @@ import './style.scss';
 
 class MessagesListEl extends Component {
    render() {
-      const { matchUrl, id, title, isToggled } = this.props;
+      const { matchUrl, _id, title, isToggled } = this.props;
       const classes = classNames({
          disabled: isToggled
       });
       let date = formatDate(this.props.sentDate, 'DD/MM/YYYY HH:mm');
 
       return (
-         <Link to={`${matchUrl}/${id}`} className={`list-group-item messages-list-item ${classes}`}>
+         <Link
+            to={`${matchUrl}/${_id}`}
+            className={`list-group-item messages-list-item ${classes}`}
+         >
             <div>
                <h4 className="list-group-item-heading">{title}</h4>
                <p className="list-group-item-text">date: {date}</p>
@@ -34,18 +37,18 @@ class MessagesListEl extends Component {
 
    onCheckboxClick = e => {
       e.preventDefault();
-      this.props.onToggle(this.props.id, !this.props.isToggled);
+      this.props.onToggle(this.props._id, !this.props.isToggled);
    };
 
    onButtonClick = e => {
       e.preventDefault();
-      this.props.onRemove(this.props.id);
+      this.props.onRemove(this.props._id);
    };
 }
 
 MessagesListEl.propTypes = {
    matchUrl: PropTypes.string,
-   id: PropTypes.string,
+   _id: PropTypes.string,
    title: PropTypes.string,
    date: PropTypes.object
 };

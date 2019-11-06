@@ -24,7 +24,7 @@ class MessagesList extends Component {
          .filter(message => message.title.toLowerCase().includes(searchText))
          .map(message => (
             <MessagesListEl
-               key={message.id}
+               key={message._id}
                {...message}
                matchUrl={this.props.match.url}
                onToggle={this.props.messageToggle}
@@ -36,7 +36,7 @@ class MessagesList extends Component {
          <Fragment>
             <h1>Messages</h1>
 
-            <p>There are {this.props.messagesCount} messages in your box</p>
+            <p>There are {this.props.messages.length} messages in your box</p>
 
             <div className="form-group">
                <input
@@ -55,8 +55,7 @@ class MessagesList extends Component {
 
 const mapStateToProps = state => {
    return {
-      messages: state.messages.data, // first part of messages data
-      messagesCount: 20 // FAKE IT: better API needed
+      messages: state.messages.data
    };
 };
 

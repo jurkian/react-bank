@@ -2,6 +2,10 @@ const mongoose = require('mongoose');
 
 const accountSchema = new mongoose.Schema(
    {
+      type: {
+         type: String,
+         required: true
+      },
       owner: {
          type: mongoose.Schema.Types.ObjectId,
          required: true,

@@ -80,7 +80,6 @@ userSchema.methods.getBasic = function() {
 
    delete userObject._id;
    delete userObject.password;
-   delete userObject.createdAt;
    delete userObject.updatedAt;
 
    return userObject;

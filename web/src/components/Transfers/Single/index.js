@@ -21,21 +21,9 @@ const SingleTransfer = ({ singleTrans: { type, date, payeeName, amount, status }
 
 const mapStateToProps = (state, ownProps) => {
    const transId = ownProps.match.params.transId;
-   let tempFoundTrans;
-   let foundTrans;
-
-   // Find the transaction among the pages (remember about pagination!)
-   for (const pageTransfers of state.transfers.data) {
-      tempFoundTrans = pageTransfers.find(trans => trans.id === transId);
-
-      if (tempFoundTrans) {
-         foundTrans = tempFoundTrans;
-         break;
-      }
-   }
 
    return {
-      singleTrans: foundTrans
+      singleTrans: state.transfers.data.find(el => el._id === transId)
    };
 };
 

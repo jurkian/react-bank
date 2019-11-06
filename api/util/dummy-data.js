@@ -36,6 +36,7 @@ const createUser = () => {
 // Accounts
 const createAccount = user => {
    const account = new Account({
+      type: faker.random.arrayElement(['basic', 'premium']),
       owner: user._id,
       isActive: faker.random.boolean(),
       sortcode: faker.finance.mask(6, false, false),

@@ -27,14 +27,14 @@ class TransfersList extends Component {
                trans.reference.toLowerCase().includes(searchText)
          )
          .map(trans => (
-            <TransfersListEl key={trans.id} {...trans} matchUrl={this.props.match.url} />
+            <TransfersListEl key={trans._id} {...trans} matchUrl={this.props.match.url} />
          ));
 
       return (
          <div>
             <h1>Transfers</h1>
 
-            <p>There are {this.props.transfersCount} transfers right now!</p>
+            <p>There are {this.props.transfers.length} transfers right now!</p>
             <p>
                <Link to={`${this.props.match.url}/new`} className="btn btn-primary">
                   New transfer

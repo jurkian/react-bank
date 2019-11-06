@@ -23,7 +23,7 @@ const cards = (state = initialState, action) => {
          };
 
       case actionTypes.CARD_CHANGE_PIN:
-         modifiedCard = [...state.data].find(el => el.id === action.id);
+         modifiedCard = [...state.data].find(el => el._id === action._id);
          modifiedCard.pin = action.newPin;
 
          return {
@@ -32,7 +32,7 @@ const cards = (state = initialState, action) => {
          };
 
       case actionTypes.CARD_CHANGE_LIMITS:
-         modifiedCard = [...state.data].find(el => el.id === action.id);
+         modifiedCard = [...state.data].find(el => el._id === action._id);
 
          modifiedCard.dailyWithdrawalLimit = action.data.newWithdrawalLimit;
          modifiedCard.dailyOnlineLimit = action.data.newOnlineLimit;

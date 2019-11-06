@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { formatDate } from 'tools';
 
-const SingleMessage = ({ singleMessage: { id, title, sentDate, content } }) => {
+const SingleMessage = ({ singleMessage: { title, sentDate, content } }) => {
    sentDate = formatDate(sentDate, 'DD/MM/YYYY HH:mm');
 
    return (
@@ -19,21 +19,9 @@ const SingleMessage = ({ singleMessage: { id, title, sentDate, content } }) => {
 
 const mapStateToProps = (state, ownProps) => {
    const messageId = ownProps.match.params.messageId;
-   let tempFoundMessage;
-   let foundMessage;
-
-   // Find the message among the pages (remember about pagination!)
-   for (const pageMessages of state.messages.data) {
-      tempFoundMessage = pageMessages.find(message => message.id === messageId);
-
-      if (tempFoundMessage) {
-         foundMessage = tempFoundMessage;
-         break;
-      }
-   }
 
    return {
-      singleMessage: foundMessage
+      singleMessage: state.messages.data.find(el => el._id === messageId)
    };
 };
 

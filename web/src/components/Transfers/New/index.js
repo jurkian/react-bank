@@ -6,9 +6,9 @@ import Form from './Form';
 class NewTransaction extends Component {
    render() {
       const accounts = this.props.accounts;
-      const firstAccId = accounts[0].id;
+      const firstAccId = accounts[0]._id;
       const userAccountsList = accounts.map(acc => (
-         <option key={acc.id} value={acc.id}>
+         <option key={acc._id} value={acc._id}>
             {`${acc.type}, ${acc.sortcode}, ${acc.balance} ${acc.currency}`}
          </option>
       ));
