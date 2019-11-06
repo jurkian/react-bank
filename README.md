@@ -3,6 +3,7 @@
 Banking app built in React and Redux.
 
 Demo user (automatically created when you start the app):
+
 Login: email@example.com<br />
 Password: admin123
 
@@ -47,7 +48,7 @@ API:
 
 ## How to use it?
 
-1. Install [MongoDB](https://www.mongodb.com/) and [Node.js](https://nodejs.org/) ([MongoDB Compass](https://www.mongodb.com/products/compass) may be useful as well, to work on the database)
+1. Install [Node.js](https://nodejs.org/) and [MongoDB](https://www.mongodb.com/) ([MongoDB Compass](https://www.mongodb.com/products/compass) may be useful as well, to work on the database)
 2. Create database called `react-bank-api` or use any other name, but then update it in the `api/.env` config file
 3. Install all dependencies both in `web` and `api` folder by typing `npm install` inside each of them
 4. Run API: type `npm run start-dev` in `api` folder
