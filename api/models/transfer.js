@@ -29,6 +29,11 @@ const transferSchema = new mongoose.Schema(
          minlength: 2,
          maxlength: 20
       },
+      sourceAccountId: {
+         type: mongoose.Schema.Types.ObjectId,
+         required: true,
+         ref: 'Account'
+      },
       sender: {
          type: mongoose.Schema.Types.ObjectId,
          required: true,

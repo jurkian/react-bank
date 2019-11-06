@@ -61,9 +61,10 @@ const createAccount = user => {
 };
 
 // Cards
-const createCard = user => {
+const createCard = (user, accountId) => {
    const card = new Card({
       owner: user._id,
+      accountId,
       isActive: faker.random.boolean(),
       number: faker.finance.mask(16, false, false),
       pin: faker.finance.mask(4, false, false),
@@ -79,7 +80,7 @@ const createCard = user => {
 };
 
 // Transfers
-const createTransfer = user => {
+const createTransfer = (user, sourceAccountId) => {
    const transfer = new Transfer({
       type: faker.random.arrayElement(['normal', 'turbo']),
       payeeName: `${faker.name.firstName()} ${faker.name.lastName()}`,
@@ -87,6 +88,7 @@ const createTransfer = user => {
       amount: faker.finance.amount(1, 2500, 2),
       status: faker.random.arrayElement(['planned', 'done']),
       reference: faker.lorem.words(3).substring(0, 20),
+      sourceAccountId,
       sender: user._id,
       recipient: mongoose.Types.ObjectId()
    });

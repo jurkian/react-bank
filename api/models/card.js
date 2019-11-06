@@ -7,6 +7,11 @@ const cardSchema = new mongoose.Schema(
          required: true,
          ref: 'User'
       },
+      accountId: {
+         type: mongoose.Schema.Types.ObjectId,
+         required: true,
+         ref: 'Account'
+      },
       isActive: {
          type: Boolean,
          default: true
