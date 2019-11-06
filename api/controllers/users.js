@@ -32,14 +32,3 @@ exports.updateMyself = async (req, res, next) => {
       passError(err, next);
    }
 };
-
-// Get users count
-exports.getUsersCount = async (req, res, next) => {
-   try {
-      const usersCount = await User.countDocuments();
-
-      res.status(200).json({ data: usersCount });
-   } catch (err) {
-      passError(err, next);
-   }
-};

@@ -6,6 +6,7 @@ require('./db/mongoose');
 
 // Routes
 const authRouter = require('@routes/auth');
+const commonRouter = require('@routes/common');
 const usersRouter = require('@routes/users');
 const accountsRouter = require('@routes/accounts');
 const cardRouter = require('@routes/cards');
@@ -45,8 +46,9 @@ app.use(cors());
 // app.use(maintenance());
 
 // Routes
-// No auth routes
+// No auth required routes
 app.use('/auth', authRouter);
+app.use('/common', commonRouter);
 
 // Verify JWT and add user data to next requests
 app.use(auth);
