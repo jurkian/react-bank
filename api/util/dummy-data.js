@@ -16,18 +16,29 @@ const Transfer = require('@models/transfer');
 // For each user
 // Create 1-2 accounts, 1-3 cards, add 1-5 messages, add 1-10 transfers with random data
 
+const defaultUserData = {
+   email: faker.internet.email(),
+   password: 'admin123',
+   firstName: faker.name.firstName(),
+   lastName: faker.name.lastName(),
+   dateOfBirth: faker.date.between('1960-01-01', '2000-12-31'),
+   phone: faker.phone.phoneNumberFormat(1),
+   picture: faker.internet.avatar(),
+   streetAddr: faker.address.streetAddress(),
+   postcode: faker.address.zipCode(),
+   city: faker.address.city()
+};
+
 const createUser = () => {
+   const user = new User({ ...defaultUserData });
+
+   return user.save();
+};
+
+const createControlledUser = () => {
    const user = new User({
-      email: faker.internet.email(),
-      password: 'admin123',
-      firstName: faker.name.firstName(),
-      lastName: faker.name.lastName(),
-      dateOfBirth: faker.date.between('1960-01-01', '2000-12-31'),
-      phone: faker.phone.phoneNumberFormat(1),
-      picture: faker.internet.avatar(),
-      streetAddr: faker.address.streetAddress(),
-      postcode: faker.address.zipCode(),
-      city: faker.address.city()
+      ...defaultUserData,
+      email: 'email@example.com'
    });
 
    return user.save();
@@ -95,48 +106,60 @@ const createMessage = user => {
    return message.save();
 };
 
+
+// Generate data
+const generateData = user => {
+   // Accounts
+   _.times(_.random(1, 2, false), async () => {
+      try {
+         await createAccount(user);
+      } catch (e) {
+         console.log(e);
+      }
+   });
+
+   // Cards
+   _.times(_.random(1, 3, false), async () => {
+      try {
+         await createCard(user);
+      } catch (e) {
+         console.log(e);
+      }
+   });
+
+   // Transfers
+   _.times(_.random(1, 10, false), async () => {
+      try {
+         await createTransfer(user);
+      } catch (e) {
+         console.log(e);
+      }
+   });
+
+   // Messages
+   _.times(_.random(1, 5, false), async () => {
+      try {
+         await createMessage(user);
+      } catch (e) {
+         console.log(e);
+      }
+   });
+};
+
 module.exports = async () => {
    console.log('Creating dummy data', chalk.green('✓'));
 
    try {
+      // Create controlled user
+      const controlledUser = await createControlledUser();
+
+      generateData(controlledUser);
+
+      // Create other 5 users
       _.times(5, async () => {
          let user = await createUser();
 
-         // Accounts
-         _.times(_.random(1, 2, false), async () => {
-            try {
-               await createAccount(user);
-            } catch (e) {
-               console.log(e);
-            }
-         });
-
-         // Cards
-         _.times(_.random(1, 3, false), async () => {
-            try {
-               await createCard(user);
-            } catch (e) {
-               console.log(e);
-            }
-         });
-
-         // Transfers
-         _.times(_.random(1, 10, false), async () => {
-            try {
-               await createTransfer(user);
-            } catch (e) {
-               console.log(e);
-            }
-         });
-
-         // Messages
-         _.times(_.random(1, 5, false), async () => {
-            try {
-               await createMessage(user);
-            } catch (e) {
-               console.log(e);
-            }
-         });
+         generateData(user);
       });
 
       return true;
