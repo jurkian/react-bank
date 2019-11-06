@@ -14,8 +14,12 @@ router.get('/my', cardsCtrl.getMyCards);
 // Get single card
 router.get('/:id', cardsCtrl.getSingle);
 
-// => PUT /cards/:id
-// Update card details
-router.put('/:id', cardsCtrl.update);
+// => PUT /cards/:id/change-pin
+// Change PIN
+router.put('/:id/change-pin', cardsCtrl.changePin);
+
+// => PUT /cards/:id/change-limits
+// Change limits
+router.put('/:id/change-limits', cardsCtrl.changeLimits);
 
 module.exports = router;
