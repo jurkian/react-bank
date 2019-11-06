@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {
    AreaChart,
-   linearGradient,
    XAxis,
    YAxis,
    CartesianGrid,

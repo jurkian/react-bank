@@ -12,6 +12,7 @@ const cardRouter = require('@routes/cards');
 const messageRouter = require('@routes/messages');
 const transferRouter = require('@routes/transfers');
 const formsRouter = require('@routes/forms');
+const statsRouter = require('@routes/stats');
 
 // Others
 const express = require('express');
@@ -57,6 +58,7 @@ app.use('/cards', cardRouter);
 app.use('/messages', messageRouter);
 app.use('/transfers', transferRouter);
 app.use('/forms', formsRouter);
+app.use('/stats', statsRouter);
 
 // Handle errors only in development
 if (process.env.CURRENT_ENV === 'development') {

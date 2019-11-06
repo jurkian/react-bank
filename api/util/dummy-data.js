@@ -10,6 +10,7 @@ const User = require('@models/user');
 const Card = require('@models/card');
 const Message = require('@models/message');
 const Transfer = require('@models/transfer');
+const Stat = require('@models/stat');
 
 // Create a user
 
@@ -106,6 +107,19 @@ const createMessage = user => {
    return message.save();
 };
 
+// Statistics
+const createStats = accountId => {
+   const stats = new Stat({
+      accountId,
+      name: faker.date.recent(_.random(1, 60, false)),
+      // Date is NOW or 1-60 days before
+      date: faker.date.recent(_.random(1, 60, false)),
+      income: faker.finance.amount(100, 5000, 2),
+      expenses: faker.finance.amount(100, 5000, 2)
+   });
+
+   return stats.save();
+};
 
 // Generate data
 const generateData = user => {
@@ -128,6 +142,15 @@ const generateData = user => {
          _.times(_.random(1, 10, false), async () => {
             try {
                await createTransfer(user, accId);
+            } catch (e) {
+               console.log(e);
+            }
+         });
+
+         // Stats
+         _.times(_.random(1, 10, false), async () => {
+            try {
+               await createStats(accId);
             } catch (e) {
                console.log(e);
             }
