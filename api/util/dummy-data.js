@@ -126,13 +126,13 @@ const createStats = accountId => {
 // Generate data
 const generateData = user => {
    // Accounts
-   _.times(_.random(1, 3, false), async () => {
+   _.times(_.random(2, 3, false), async () => {
       try {
          const account = await createAccount(user);
          const accId = account._id;
 
          // Cards
-         _.times(_.random(1, 3, false), async () => {
+         _.times(_.random(2, 4, false), async () => {
             try {
                await createCard(user, accId);
             } catch (e) {
@@ -141,7 +141,7 @@ const generateData = user => {
          });
 
          // Transfers
-         _.times(_.random(1, 10, false), async () => {
+         _.times(_.random(6, 10, false), async () => {
             try {
                await createTransfer(user, accId);
             } catch (e) {
@@ -150,7 +150,7 @@ const generateData = user => {
          });
 
          // Stats
-         _.times(_.random(1, 10, false), async () => {
+         _.times(_.random(8, 12, false), async () => {
             try {
                await createStats(accId);
             } catch (e) {
@@ -163,7 +163,7 @@ const generateData = user => {
    });
 
    // Messages
-   _.times(_.random(1, 5, false), async () => {
+   _.times(_.random(3, 5, false), async () => {
       try {
          await createMessage(user);
       } catch (e) {
