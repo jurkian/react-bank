@@ -77,7 +77,7 @@ class CurrencyStats extends Component {
       }
 
       axios
-         .get('https://api.fixer.io/latest', { params: apiParams })
+         .get('https://api.exchangeratesapi.io/latest', { params: apiParams })
          .then(res => res.data)
          .then(currencyData => {
             this.setState({ currencyData, loaded: true });
