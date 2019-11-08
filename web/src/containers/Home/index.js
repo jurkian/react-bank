@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { getUsersCount } from 'api/users';
+import { getUsersCount } from 'api/common';
 
 import Loader from 'components/UI/Loader';
 import Header from 'components/Home/Header';
