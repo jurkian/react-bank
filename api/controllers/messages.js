@@ -40,15 +40,23 @@ exports.getSingle = async (req, res, next) => {
 // Toggle message read
 exports.toggleRead = async (req, res, next) => {
    try {
-      const message = await Message.findByIdAndUpdate(req.params.id, req.body);
+      const message = await Message.findOne({ _id: req.params.id });
 
       if (!message) {
+         throwError('Message not found', 422);
+      }
+
+      message.isRead = !message.isRead;
+
+      const toggled = await message.save();
+
+      if (!toggled) {
          throwError('Message status not toggled', 422);
       }
 
       res.status(200).json({ status: 'Message status toggled' });
-   } catch (e) {
-      res.status(500).send();
+   } catch (err) {
+      passError(err, next);
    }
 };
 
@@ -62,7 +70,7 @@ exports.remove = async (req, res, next) => {
       }
 
       res.status(200).json({ status: 'Message removed' });
-   } catch (e) {
-      res.status(500).send();
+   } catch (err) {
+      passError(err, next);
    }
 };

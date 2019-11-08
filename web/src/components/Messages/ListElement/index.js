@@ -8,9 +8,9 @@ import './style.scss';
 
 class MessagesListEl extends Component {
    render() {
-      const { matchUrl, _id, title, isToggled } = this.props;
+      const { matchUrl, _id, title, isRead } = this.props;
       const classes = classNames({
-         disabled: isToggled
+         disabled: isRead
       });
       let date = formatDate(this.props.sentDate, 'DD/MM/YYYY HH:mm');
 
@@ -25,7 +25,7 @@ class MessagesListEl extends Component {
             </div>
             <aside>
                <div className="checkbox-container" onClick={this.onCheckboxClick}>
-                  <input type="checkbox" checked={isToggled} onChange={e => e.stopPropagation()} />
+                  <input type="checkbox" checked={isRead} onChange={e => e.stopPropagation()} />
                </div>
                <button className="btn btn-danger btn-sm" onClick={this.onButtonClick}>
                   Remove
@@ -37,7 +37,7 @@ class MessagesListEl extends Component {
 
    onCheckboxClick = e => {
       e.preventDefault();
-      this.props.onToggle(this.props._id, !this.props.isToggled);
+      this.props.onToggle(this.props._id);
    };
 
    onButtonClick = e => {

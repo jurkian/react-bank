@@ -6,6 +6,8 @@ const initialState = {
 };
 
 const messages = (state = initialState, action) => {
+   let data;
+
    switch (action.type) {
       case actionTypes.FETCH_MESSAGES:
          return {
@@ -21,26 +23,23 @@ const messages = (state = initialState, action) => {
          };
 
       case actionTypes.MESSAGE_TOGGLE:
-         let foundMsgIndex;
+         data = state.data;
+         const foundMsg = data.find(msg => msg._id === action.id);
 
-         return Object.assign({}, state, {
-            data: state.data.map(messagesPage => {
-               // Find a place where message should be toggled
-               foundMsgIndex = messagesPage.findIndex(msg => msg._id === action._id);
+         foundMsg.isRead = !foundMsg.isRead;
 
-               // Change the toggle
-               if (foundMsgIndex >= 0) {
-                  messagesPage[foundMsgIndex].isToggled = !messagesPage[foundMsgIndex].isToggled;
-               }
-
-               return messagesPage;
-            })
-         });
+         return {
+            ...state,
+            data: [...data]
+         };
 
       case actionTypes.MESSAGE_REMOVE:
-         return Object.assign({}, state, {
-            data: state.data.map(messages => messages.filter(msg => msg._id !== action._id))
-         });
+         data = state.data.filter(msg => msg._id !== action.id);
+
+         return {
+            ...state,
+            data: [...data]
+         };
 
       default:
          return state;

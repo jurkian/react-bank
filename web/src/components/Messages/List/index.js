@@ -61,7 +61,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
    return {
-      messageToggle: (id, isToggled) => dispatch(actions.messageToggle(id, isToggled)),
+      messageToggle: id => dispatch(actions.messageToggle(id)),
       messageRemove: id => dispatch(actions.messageRemove(id))
    };
 };
