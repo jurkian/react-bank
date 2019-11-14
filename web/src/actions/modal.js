@@ -1,14 +1,10 @@
 import * as actionTypes from './actionTypes';
 
-export function showModal(modalType) {
-   return {
-      type: actionTypes.SHOW_MODAL,
-      modalType
-   };
-}
+export const showModal = modalType => ({
+   type: actionTypes.SHOW_MODAL,
+   modalType
+});
 
-export function closeModal() {
-   return {
-      type: actionTypes.CLOSE_MODAL
-   };
-}
+export const closeModal = () => ({
+   type: actionTypes.CLOSE_MODAL
+});
