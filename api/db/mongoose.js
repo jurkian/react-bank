@@ -1,5 +1,8 @@
 const CONFIG = require('@config/config');
-const mongoose = require('mongoose');
+const mongoose = require('mongoose').set(
+   'debug',
+   CONFIG.current_env === 'development' ? true : false
+);
 const chalk = require('chalk');
 
 mongoose.connect(`${CONFIG.mongodb_uri}`, {
