@@ -20,11 +20,23 @@ export function chunker(el, step, string) {
 export const formatDate = (date, dateFormat) => format(parse(date), dateFormat);
 
 // Token checker
+export const getAuthToken = () => {
+   return localStorage.getItem('token');
+};
+
+export const setAuthToken = token => {
+   localStorage.setItem('token', token);
+};
+
+export const removeAuthToken = () => {
+   localStorage.removeItem('token');
+};
+
 export const isValidToken = () => {
    return new Promise((resolve, reject) => {
       // Check if token is present
       const currentTime = Date.now().valueOf() / 1000;
-      const token = localStorage.getItem('token');
+      const token = getAuthToken();
 
       if (!token) {
          reject();
@@ -33,9 +45,9 @@ export const isValidToken = () => {
 
       const decodedToken = jwtDecode(token);
 
+      // If token expired - remove it
       if (decodedToken.exp < currentTime) {
-         // Token expired = remove it
-         localStorage.removeItem('token');
+         removeAuthToken();
 
          reject();
          return;
