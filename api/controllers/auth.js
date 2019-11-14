@@ -9,6 +9,7 @@ const User = require('@models/user');
 
 // Utilities
 const { throwError, passError, handleValidationErrors } = require('@util/errors');
+const { sendEmail } = require('@util/notifications/send-email');
 
 // App
 
@@ -25,10 +26,10 @@ exports.register = async (req, res, next) => {
       }
 
       // Send welcome email
-      // sendNotification('email', 'welcome', {
-      //    to: user.email,
-      //    firstName: user.firstName
-      // });
+      sendEmail('welcome', {
+         to: user.email,
+         firstName: user.firstName
+      });
 
       res.status(201).json({ message: 'User has been created' });
    } catch (err) {
@@ -68,7 +69,7 @@ exports.login = async (req, res, next) => {
 exports.remindPassword = async (req, res, next) => {
    try {
       const { email } = req.body;
-      let token = await crypto.randomBytes(16).toString('hex');
+      let resetToken = await crypto.randomBytes(16).toString('hex');
       let user = await User.findOne({ email });
 
       if (!user) {
@@ -78,15 +79,17 @@ exports.remindPassword = async (req, res, next) => {
       let expireTime = new Date();
 
       expireTime.setDate(expireTime.getDate() + 7);
-      user.resetToken = token;
+      user.resetToken = resetToken;
       user.resetTokenExpiration = expireTime;
 
       await user.save();
 
       // Send pass remind notification
-      // sendNotification('email', 'password-remind', {
-      //    to: user.email
-      // });
+      sendEmail('password-remind', {
+         to: user.email,
+         firstName: user.firstName,
+         resetToken
+      });
 
       res.status(200).json({ status: 'Verification link sent' });
    } catch (err) {
@@ -116,10 +119,10 @@ exports.resetPassword = async (req, res, next) => {
       await user.save();
 
       // Send pass reset notification
-      // sendNotification('email', 'password-reset', {
-      //    to: user.email,
-      //    firstName: user.firstName
-      // });
+      sendEmail('password-reset', {
+         to: user.email,
+         firstName: user.firstName
+      });
 
       res.status(200).json({ status: 'New password has been set' });
    } catch (err) {
