@@ -29,5 +29,8 @@ module.exports.passError = (err, next) => {
    }
 
    console.log(err);
-   next(err);
+
+   if (next) {
+      next(err);
+   }
 };

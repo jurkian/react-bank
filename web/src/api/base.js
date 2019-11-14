@@ -28,7 +28,7 @@ export const callAPI = (endpoint, method = 'get', data) => {
          .then(res => resolve(res.data))
          .catch(err => {
             reject({
-               status: err.response.status || '',
+               status: (err.response && err.response.status) || '',
                message: err.message || ''
             });
          });
