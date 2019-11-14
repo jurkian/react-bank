@@ -132,7 +132,7 @@ const generateData = user => {
          const accId = account._id;
 
          // Cards
-         _.times(_.random(2, 4, false), async () => {
+         _.times(_.random(1, 2, false), async () => {
             try {
                await createCard(user, accId);
             } catch (e) {
