@@ -31,7 +31,7 @@ class Register extends Component {
 
 const mapDispatchToProps = dispatch => {
    return {
-      auth: (email, password) => dispatch(actions.auth(email, password))
+      register: (email, password) => dispatch(actions.register(email, password))
    };
 };
 

@@ -1,6 +1,6 @@
 export { fetchAccounts, fetchAccountsStatus } from './accounts';
 
-export { auth, login, register, setAuthStatus } from './auth';
+export { login, register, setAuthStatus } from './auth';
 
 export { fetchCards, fetchCardsStatus, changeCardPin, changeCardLimits } from './cards';
 
