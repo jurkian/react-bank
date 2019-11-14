@@ -16,9 +16,9 @@ const CardInfobox = ({
    number,
    expiresMonth,
    expiresYear,
-   balance,
-   income7Days,
-   expenses7Days,
+   // balance,
+   // income7Days,
+   // expenses7Days,
    currentUrl
 }) => {
    return (
@@ -29,11 +29,7 @@ const CardInfobox = ({
          </header>
 
          <AccountName />
-         <AccountSummary
-            balance={balance}
-            income7Days={income7Days}
-            expenses7Days={expenses7Days}
-         />
+         <AccountSummary balance={2000} income7Days={3500} expenses7Days={1500} />
 
          <MultiModuleButtons>
             <SingleMultiButton text="Change PIN" href={`${currentUrl}/change-pin`} />

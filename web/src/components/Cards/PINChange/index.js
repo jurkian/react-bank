@@ -32,8 +32,11 @@ const mapDispatchToProps = (dispatch, ownProps) => {
    const cardId = ownProps.match.params.cardId;
 
    return {
-      changeCardPin: pin => dispatch(actions.changeCardPin(cardId, pin))
+      changeCardPin: pin => dispatch(actions.changeCardPin(cardId, { pin }))
    };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(PINChange);
+export default connect(
+   mapStateToProps,
+   mapDispatchToProps
+)(PINChange);

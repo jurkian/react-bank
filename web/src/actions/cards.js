@@ -14,7 +14,7 @@ export const fetchCards = () => async dispatch => {
 
       dispatch({ type: actionTypes.FETCH_CARDS, data });
    } catch (err) {
-      throw new Error('Accounts fetch failed');
+      dispatch(fetchCardsStatus(false));
    }
 };
 
@@ -29,42 +29,38 @@ export const changeCardPin = (id, newPin) => async dispatch => {
       const card = await changePin(id, newPin);
 
       if (!card) {
-         // dispatch(fetchCardsStatus(false));
+         return;
       }
 
       dispatch({ type: actionTypes.CARD_CHANGE_PIN, id, newPin });
-   } catch (err) {
-      // dispatch(fetchCardsStatus(false));
-   }
+   } catch (err) {}
 };
 
 // Change card's limits
 export const changeCardLimits = (id, newOnlineLimit, newWithdrawalLimit) => async dispatch => {
    try {
-      const data = { id };
+      const limits = {};
 
       if (newOnlineLimit) {
-         data.dailyOnlineLimit = parseFloat(newOnlineLimit).toFixed(2);
+         limits.dailyOnlineLimit = parseFloat(newOnlineLimit).toFixed(2);
       }
 
       if (newWithdrawalLimit) {
-         data.dailyWithdrawalLimit = parseFloat(newWithdrawalLimit).toFixed(2);
+         limits.dailyWithdrawalLimit = parseFloat(newWithdrawalLimit).toFixed(2);
       }
 
-      if (!_.isEmpty(data)) {
-         const card = await changeLimits(id, data);
+      if (!_.isEmpty(limits)) {
+         const card = await changeLimits(id, { ...limits });
 
          if (!card) {
-            // dispatch(fetchCardsStatus(false));
+            return;
          }
 
          dispatch({
             type: actionTypes.CARD_CHANGE_LIMITS,
-            data
+            id,
+            ...limits
          });
       }
-   } catch (err) {
-      dispatch(fetchCardsStatus(false));
-      // throw new Error("Card's pin change failed");
-   }
+   } catch (err) {}
 };

@@ -6,7 +6,8 @@ const initialState = {
 };
 
 const cards = (state = initialState, action) => {
-   let modifiedCard;
+   let data;
+   let foundCard;
 
    switch (action.type) {
       case actionTypes.FETCH_CARDS:
@@ -23,23 +24,34 @@ const cards = (state = initialState, action) => {
          };
 
       case actionTypes.CARD_CHANGE_PIN:
-         modifiedCard = [...state.data].find(el => el._id === action._id);
-         modifiedCard.pin = action.newPin;
+         data = state.data;
+         foundCard = data.find(card => card._id === action.id);
+
+         foundCard.pin = action.newPin;
 
          return {
             ...state,
-            data: [...state.data, modifiedCard]
+            data: [...data]
          };
 
       case actionTypes.CARD_CHANGE_LIMITS:
-         modifiedCard = [...state.data].find(el => el._id === action._id);
+         data = state.data;
+         foundCard = data.find(card => card._id === action.id);
 
-         modifiedCard.dailyWithdrawalLimit = action.data.newWithdrawalLimit;
-         modifiedCard.dailyOnlineLimit = action.data.newOnlineLimit;
+         const newOnlineLimit = action.dailyOnlineLimit;
+         const newWithdrawalLimit = action.dailyWithdrawalLimit;
+
+         if (newOnlineLimit) {
+            foundCard.dailyOnlineLimit = parseFloat(newOnlineLimit).toFixed(2);
+         }
+
+         if (newWithdrawalLimit) {
+            foundCard.dailyWithdrawalLimit = parseFloat(newWithdrawalLimit).toFixed(2);
+         }
 
          return {
             ...state,
-            data: [...state.data, modifiedCard]
+            data: [...data]
          };
 
       default:
