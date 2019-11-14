@@ -12,7 +12,7 @@ exports.getMyTransfers = async (req, res, next) => {
    try {
       let transfers = await Transfer.find({
          $or: [{ sender: req.user._id }, { recipient: req.user._id }]
-      });
+      }).lean();
 
       if (!transfers) {
          throwError('No transfers found', 422);
@@ -30,7 +30,7 @@ exports.getSingle = async (req, res, next) => {
       let transfer = await Transfer.findOne({
          _id: req.params.id,
          $or: [{ sender: req.user._id }, { recipient: req.user._id }]
-      });
+      }).lean();
 
       if (!transfer) {
          throwError('No transfer found', 422);

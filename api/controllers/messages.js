@@ -10,7 +10,7 @@ const { checkUpdatesValid, applyUpdates } = require('@util/updates');
 // Get all my messages
 exports.getMyMessages = async (req, res, next) => {
    try {
-      let messages = await Message.find({ recipient: req.user._id });
+      let messages = await Message.find({ recipient: req.user._id }).lean();
 
       if (!messages) {
          throwError('No messages found', 422);
@@ -25,7 +25,7 @@ exports.getMyMessages = async (req, res, next) => {
 // Get single message
 exports.getSingle = async (req, res, next) => {
    try {
-      let message = await Message.findOne({ _id: req.params.id, recipient: req.user._id });
+      let message = await Message.findOne({ _id: req.params.id, recipient: req.user._id }).lean();
 
       if (!message) {
          throwError('No message found', 422);
@@ -40,10 +40,10 @@ exports.getSingle = async (req, res, next) => {
 // Toggle message read
 exports.toggleRead = async (req, res, next) => {
    try {
-      const message = await Message.findOne({ _id: req.params.id });
+      const message = await Message.findOne({ _id: req.params.id, recipient: req.user._id });
 
       if (!message) {
-         throwError('Message not found', 422);
+         throwError("Message not found or it doesn't belong to you", 422);
       }
 
       message.isRead = !message.isRead;
@@ -63,9 +63,15 @@ exports.toggleRead = async (req, res, next) => {
 // Remove message
 exports.remove = async (req, res, next) => {
    try {
-      const message = await Message.findByIdAndDelete(req.params.id);
+      const message = await Message.findOne({ _id: req.params.id, recipient: req.user._id });
 
       if (!message) {
+         throwError("Message not found or it doesn't belong to you", 422);
+      }
+
+      const removed = await message.remove();
+
+      if (!removed) {
          throwError('Message not removed', 422);
       }
 

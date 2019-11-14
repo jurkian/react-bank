@@ -41,7 +41,7 @@ exports.register = async (req, res, next) => {
 exports.login = async (req, res, next) => {
    try {
       const { email, password } = req.body;
-      let user = await User.findOne({ email });
+      let user = await User.findOne({ email }).lean();
 
       if (!user) {
          throwError('A user with this email could not be found', 422);
@@ -53,8 +53,8 @@ exports.login = async (req, res, next) => {
          throwError('Wrong password!', 401);
       }
 
-      const { id } = user;
-      const token = jwt.sign({ id, email }, CONFIG.jwt_secret_key, {
+      const { _id } = user;
+      const token = jwt.sign({ id: _id, email }, CONFIG.jwt_secret_key, {
          expiresIn: CONFIG.jwt_expiration
       });
 

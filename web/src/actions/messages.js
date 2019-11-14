@@ -17,7 +17,6 @@ export const fetchMessages = () => async dispatch => {
       dispatch({ type: actionTypes.FETCH_MESSAGES, data });
    } catch (err) {
       dispatch(fetchMessagesStatus(false));
-      // throw new Error('Messages fetch failed');
    }
 };
 
@@ -32,14 +31,11 @@ export const messageToggle = id => async dispatch => {
       const message = await toggleMessageRead(id);
 
       if (!message) {
-         // dispatch(fetchMessagesStatus(false));
          return;
       }
 
       dispatch({ type: actionTypes.MESSAGE_TOGGLE, id });
-   } catch (err) {
-      // dispatch(fetchMessagesStatus(false));
-   }
+   } catch (err) {}
 };
 
 // Remove message
@@ -48,12 +44,9 @@ export const messageRemove = id => async dispatch => {
       const message = await removeMessage(id);
 
       if (!message) {
-         // dispatch(fetchMessagesStatus(false));
          return;
       }
 
       dispatch({ type: actionTypes.MESSAGE_REMOVE, id });
-   } catch (err) {
-      // dispatch(fetchMessagesStatus(false));
-   }
+   } catch (err) {}
 };

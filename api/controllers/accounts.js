@@ -10,10 +10,10 @@ const { checkUpdatesValid, applyUpdates } = require('@util/updates');
 // Get all my accounts
 exports.getMyAccounts = async (req, res, next) => {
    try {
-      let accounts = await Account.find({ owner: req.user._id });
+      let accounts = await Account.find({ owner: req.user._id }).lean();
 
       if (!accounts) {
-         throwError('No events found', 422);
+         throwError('No accounts found', 422);
       }
 
       res.status(200).json(accounts);
@@ -25,7 +25,7 @@ exports.getMyAccounts = async (req, res, next) => {
 // Get single account
 exports.getSingle = async (req, res, next) => {
    try {
-      let account = await Accounts.findOne({ _id: req.params.id, owner: req.user._id });
+      let account = await Accounts.findOne({ _id: req.params.id, owner: req.user._id }).lean();
 
       if (!account) {
          throwError('No account found', 422);
