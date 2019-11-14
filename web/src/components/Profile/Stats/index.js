@@ -1,19 +1,19 @@
 import React from 'react';
 import './style.scss';
 
-const ProfileStats = () => {
+const ProfileStats = ({ stats }) => {
    return (
       <section className="profile-stats">
          <div className="stats-green">
-            <strong>2</strong>
+            <strong>{stats.accsDetails.count}</strong>
             <span>Accounts</span>
          </div>
          <div className="stats-blue">
-            <strong>288.37</strong>
+            <strong>{stats.accsDetails.balance}</strong>
             <span>Balance</span>
          </div>
          <div className="stats-red">
-            <strong>7</strong>
+            <strong>{stats.messagesCount}</strong>
             <span>Messages</span>
          </div>
       </section>

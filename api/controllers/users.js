@@ -10,7 +10,8 @@ const { checkUpdatesValid, applyUpdates } = require('@util/updates');
 // Get myself
 exports.getMyself = async (req, res, next) => {
    try {
-      res.status(200).json(req.user.getBasic());
+      const user = await req.user.getBasic();
+      res.status(200).json(user);
    } catch (err) {
       passError(err, next);
    }

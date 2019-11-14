@@ -7,6 +7,9 @@ const Card = require('@models/card');
 const Message = require('@models/message');
 const Transfer = require('@models/transfer');
 
+// Tools
+const { throwError, passError, handleValidationErrors } = require('@util/errors');
+
 const userSchema = new mongoose.Schema(
    {
       email: {
@@ -74,17 +77,6 @@ const userSchema = new mongoose.Schema(
    }
 );
 
-// Get basic user's fields, delete sensitive fields
-userSchema.methods.getBasic = function() {
-   const userObject = this.toObject();
-
-   delete userObject._id;
-   delete userObject.password;
-   delete userObject.updatedAt;
-
-   return userObject;
-};
-
 // Hash the plain text password before saving
 userSchema.pre('save', async function(next) {
    const user = this;
@@ -109,6 +101,60 @@ userSchema.pre('remove', async function(next) {
 
    next();
 });
+
+// Get basic user's fields, delete sensitive fields
+userSchema.methods.getBasic = async function() {
+   const userObj = this.toObject();
+
+   delete userObj._id;
+   delete userObj.password;
+   delete userObj.updatedAt;
+
+   // Add stats like accounts and messages details
+   try {
+      const accsDetails = await this.getAccsDetails();
+      const messagesCount = await this.getMessagesCount();
+
+      userObj.stats = {
+         accsDetails,
+         messagesCount
+      };
+
+      return userObj;
+   } catch (err) {
+      passError(err);
+   }
+};
+
+// Get accounts' count and balance
+userSchema.methods.getAccsDetails = async function() {
+   const userObj = this.toObject();
+
+   try {
+      const accsDetails = await Account.find({ owner: userObj._id });
+      const balance = accsDetails.map(acc => acc.balance).reduce((a, b) => a + b);
+
+      return {
+         balance,
+         count: accsDetails.length
+      };
+   } catch (err) {
+      passError(err);
+   }
+};
+
+// Get messages' count
+userSchema.methods.getMessagesCount = async function() {
+   const userObj = this.toObject();
+
+   try {
+      const messagesCount = await Message.countDocuments({ recipient: userObj._id });
+
+      return messagesCount;
+   } catch (err) {
+      passError(err);
+   }
+};
 
 const User = mongoose.model('User', userSchema);
 

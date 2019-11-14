@@ -6,9 +6,7 @@ import './style.scss';
 
 const ProfileHeader = props => {
    const { firstName, lastName, streetAddr, postcode, city, email } = props.profile;
-   let createdAt = props.profile.createdAt;
-
-   createdAt = formatDate(createdAt, 'DD/MM/YYYY HH:mm');
+   let createdAt = formatDate(props.profile.createdAt, 'DD/MM/YYYY HH:mm');
 
    return (
       <header className="profile-header">
