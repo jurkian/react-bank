@@ -10,7 +10,8 @@ const TransfersListEl = ({ matchUrl, _id, type, payeeName, date, amount, status,
       <Link to={`${matchUrl}/${_id}`} className="list-group-item">
          <h4 className="list-group-item-heading">{type}</h4>
          <p className="list-group-item-text">
-            Payee: {payeeName}, date: {date}, amount: {amount}, status: {status}, ref: {reference}
+            <b>Payee:</b> {payeeName} / <b>date:</b> {date} / <b>amount:</b> {amount} /{' '}
+            <b>status:</b> {status} / <b>ref:</b> {reference}
          </p>
       </Link>
    );
@@ -21,7 +22,7 @@ TransfersListEl.propTypes = {
    _id: PropTypes.string,
    type: PropTypes.string,
    payeeName: PropTypes.string,
-   date: PropTypes.object,
+   date: PropTypes.string,
    amount: PropTypes.number,
    status: PropTypes.string
 };

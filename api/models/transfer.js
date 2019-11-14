@@ -40,9 +40,10 @@ const transferSchema = new mongoose.Schema(
          ref: 'User'
       },
       recipient: {
-         type: mongoose.Schema.Types.ObjectId,
-         required: true,
-         ref: 'User'
+         type: String,
+         required: true
+         // type: mongoose.Schema.Types.ObjectId,
+         // ref: 'User'
       }
    },
    {

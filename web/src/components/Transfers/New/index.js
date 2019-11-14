@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import * as actions from 'actions';
 import Form from './Form';
 
-class NewTransaction extends Component {
+class NewTransfer extends Component {
    render() {
       const accounts = this.props.accounts;
       const firstAccId = accounts[0]._id;
@@ -20,6 +20,7 @@ class NewTransaction extends Component {
                   <h1>New transfer</h1>
 
                   <Form
+                     userId={this.props.userId}
                      userAccountsList={userAccountsList}
                      firstAccId={firstAccId}
                      addTransfer={this.props.addTransfer}
@@ -33,7 +34,8 @@ class NewTransaction extends Component {
 
 const mapStateToProps = state => {
    return {
-      accounts: state.accounts.data
+      accounts: state.accounts.data,
+      userId: state.profile.data._id
    };
 };
 
@@ -43,7 +45,4 @@ const mapDispatchToProps = dispatch => {
    };
 };
 
-export default connect(
-   mapStateToProps,
-   mapDispatchToProps
-)(NewTransaction);
+export default connect(mapStateToProps, mapDispatchToProps)(NewTransfer);

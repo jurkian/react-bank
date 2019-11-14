@@ -11,18 +11,18 @@ const InnerForm = props => {
          <div>
             <div className="form-group">
                <label htmlFor="source-account">Choose your account</label>
-
                <Field
                   component="select"
                   className="form-control"
                   id="source-account"
-                  name="sourceAcc"
+                  name="sourceAccountId"
                   placeholder="Your new email..."
                >
                   {props.userAccountsList}
                </Field>
-
-               {touched.sourceAcc && errors.sourceAcc && <p>{errors.sourceAcc}</p>}
+               {touched.sourceAccountId && errors.sourceAccountId && (
+                  <p>{errors.sourceAccountId}</p>
+               )}
             </div>
 
             <div className="form-group">
@@ -116,10 +116,10 @@ const InnerForm = props => {
 };
 
 // Wrap our form with the using withFormik HoC
-const NewTransactionForm = withFormik({
+const NewTransferForm = withFormik({
    // Transform outer props into form values
    mapPropsToValues: props => ({
-      sourceAcc: props.firstAccId,
+      sourceAccountId: props.firstAccId,
       payeeAccNumber: '',
       payeeSortcode: '',
       payeeName: '',
@@ -132,13 +132,20 @@ const NewTransactionForm = withFormik({
 
    // Submission handler
    handleSubmit: (values, { props, setStatus }) => {
+      // Prepare some data for API
+      const data = {
+         ...values,
+         sender: props.userId,
+         recipient: props.userId
+      };
+
       setStatus('Sending...');
 
       props
-         .addTransfer(values)
+         .addTransfer(data)
          .then(data => setStatus('Transfer done!'))
          .catch(error => setStatus('Problems, try again...'));
    }
 })(InnerForm);
 
-export default NewTransactionForm;
+export default NewTransferForm;

@@ -1,8 +1,10 @@
 import Yup from 'yup';
 import 'tools/validations/YupCustomValidations';
 
-// New transaction validations
+// New transfer validations
 export default Yup.object().shape({
+   sourceAccountId: Yup.string().required('Please select the account'),
+
    payeeAccNumber: Yup.number()
       .required('Please enter the account number')
       .typeError('Account must be a number')

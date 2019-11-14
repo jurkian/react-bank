@@ -106,7 +106,6 @@ userSchema.pre('remove', async function(next) {
 userSchema.methods.getBasic = async function() {
    const userObj = this.toObject();
 
-   delete userObj._id;
    delete userObj.password;
    delete userObj.updatedAt;
 

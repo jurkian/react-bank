@@ -43,4 +43,18 @@ exports.getSingle = async (req, res, next) => {
 };
 
 // Create a new transfer
-exports.create = async (req, res, next) => {};
+exports.create = async (req, res, next) => {
+   const transfer = new Transfer(req.body);
+
+   try {
+      await transfer.save();
+
+      if (!transfer) {
+         throwError('Problems sending a transfer', 422);
+      }
+
+      res.status(201).json({ message: 'Transfer sent' });
+   } catch (err) {
+      passError(err, next);
+   }
+};

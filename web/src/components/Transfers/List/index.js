@@ -13,12 +13,12 @@ class TransfersList extends Component {
       };
    }
 
-   findTransaction = () => {
+   findTransfer = () => {
       this.setState({ search: this.refs.search.value });
    };
 
    render() {
-      // Allow filtering by payee's name or transaction reference
+      // Allow filtering by payee's name or transfer reference
       const searchText = this.state.search.toLowerCase();
       const transfersList = this.props.transfers
          .filter(
@@ -45,7 +45,7 @@ class TransfersList extends Component {
                <input
                   className="form-control"
                   placeholder="Search for (payee/reference)..."
-                  onChange={this.findTransaction}
+                  onChange={this.findTransfer}
                   ref="search"
                />
             </div>
