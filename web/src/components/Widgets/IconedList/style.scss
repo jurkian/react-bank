@@ -1,5 +1,4 @@
-@import 'components/App/variables';
-@import 'components/App/mixins';
+@import 'scss/all-utilities';
 
 .iconed-list {
    max-width: 36.5rem;
@@ -54,7 +53,7 @@
 }
 
 // 360px
-@media (min-width: 22.5em) {
+@media (min-width: 360px) {
    .iconed-list {
       li {
          background: url('list-icon-image.svg') 3rem no-repeat;

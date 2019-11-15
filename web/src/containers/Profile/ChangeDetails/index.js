@@ -8,7 +8,7 @@ import Form from './Form';
 const ProfileChangeDetails = props => {
    return (
       <div className="row panel-content">
-         <div className="col-xs-12">
+         <div className="col">
             <SmallFormBox>
                <Form changeUserDetails={props.changeUserDetails} userEmail={props.userEmail} />
             </SmallFormBox>

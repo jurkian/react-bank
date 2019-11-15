@@ -7,7 +7,7 @@ import NewTransfer from 'components/Transfers/New';
 
 const Transfers = props => (
    <div className="row panel-content">
-      <div className="col-xs-12">
+      <div className="col">
          <Switch>
             <Route exact path="/panel/transfers" component={TransfersList} />
             <Route path="/panel/transfers/new" component={NewTransfer} />

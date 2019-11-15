@@ -6,9 +6,6 @@ import { Provider } from 'react-redux';
 import App from 'components/App';
 import * as serviceWorker from './serviceWorker';
 
-// Styles
-import 'vendor/custom-bootstrap.scss';
-
 // Store
 import configureStore, { history } from 'store';
 import { ConnectedRouter } from 'connected-react-router';

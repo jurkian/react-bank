@@ -10,7 +10,7 @@ class Navigation extends Component {
    render() {
       return (
          <div className="row">
-            <div className="col-xs-12">
+            <div className="col">
                <section className="module navigation">
                   <NavigationHeader toggleMobileNav={this.toggleMobileNav} user={this.props.user} />
                   <MainNavigation isMobileNavVisible={this.state.isMobileNavVisible} />

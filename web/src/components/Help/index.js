@@ -3,7 +3,7 @@ import ContactForm from './Form';
 
 const Help = () => (
    <div className="row panel-content">
-      <div className="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+      <div className="col-sm-8 offset-sm-2 col-md-6 offset-md-3">
          <section className="module help">
             <h1>Do you need help?</h1>
 

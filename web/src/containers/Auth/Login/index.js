@@ -14,7 +14,7 @@ class Login extends Component {
    render() {
       return (
          <div className="row">
-            <div className="col-xs-12">
+            <div className="col">
                <LoginBox
                   history={this.props.history}
                   onLoginSubmit={this.onLoginSubmit}

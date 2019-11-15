@@ -1,4 +1,4 @@
-@import 'components/App/variables';
+@import 'scss/all-utilities';
 
 .currency-settings-form {
    display: flex;
@@ -21,7 +21,7 @@
 }
 
 // 550px
-@media (min-width: 34.375em) {
+@media (min-width: 550px) {
    .currency-settings-form {
       flex-direction: row;
    

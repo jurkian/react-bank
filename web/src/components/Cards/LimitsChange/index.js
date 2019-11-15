@@ -6,7 +6,7 @@ import Form from './Form';
 
 const LimitsChange = props => {
    return (
-      <div className="col-sm-6 col-sm-offset-3">
+      <div className="col-sm-6 offset-sm-3">
          <section className="module limits-change">
             <h1>Limits change</h1>
             <p>

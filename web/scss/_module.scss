@@ -1,4 +1,4 @@
-@import 'variables';
+@import 'scss/all-utilities';
 
 // A typical widget module
 .module {
@@ -21,7 +21,7 @@
    }
 }
 
-@media (min-width: $screen-md-min) {
+@include media-breakpoint-up(md) {
    .module {
       > * {
          margin-left: 2.5rem;

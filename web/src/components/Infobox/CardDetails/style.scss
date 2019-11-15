@@ -1,4 +1,4 @@
-@import 'components/App/variables';
+@import 'scss/all-utilities';
 
 // Card details
 
@@ -46,7 +46,7 @@
 }
 
 // 360px
-@media (min-width: 22.5em) {
+@media (min-width: 360px) {
    .card-details-row:first-child {
       margin-bottom: 4rem;
    }

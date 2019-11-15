@@ -11,7 +11,8 @@
          "reducers/*": ["./src/reducers"],
          "store/*": ["./src/store"],
          "tools/*": ["./src/tools"],
-         "vendor/*": ["./src/vendor"]
+         "vendor/*": ["./src/vendor"],
+         "scss/*": ["./src/scss"]
       }
    },
    "include": ["src"]

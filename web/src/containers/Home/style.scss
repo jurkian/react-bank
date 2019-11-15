@@ -1,10 +1,10 @@
-@import 'components/App/variables';
+@import 'scss/all-utilities';
 
 .home {
    max-width: 50rem;
 }
 
-@media (min-width: $screen-md-min) {
+@include media-breakpoint-up(md) {
    .home {
       max-width: 90rem;
    }

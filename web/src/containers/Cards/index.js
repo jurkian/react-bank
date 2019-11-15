@@ -8,7 +8,7 @@ import LimitsChange from 'components/Cards/LimitsChange';
 
 const Cards = ({ match }) => (
    <div className="row panel-content">
-      <div className="col-xs-12">
+      <div className="col">
          <Switch>
             <Route exact path={match.url} component={CardsList} />
             <Route exact path={`${match.url}/:cardId`} component={SingleCard} />

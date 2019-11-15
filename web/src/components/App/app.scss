@@ -1,12 +1,11 @@
-@import 'variables';
+@import 'scss/vendor';
+@import 'scss/site';
+
+@import 'scss/all-utilities';
 
 .app {
    padding-top: 1.5rem;
    padding-bottom: 1.5rem;
-}
-
-html, body {
-   min-height: 100%;
 }
 
 // Panel content
@@ -19,13 +18,10 @@ html, body {
 }
 
 // 576px, small devices
-@media (min-width: 36em) {
+@include media-breakpoint-up(sm) {
    .panel-content {
       margin-top: 2rem;
    }
 }
 
-@import "module";
-@import "forms";
-@import "pagination";
 @import "components/UI/Buttons/style";

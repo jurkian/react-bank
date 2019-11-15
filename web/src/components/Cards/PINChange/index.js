@@ -6,7 +6,7 @@ import Form from './Form';
 
 const PINChange = props => {
    return (
-      <div className="col-sm-6 col-sm-offset-3">
+      <div className="col-sm-6 offset-sm-3">
          <section className="module pin-change">
             <h1>PIN change</h1>
             <p>

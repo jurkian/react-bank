@@ -5,7 +5,7 @@ import CardInfobox from 'components/Infobox/CardInfobox';
 const SingleCard = ({ singleCard, match }) => {
    return (
       <div className="row">
-         <div className="col-xs-12">
+         <div className="col">
             <CardInfobox {...singleCard} currentUrl={match.url} />
          </div>
       </div>

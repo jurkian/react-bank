@@ -1,4 +1,4 @@
-@import 'components/App/variables';
+@import 'scss/all-utilities';
 
 .home-features {
    display: flex;
@@ -18,7 +18,7 @@
    margin-top: 2rem;
 }
 
-@media (min-width: $screen-md-min) {
+@include media-breakpoint-up(md) {
    .home-image {
       display: inline;
 

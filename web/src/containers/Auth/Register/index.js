@@ -14,7 +14,7 @@ class Register extends Component {
    render() {
       return (
          <div className="row">
-            <div className="col-xs-12">
+            <div className="col">
                <RegisterBox
                   history={this.props.history}
                   onRegisterSubmit={this.onRegisterSubmit}

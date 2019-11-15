@@ -1,5 +1,4 @@
-@import 'components/App/variables';
-@import 'components/App/mixins';
+@import 'scss/all-utilities';
 
 // Navigation header
 .navigation-header {
@@ -33,13 +32,13 @@
 
 .toggle-menu {
    button {
-      font-size: 30px;
+      font-size: 1.875rem;
       border: 0;
       background: 0;
    }
 }
 
-@media (min-width: $screen-md-min) {
+@include media-breakpoint-up(md) {
    .navigation-header {
       margin-bottom: 4rem;
    }
@@ -50,7 +49,7 @@
 }
 
 // 500px
-@media (min-width: 31.25em) {
+@media (min-width: 500px) {
    .user-profile-box {
       margin-bottom: 0;
 

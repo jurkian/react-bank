@@ -1,4 +1,4 @@
-@import 'components/App/variables';
+@import 'scss/all-utilities';
 
 .home-header {
    margin-bottom: 4rem;
@@ -11,7 +11,7 @@
    }
 }
 
-@media (min-width: $screen-md-min) {
+@include media-breakpoint-up(md) {
    .home-header {
       h1 {
          font-size: 6rem;

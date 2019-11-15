@@ -1,4 +1,4 @@
-@import 'components/App/variables';
+@import 'scss/all-utilities';
 
 .profile-stats {
    display: flex;
@@ -35,7 +35,7 @@
 .stats-red strong { color: $pink; }
 
 // 360px
-@media (min-width: 22.5em) {
+@media (min-width: 360px) {
    .profile-stats {
       margin-bottom: 3.2rem;
       flex-direction: row;

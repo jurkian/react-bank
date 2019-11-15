@@ -1,23 +1,23 @@
-@import 'components/App/variables';
+@import 'scss/all-utilities';
 
 .income-chart-container {
    height: 23rem;
 }
 
 // 500px
-@media (min-width: 31.25em) {
+@media (min-width: 500px) {
    .income-chart-container {
       height: 28rem;
    }
 }
 
-@media (min-width: $screen-md-min) {
+@include media-breakpoint-up(md) {
    .income-chart-container {
       height: 32rem;
    }
 }
 
-@media (min-width: $screen-lg-min) {
+@include media-breakpoint-up(lg) {
    .income-chart-container {
       height: 37.5rem;
    }

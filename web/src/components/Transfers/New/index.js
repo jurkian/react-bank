@@ -15,7 +15,7 @@ class NewTransfer extends Component {
 
       return (
          <div className="row">
-            <div className="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+            <div className="col-sm-8 offset-sm-2 col-md-6 offset-md-3">
                <section className="module new-transfer">
                   <h1>New transfer</h1>
 

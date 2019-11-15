@@ -1,5 +1,4 @@
-@import 'components/App/variables';
-@import 'components/App/mixins';
+@import 'scss/all-utilities';
 
 // Main navigation
 
@@ -73,7 +72,7 @@
    }
 }
 
-@media (min-width: $screen-md-min) {
+@include media-breakpoint-up(md) {
    .main-nav {
       height: 100%;
       visibility: visible;

@@ -4,7 +4,7 @@ import './style.scss';
 
 const CurrencyBox = ({ baseCurrency, currency, value }) => {
    return (
-      <div className="currency-box col-sm-6 col-md-4">
+      <div className="col-sm-6 col-md-4 currency-box">
          <h3>{currency}</h3>
          <p>
             1 {baseCurrency} = {value} {currency}

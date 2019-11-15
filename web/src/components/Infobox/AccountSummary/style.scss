@@ -1,4 +1,4 @@
-@import 'components/App/variables';
+@import 'scss/all-utilities';
 
 .account-summary {
 
@@ -50,7 +50,7 @@
 }
 
 // 360px
-@media (min-width: 22.5em) {
+@media (min-width: 360px) {
    .account-summary-boxes {
       flex-direction: row;
 
