@@ -10,6 +10,4 @@ export { fetchProfileStatus, changeUserDetails } from './profile';
 
 export { fetchTransfers, fetchTransfersStatus, addTransfer } from './transfers';
 
-export { showModal, closeModal } from './modal';
-
 export { fetchInitialData } from './panel';

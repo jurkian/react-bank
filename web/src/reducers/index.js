@@ -8,7 +8,6 @@ import cards from './cards';
 import messages from './messages';
 import profile from './profile';
 import transfers from './transfers';
-import modal from './modal';
 
 export default history =>
    combineReducers({
@@ -19,6 +18,5 @@ export default history =>
       cards,
       messages,
       profile,
-      transfers,
-      modal
+      transfers
    });

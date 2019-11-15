@@ -7,8 +7,6 @@ import { updateAPIConfig } from 'api/base';
 import { isValidToken } from 'tools';
 
 import Layout from 'hoc/Layout';
-import Modal from 'components/UI/Modal';
-import NewsletterBox from 'components/NewsletterBox';
 
 import Home from 'containers/Home';
 import CurrencyStats from 'containers/CurrencyStats';
@@ -36,11 +34,6 @@ class App extends Component {
    render() {
       return (
          <Layout>
-            <Modal
-               isVisible={this.props.isModalVisible}
-               type={this.props.modalType}
-               close={this.props.closeModal}
-            />
             <Switch>
                <Route path="/panel" component={Panel} />
                <Route path="/currencies" component={CurrencyStats} />
@@ -50,25 +43,15 @@ class App extends Component {
                <Route exact path="/" component={Home} />
                <Route component={PageNotFound} />
             </Switch>
-            <NewsletterBox clicked={this.props.showNewsletterModal} />
          </Layout>
       );
    }
 }
 
-const mapStateToProps = state => {
-   return {
-      isModalVisible: state.modal.isVisible,
-      modalType: state.modal.type
-   };
-};
-
 const mapDispatchToProps = dispatch => {
    return {
-      setAuthStatus: status => dispatch(actions.setAuthStatus(status)),
-      showNewsletterModal: () => dispatch(actions.showModal('newsletter')),
-      closeModal: () => dispatch(actions.closeModal())
+      setAuthStatus: status => dispatch(actions.setAuthStatus(status))
    };
 };
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
+export default withRouter(connect(null, mapDispatchToProps)(App));
