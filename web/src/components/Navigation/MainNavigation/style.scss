@@ -15,7 +15,7 @@
    }
 
    li {
-      margin-bottom: 1.4rem;
+      margin-bottom: 0.875rem;
 
       a {
          text-decoration: none;
@@ -44,19 +44,19 @@
 .navigation-visible {
    height: 100%;
    visibility: visible;
-   margin-top: 3rem;
+   margin-top: 1.875rem;
 }
 
 .main-nav-widget {
    text-align: center;
    background: #f6f8f9;
-   box-shadow: 0 0 .4rem rgba(0,0,0,0.2);
-   border-radius: 1rem;
+   box-shadow: 0 0 0.25rem rgba(0,0,0,0.2);
+   border-radius: 0.625rem;
 
    span {
       text-transform: uppercase;
       color: #434d56;
-      font-size: 1.2rem;
+      font-size: 0.75rem;
       font-weight: bold;
    }
 }
@@ -68,7 +68,7 @@
 
    i {
       color: #9fadb9;
-      font-size: 3rem;
+      font-size: 1.875rem;
    }
 }
 
@@ -82,10 +82,10 @@
       }
 
       li {
-         flex: 0 0 11rem;
-         margin-bottom: 1.8rem;
-         margin-left: 1rem;
-         margin-right: 1rem;
+         flex: 0 0 6.875rem;
+         margin-bottom: 1.125rem;
+         margin-left: 0.625rem;
+         margin-right: 0.625rem;
 
          &:first-child { margin-left: 0; }
 
@@ -115,13 +115,13 @@
 
    .main-nav-box {
       background: #f6f8f9;
-      box-shadow: 0 0 .4rem rgba(0,0,0,0.2);
-      border-radius: 1rem;
-      min-height: 8rem;
-      margin-bottom: .5rem;
+      box-shadow: 0 0 0.25rem rgba(0,0,0,0.2);
+      border-radius: 0.625rem;
+      min-height: 5rem;
+      margin-bottom: 0.3125rem;
 
       i {
-         font-size: 3.8rem;
+         font-size: 2.375rem;
       }
    }
 }

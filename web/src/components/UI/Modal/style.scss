@@ -15,10 +15,10 @@
 
 .modal {
    background: #fff;
-   max-width: 50rem;
+   max-width: 31.25rem;
    width: 100%;
-   padding: 3rem;
-   margin: .8rem auto;
+   padding: 1.875rem;
+   margin: 0.5rem auto;
    position: relative;
    overflow-y: auto;
    z-index: 999;
@@ -35,11 +35,11 @@
    border: 0;
    background: 0;
    position: absolute;
-   top: 1.8rem;
-   left: 1.8rem;
-   font-size: 1.7rem;
-   width: 2.5rem;
-   height: 2.5rem;
+   top: 1.125rem;
+   left: 1.125rem;
+   font-size: 1.0625rem;
+   width: 1.5625rem;
+   height: 1.5625rem;
 
    cursor: pointer;
    outline: 0;

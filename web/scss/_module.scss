@@ -3,15 +3,15 @@
 // A typical widget module
 .module {
    background: #fff;
-   border-radius: .9rem;
-   box-shadow: 0 0 6.5rem rgba(60, 108, 222, 0.25);
-   padding: 2.5rem 0;
-   margin: 0 auto 2rem;
+   border-radius: 0.5625rem;
+   box-shadow: 0 0 4.0625rem rgba(60, 108, 222, 0.25);
+   padding: 1.5625rem 0;
+   margin: 0 auto 1.25rem;
    overflow: hidden;
 
    > * {
-      margin-left: 1.5rem;
-      margin-right: 1.5rem;
+      margin-left: 0.9375rem;
+      margin-right: 0.9375rem;
    }
 
    h1, h2, h3 {
@@ -24,8 +24,8 @@
 @include media-breakpoint-up(md) {
    .module {
       > * {
-         margin-left: 2.5rem;
-         margin-right: 2.5rem;
+         margin-left: 1.5625rem;
+         margin-right: 1.5625rem;
       }
    }     
 }

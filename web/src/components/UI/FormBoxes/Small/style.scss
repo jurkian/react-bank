@@ -1,7 +1,7 @@
 @import 'scss/all-utilities';
 
 .small-form-module {
-   max-width: 36.5rem;
+   max-width: 22.8125rem;
    padding-bottom: 0;
 }
 
@@ -15,10 +15,10 @@
    display: inline-flex;
    justify-content: center;
    align-items: center;
-   margin: 3.5rem 0 6rem;
-   padding: 4.8rem;
+   margin: 2.1875rem 0 3.75rem;
+   padding: 3rem;
    border-radius: 50%;
-   box-shadow: 0 0 6.5rem $navy-box-shadow;
+   box-shadow: 0 0 4.0625rem $navy-box-shadow;
    background: #fff;
 }
 
@@ -28,14 +28,14 @@
    margin: 0;
 
    > div:first-child {
-      padding-left: 2.5rem;
-      padding-right: 2.5rem;
+      padding-left: 1.5625rem;
+      padding-right: 1.5625rem;
    }
 }
 
 .login-input, .password-input {
-   padding-left: 4.4rem;
-   background-position: 1.7rem;
+   padding-left: 2.75rem;
+   background-position: 1.0625rem;
    background-repeat: no-repeat;
 }
 
@@ -48,5 +48,5 @@
 }
 
 .checkbox {
-   margin: 2rem 0;
+   margin: 1.25rem 0;
 }

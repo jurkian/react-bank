@@ -4,8 +4,8 @@
 @import 'scss/all-utilities';
 
 .app {
-   padding-top: 1.5rem;
-   padding-bottom: 1.5rem;
+   padding-top: 0.9375rem;
+   padding-bottom: 0.9375rem;
 }
 
 // Panel content
@@ -20,7 +20,7 @@
 // 576px, small devices
 @include media-breakpoint-up(sm) {
    .panel-content {
-      margin-top: 2rem;
+      margin-top: 1.25rem;
    }
 }
 

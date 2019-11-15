@@ -3,31 +3,31 @@
 .profile-header {
    background-image: linear-gradient(to right, $light-blue 0%, $dark-blue 100%);
    text-align: center;
-   padding-top: 4rem;
-   margin: 0 0 8rem;
+   padding-top: 2.5rem;
+   margin: 0 0 5rem;
    
    .profile-user-info {
-      margin-bottom: -2rem;
+      margin-bottom: -1.25rem;
    }
 
    h3 {
       color: #fff;
-      font-size: 2.4rem;
+      font-size: 1.5rem;
       font-weight: 400;
-      margin: 0 0 1rem;
+      margin: 0 0 0.625rem;
    }
 
    p {
       color: $light-gray;
-      font-size: 1.4rem;
+      font-size: 0.875rem;
       font-weight: 400;
    }
 
    img {
-      max-width: 10rem;
+      max-width: 6.25rem;
       border-radius: 50%;
-      border: .5rem solid #fff;
-      box-shadow: 0 0 6.5rem $navy-box-shadow;
+      border: 0.3125rem solid #fff;
+      box-shadow: 0 0 4.0625rem $navy-box-shadow;
       transform: translateY(50%);
    }
 }

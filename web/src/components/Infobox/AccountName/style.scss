@@ -3,18 +3,18 @@
 .account-name {
    text-align: center;
    background-image: linear-gradient(to top, #edf3ff 0%, #ffffff 100%);
-   padding: 2.4rem 1rem 2rem;
+   padding: 1.5rem 0.625rem 1.25rem;
    margin: 0;
 
    h3 {
-      font-size: 2.4rem;
+      font-size: 1.5rem;
       font-weight: 400;
-      margin: 0 0 .2rem;
+      margin: 0 0 0.125rem;
       color: $light-blue;
    }
 
    span {
-      font-size: 1.4rem;
+      font-size: 0.875rem;
       color: $light-gray;
    }
 }

@@ -9,7 +9,7 @@
    > aside {      
       display: flex;
       justify-content: flex-end;
-      margin-top: 2rem;
+      margin-top: 1.25rem;
    }
 
    .checkbox-container {
@@ -17,9 +17,9 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      max-width: 4.5rem;
+      max-width: 2.8125rem;
       width: 100%;
-      margin-right: 1rem;
+      margin-right: 0.625rem;
 
       input {
          margin: 0;
@@ -36,20 +36,20 @@
       padding: 0;
 
       > div {
-         padding: 1rem 1rem 1rem 1.5rem;
+         padding: 0.625rem 0.625rem 0.625rem 0.9375rem;
       }
 
       > aside {
-         max-width: 16rem;
+         max-width: 10rem;
          width: 100%;
          align-self: stretch;
          align-items: center;
-         padding-right: 1.5rem;
+         padding-right: 0.9375rem;
          margin-top: 0;
       }
 
       .checkbox-container {
-         max-width: 5.5rem;
+         max-width: 3.4375rem;
          height: 100%;
       }
    }

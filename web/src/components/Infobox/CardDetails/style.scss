@@ -6,18 +6,18 @@
    span {
       opacity: 0.3;
       color: #ffffff;
-      font-size: 1.2rem;
+      font-size: 0.75rem;
    }
 
    p {
       color: #ffffff;
-      font-size: 1.4rem;
-      border-bottom: .1rem solid rgba(255,255,255,0.3);
+      font-size: 0.875rem;
+      border-bottom: 1px solid rgba(255,255,255,0.3);
       margin-bottom: 0;
-      padding-bottom: .4rem;
+      padding-bottom: 0.25rem;
 
       &.big {
-         font-size: 2.4rem;
+         font-size: 1.5rem;
       }
    }
 }
@@ -30,7 +30,7 @@
    justify-content: space-between;
    
    &:first-child {
-      margin-bottom: 2rem;
+      margin-bottom: 1.25rem;
    }
 
    > div {
@@ -41,14 +41,14 @@
 .card-details-row-1-2 {
    div {
       flex-basis: 100%;
-      margin-bottom: 1.2rem;
+      margin-bottom: 0.75rem;
    }
 }
 
 // 360px
 @media (min-width: 360px) {
    .card-details-row:first-child {
-      margin-bottom: 4rem;
+      margin-bottom: 2.5rem;
    }
 
    .card-details-row-1-2 {

@@ -1,11 +1,11 @@
 @import 'scss/all-utilities';
 
 .home {
-   max-width: 50rem;
+   max-width: 31.25rem;
 }
 
 @include media-breakpoint-up(md) {
    .home {
-      max-width: 90rem;
+      max-width: 56.25rem;
    }
 }

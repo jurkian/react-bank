@@ -1,7 +1,7 @@
 @import 'scss/all-utilities';
 
 .message {
-   max-width: 36.5rem;
+   max-width: 22.8125rem;
    padding-top: 0;
    padding-bottom: 0;
 
@@ -13,14 +13,14 @@
 
 // Message header
 .message-header {
-   border-bottom: .1rem solid rgba(0, 0, 0, 0.03);
-   padding: 3.5rem 2.5rem;
-   margin-bottom: 3.5rem;
+   border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+   padding: 2.1875rem 1.5625rem;
+   margin-bottom: 2.1875rem;
 
    h3 {
-      font-size: 1.8rem;
+      font-size: 1.125rem;
       text-align: center;
-      margin: 0 0 3.5rem;
+      margin: 0 0 2.1875rem;
    }
 }
 
@@ -31,8 +31,8 @@
 
    img {
       border-radius: 50%;
-      max-width: 8.2rem;
-      margin-bottom: 1.4rem;
+      max-width: 5.125rem;
+      margin-bottom: 0.875rem;
    }
 
    div {
@@ -41,7 +41,7 @@
    }
 
    span, strong {
-      font-size: 1.2rem;
+      font-size: 0.75rem;
    }
 
    span {
@@ -55,11 +55,11 @@
 
 .message article {
    color: $light-blue;
-   font-size: 1.2rem;
+   font-size: 0.75rem;
    font-weight: 700;
 
-   padding: 0 2.5rem;
-   margin-bottom: 3.5rem;
+   padding: 0 1.5625rem;
+   margin-bottom: 2.1875rem;
 }
 
 // 360px
@@ -72,9 +72,9 @@
       flex-direction: row;
 
       img {
-         margin-right: 2.3rem;
+         margin-right: 1.4375rem;
          margin-bottom: 0;
-         max-width: 4.1rem;
+         max-width: 2.5625rem;
       }
    }
 }

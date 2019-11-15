@@ -1,7 +1,7 @@
 @import 'scss/all-utilities';
 
 .iconed-list {
-   max-width: 36.5rem;
+   max-width: 22.8125rem;
    padding-top: 0;
    padding-bottom: 0;
 
@@ -10,7 +10,7 @@
    }
 
    li {
-      border-bottom: .1rem solid #e1e9fd;
+      border-bottom: 1px solid #e1e9fd;
 
       &:last-child {
          border: 0;
@@ -19,7 +19,7 @@
       & > * {
          display: flex;
          flex-direction: column;
-         padding: 1.6rem 1.8rem;
+         padding: 1rem 1.125rem;
       }
 
       & > a { text-decoration: none; }
@@ -36,7 +36,7 @@
    // List title/subtitle
 
    .list-title, .list-subtitle {
-      font-size: 1.4rem;
+      font-size: 0.875rem;
    }
 
    .list-title {
@@ -56,10 +56,10 @@
 @media (min-width: 360px) {
    .iconed-list {
       li {
-         background: url('list-icon-image.svg') 3rem no-repeat;
+         background: url('list-icon-image.svg') 1.875rem no-repeat;
 
          > * {
-            padding: 2.4rem 1.8rem 2.4rem 8rem;
+            padding: 1.5rem 1.125rem 1.5rem 5rem;
          }
       }
 
