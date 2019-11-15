@@ -2,8 +2,10 @@
 
 .infobox {
    max-width: 22.8125rem;
-   padding-top: 0;
-   padding-bottom: 0;
+   
+   &.module {
+      @include reset-module();
+   }
 
    // Infobox header
    > header {

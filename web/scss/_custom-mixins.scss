@@ -3,3 +3,13 @@
    padding: 0;
    list-style: none;
 }
+
+@mixin reset-module() {
+   padding-top: 0;
+   padding-bottom: 0;
+
+   & > * {
+      margin-left: 0;
+      margin-right: 0;
+   }
+}
