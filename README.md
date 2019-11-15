@@ -32,10 +32,10 @@ Technologies:
 WEB:
 * React
 * Redux
+* React Router
 * Webpack
 * Sass
-* Bootstrap 3 (modified for em/rem support)
-* React Router
+* Bootstrap 4
 * JWT tokens
 * recharts
 * react-dates
