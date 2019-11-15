@@ -6,35 +6,20 @@ import * as actions from 'actions';
 import { updateAPIConfig } from 'api/base';
 import { isValidToken } from 'tools';
 
-import AsyncComponentLoader from 'tools/AsyncComponentLoader';
 import Layout from 'hoc/Layout';
 import Modal from 'components/UI/Modal';
 import NewsletterBox from 'components/NewsletterBox';
 
+import Home from 'containers/Home';
+import CurrencyStats from 'containers/CurrencyStats';
+import Panel from 'containers/Panel';
+
+import Login from 'containers/Auth/Login';
+import Register from 'containers/Auth/Register';
 import Logout from 'components/Auth/Logout';
 import PageNotFound from 'components/PageNotFound';
 
 import './app.scss';
-
-const Home = AsyncComponentLoader({
-   loader: () => import('containers/Home')
-});
-
-const Login = AsyncComponentLoader({
-   loader: () => import('containers/Auth/Login')
-});
-
-const Register = AsyncComponentLoader({
-   loader: () => import('containers/Auth/Register')
-});
-
-const CurrencyStats = AsyncComponentLoader({
-   loader: () => import('containers/CurrencyStats')
-});
-
-const Panel = AsyncComponentLoader({
-   loader: () => import('containers/Panel')
-});
 
 class App extends Component {
    componentDidMount() {
@@ -86,9 +71,4 @@ const mapDispatchToProps = dispatch => {
    };
 };
 
-export default withRouter(
-   connect(
-      mapStateToProps,
-      mapDispatchToProps
-   )(App)
-);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));

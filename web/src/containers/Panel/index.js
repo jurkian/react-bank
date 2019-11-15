@@ -7,39 +7,18 @@ import withAuth from 'hoc/WithAuth';
 import { isValidToken } from 'tools';
 
 import Loader from 'components/UI/Loader';
-import AsyncComponentLoader from 'tools/AsyncComponentLoader';
 
 import Navigation from 'containers/Navigation';
 import PanelIntro from 'containers/Panel/Intro';
 import PageNotFound from 'components/PageNotFound';
 
-const Accounts = AsyncComponentLoader({
-   loader: () => import('containers/Accounts')
-});
-
-const Transfers = AsyncComponentLoader({
-   loader: () => import('containers/Transfers')
-});
-
-const Cards = AsyncComponentLoader({
-   loader: () => import('containers/Cards')
-});
-
-const Profile = AsyncComponentLoader({
-   loader: () => import('containers/Profile')
-});
-
-const ProfileChangeDetails = AsyncComponentLoader({
-   loader: () => import('containers/Profile/ChangeDetails')
-});
-
-const Messages = AsyncComponentLoader({
-   loader: () => import('containers/Messages')
-});
-
-const Help = AsyncComponentLoader({
-   loader: () => import('components/Help')
-});
+import Accounts from 'containers/Accounts';
+import Transfers from 'containers/Transfers';
+import Cards from 'containers/Cards';
+import Profile from 'containers/Profile';
+import ProfileChangeDetails from 'containers/Profile/ChangeDetails';
+import Messages from 'containers/Messages';
+import Help from 'components/Help';
 
 // Get all user's initial data or redirect back to /login if not logged in
 // This is all handled in withAuth HOC
@@ -93,7 +72,4 @@ const mapDispatchToProps = dispatch => {
    };
 };
 
-export default connect(
-   mapStateToProps,
-   mapDispatchToProps
-)(withAuth(Panel));
+export default connect(mapStateToProps, mapDispatchToProps)(withAuth(Panel));
