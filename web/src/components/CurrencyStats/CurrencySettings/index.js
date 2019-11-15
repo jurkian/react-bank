@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import subDays from 'date-fns/sub_days';
+import subDays from 'date-fns/subDays';
 import format from 'date-fns/format';
 import DayPickerInput from 'react-day-picker/DayPickerInput';
 import 'react-day-picker/lib/style.css';
@@ -32,8 +32,8 @@ class CurrencySettings extends Component {
                   <DayPickerInput
                      inputProps={{ className: 'form-control' }}
                      onDayChange={date => this.props.onCurrencyDateChange(date)}
-                     formatDate={date => format(date, 'DD/MM/YYYY')}
-                     placeholder={format(subDays(new Date(), 1), 'DD/MM/YYYY')}
+                     formatDate={date => format(date, 'yyyy.MM.dd')}
+                     placeholder={format(subDays(new Date(), 1), 'yyyy.MM.dd')}
                      value={this.props.date}
                      dayPickerProps={{
                         selectedDays: this.props.date,

@@ -7,7 +7,7 @@ import CurrencySettings from 'components/CurrencyStats/CurrencySettings';
 import CurrencyList from 'components/CurrencyStats/List';
 import SingleButton from 'components/UI/Buttons/SingleButton';
 
-import subDays from 'date-fns/sub_days';
+import subDays from 'date-fns/subDays';
 import format from 'date-fns/format';
 
 import './style.scss';
@@ -73,7 +73,7 @@ class CurrencyStats extends Component {
 
       // If date is set - add it to request
       if (this.state.date) {
-         apiParams.date = format(this.state.date, 'YYYY-MM-DD');
+         apiParams.date = format(this.state.date, 'yyyy.MM.dd');
       }
 
       axios
