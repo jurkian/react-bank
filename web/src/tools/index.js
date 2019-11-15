@@ -1,5 +1,4 @@
 import format from 'date-fns/format';
-import parse from 'date-fns/parse';
 import jwtDecode from 'jwt-decode';
 
 // Add padding from the start of the current string/number
@@ -16,8 +15,8 @@ export const chunker = (el, step, string) => {
       .join(string);
 };
 
-// Format date from Firebase (in seconds)
-export const formatDate = (date, dateFormat) => format(parse(date), dateFormat);
+// Format date
+export const formatDate = (date, dateFormat) => format(new Date(date), dateFormat);
 
 // Token checker
 export const getAuthToken = () => {

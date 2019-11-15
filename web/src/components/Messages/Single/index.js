@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { formatDate } from 'tools';
 
 const SingleMessage = ({ singleMessage: { title, sentDate, content } }) => {
-   sentDate = formatDate(sentDate, 'DD/MM/YYYY HH:mm');
+   sentDate = formatDate(sentDate, 'dd/MM/yyyy HH:mm');
 
    return (
       <section className="single-message module">

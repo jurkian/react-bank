@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { formatDate } from 'tools';
 
 const SingleTransfer = ({ singleTrans: { type, date, payeeName, amount, status } }) => {
-   date = formatDate(date, 'DD/MM/YYYY HH:mm');
+   date = formatDate(date, 'dd/MM/yyyy HH:mm');
 
    return (
       <section className="single-transfer module">

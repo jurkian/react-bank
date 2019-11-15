@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { formatDate } from 'tools';
 
 const TransfersListEl = ({ matchUrl, _id, type, payeeName, date, amount, status, reference }) => {
-   date = formatDate(date, 'DD/MM/YYYY HH:mm');
+   date = formatDate(date, 'dd/MM/yyyy HH:mm');
 
    return (
       <Link to={`${matchUrl}/${_id}`} className="list-group-item">

@@ -12,7 +12,7 @@ class MessagesListEl extends Component {
       const classes = classNames({
          disabled: isRead
       });
-      let date = formatDate(this.props.sentDate, 'DD/MM/YYYY HH:mm');
+      let date = formatDate(this.props.sentDate, 'dd/MM/yyyy HH:mm');
 
       return (
          <Link
