@@ -3,16 +3,28 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { myPadStart, chunker } from 'tools';
 
-const CardsListEl = ({ matchUrl, _id, type, number, expiresMonth, expiresYear }) => {
+const CardsListEl = props => {
    return (
-      <Link to={`${matchUrl}/${_id}`} className="list-group-item">
-         <h4 className="list-group-item-heading">{type} card</h4>
-         <p className="list-group-item-text">
-            <span>Number: {chunker(number, 4, '-')} </span>
-            <span>
-               Expires: {myPadStart(expiresMonth, 2, 0)}/{expiresYear}
-            </span>
-         </p>
+      <Link
+         to={`${props.matchUrl}/${props._id}`}
+         className="list-group-item list-group-item-action"
+      >
+         <div className="d-flex w-100 justify-content-between">
+            <h5 className="mb-1">Card</h5>
+            <small className="text-muted">
+               Expires: {myPadStart(props.expiresMonth, 2, 0)}/{props.expiresYear}
+            </small>
+         </div>
+         <p className="mb-1">Number: {chunker(props.number, 4, '-')}</p>
+         <small className="text-muted">
+            Daily limits: {props.dailyOnlineLimit} (online), {props.dailyWithdrawalLimit}{' '}
+            (withdrawal)
+         </small>
+         <br />
+         <small className="text-muted">
+            Monthly limits: {props.monthlyOnlineLimit} (online), {props.monthlyWithdrawalLimit}{' '}
+            (withdrawal)
+         </small>
       </Link>
    );
 };
