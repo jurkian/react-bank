@@ -19,7 +19,7 @@ class Home extends Component {
          return (
             <div className="row">
                <div className="col-xs-12">
-                  <section className="home module">
+                  <section className="module home">
                      <Header clientsCount={this.state.clientsCount} />
                      <Features />
                      <NewFeatures />

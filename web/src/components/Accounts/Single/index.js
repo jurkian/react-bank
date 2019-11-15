@@ -4,7 +4,7 @@ import { chunker } from 'tools';
 
 const SingleAccount = ({ singleAcc }) => {
    return (
-      <section className="single-account module">
+      <section className="module single-account">
          <h1>{singleAcc.type} account</h1>
          <ul>
             <li>Sortcode: {chunker(singleAcc.sortcode, 2, '-')}</li>

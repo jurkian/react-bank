@@ -22,7 +22,7 @@ const CardInfobox = ({
    currentUrl
 }) => {
    return (
-      <section className="infobox card-infobox module">
+      <section className="module infobox card-infobox">
          <header>
             <CardLogos type="visa" />
             <CardDetails number={number} expiresMonth={expiresMonth} expiresYear={expiresYear} />

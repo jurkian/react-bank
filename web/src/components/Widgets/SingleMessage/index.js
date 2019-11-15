@@ -8,7 +8,7 @@ import './style.scss';
 
 const SingleMessage = props => {
    return (
-      <section className="message module">
+      <section className="module message">
          <header className="message-header">
             <h3>{props.title}</h3>
 

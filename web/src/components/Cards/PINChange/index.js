@@ -7,7 +7,7 @@ import Form from './Form';
 const PINChange = props => {
    return (
       <div className="col-sm-6 col-sm-offset-3">
-         <section className="pin-change module">
+         <section className="module pin-change">
             <h1>PIN change</h1>
             <p>
                <strong>{props.singleCard.type} card</strong>
@@ -36,7 +36,4 @@ const mapDispatchToProps = (dispatch, ownProps) => {
    };
 };
 
-export default connect(
-   mapStateToProps,
-   mapDispatchToProps
-)(PINChange);
+export default connect(mapStateToProps, mapDispatchToProps)(PINChange);

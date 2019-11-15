@@ -9,7 +9,7 @@ import AccountSummary from '../AccountSummary';
 
 const CardInfobox = () => {
    return (
-      <section className="infobox account-infobox module">
+      <section className="module infobox account-infobox">
          <header>
             <AccountDetails />
          </header>

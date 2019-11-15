@@ -7,7 +7,7 @@ import App from 'components/App';
 import * as serviceWorker from './serviceWorker';
 
 // Styles
-import './vendor/custom-bootstrap.scss';
+import 'vendor/custom-bootstrap.scss';
 
 // Store
 import configureStore, { history } from 'store';

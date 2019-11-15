@@ -7,7 +7,7 @@ import Form from './Form';
 const LimitsChange = props => {
    return (
       <div className="col-sm-6 col-sm-offset-3">
-         <section className="limits-change module">
+         <section className="module limits-change">
             <h1>Limits change</h1>
             <p>
                <strong>{props.singleCard.type} card</strong>
@@ -44,7 +44,4 @@ const mapDispatchToProps = (dispatch, ownProps) => {
    };
 };
 
-export default connect(
-   mapStateToProps,
-   mapDispatchToProps
-)(LimitsChange);
+export default connect(mapStateToProps, mapDispatchToProps)(LimitsChange);

@@ -20,7 +20,7 @@ const Profile = props => {
    return (
       <div className="row panel-content">
          <div className="col-xs-12">
-            <section className="profile module">
+            <section className="module profile">
                <ProfileHeader profile={props.profile} />
                <ProfileStats stats={props.profile.stats} />
                <ProfileLinks links={links} />

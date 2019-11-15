@@ -14,7 +14,7 @@ const IconedList = props => {
 
    // Show list
    return (
-      <section className="iconed-list module">
+      <section className="module iconed-list">
          <ul>{listItems}</ul>
       </section>
    );

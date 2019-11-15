@@ -28,7 +28,7 @@ class CurrencyStats extends Component {
          return (
             <div className="row">
                <div className="col-xs-12">
-                  <section className="currency-stats module container-module">
+                  <section className="module container-module currency-stats">
                      <div className="currency-stats-header text-center">
                         <Header />
                         <CurrencySettings

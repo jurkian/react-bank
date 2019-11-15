@@ -6,7 +6,7 @@ const SingleMessage = ({ singleMessage: { title, sentDate, content } }) => {
    sentDate = formatDate(sentDate, 'dd/MM/yyyy HH:mm');
 
    return (
-      <section className="single-message module">
+      <section className="module single-message">
          <h1>{title}</h1>
          <p>Date: {sentDate}</p>
 
