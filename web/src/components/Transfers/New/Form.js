@@ -36,7 +36,9 @@ const InnerForm = props => {
                   maxLength="8"
                   placeholder="Recipient's account number..."
                />
-               {touched.payeeAccNumber && errors.payeeAccNumber && <p>{errors.payeeAccNumber}</p>}
+               {touched.payeeAccNumber && errors.payeeAccNumber && (
+                  <p className="field-invalid">{errors.payeeAccNumber}</p>
+               )}
             </div>
 
             <div className="form-group">
@@ -50,7 +52,9 @@ const InnerForm = props => {
                   maxLength="6"
                   placeholder="Recipient's sort code..."
                />
-               {touched.payeeSortcode && errors.payeeSortcode && <p>{errors.payeeSortcode}</p>}
+               {touched.payeeSortcode && errors.payeeSortcode && (
+                  <p className="field-invalid">{errors.payeeSortcode}</p>
+               )}
             </div>
 
             <div className="form-group">
@@ -63,7 +67,9 @@ const InnerForm = props => {
                   name="payeeName"
                   placeholder="Recipient's name..."
                />
-               {touched.payeeName && errors.payeeName && <p>{errors.payeeName}</p>}
+               {touched.payeeName && errors.payeeName && (
+                  <p className="field-invalid">{errors.payeeName}</p>
+               )}
             </div>
 
             <div className="form-group">
@@ -77,7 +83,9 @@ const InnerForm = props => {
                   rows="4"
                   placeholder="Recipient's address..."
                />
-               {touched.payeeAddress && errors.payeeAddress && <p>{errors.payeeAddress}</p>}
+               {touched.payeeAddress && errors.payeeAddress && (
+                  <p className="field-invalid">{errors.payeeAddress}</p>
+               )}
             </div>
 
             <div className="form-group">
@@ -91,7 +99,9 @@ const InnerForm = props => {
                   maxLength="50"
                   placeholder="Reference..."
                />
-               {touched.reference && errors.reference && <p>{errors.reference}</p>}
+               {touched.reference && errors.reference && (
+                  <p className="field-invalid">{errors.reference}</p>
+               )}
             </div>
 
             <div className="form-group">
@@ -104,7 +114,7 @@ const InnerForm = props => {
                   name="amount"
                   placeholder="Amount..."
                />
-               {touched.amount && errors.amount && <p>{errors.amount}</p>}
+               {touched.amount && errors.amount && <p className="field-invalid">{errors.amount}</p>}
             </div>
 
             <p className="validation-info">{props.status}</p>

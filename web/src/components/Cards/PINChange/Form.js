@@ -21,7 +21,7 @@ const InnerForm = props => {
                   maxLength="4"
                   placeholder="Enter new PIN..."
                />
-               {touched.pin && errors.pin && <p>{errors.pin}</p>}
+               {touched.pin && errors.pin && <p className="field-invalid">{errors.pin}</p>}
             </div>
 
             <div className="form-group">
@@ -35,7 +35,9 @@ const InnerForm = props => {
                   maxLength="4"
                   placeholder="Confirm new PIN..."
                />
-               {touched.pinConf && errors.pinConf && <p>{errors.pinConf}</p>}
+               {touched.pinConf && errors.pinConf && (
+                  <p className="field-invalid">{errors.pinConf}</p>
+               )}
             </div>
 
             <p className="validation-info">{props.status}</p>

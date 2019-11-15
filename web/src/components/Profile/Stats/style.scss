@@ -29,10 +29,9 @@
 }
 
 // Stats colors
-
-.stats-green strong { color: $light-green; }
-.stats-blue strong { color: $dark-blue; }
-.stats-red strong { color: $pink; }
+.stats-acounts strong { color: $light-blue; }
+.stats-balance strong { color: $dark-blue; }
+.stats-messages strong { color: $light-blue; }
 
 // 360px
 @media (min-width: 360px) {

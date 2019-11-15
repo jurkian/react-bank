@@ -4,6 +4,11 @@ html, body {
    min-height: 100%;
 }
 
+// Headings
+h1 {
+   color: $dark-blue;
+}
+
 @import "module";
 @import "forms";
 @import "pagination";

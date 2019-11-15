@@ -19,7 +19,7 @@ const ProfileChangeDetails = props => {
 
 const mapStateToProps = state => {
    return {
-      userEmail: state.auth.userEmail
+      userEmail: state.profile.data.email
    };
 };
 

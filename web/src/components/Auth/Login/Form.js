@@ -17,7 +17,7 @@ const InnerForm = props => {
                   name="email"
                   placeholder="Your email..."
                />
-               {touched.email && errors.email && <p>{errors.email}</p>}
+               {touched.email && errors.email && <p className="field-invalid">{errors.email}</p>}
             </div>
 
             <div className="form-group">
@@ -27,7 +27,9 @@ const InnerForm = props => {
                   name="password"
                   placeholder="Your password..."
                />
-               {touched.password && errors.password && <p>{errors.password}</p>}
+               {touched.password && errors.password && (
+                  <p className="field-invalid">{errors.password}</p>
+               )}
             </div>
 
             <div className="checkbox">

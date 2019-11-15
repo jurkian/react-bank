@@ -1,16 +1,6 @@
 @import 'scss/all-utilities';
 
-// Placeholder and label colors
-
-.form-group {
-   label {
-      color: $light-blue;
-   }
-}
-
-// Input, select, textarea
-
-.form-control {
-   padding: 0.5rem 1.0625rem;
-   height: 3.25rem;
+// Validations
+.field-invalid {
+   color: $alt-danger;
 }

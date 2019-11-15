@@ -22,7 +22,7 @@ const InnerForm = props => {
                   placeholder="Your name..."
                />
 
-               {touched.name && errors.name && <p>{errors.name}</p>}
+               {touched.name && errors.name && <p className="field-invalid">{errors.name}</p>}
             </div>
 
             <div className="form-group">
@@ -35,7 +35,7 @@ const InnerForm = props => {
                   placeholder="Your email..."
                />
 
-               {touched.email && errors.email && <p>{errors.email}</p>}
+               {touched.email && errors.email && <p className="field-invalid">{errors.email}</p>}
             </div>
 
             <div className="form-group">
@@ -49,7 +49,9 @@ const InnerForm = props => {
                   <option>Subject 3</option>
                </Field>
 
-               {touched.subject && errors.subject && <p>{errors.subject}</p>}
+               {touched.subject && errors.subject && (
+                  <p className="field-invalid">{errors.subject}</p>
+               )}
             </div>
 
             <div className="form-group">
@@ -62,7 +64,9 @@ const InnerForm = props => {
                   name="message"
                />
 
-               {touched.message && errors.message && <p>{errors.message}</p>}
+               {touched.message && errors.message && (
+                  <p className="field-invalid">{errors.message}</p>
+               )}
             </div>
 
             <p className="validation-info">{props.status}</p>

@@ -9,7 +9,9 @@ const InnerForm = props => {
    return (
       <Form>
          <div>
-            <p>If you want to change email, contact the administrator</p>
+            <p>If you want to change email, please contact the administrator.</p>
+            <p>Below you can change your password</p>
+
             <div className="form-group">
                <Field type="email" className="form-control login-input" name="email" disabled />
             </div>
@@ -21,7 +23,9 @@ const InnerForm = props => {
                   name="password"
                   placeholder="Enter new password..."
                />
-               {touched.password && errors.password && <p>{errors.password}</p>}
+               {touched.password && errors.password && (
+                  <p className="field-invalid">{errors.password}</p>
+               )}
             </div>
 
             <p className="validation-info">{props.status}</p>

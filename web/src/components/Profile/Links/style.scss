@@ -15,6 +15,10 @@
       padding: 0.9375rem 0.3125rem;
       text-decoration: none;
 
+      &, &:hover {
+         text-decoration: none;
+      }
+
       &:hover {
          background-image: linear-gradient(to right, $light-blue 0%, $dark-blue 100%);
 

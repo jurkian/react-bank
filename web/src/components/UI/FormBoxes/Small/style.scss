@@ -3,6 +3,10 @@
 .small-form-module {
    max-width: 22.8125rem;
    padding-bottom: 0;
+
+   &.module {
+      @include reset-module();
+   }
 }
 
 // Icon
@@ -34,9 +38,11 @@
 }
 
 .login-input, .password-input {
-   padding-left: 2.75rem;
-   background-position: 1.0625rem;
-   background-repeat: no-repeat;
+   &.form-control {
+      padding-left: 2.75rem;
+      background-position: 1.0625rem;
+      background-repeat: no-repeat;
+   }
 }
 
 .login-input {

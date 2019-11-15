@@ -1,7 +1,19 @@
+// Colors
+$primary: #3c6cde;
+
 $light-gray:            #cbd8f3;
 $light-blue:            #7c99d6;
 $dark-blue:             #3c6cde;
-$pink:                  #ff2546;
-$light-green:           #40e261;
-$green:                 #23e04b;
 $navy-box-shadow:       rgba(131, 100, 238, 0.15);
+
+$body-bg: #f5f5f5;
+$body-color: $light-blue;
+$input-color: $light-blue;
+$input-placeholder-color: $light-blue;
+
+$alt-danger:          #d9534f !default;
+
+// Fonts
+$font-family-sans-serif: Montserrat, "Open Sans", Roboto, Arial, sans-serif;
+$font-family-base: $font-family-sans-serif;
+$headings-font-weight: 700;
