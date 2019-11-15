@@ -19,19 +19,20 @@ class MessagesListEl extends Component {
             to={`${matchUrl}/${_id}`}
             className={`list-group-item list-group-item-action messages-list-item ${classes}`}
          >
-            <div className="d-flex w-100 justify-content-between">
-               <h5 className="mb-1">{title}</h5>
-
-               <aside>
-                  <div className="checkbox-container" onClick={this.onCheckboxClick}>
-                     <input type="checkbox" checked={isRead} onChange={e => e.stopPropagation()} />
-                  </div>
-                  <button className="btn btn-danger btn-sm" onClick={this.onButtonClick}>
-                     Remove
-                  </button>
-               </aside>
+            <div className="message-content">
+               <div className="d-flex w-100 justify-content-between">
+                  <h5 className="mb-1">{title}</h5>
+               </div>
+               <p className="mb-1">Date: {date}</p>
             </div>
-            <p className="mb-1">Date: {date}</p>
+            <aside>
+               <div className="checkbox-container" onClick={this.onCheckboxClick}>
+                  <input type="checkbox" checked={isRead} onChange={e => e.stopPropagation()} />
+               </div>
+               <button className="btn btn-danger btn-sm" onClick={this.onButtonClick}>
+                  Remove
+               </button>
+            </aside>
          </Link>
       );
    }

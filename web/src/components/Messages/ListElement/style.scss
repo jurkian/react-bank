@@ -1,14 +1,17 @@
 .messages-list-item {
-   display: flex;
-   flex-direction: column;
-   
-   > div {
-      
+   &.list-group-item {
+      display: flex;
+
+      &:disabled, &.disabled {
+         pointer-events: initial;
+      }
    }
 
-   > aside {      
+   flex-direction: column;
+   
+   aside {      
       display: flex;
-      justify-content: flex-end;
+      justify-content: center;
       margin-top: 1.25rem;
    }
 
@@ -32,17 +35,10 @@
    .messages-list-item {
       flex-direction: row;
       justify-content: space-between;
-      align-items: center;
-      padding: 0;
-
-      > div {
-         padding: 0.625rem 0.625rem 0.625rem 0.9375rem;
-      }
 
       > aside {
          max-width: 10rem;
          width: 100%;
-         align-self: stretch;
          align-items: center;
          padding-right: 0.9375rem;
          margin-top: 0;
