@@ -1,6 +1,6 @@
 import React from 'react';
 import { Form, Field, withFormik } from 'formik';
-import Yup from 'yup';
+import * as Yup from 'yup';
 import SingleModuleButton from 'components/UI/Buttons/SingleModuleButton';
 
 const InnerForm = props => {
@@ -19,8 +19,9 @@ const InnerForm = props => {
                   name="dailyOnlineLimit"
                   placeholder="New daily online limit..."
                />
-               {touched.dailyOnlineLimit &&
-                  errors.dailyOnlineLimit && <p>{errors.dailyOnlineLimit}</p>}
+               {touched.dailyOnlineLimit && errors.dailyOnlineLimit && (
+                  <p>{errors.dailyOnlineLimit}</p>
+               )}
             </div>
 
             <div className="form-group">
@@ -33,8 +34,9 @@ const InnerForm = props => {
                   name="dailyWithdrawalLimit"
                   placeholder="New daily withdrawal limit..."
                />
-               {touched.dailyWithdrawalLimit &&
-                  errors.dailyWithdrawalLimit && <p>{errors.dailyWithdrawalLimit}</p>}
+               {touched.dailyWithdrawalLimit && errors.dailyWithdrawalLimit && (
+                  <p>{errors.dailyWithdrawalLimit}</p>
+               )}
             </div>
 
             <p className="validation-info">{props.status}</p>

@@ -1,4 +1,4 @@
-import Yup from 'yup';
+import * as Yup from 'yup';
 import 'tools/validations/YupCustomValidations';
 
 // New transfer validations

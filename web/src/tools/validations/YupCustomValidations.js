@@ -1,4 +1,4 @@
-import Yup from 'yup';
+import * as Yup from 'yup';
 
 // Check for exact length of string or number
 Yup.addMethod(Yup.mixed, 'length', function(length, msg) {

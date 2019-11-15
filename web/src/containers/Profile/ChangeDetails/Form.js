@@ -1,6 +1,6 @@
 import React from 'react';
 import { Form, Field, withFormik } from 'formik';
-import Yup from 'yup';
+import * as Yup from 'yup';
 import SingleModuleButton from 'components/UI/Buttons/SingleModuleButton';
 
 const InnerForm = props => {
