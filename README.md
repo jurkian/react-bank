@@ -54,4 +54,9 @@ API:
 4. Run API: type `npm run start-dev` in `api` folder
 5. Run web: type `npm start` in `web` folder
 
-To create an optimized build, run `npm run build` in `web` folder
+To create an optimized build, run `npm run build` in `web` folder.
+
+## Features Will be out soon.
+
+1. Admin dashboard and User Management.
+2. More better UI and improvements.
