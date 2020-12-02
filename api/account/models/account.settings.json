@@ -12,9 +12,9 @@
   },
   "attributes": {
     "owner": {
+      "via": "account",
       "plugin": "users-permissions",
-      "model": "user",
-      "via": "account"
+      "model": "user"
     },
     "type": {
       "type": "enumeration",

@@ -1,51 +1,19 @@
 {
   "routes": [
-    {
+   {
       "method": "GET",
-      "path": "/accounts",
-      "handler": "account.find",
+      "path": "/accounts/my",
+      "handler": "account.getMyAccounts",
       "config": {
-        "policies": []
-      }
-    },
-    {
-      "method": "GET",
-      "path": "/accounts/count",
-      "handler": "account.count",
-      "config": {
-        "policies": []
+        "policies": ["global::pass-jwt-user"]
       }
     },
     {
       "method": "GET",
-      "path": "/accounts/:id",
-      "handler": "account.findOne",
+      "path": "/accounts/:accountId",
+      "handler": "account.getSingle",
       "config": {
-        "policies": []
-      }
-    },
-    {
-      "method": "POST",
-      "path": "/accounts",
-      "handler": "account.create",
-      "config": {
-        "policies": []
-      }
-    },
-    {
-      "method": "PUT",
-      "path": "/accounts/:id",
-      "handler": "account.update",
-      "config": {
-        "policies": []
-      }
-    },
-    {
-      "method": "DELETE",
-      "path": "/accounts/:id",
-      "handler": "account.delete",
-      "config": {
-        "policies": []
+        "policies": ["global::pass-jwt-user"]
       }
     }
   ]
