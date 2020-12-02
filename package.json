@@ -11,6 +11,7 @@
   },
   "devDependencies": {},
   "dependencies": {
+    "joi": "^17.3.0",
     "knex": "<0.20.0",
     "mysql": "latest",
     "strapi": "3.3.4",
