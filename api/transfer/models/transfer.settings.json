@@ -12,9 +12,9 @@
   },
   "attributes": {
     "sender": {
+      "via": "transfer",
       "plugin": "users-permissions",
-      "model": "user",
-      "via": "transfer"
+      "model": "user"
     },
     "payee_name": {
       "type": "string",

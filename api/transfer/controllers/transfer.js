@@ -1,8 +1,34 @@
 'use strict';
 
-/**
- * Read the documentation (https://strapi.io/documentation/v3.x/concepts/controllers.html#core-controllers)
- * to customize this controller
- */
+// Get all user's transfers
+const getMyTransfers = async ctx => {
+   try {
+      // ...
+   } catch (error) {
+      console.log(error);
+   }
+};
 
-module.exports = {};
+// Get single transfer
+const getSingle = async ctx => {
+   try {
+      // ...
+   } catch (error) {
+      console.log(error);
+   }
+};
+
+// Create new transfer
+const create = async ctx => {
+   try {
+      // ...
+   } catch (error) {
+      console.log(error);
+   }
+};
+
+module.exports = {
+   getMyTransfers,
+   getSingle,
+   create
+};
