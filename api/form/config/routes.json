@@ -1,0 +1,12 @@
+{
+  "routes": [
+    {
+      "method": "POST",
+      "path": "/forms",
+      "handler": "form.sendForm",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}
