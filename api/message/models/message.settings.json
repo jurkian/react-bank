@@ -1,0 +1,40 @@
+{
+  "kind": "collectionType",
+  "collectionName": "messages",
+  "info": {
+    "name": "message",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": false,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "recipient": {
+      "plugin": "users-permissions",
+      "model": "user",
+      "via": "message"
+    },
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "content": {
+      "type": "text",
+      "required": true
+    },
+    "sent_at": {
+      "type": "datetime",
+      "required": true
+    },
+    "is_read": {
+      "type": "boolean",
+      "default": false
+    },
+    "read_at": {
+      "type": "datetime",
+      "required": true
+    }
+  }
+}
