@@ -1,0 +1,69 @@
+{
+  "kind": "collectionType",
+  "collectionName": "cards",
+  "info": {
+    "name": "card",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "owner": {
+      "plugin": "users-permissions",
+      "model": "user",
+      "via": "card"
+    },
+    "source_account": {
+      "model": "account",
+      "via": "card"
+    },
+    "is_active": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "number": {
+      "type": "integer",
+      "required": true,
+      "max": 16,
+      "min": 16
+    },
+    "pin": {
+      "type": "integer",
+      "required": true,
+      "max": 4,
+      "min": 4
+    },
+    "expires_month": {
+      "type": "integer",
+      "required": true,
+      "max": 12,
+      "min": 1
+    },
+    "expires_year": {
+      "type": "integer",
+      "required": true,
+      "max": 2100
+    },
+    "daily_online_limit": {
+      "type": "integer",
+      "required": false,
+      "default": 2000
+    },
+    "daily_withdrawal_limit": {
+      "type": "integer",
+      "default": 2000
+    },
+    "monthly_online_limit": {
+      "type": "integer",
+      "default": 5000
+    },
+    "monthly_withdrawal_limit": {
+      "type": "integer",
+      "default": 5000
+    }
+  }
+}
