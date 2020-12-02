@@ -1,0 +1,24 @@
+{
+  "kind": "singleType",
+  "collectionName": "stats",
+  "info": {
+    "name": "stats"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": false,
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "income_stats": {
+      "type": "component",
+      "repeatable": true,
+      "component": "stats.stats-component"
+    },
+    "expenses_stats": {
+      "type": "component",
+      "repeatable": true,
+      "component": "stats.stats-component"
+    }
+  }
+}

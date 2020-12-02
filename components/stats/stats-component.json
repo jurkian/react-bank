@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_stats_stats_components",
+  "info": {
+    "name": "stats_component",
+    "icon": "align-left"
+  },
+  "options": {},
+  "attributes": {
+    "collected_at": {
+      "type": "datetime"
+    },
+    "type": {
+      "type": "string"
+    },
+    "value": {
+      "type": "string"
+    }
+  }
+}
