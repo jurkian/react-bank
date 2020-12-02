@@ -1,8 +1,8 @@
 {
-  "name": "strapi-api",
+   "name": "react-bank",
   "private": true,
-  "version": "0.1.0",
-  "description": "A Strapi application",
+  "version": "1.0.0",
+  "description": "Banking app built in React and Redux",
   "scripts": {
     "develop": "strapi develop",
     "start": "strapi start",
@@ -24,14 +24,21 @@
     "mysql": "latest"
   },
   "author": {
-    "name": "A Strapi developer"
+    "name": ""
   },
   "strapi": {
-    "uuid": "787e604a-809b-4b11-82a9-91b917b2c6a6"
   },
   "engines": {
     "node": ">=10.16.0 <=14.x.x",
     "npm": ">=6.0.0"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "repository": {
+   "type": "git",
+   "url": "git+https://github.com/jurkian/react-bank.git"
+ },
+  "bugs": {
+   "url": "https://github.com/jurkian/react-bank/issues"
+ },
+ "homepage": "https://github.com/jurkian/react-bank#readme"
 }
