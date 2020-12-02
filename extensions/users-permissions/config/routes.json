@@ -28,6 +28,21 @@
                "name": "User"
             }
          }
+      },
+      {
+         "method": "PUT",
+         "path": "/users/:id",
+         "handler": "User.update",
+         "config": {
+            "policies": ["global::pass-jwt-user"],
+            "prefix": "",
+            "description": "Update an existing user",
+            "tag": {
+               "plugin": "users-permissions",
+               "name": "User",
+               "actionType": "update"
+            }
+         }
       }
    ]
 }
