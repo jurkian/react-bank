@@ -1,0 +1,12 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/app/config",
+      "handler": "common.getAppConfig",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}
