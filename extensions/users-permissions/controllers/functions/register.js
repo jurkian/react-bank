@@ -130,9 +130,24 @@ const register = async ctx => {
 
       const user = await strapi.query('user', 'users-permissions').create(params);
 
-      const sanitizedUser = sanitizeEntity(user, {
+      // Prepare user to return
+      const sanitizedUser = sanitizeEntity(user.toJSON ? user.toJSON() : user, {
          model: strapi.query('user', 'users-permissions').model
       });
+
+      const userToReturn = _.pick(sanitizedUser, [
+         'id',
+         'username',
+         'email',
+         'first_name',
+         'last_name',
+         'dob',
+         'phone',
+         'profile_picture',
+         'street_addr',
+         'postcode',
+         'city'
+      ]);
 
       if (settings.email_confirmation) {
          try {
@@ -141,14 +156,14 @@ const register = async ctx => {
             return ctx.badRequest(null, err);
          }
 
-         return ctx.send({ user: sanitizedUser });
+         return ctx.send({ user: userToReturn });
       }
 
       const jwt = strapi.plugins['users-permissions'].services.jwt.issue(_.pick(user, ['id']));
 
       return ctx.send({
          jwt,
-         user: sanitizedUser
+         user: userToReturn
       });
    } catch (err) {
       const adminError = _.includes(err.message, 'username')

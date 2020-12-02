@@ -104,6 +104,25 @@ const login = async ctx => {
          );
       }
 
+      // Prepare user to return
+      const sanitizedUser = sanitizeEntity(user.toJSON ? user.toJSON() : user, {
+         model: strapi.query('user', 'users-permissions').model
+      });
+
+      const userToReturn = _.pick(sanitizedUser, [
+         'id',
+         'username',
+         'email',
+         'first_name',
+         'last_name',
+         'dob',
+         'phone',
+         'profile_picture',
+         'street_addr',
+         'postcode',
+         'city'
+      ]);
+
       const validPassword = await strapi.plugins[
          'users-permissions'
       ].services.user.validatePassword(params.password, user.password);
@@ -121,9 +140,7 @@ const login = async ctx => {
             jwt: strapi.plugins['users-permissions'].services.jwt.issue({
                id: user.id
             }),
-            user: sanitizeEntity(user.toJSON ? user.toJSON() : user, {
-               model: strapi.query('user', 'users-permissions').model
-            })
+            user: userToReturn
          });
       }
    } else {
@@ -156,9 +173,7 @@ const login = async ctx => {
          jwt: strapi.plugins['users-permissions'].services.jwt.issue({
             id: user.id
          }),
-         user: sanitizeEntity(user.toJSON ? user.toJSON() : user, {
-            model: strapi.query('user', 'users-permissions').model
-         })
+         user: userToReturn
       });
    }
 };
