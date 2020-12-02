@@ -12,9 +12,9 @@
   },
   "attributes": {
     "recipient": {
+      "via": "message",
       "plugin": "users-permissions",
-      "model": "user",
-      "via": "message"
+      "model": "user"
     },
     "title": {
       "type": "string",

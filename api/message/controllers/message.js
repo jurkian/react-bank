@@ -1,8 +1,44 @@
 'use strict';
 
-/**
- * Read the documentation (https://strapi.io/documentation/v3.x/concepts/controllers.html#core-controllers)
- * to customize this controller
- */
+// Get all user's messages
+const getMyMessages = async ctx => {
+   try {
+      // ...
+   } catch (error) {
+      console.log(error);
+   }
+};
 
-module.exports = {};
+// Get single message
+const getSingle = async ctx => {
+   try {
+      // ...
+   } catch (error) {
+      console.log(error);
+   }
+};
+
+// Toggle message read
+const toggleRead = async ctx => {
+   try {
+      // ...
+   } catch (error) {
+      console.log(error);
+   }
+};
+
+// Delete single message
+const remove = async ctx => {
+   try {
+      // ...
+   } catch (error) {
+      console.log(error);
+   }
+};
+
+module.exports = {
+   getMyMessages,
+   getSingle,
+   toggleRead,
+   remove
+};

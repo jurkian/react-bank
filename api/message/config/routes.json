@@ -1,52 +1,37 @@
 {
-  "routes": [
-    {
-      "method": "GET",
-      "path": "/messages",
-      "handler": "message.find",
-      "config": {
-        "policies": []
-      }
-    },
-    {
-      "method": "GET",
-      "path": "/messages/count",
-      "handler": "message.count",
-      "config": {
-        "policies": []
-      }
-    },
-    {
-      "method": "GET",
-      "path": "/messages/:id",
-      "handler": "message.findOne",
-      "config": {
-        "policies": []
-      }
-    },
-    {
-      "method": "POST",
-      "path": "/messages",
-      "handler": "message.create",
-      "config": {
-        "policies": []
-      }
-    },
-    {
-      "method": "PUT",
-      "path": "/messages/:id",
-      "handler": "message.update",
-      "config": {
-        "policies": []
-      }
-    },
-    {
-      "method": "DELETE",
-      "path": "/messages/:id",
-      "handler": "message.delete",
-      "config": {
-        "policies": []
-      }
-    }
-  ]
-}
+   "routes": [
+     {
+       "method": "GET",
+       "path": "/messages/my",
+       "handler": "message.getMyMessages",
+       "config": {
+         "policies": ["global::pass-jwt-user"]
+       }
+     },
+     {
+       "method": "GET",
+       "path": "/messages/:messageId",
+       "handler": "message.getSingle",
+       "config": {
+         "policies": ["global::pass-jwt-user"]
+       }
+     },
+     {
+       "method": "PUT",
+       "path": "/messages/:messageId/toggle-read",
+       "handler": "message.toggleRead",
+       "config": {
+         "policies": ["global::pass-jwt-user"]
+       }
+     },
+     {
+       "method": "DELETE",
+       "path": "/messages/:messageId/delete",
+       "handler": "message.remove",
+       "config": {
+         "policies": ["global::pass-jwt-user"]
+       }
+     }
+   ]
+ }
+ 
