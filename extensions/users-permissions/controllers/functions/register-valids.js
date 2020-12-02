@@ -6,8 +6,8 @@ const usernameRegex = /^[a-z0-9]+([_\-.]*[a-z0-9])*$/;
 // allowed: lowercase and uppercase letters, space, '
 const nameRegex = /^[ a-zA-Z']+$/;
 
-// allowed: numbers, +
-const phoneRegex = /^[0-9+]+$/;
+// allowed: numbers, + (only at the beginning)
+const phoneRegex = /^[+]*[0-9]+$/;
 
 // allowed: lowercase and uppercase letters, numbers, space, -
 const streetRegex = /^[ a-zA-Z0-9\-]+$/;
