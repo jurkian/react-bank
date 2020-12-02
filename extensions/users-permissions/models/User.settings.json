@@ -90,27 +90,28 @@
     },
     "postcode": {
       "type": "string",
-      "required": true
+      "required": true,
+      "maxLength": 10
     },
     "city": {
       "type": "string",
       "required": true
     },
     "transfer": {
-      "via": "sender",
-      "model": "transfer"
+      "model": "transfer",
+      "via": "sender"
     },
     "account": {
-      "via": "owner",
-      "model": "account"
+      "model": "account",
+      "via": "owner"
     },
     "card": {
-      "via": "owner",
-      "model": "card"
+      "model": "card",
+      "via": "owner"
     },
     "message": {
-      "via": "recipient",
-      "model": "message"
+      "model": "message",
+      "via": "recipient"
     }
   }
 }
