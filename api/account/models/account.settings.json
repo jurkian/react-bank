@@ -1,0 +1,63 @@
+{
+  "kind": "collectionType",
+  "collectionName": "accounts",
+  "info": {
+    "name": "account",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "owner": {
+      "plugin": "users-permissions",
+      "model": "user",
+      "via": "account"
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "basic",
+        "premium",
+        "gold"
+      ],
+      "required": true
+    },
+    "is_active": {
+      "type": "boolean",
+      "default": false
+    },
+    "sortcode": {
+      "type": "integer",
+      "min": 6,
+      "max": 6,
+      "required": true
+    },
+    "number": {
+      "type": "integer",
+      "required": true,
+      "max": 8,
+      "min": 8,
+      "unique": false
+    },
+    "currency": {
+      "type": "enumeration",
+      "enum": [
+        "eur",
+        "gbp"
+      ],
+      "required": true
+    },
+    "current_balance": {
+      "type": "decimal",
+      "required": true,
+      "default": 0
+    },
+    "card": {
+      "via": "source_account",
+      "model": "card"
+    }
+  }
+}
