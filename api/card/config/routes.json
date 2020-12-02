@@ -2,50 +2,34 @@
   "routes": [
     {
       "method": "GET",
-      "path": "/cards",
-      "handler": "card.find",
+      "path": "/cards/my",
+      "handler": "card.getMyCards",
       "config": {
-        "policies": []
+        "policies": ["global::pass-jwt-user"]
       }
     },
     {
       "method": "GET",
-      "path": "/cards/count",
-      "handler": "card.count",
+      "path": "/cards/:cardId",
+      "handler": "card.getSingle",
       "config": {
-        "policies": []
-      }
-    },
-    {
-      "method": "GET",
-      "path": "/cards/:id",
-      "handler": "card.findOne",
-      "config": {
-        "policies": []
-      }
-    },
-    {
-      "method": "POST",
-      "path": "/cards",
-      "handler": "card.create",
-      "config": {
-        "policies": []
+        "policies": ["global::pass-jwt-user"]
       }
     },
     {
       "method": "PUT",
-      "path": "/cards/:id",
-      "handler": "card.update",
+      "path": "/cards/:cardId/pin",
+      "handler": "card.changePin",
       "config": {
-        "policies": []
+        "policies": ["global::pass-jwt-user"]
       }
     },
     {
-      "method": "DELETE",
-      "path": "/cards/:id",
-      "handler": "card.delete",
+      "method": "PUT",
+      "path": "/cards/:cardId/limits",
+      "handler": "card.changeLimits",
       "config": {
-        "policies": []
+        "policies": ["global::pass-jwt-user"]
       }
     }
   ]

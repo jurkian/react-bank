@@ -1,8 +1,44 @@
 'use strict';
 
-/**
- * Read the documentation (https://strapi.io/documentation/v3.x/concepts/controllers.html#core-controllers)
- * to customize this controller
- */
+// Get all user's cards
+const getMyCards = async ctx => {
+   try {
+      // ...
+   } catch (error) {
+      console.log(error);
+   }
+};
 
-module.exports = {};
+// Get single card
+const getSingle = async ctx => {
+   try {
+      // ...
+   } catch (error) {
+      console.log(error);
+   }
+};
+
+// Change card PIN
+const changePin = async ctx => {
+   try {
+      // ...
+   } catch (error) {
+      console.log(error);
+   }
+};
+
+// Change card limits
+const changeLimits = async ctx => {
+   try {
+      // ...
+   } catch (error) {
+      console.log(error);
+   }
+};
+
+module.exports = {
+   getMyCards,
+   getSingle,
+   changePin,
+   changeLimits
+};

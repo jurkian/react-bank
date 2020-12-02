@@ -12,9 +12,9 @@
   },
   "attributes": {
     "owner": {
+      "via": "card",
       "plugin": "users-permissions",
-      "model": "user",
-      "via": "card"
+      "model": "user"
     },
     "source_account": {
       "model": "account",
