@@ -5,8 +5,8 @@
    "singleQuote": true,
    "arrowParens": "avoid",
    "trailingComma": "none",
+   "parser": "babel",
    "jsxBracketSameLine": false,
-   "parser": "babylon",
    "semi": true,
    "bracketSpacing": true
 }
