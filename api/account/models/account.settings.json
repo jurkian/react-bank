@@ -12,9 +12,9 @@
   },
   "attributes": {
     "owner": {
-      "via": "account",
       "plugin": "users-permissions",
-      "model": "user"
+      "model": "user",
+      "via": "account"
     },
     "type": {
       "type": "enumeration",
@@ -31,16 +31,14 @@
     },
     "sortcode": {
       "type": "integer",
-      "min": 6,
-      "max": 6,
-      "required": true
+      "required": true,
+      "max": 999999
     },
     "number": {
       "type": "integer",
       "required": true,
-      "max": 8,
-      "min": 8,
-      "unique": false
+      "unique": false,
+      "max": 99999999
     },
     "currency": {
       "type": "enumeration",
@@ -56,8 +54,8 @@
       "default": 0
     },
     "card": {
-      "via": "source_account",
-      "model": "card"
+      "model": "card",
+      "via": "source_account"
     }
   }
 }

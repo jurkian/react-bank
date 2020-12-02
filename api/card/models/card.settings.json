@@ -12,13 +12,13 @@
   },
   "attributes": {
     "owner": {
-      "via": "card",
       "plugin": "users-permissions",
-      "model": "user"
+      "model": "user",
+      "via": "card"
     },
     "source_account": {
-      "model": "account",
-      "via": "card"
+      "via": "card",
+      "model": "account"
     },
     "is_active": {
       "type": "boolean",
@@ -27,15 +27,11 @@
     },
     "number": {
       "type": "integer",
-      "required": true,
-      "max": 16,
-      "min": 16
+      "required": true
     },
     "pin": {
       "type": "integer",
-      "required": true,
-      "max": 4,
-      "min": 4
+      "required": true
     },
     "expires_month": {
       "type": "integer",
