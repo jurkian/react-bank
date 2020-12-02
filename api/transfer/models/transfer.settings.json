@@ -1,0 +1,69 @@
+{
+  "kind": "collectionType",
+  "collectionName": "transfers",
+  "info": {
+    "name": "transfer",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "sender": {
+      "plugin": "users-permissions",
+      "model": "user",
+      "via": "transfer"
+    },
+    "payee_name": {
+      "type": "string",
+      "required": true
+    },
+    "amount": {
+      "type": "decimal",
+      "required": true
+    },
+    "currency": {
+      "type": "enumeration",
+      "enum": [
+        "eur",
+        "gbp"
+      ],
+      "required": true
+    },
+    "reference": {
+      "type": "string",
+      "required": true,
+      "maxLength": 40
+    },
+    "source_account": {
+      "model": "account"
+    },
+    "payee_acc_number": {
+      "type": "string",
+      "required": true
+    },
+    "payee_addr": {
+      "type": "string",
+      "required": true
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": [
+        "failed",
+        "planned",
+        "complete"
+      ],
+      "required": true
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "normal",
+        "turbo"
+      ],
+      "required": true
+    }
+  }
+}
