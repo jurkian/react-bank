@@ -12,9 +12,9 @@
   },
   "attributes": {
     "sender": {
-      "via": "transfer",
       "plugin": "users-permissions",
-      "model": "user"
+      "model": "user",
+      "via": "transfer"
     },
     "payee_name": {
       "type": "string",
@@ -52,10 +52,11 @@
       "type": "enumeration",
       "enum": [
         "failed",
-        "planned",
+        "pending",
         "complete"
       ],
-      "required": true
+      "required": true,
+      "default": "pending"
     },
     "type": {
       "type": "enumeration",

@@ -43,9 +43,18 @@ const getSingle = async ctx => {
 // Create new transfer
 const create = async ctx => {
    try {
-      // ...
+      const currentUser = ctx.state.user;
+      const data = ctx.request.body;
+
+      const createdTransfer = await strapi.query('transfer').create({
+         sender: currentUser.id,
+         ...data
+      });
+
+      ctx.send(createdTransfer);
    } catch (error) {
       console.log(error);
+      debugger;
    }
 };
 
