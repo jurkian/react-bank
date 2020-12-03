@@ -43,7 +43,29 @@ const getSingle = async ctx => {
 // Toggle message read
 const toggleRead = async ctx => {
    try {
-      // ...
+      const currentUser = ctx.state.user;
+      const { messageId } = ctx.params;
+
+      const myMessage = await strapi
+         .query('message')
+         .findOne({ id: messageId, recipient: currentUser.id });
+
+      if (!myMessage) {
+         return ctx.throw(400, 'no-message');
+      }
+
+      // Updates
+      const updates = {};
+      const newIsReadStatus = !myMessage.is_read;
+
+      updates.is_read = newIsReadStatus;
+
+      // Final save
+      const updatedMessage = await strapi
+         .query('message')
+         .update({ id: myMessage.id }, { ...updates });
+
+      ctx.send({ is_read: newIsReadStatus });
    } catch (error) {
       console.log(error);
    }
@@ -52,7 +74,20 @@ const toggleRead = async ctx => {
 // Delete single message
 const remove = async ctx => {
    try {
-      // ...
+      const currentUser = ctx.state.user;
+      const { messageId } = ctx.params;
+
+      const myMessage = await strapi
+         .query('message')
+         .findOne({ id: messageId, recipient: currentUser.id });
+
+      if (!myMessage) {
+         return ctx.throw(400, 'no-message');
+      }
+
+      const deletedMessage = await strapi.query('message').delete({ id: myMessage.id });
+
+      ctx.send(deletedMessage);
    } catch (error) {
       console.log(error);
    }
