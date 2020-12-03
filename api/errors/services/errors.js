@@ -19,8 +19,8 @@ const handleValidationErrors = async (toValidate, schema) => {
    debugger;
 
    if (error) {
-      console.log(error.message);
-      throw new Error(error);
+      console.warn('Validation errors', error.message);
+      throwError(400, 'Validations errors. Please check your data again');
    }
 };
 
