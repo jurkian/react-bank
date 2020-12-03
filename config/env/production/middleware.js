@@ -1,10 +1,17 @@
 module.exports = {
    settings: {
       poweredBy: {
-         enabled: false,
+         enabled: false
       },
       gzip: {
-         enable: true,
+         enable: true
       },
-   },
+      // Error handling
+      customErrorHandler: {
+         enabled: true
+      },
+      load: {
+         before: ['boom', 'customErrorHandler']
+      }
+   }
 };
