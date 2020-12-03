@@ -18,7 +18,9 @@
     },
     "payee_name": {
       "type": "string",
-      "required": true
+      "required": true,
+      "maxLength": 50,
+      "minLength": 2
     },
     "amount": {
       "type": "decimal",
@@ -35,18 +37,17 @@
     "reference": {
       "type": "string",
       "required": true,
-      "maxLength": 40
+      "maxLength": 40,
+      "minLength": 2
     },
     "source_account": {
       "model": "account"
     },
-    "payee_acc_number": {
-      "type": "string",
-      "required": true
-    },
     "payee_addr": {
       "type": "string",
-      "required": true
+      "required": true,
+      "maxLength": 100,
+      "minLength": 10
     },
     "status": {
       "type": "enumeration",
@@ -64,6 +65,11 @@
         "normal",
         "turbo"
       ],
+      "required": true
+    },
+    "payee_acc_number": {
+      "type": "biginteger",
+      "max": "30",
       "required": true
     }
   }
