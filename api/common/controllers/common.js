@@ -4,19 +4,24 @@ const _ = require('lodash');
 
 // Get app config
 const getAppConfig = async ctx => {
-   const pluginStore = await strapi.store({
-      environment: '',
-      type: 'plugin',
-      name: 'users-permissions'
-   });
+   try {
+      const pluginStore = await strapi.store({
+         environment: '',
+         type: 'plugin',
+         name: 'users-permissions'
+      });
 
-   const settings = await pluginStore.get({
-      key: 'advanced'
-   });
+      const settings = await pluginStore.get({
+         key: 'advanced'
+      });
 
-   const settingsToReturn = _.pick(settings, ['allow_register', 'email_confirmation']);
+      const settingsToReturn = _.pick(settings, ['allow_register', 'email_confirmation']);
 
-   return ctx.send(settingsToReturn);
+      ctx.send(settingsToReturn);
+   } catch (error) {
+      strapi.services.errors.throwError(400, error.message);
+   }
+};
 };
 
 module.exports = {
