@@ -17,7 +17,10 @@ module.exports = Joi.object({
 
    source_account: Joi.number().integer().positive().required(),
 
-   payee_acc_number: Joi.number().integer().positive().max(30).required(),
+   payee_acc_number: Joi.string()
+      .regex(/^[0-9]+$/)
+      .max(30)
+      .required(),
 
    payee_addr: Joi.string().regex(addrRegex).min(10).max(100).trim().required(),
 

@@ -69,7 +69,6 @@
     },
     "payee_acc_number": {
       "type": "biginteger",
-      "max": "30",
       "required": true
     }
   }
