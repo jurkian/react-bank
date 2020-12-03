@@ -43,6 +43,15 @@
                "actionType": "update"
             }
          }
+      },
+      {
+         "method": "GET",
+         "path": "/users/get-myself",
+         "handler": "user.getMyself",
+         "config": {
+            "policies": ["global::pass-jwt-user"],
+            "prefix": ""
+         }
       }
    ]
 }

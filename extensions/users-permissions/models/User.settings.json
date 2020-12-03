@@ -102,12 +102,12 @@
       "via": "sender"
     },
     "account": {
-      "model": "account",
-      "via": "owner"
+      "via": "owner",
+      "model": "account"
     },
     "card": {
-      "model": "card",
-      "via": "owner"
+      "via": "owner",
+      "model": "card"
     },
     "message": {
       "model": "message",
