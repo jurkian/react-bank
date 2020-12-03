@@ -22,8 +22,19 @@ const getAppConfig = async ctx => {
       strapi.services.errors.throwError(400, error.message);
    }
 };
+
+// Generate dummy data
+const generateDummyData = async ctx => {
+   // ...
+};
+
+// Clean all data
+const cleanAllData = async ctx => {
+   // ...
 };
 
 module.exports = {
-   getAppConfig
+   getAppConfig,
+   generateDummyData,
+   cleanAllData
 };

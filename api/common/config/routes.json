@@ -7,6 +7,22 @@
       "config": {
         "policies": []
       }
+    },
+    {
+      "method": "GET",
+      "path": "/app/generate-dummy-data",
+      "handler": "common.generateDummyData",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/app/clean-all-data",
+      "handler": "common.cleanAllData",
+      "config": {
+        "policies": []
+      }
     }
   ]
 }
