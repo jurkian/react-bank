@@ -14,8 +14,7 @@ const getMyMessages = async ctx => {
 
       ctx.send(myMessages);
    } catch (error) {
-      console.log(error);
-      debugger;
+      strapi.services.errors.throwError(400, error.message);
    }
 };
 
@@ -35,8 +34,7 @@ const getSingle = async ctx => {
 
       ctx.send(myMessage);
    } catch (error) {
-      console.log(error);
-      debugger;
+      strapi.services.errors.throwError(400, error.message);
    }
 };
 
@@ -67,7 +65,7 @@ const toggleRead = async ctx => {
 
       ctx.send({ is_read: newIsReadStatus });
    } catch (error) {
-      console.log(error);
+      strapi.services.errors.throwError(400, error.message);
    }
 };
 
@@ -89,7 +87,7 @@ const remove = async ctx => {
 
       ctx.send(deletedMessage);
    } catch (error) {
-      console.log(error);
+      strapi.services.errors.throwError(400, error.message);
    }
 };
 

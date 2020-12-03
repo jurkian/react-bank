@@ -14,8 +14,7 @@ const getMyTransfers = async ctx => {
 
       ctx.send(myTransfers);
    } catch (error) {
-      console.log(error);
-      debugger;
+      strapi.services.errors.throwError(400, error.message);
    }
 };
 
@@ -35,8 +34,7 @@ const getSingle = async ctx => {
 
       ctx.send(myTransfer);
    } catch (error) {
-      console.log(error);
-      debugger;
+      strapi.services.errors.throwError(400, error.message);
    }
 };
 
@@ -53,8 +51,7 @@ const create = async ctx => {
 
       ctx.send(createdTransfer);
    } catch (error) {
-      console.log(error);
-      debugger;
+      strapi.services.errors.throwError(400, error.message);
    }
 };
 

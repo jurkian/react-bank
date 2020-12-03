@@ -16,8 +16,7 @@ const sendForm = async ctx => {
 
       ctx.send({ ok: true });
    } catch (error) {
-      console.log(error);
-      debugger;
+      strapi.services.errors.throwError(400, error.message);
    }
 };
 
