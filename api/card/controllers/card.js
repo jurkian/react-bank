@@ -12,8 +12,7 @@ const getMyCards = async ctx => {
 
       ctx.send(myCards);
    } catch (error) {
-      console.log(error);
-      debugger;
+      strapi.services.errors.throwError(400, error.message);
    }
 };
 
@@ -31,8 +30,7 @@ const getSingle = async ctx => {
 
       ctx.send(myCard);
    } catch (error) {
-      console.log(error);
-      debugger;
+      strapi.services.errors.throwError(400, error.message);
    }
 };
 
@@ -61,8 +59,7 @@ const changePin = async ctx => {
 
       ctx.send(updatedCard);
    } catch (error) {
-      console.log(error);
-      debugger;
+      strapi.services.errors.throwError(400, error.message);
    }
 };
 
@@ -107,8 +104,7 @@ const changeLimits = async ctx => {
 
       ctx.send(updatedCard);
    } catch (error) {
-      console.log(error);
-      debugger;
+      strapi.services.errors.throwError(400, error.message);
    }
 };
 
