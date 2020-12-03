@@ -39,11 +39,16 @@ const getSingle = async ctx => {
 };
 
 // Create new transfer
+
+const createValids = require('./create-valids');
 const create = async ctx => {
    try {
       const currentUser = ctx.state.user;
       const data = ctx.request.body;
       const { source_account } = data;
+
+      // Handle validation errors
+      await strapi.services.errors.handleValidationErrors(ctx.request.body, createValids);
 
       // Check if user has access to the source_account
       const userHasAccount = await strapi
