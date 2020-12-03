@@ -1,0 +1,18 @@
+{
+  "kind": "singleType",
+  "collectionName": "settings",
+  "info": {
+    "name": "settings"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": false,
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "send_form_emails_to": {
+      "type": "email",
+      "default": "email@example.com"
+    }
+  }
+}
