@@ -12,8 +12,7 @@ const getMyAccounts = async ctx => {
 
       ctx.send(myAccounts);
    } catch (error) {
-      console.log(error);
-      debugger;
+      strapi.services.errors.throwError(400, error.message);
    }
 };
 
@@ -33,8 +32,7 @@ const getSingle = async ctx => {
 
       ctx.send(myAccount);
    } catch (error) {
-      console.log(error);
-      debugger;
+      strapi.services.errors.throwError(400, error.message);
    }
 };
 
