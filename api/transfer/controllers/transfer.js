@@ -43,6 +43,16 @@ const create = async ctx => {
    try {
       const currentUser = ctx.state.user;
       const data = ctx.request.body;
+      const { source_account } = data;
+
+      // Check if user has access to the source_account
+      const userHasAccount = await strapi
+         .query('account')
+         .findOne({ id: source_account, owner: currentUser.id });
+
+      if (!userHasAccount) {
+         return ctx.throw(400, 'no-account-permission');
+      }
 
       const createdTransfer = await strapi.query('transfer').create({
          sender: currentUser.id,
