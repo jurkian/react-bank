@@ -11,8 +11,10 @@
   },
   "devDependencies": {},
   "dependencies": {
+    "faker": "^5.1.0",
     "joi": "^17.3.0",
     "knex": "<0.20.0",
+    "moment": "^2.29.1",
     "mysql": "latest",
     "strapi": "3.3.4",
     "strapi-admin": "3.3.4",

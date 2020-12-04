@@ -1,6 +1,9 @@
 import axios from 'axios';
 
-const BASE_URL = 'http://localhost:3001';
+const BASE_URL =
+   process.env.NODE_ENV === 'production'
+      ? process.env.REACT_APP_PROD_API_URL
+      : process.env.REACT_APP_DEV_API_URL;
 
 let config = {
    authToken: ''
@@ -20,7 +23,7 @@ export const callAPI = (endpoint, method = 'get', data) => {
       axios({
          method,
          headers: {
-            Authorization: `Bearer ${getAPIConfig().authToken}`
+            Authorization: config.authToken ? `Bearer ${getAPIConfig().authToken}` : ''
          },
          url: `${BASE_URL}${endpoint}`,
          data

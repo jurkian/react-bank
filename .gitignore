@@ -95,21 +95,6 @@ results
 node_modules
 .node_history
 
-# Web
-/web/**/node_modules
-
-############################
-# CSS
-############################
-
-/web/src/**/*.css
-
-############################
-# Production
-############################
-
-/web/build
-
 ############################
 # Tests
 ############################
@@ -127,3 +112,12 @@ exports
 *.cache
 build
 .strapi-updater.json
+
+############################
+# Web
+############################
+
+web/**/node_modules
+web/**/build
+web/.env
+web/src/**/*.css

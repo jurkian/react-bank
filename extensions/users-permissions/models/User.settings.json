@@ -98,16 +98,16 @@
       "required": true
     },
     "transfer": {
-      "model": "transfer",
-      "via": "sender"
+      "via": "sender",
+      "model": "transfer"
     },
     "account": {
-      "model": "account",
-      "via": "owner"
+      "via": "owner",
+      "model": "account"
     },
     "card": {
-      "model": "card",
-      "via": "owner"
+      "via": "owner",
+      "model": "card"
     },
     "message": {
       "model": "message",

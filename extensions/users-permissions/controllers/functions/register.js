@@ -7,6 +7,8 @@ const formatError = error => [
 
 const { sanitizeEntity } = require('strapi-utils');
 
+const registerValids = require('./register-valids');
+
 const register = async ctx => {
    const pluginStore = await strapi.store({
       environment: '',
@@ -27,6 +29,9 @@ const register = async ctx => {
          })
       );
    }
+
+   // Handle validation errors
+   await strapi.services.errors.handleValidationErrors(ctx.request.body, registerValids);
 
    const params = {
       ..._.omit(ctx.request.body, ['confirmed', 'confirmationToken', 'resetPasswordToken']),

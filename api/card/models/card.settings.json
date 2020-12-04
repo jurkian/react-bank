@@ -12,9 +12,9 @@
   },
   "attributes": {
     "owner": {
-      "via": "card",
       "plugin": "users-permissions",
-      "model": "user"
+      "model": "user",
+      "via": "card"
     },
     "source_account": {
       "model": "account",
@@ -26,16 +26,12 @@
       "required": true
     },
     "number": {
-      "type": "integer",
-      "required": true,
-      "max": 16,
-      "min": 16
+      "type": "biginteger",
+      "required": true
     },
     "pin": {
       "type": "integer",
-      "required": true,
-      "max": 4,
-      "min": 4
+      "required": true
     },
     "expires_month": {
       "type": "integer",
