@@ -1,4 +1,4 @@
-# react-bank
+# 🏦 react-bank
 
 Banking app built in React, Redux and Node.
 There is also an option to use Strapi, but you would have to adjust the Front End to use it.
