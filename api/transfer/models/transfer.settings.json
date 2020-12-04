@@ -59,7 +59,7 @@
       "required": true,
       "default": "pending"
     },
-    "type": {
+    "method": {
       "type": "enumeration",
       "enum": [
         "normal",
@@ -69,6 +69,22 @@
     },
     "payee_acc_number": {
       "type": "biginteger",
+      "required": true
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "income",
+        "expense"
+      ]
+    },
+    "prev_balance": {
+      "type": "decimal",
+      "required": true
+    },
+    "next_balance": {
+      "type": "decimal",
+      "unique": false,
       "required": true
     }
   }

@@ -24,5 +24,7 @@ module.exports = Joi.object({
 
    payee_addr: Joi.string().regex(addrRegex).min(10).max(100).trim().required(),
 
-   type: Joi.string().valid('normal', 'turbo').trim().required()
+   method: Joi.string().valid('normal', 'turbo').trim().required(),
+
+   type: Joi.string().valid('income', 'expense').trim().required()
 });
