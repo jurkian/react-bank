@@ -4,6 +4,8 @@ const _ = require('lodash');
 
 // Functions
 const generateDummyData = require('./generate-dummy-data');
+const cleanDatabase = require('./clean-database');
+
 // Get app config
 const getAppConfig = async ctx => {
    try {
@@ -38,7 +40,13 @@ const generateData = async ctx => {
 
 // Clean all data
 const cleanAllData = async ctx => {
-   // ...
+   try {
+      await cleanDatabase();
+
+      ctx.send({ ok: true });
+   } catch (error) {
+      strapi.services.errors.throwError(400, error.message);
+   }
 };
 
 module.exports = {

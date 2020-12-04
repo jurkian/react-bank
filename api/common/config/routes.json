@@ -17,7 +17,7 @@
       }
     },
     {
-      "method": "GET",
+      "method": "POST",
       "path": "/app/clean-all-data",
       "handler": "common.cleanAllData",
       "config": {
