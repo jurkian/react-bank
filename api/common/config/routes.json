@@ -9,9 +9,9 @@
       }
     },
     {
-      "method": "GET",
+      "method": "POST",
       "path": "/app/generate-dummy-data",
-      "handler": "common.generateDummyData",
+      "handler": "common.generateData",
       "config": {
         "policies": []
       }
