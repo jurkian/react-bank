@@ -1,5 +1,14 @@
 const faker = require('faker');
 const _ = require('lodash');
+const moment = require('moment');
+
+const genRandom = (min, max) => _.random(min, max, false);
+
+// Length will be between min and max, and all elements will be undefined
+// It's just to use forEach
+const genRandomLenArr = (min, max) => Array.from(Array(genRandom(min, max)));
+
+const timeout = 1000;
 
 // Create a user
 
@@ -14,7 +23,7 @@ const getDefaultUserData = async () => {
 
    return {
       username: faker.internet.userName().toLowerCase(),
-      email: faker.internet.email(),
+      email: faker.internet.email().toLowerCase(),
       password,
       first_name: faker.name.firstName(),
       last_name: faker.name.lastName(),
@@ -111,54 +120,109 @@ const createMessage = user => {
 };
 
 // Statistics
-const createStats = accountId => {};
+const createStats = accId =>
+   new Promise(async (resolve, reject) => {
+      try {
+         const date = faker.date.between(moment().subtract(7, 'days').format(), new Date());
+
+         const incomeUpdates = {
+            type: 'income',
+            value: faker.finance.amount(1, 2500, 2),
+            collected_at: date,
+            account: accId
+         };
+
+         const expensesUpdates = {
+            type: 'expenses',
+            value: faker.finance.amount(1, 2500, 2),
+            collected_at: date,
+            account: accId
+         };
+
+         const currentStats = await strapi.query('stats').findOne();
+
+         if (!currentStats) {
+            updates = {
+               income_stats: [incomeUpdates],
+               expenses_stats: [expensesUpdates]
+            };
+
+            // Update
+            await strapi.query('stats').create(updates);
+         } else {
+            // Save updates
+            updates = {
+               income_stats: [...currentStats?.income_stats, incomeUpdates],
+               expenses_stats: [...currentStats?.expenses_stats, expensesUpdates]
+            };
+
+            // Update
+            await strapi.query('stats').update({ id: currentStats?.id }, { ...updates });
+         }
+
+         resolve();
+      } catch (error) {
+         console.log(error.message);
+         reject();
+      }
+   });
 
 // Generate data
 const generateData = user => {
    // Accounts
-   _.times(_.random(2, 3, false), async () => {
-      try {
-         const account = await createAccount(user);
-         const accId = account.id;
+   genRandomLenArr(2, 3).forEach((el1, index) => {
+      setTimeout(async () => {
+         try {
+            const account = await createAccount(user);
+            const accId = account.id;
 
-         // Cards
-         _.times(_.random(1, 2, false), async () => {
-            try {
-               await createCard(user, accId);
-            } catch (e) {
-               console.log(e);
-            }
-         });
+            // Cards
+            genRandomLenArr(1, 2).forEach((el1, index) => {
+               setTimeout(async () => {
+                  try {
+                     await createCard(user, accId);
+                  } catch (e) {
+                     console.log(e);
+                  }
+               }, timeout * (index + 1));
+            });
 
-         // Transfers
-         _.times(_.random(6, 10, false), async () => {
-            try {
-               await createTransfer(user, accId);
-            } catch (e) {
-               console.log(e);
-            }
-         });
+            // Transfers
+            genRandomLenArr(6, 10).forEach((el1, index) => {
+               setTimeout(async () => {
+                  try {
+                     await createTransfer(user, accId);
+                  } catch (e) {
+                     console.log(e);
+                  }
+               }, timeout * (index + 1));
+            });
 
-         // Stats
-         _.times(_.random(8, 12, false), async () => {
-            try {
-               await createStats(accId);
-            } catch (e) {
-               console.log(e);
-            }
-         });
-      } catch (e) {
-         console.log(e);
-      }
+            // Stats
+            genRandomLenArr(8, 12).forEach((el1, index) => {
+               setTimeout(async () => {
+                  try {
+                     await createStats(accId);
+                  } catch (e) {
+                     console.log(e);
+                  }
+               }, timeout * (index + 1));
+            });
+         } catch (e) {
+            console.log(e);
+         }
+      }, timeout * (index + 1));
    });
 
    // Messages
-   _.times(_.random(3, 5, false), async () => {
-      try {
-         await createMessage(user);
-      } catch (e) {
-         console.log(e);
-      }
+   genRandomLenArr(3, 5).forEach((el1, index) => {
+      setTimeout(async () => {
+         try {
+            await createMessage(user);
+         } catch (e) {
+            console.log(e);
+         }
+      }, timeout * (index + 1));
    });
 };
 
@@ -178,10 +242,12 @@ module.exports = async () => {
       }
 
       // Create 5 other users
-      _.times(5, async () => {
-         let user = await createUser();
+      genRandomLenArr(5, 5).forEach((el1, index) => {
+         setTimeout(async () => {
+            let user = await createUser();
 
-         generateData(user);
+            generateData(user);
+         }, timeout * (index + 1));
       });
 
       console.log('Dummy data created successfully');
