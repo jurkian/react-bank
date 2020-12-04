@@ -98,8 +98,8 @@
       "required": true
     },
     "transfer": {
-      "model": "transfer",
-      "via": "sender"
+      "via": "sender",
+      "model": "transfer"
     },
     "account": {
       "via": "owner",

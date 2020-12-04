@@ -17,8 +17,8 @@
       "via": "card"
     },
     "source_account": {
-      "via": "card",
-      "model": "account"
+      "model": "account",
+      "via": "card"
     },
     "is_active": {
       "type": "boolean",
@@ -26,7 +26,7 @@
       "required": true
     },
     "number": {
-      "type": "integer",
+      "type": "biginteger",
       "required": true
     },
     "pin": {

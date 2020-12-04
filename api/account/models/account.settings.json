@@ -54,8 +54,8 @@
       "default": 0
     },
     "card": {
-      "model": "card",
-      "via": "source_account"
+      "via": "source_account",
+      "model": "card"
     }
   }
 }
