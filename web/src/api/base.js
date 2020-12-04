@@ -20,7 +20,7 @@ export const callAPI = (endpoint, method = 'get', data) => {
       axios({
          method,
          headers: {
-            Authorization: `Bearer ${getAPIConfig().authToken}`
+            Authorization: config.authToken ? `Bearer ${getAPIConfig().authToken}` : ''
          },
          url: `${BASE_URL}${endpoint}`,
          data
