@@ -1,8 +1,6 @@
 {
    "compilerOptions": {
-      "baseUrl": "src",
       "paths": {
-         "*": ["src/*"],
          "actions/*": ["./src/actions"],
          "api/*": ["./src/api"],
          "components/*": ["./src/components"],
@@ -12,8 +10,8 @@
          "store/*": ["./src/store"],
          "tools/*": ["./src/tools"],
          "vendor/*": ["./src/vendor"],
-         "scss/*": ["./src/scss"]
+         "scss/*": ["./src/scss"],
+         "*": ["src/*"],
       }
-   },
-   "include": ["src"]
+   }
 }
