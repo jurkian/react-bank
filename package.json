@@ -11,21 +11,21 @@
   },
   "devDependencies": {},
   "dependencies": {
-    "faker": "^5.1.0",
-    "joi": "^17.3.0",
+    "faker": "^5.5.3",
+    "joi": "^17.4.0",
     "knex": "<0.20.0",
     "moment": "^2.29.1",
     "mysql": "latest",
-    "strapi": "3.3.4",
-    "strapi-admin": "3.3.4",
-    "strapi-connector-bookshelf": "3.3.4",
-    "strapi-plugin-content-manager": "3.3.4",
-    "strapi-plugin-content-type-builder": "3.3.4",
-    "strapi-plugin-email": "3.3.4",
-    "strapi-plugin-upload": "3.3.4",
-    "strapi-plugin-users-permissions": "3.3.4",
-    "strapi-provider-email-mailgun": "^3.3.4",
-    "strapi-utils": "3.3.4"
+    "strapi": "3.6.5",
+    "strapi-admin": "3.6.5",
+    "strapi-connector-bookshelf": "3.6.5",
+    "strapi-plugin-content-manager": "3.6.5",
+    "strapi-plugin-content-type-builder": "3.6.5",
+    "strapi-plugin-email": "3.6.5",
+    "strapi-plugin-upload": "3.6.5",
+    "strapi-plugin-users-permissions": "3.6.5",
+    "strapi-provider-email-mailgun": "^3.6.5",
+    "strapi-utils": "3.6.5"
   },
   "author": {
     "name": ""
