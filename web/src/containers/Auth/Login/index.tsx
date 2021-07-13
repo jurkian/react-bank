@@ -26,13 +26,13 @@ class Login extends Component {
       );
    }
 
-   onLoginSubmit = (email, password) => {
+   onLoginSubmit = (identifier, password) => {
       this.setState({ loading: true, error: null });
 
       // Dispatch auth action
       // There will be automatic redirect to panel, in HOC
       this.props
-         .login({ email, password })
+         .login({ identifier, password })
          .catch(error => this.setState({ loading: false, error }));
    };
 }
