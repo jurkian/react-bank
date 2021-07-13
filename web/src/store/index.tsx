@@ -13,7 +13,7 @@ const history = createBrowserHistory();
 const routeMiddleware = routerMiddleware(history);
 const middlewares = [thunk, logger, routeMiddleware];
 
-export default function configureStore(initialState) {
+export default function configureStore(initialState?: {}) {
    const store = createStore(
       rootReducer(history),
       initialState,
