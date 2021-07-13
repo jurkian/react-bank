@@ -1,0 +1,18 @@
+{
+   "compilerOptions": {
+      "paths": {
+         "root/*": ["./src/."],
+         "assets/*": ["./src/assets"],
+         "components/*": ["./src/components"],
+         "configs/*": ["./src/configs"],
+         "extensions/*": ["./src/extensions"],
+         "layouts/*": ["./src/layouts"],
+         "actions/*": ["./src/redux/actions"],
+         "reducers/*": ["./src/redux/reducers"],
+         "utility/*": ["./src/utility"],
+         "views/*": ["./src/views"],
+         "valids/*": ["./src/valids"],
+         "*": ["./src/*"]
+      }
+   }
+}
