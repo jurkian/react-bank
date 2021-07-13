@@ -5,14 +5,14 @@ import { getMyTransfers } from 'api/transfers';
 import { getMyMessages } from 'api/messages';
 
 // Fetch data for all the sections
-export default async () => {
+const getUserInitialData = async () => {
    try {
       const data = {
          user: await getMyself(),
          accounts: await getMyAccounts(),
          cards: await getMyCards(),
          transfers: await getMyTransfers(),
-         messages: await getMyMessages()
+         messages: await getMyMessages(),
       };
 
       return data;
@@ -20,3 +20,5 @@ export default async () => {
       throw new Error(err);
    }
 };
+
+export default getUserInitialData;
