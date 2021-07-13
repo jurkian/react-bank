@@ -1,3 +1,5 @@
+import * as H from 'history';
+
 import { combineReducers } from 'redux';
 import { connectRouter } from 'connected-react-router';
 
@@ -9,7 +11,7 @@ import messages from './messages';
 import profile from './profile';
 import transfers from './transfers';
 
-export default history =>
+const getReducers = (history: H.History) =>
    combineReducers({
       router: connectRouter(history),
       auth,
@@ -18,5 +20,7 @@ export default history =>
       cards,
       messages,
       profile,
-      transfers
+      transfers,
    });
+
+export default getReducers;
