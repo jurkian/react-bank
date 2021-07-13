@@ -1,7 +1,7 @@
 import { callAPI } from './base';
 
 // Get user's transfers
-export const getMyTransfers = (params = '') => callAPI(`/transfers/my/${params}`);
+export const getMyTransfers = () => callAPI(`/transfers/my`);
 
 // Get single transfer
 export const getSingleTransfer = id => callAPI(`/transfers/${id}`);

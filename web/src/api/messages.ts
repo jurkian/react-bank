@@ -1,7 +1,7 @@
 import { callAPI } from './base';
 
 // Get user's messages
-export const getMyMessages = (params = '') => callAPI(`/messages/my/${params}`);
+export const getMyMessages = () => callAPI(`/messages/my`);
 
 // Get single message
 export const getSingleMessage = id => callAPI(`/messages/${id}`);
