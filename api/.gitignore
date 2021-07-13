@@ -112,12 +112,3 @@ exports
 *.cache
 build
 .strapi-updater.json
-
-############################
-# Web
-############################
-
-web/**/node_modules
-web/**/build
-web/.env
-web/src/**/*.css
