@@ -2,8 +2,10 @@ import _ from 'lodash';
 import { getMyCards, changePin, changeLimits } from 'api/cards';
 import * as actionTypes from './actionTypes';
 
+import { AppDispatch } from 'store';
+
 // Get all user's cards
-export const fetchCards = () => async dispatch => {
+export const fetchCards = () => async (dispatch: AppDispatch) => {
    try {
       const data = await getMyCards();
 
@@ -18,13 +20,13 @@ export const fetchCards = () => async dispatch => {
    }
 };
 
-export const fetchCardsStatus = status => ({
+export const fetchCardsStatus = (status: boolean) => ({
    type: actionTypes.FETCH_CARDS_STATUS,
-   status
+   status,
 });
 
 // Change card's PIN
-export const changeCardPin = (id, newPin) => async dispatch => {
+export const changeCardPin = (id: number, newPin: number) => async (dispatch: AppDispatch) => {
    try {
       const card = await changePin(id, newPin);
 
@@ -36,31 +38,38 @@ export const changeCardPin = (id, newPin) => async dispatch => {
    } catch (err) {}
 };
 
+type LimitsType = {
+   dailyOnlineLimit?: string;
+   dailyWithdrawalLimit?: string;
+};
+
 // Change card's limits
-export const changeCardLimits = (id, newOnlineLimit, newWithdrawalLimit) => async dispatch => {
-   try {
-      const limits = {};
+export const changeCardLimits =
+   (id: number, newOnlineLimit: string, newWithdrawalLimit: string) =>
+   async (dispatch: AppDispatch) => {
+      try {
+         const limits: LimitsType = {};
 
-      if (newOnlineLimit) {
-         limits.dailyOnlineLimit = parseFloat(newOnlineLimit).toFixed(2);
-      }
-
-      if (newWithdrawalLimit) {
-         limits.dailyWithdrawalLimit = parseFloat(newWithdrawalLimit).toFixed(2);
-      }
-
-      if (!_.isEmpty(limits)) {
-         const card = await changeLimits(id, { ...limits });
-
-         if (!card) {
-            return;
+         if (newOnlineLimit) {
+            limits.dailyOnlineLimit = parseFloat(newOnlineLimit).toFixed(2);
          }
 
-         dispatch({
-            type: actionTypes.CARD_CHANGE_LIMITS,
-            id,
-            ...limits
-         });
-      }
-   } catch (err) {}
-};
+         if (newWithdrawalLimit) {
+            limits.dailyWithdrawalLimit = parseFloat(newWithdrawalLimit).toFixed(2);
+         }
+
+         if (!_.isEmpty(limits)) {
+            const card = await changeLimits(id, { ...limits });
+
+            if (!card) {
+               return;
+            }
+
+            dispatch({
+               type: actionTypes.CARD_CHANGE_LIMITS,
+               id,
+               ...limits,
+            });
+         }
+      } catch (err) {}
+   };

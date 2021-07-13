@@ -1,8 +1,10 @@
 import { getMyMessages, toggleMessageRead, removeMessage } from 'api/messages';
 import * as actionTypes from './actionTypes';
 
+import { AppDispatch } from 'store';
+
 // Fetch messages
-export const fetchMessages = () => async dispatch => {
+export const fetchMessages = () => async (dispatch: AppDispatch) => {
    try {
       // Set status to false on every start, so it can be reusable
       dispatch(fetchMessagesStatus(false));
@@ -20,13 +22,13 @@ export const fetchMessages = () => async dispatch => {
    }
 };
 
-export const fetchMessagesStatus = status => ({
+export const fetchMessagesStatus = (status: boolean) => ({
    type: actionTypes.FETCH_MESSAGES_STATUS,
-   status
+   status,
 });
 
 // Toggle message read
-export const messageToggle = id => async dispatch => {
+export const messageToggle = (id: number) => async (dispatch: AppDispatch) => {
    try {
       const message = await toggleMessageRead(id);
 
@@ -39,7 +41,7 @@ export const messageToggle = id => async dispatch => {
 };
 
 // Remove message
-export const messageRemove = id => async dispatch => {
+export const messageRemove = (id: number) => async (dispatch: AppDispatch) => {
    try {
       const message = await removeMessage(id);
 
