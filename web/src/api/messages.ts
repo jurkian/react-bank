@@ -4,10 +4,10 @@ import { callAPI } from './base';
 export const getMyMessages = () => callAPI(`/messages/my`);
 
 // Get single message
-export const getSingleMessage = id => callAPI(`/messages/${id}`);
+export const getSingleMessage = (id: number) => callAPI(`/messages/${id}`);
 
 // Toggle message read
-export const toggleMessageRead = id => callAPI(`/messages/${id}/toggle-read`, 'put');
+export const toggleMessageRead = (id: number) => callAPI(`/messages/${id}/toggle-read`, 'put');
 
 // Remove message
-export const removeMessage = id => callAPI(`/messages/${id}`, 'delete');
+export const removeMessage = (id: number) => callAPI(`/messages/${id}`, 'delete');

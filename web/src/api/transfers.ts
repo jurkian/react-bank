@@ -4,7 +4,7 @@ import { callAPI } from './base';
 export const getMyTransfers = () => callAPI(`/transfers/my`);
 
 // Get single transfer
-export const getSingleTransfer = id => callAPI(`/transfers/${id}`);
+export const getSingleTransfer = (id: number) => callAPI(`/transfers/${id}`);
 
 // Create a new transfer
-export const createTransfer = data => callAPI(`/transfers`, 'post', data);
+export const createTransfer = (data: {}) => callAPI(`/transfers`, 'post', data);
