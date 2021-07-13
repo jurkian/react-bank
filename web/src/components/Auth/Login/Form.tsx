@@ -14,10 +14,12 @@ const InnerForm = props => {
                <Field
                   type="email"
                   className="form-control login-input"
-                  name="email"
+                  name="identifier"
                   placeholder="Your email..."
                />
-               {touched.email && errors.email && <p className="field-invalid">{errors.email}</p>}
+               {touched.identifier && errors.identifier && (
+                  <p className="field-invalid">{errors.identifier}</p>
+               )}
             </div>
 
             <div className="form-group">
@@ -52,13 +54,11 @@ const InnerForm = props => {
 // Wrap our form with the using withFormik HoC
 const LoginForm = withFormik({
    // Transform outer props into form values
-   mapPropsToValues: props => ({ email: '', password: '' }),
+   mapPropsToValues: props => ({ identifier: '', password: '' }),
 
    // Add a custom validation function (this can be async too!)
    validationSchema: Yup.object().shape({
-      email: Yup.string()
-         .required('Email is required')
-         .email('This is not a valid email'),
+      identifier: Yup.string().required('Email is required').email('This is not a valid email'),
       password: Yup.string()
          .required('Password is required')
          .min(6, 'Your password has to be at least 6 characters')
@@ -66,7 +66,7 @@ const LoginForm = withFormik({
 
    // Submission handler
    handleSubmit: (values, { props, setStatus }) => {
-      props.onLoginSubmit(values.email, values.password);
+      props.onLoginSubmit(values.identifier, values.password);
    }
 })(InnerForm);
 
