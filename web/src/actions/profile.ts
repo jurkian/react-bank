@@ -2,8 +2,10 @@ import _ from 'lodash';
 import { getMyself, updateMyself } from 'api/users';
 import * as actionTypes from './actionTypes';
 
+import { AppDispatch } from 'store';
+
 // Get myself
-export const getProfile = () => async dispatch => {
+export const getProfile = () => async (dispatch: AppDispatch) => {
    try {
       const data = await getMyself();
 
@@ -19,45 +21,49 @@ export const getProfile = () => async dispatch => {
 };
 
 // Status
-export const fetchProfileStatus = status => ({
+export const fetchProfileStatus = (status: boolean) => ({
    type: actionTypes.FETCH_PROFILE_STATUS,
-   status
+   status,
 });
 
+type UserDetails = {
+   email?: string | null;
+   password?: string | null;
+   phone?: string | null;
+};
+
 // Change user's details
-export const changeUserDetails = (
-   email = null,
-   password = null,
-   phone = null
-) => async dispatch => {
-   try {
-      const data = {};
+export const changeUserDetails =
+   (email = null, password = null, phone = null) =>
+   async (dispatch: AppDispatch) => {
+      try {
+         const data: UserDetails = {};
 
-      if (email) {
-         data.email = email;
-      }
-
-      if (password) {
-         data.password = password;
-      }
-
-      if (phone) {
-         data.phone = phone;
-      }
-
-      if (!_.isEmpty(data)) {
-         const user = await updateMyself(data);
-
-         if (!user) {
-            dispatch(fetchProfileStatus(false));
-            return;
+         if (email) {
+            data.email = email;
          }
 
-         dispatch({
-            type: actionTypes.USER_CHANGE_DETAILS
-         });
+         if (password) {
+            data.password = password;
+         }
+
+         if (phone) {
+            data.phone = phone;
+         }
+
+         if (!_.isEmpty(data)) {
+            const user = await updateMyself(data);
+
+            if (!user) {
+               dispatch(fetchProfileStatus(false));
+               return;
+            }
+
+            dispatch({
+               type: actionTypes.USER_CHANGE_DETAILS,
+            });
+         }
+      } catch (err) {
+         dispatch(fetchProfileStatus(false));
       }
-   } catch (err) {
-      dispatch(fetchProfileStatus(false));
-   }
-};
+   };

@@ -1,7 +1,9 @@
 import { getMyTransfers, createTransfer } from 'api/transfers';
 import * as actionTypes from './actionTypes';
 
-export const fetchTransfers = () => async dispatch => {
+import { AppDispatch } from 'store';
+
+export const fetchTransfers = () => async (dispatch: AppDispatch) => {
    try {
       // Set status to false on every start, so it can be reusable
       dispatch(fetchTransfersStatus(false));
@@ -19,12 +21,18 @@ export const fetchTransfers = () => async dispatch => {
    }
 };
 
-export const fetchTransfersStatus = status => ({
+export const fetchTransfersStatus = (status: boolean) => ({
    type: actionTypes.FETCH_TRANSFERS_STATUS,
-   status
+   status,
 });
 
-export const addTransfer = data => async dispatch => {
+type TransferData = {
+   amount: string;
+   payeeAccNumber: string;
+   payeeSortcode: string;
+};
+
+export const addTransfer = (data: TransferData) => async (dispatch: AppDispatch) => {
    try {
       const transData = {
          ...data,
@@ -33,7 +41,7 @@ export const addTransfer = data => async dispatch => {
          payeeAccNumber: parseInt(data.payeeAccNumber, 10),
          payeeSortcode: parseInt(data.payeeSortcode, 10),
          status: 'Done',
-         type: 'Transfer'
+         type: 'Transfer',
       };
 
       const transfer = await createTransfer(transData);
@@ -45,7 +53,7 @@ export const addTransfer = data => async dispatch => {
 
       dispatch({
          type: actionTypes.ADD_TRANSFER,
-         data: transData
+         data: transData,
       });
    } catch (err) {
       dispatch(fetchTransfersStatus(false));

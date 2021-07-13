@@ -1,7 +1,9 @@
 import { getMyAccounts } from 'api/accounts';
 import * as actionTypes from './actionTypes';
 
-export const fetchAccounts = () => async dispatch => {
+import { AppDispatch } from 'store';
+
+export const fetchAccounts = () => async (dispatch: AppDispatch) => {
    try {
       const data = await getMyAccounts();
 
@@ -17,7 +19,7 @@ export const fetchAccounts = () => async dispatch => {
    }
 };
 
-export const fetchAccountsStatus = status => ({
+export const fetchAccountsStatus = (status: boolean) => ({
    type: actionTypes.FETCH_ACCOUNTS_STATUS,
-   status
+   status,
 });
