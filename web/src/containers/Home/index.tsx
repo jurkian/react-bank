@@ -35,7 +35,7 @@ class Home extends Component {
 
       if (usersCount) {
          this.setState({
-            clientsCount: usersCount.data,
+            clientsCount: usersCount,
             loaded: true
          });
       }

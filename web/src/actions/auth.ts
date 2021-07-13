@@ -14,15 +14,15 @@ export const setAuthStatus = (status, email = null) => ({
 // Login
 export const login = data => async dispatch => {
    try {
-      const token = await loginUser(data);
+      const userData = await loginUser(data);
 
-      if (!token) {
+      if (!userData) {
          dispatch(setAuthStatus(false));
          return;
       }
 
-      setAuthToken(token);
-      updateAPIConfig({ authToken: token });
+      setAuthToken(userData.jwt);
+      updateAPIConfig({ authToken: userData.jwt });
       dispatch(setAuthStatus(true));
    } catch (err) {
       dispatch(setAuthStatus(false));
