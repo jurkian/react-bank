@@ -1,10 +1,21 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { formatDate } from 'tools';
 
 import './style.scss';
 
-const ProfileHeader = props => {
+type Props = {
+   profile: {
+      createdAt: Date;
+      firstName: string;
+      lastName: string;
+      streetAddr: string;
+      postcode: string;
+      city: string;
+      email: string;
+   };
+};
+
+const ProfileHeader: React.FC<Props> = (props) => {
    const { firstName, lastName, streetAddr, postcode, city, email } = props.profile;
    let createdAt = formatDate(props.profile.createdAt, 'dd/MM/yyyy HH:mm');
 
@@ -28,10 +39,6 @@ const ProfileHeader = props => {
          <img src="https://placehold.it/200x200" alt={`${firstName} ${lastName} profile`} />
       </header>
    );
-};
-
-ProfileHeader.propTypes = {
-   client: PropTypes.object
 };
 
 export default ProfileHeader;

@@ -1,7 +1,19 @@
 import React from 'react';
 import './style.scss';
 
-const ProfileStats = ({ stats }) => {
+type Props = {
+   stats: {
+      accsDetails: {
+         count: number;
+         balance: number;
+      };
+      messagesCount: number;
+   };
+};
+
+const ProfileStats: React.FC<Props> = (props) => {
+   const { stats } = props;
+
    return (
       <section className="profile-stats">
          <div className="stats-accounts">
