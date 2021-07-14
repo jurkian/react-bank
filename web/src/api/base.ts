@@ -19,7 +19,7 @@ export const updateAPIConfig = (newConfig: {}) => {
    };
 };
 
-export const callAPI = (endpoint: string, method: Method = 'get', data?: {}) => {
+export const callAPI = (endpoint: string, method: Method = 'get', data?: {}): Promise<any> => {
    return new Promise((resolve, reject) => {
       axios({
          method,
