@@ -2,19 +2,25 @@ import { updateAPIConfig } from 'api/base';
 import { loginUser, registerUser } from 'api/auth';
 import * as actionTypes from './actionTypes';
 
+import { AppDispatch } from 'store';
+
 // Tools
 import { setAuthToken } from 'tools';
 
-export const setAuthStatus = (status, email = null) => ({
+export const setAuthStatus = (status: boolean, email: string = '') => ({
    type: actionTypes.SET_AUTH_STATUS,
    status,
-   email
+   email,
 });
 
+type UserData = {
+   jwt: string;
+};
+
 // Login
-export const login = data => async dispatch => {
+export const login = (data: {}) => async (dispatch: AppDispatch) => {
    try {
-      const userData = await loginUser(data);
+      const userData: UserData = await loginUser(data);
 
       if (!userData) {
          dispatch(setAuthStatus(false));
@@ -30,7 +36,7 @@ export const login = data => async dispatch => {
 };
 
 // Register
-export const register = data => async dispatch => {
+export const register = (data: {}) => async (dispatch: AppDispatch) => {
    try {
       const user = await registerUser(data);
 
