@@ -1,7 +1,7 @@
 import React from 'react';
 import ContactForm from './Form';
 
-const Help = () => (
+const Help: React.FC = () => (
    <div className="row panel-content">
       <div className="col-sm-8 offset-sm-2 col-md-6 offset-md-3">
          <section className="module help">

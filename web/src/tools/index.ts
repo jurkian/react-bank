@@ -7,7 +7,7 @@ export const myPadStart = (el: string | number, targetLength: number, padString:
 };
 
 // Insert something after every n characters in the string
-export const chunker = (el: {}, step: number, string: string) => {
+export const chunker = (el: [] | string | number, step: number, string: string) => {
    const regExp = new RegExp(`.{${step}}`, 'g');
 
    return el?.toString()?.match(regExp)?.join(string) || '';
