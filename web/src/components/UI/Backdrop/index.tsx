@@ -1,6 +1,6 @@
 import React from 'react';
 import './style.scss';
 
-const Backdrop = props => <div className="backdrop" />;
+const Backdrop: React.FC = () => <div className="backdrop" />;
 
 export default Backdrop;
