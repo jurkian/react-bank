@@ -3,12 +3,20 @@ import { connect } from 'react-redux';
 import * as actions from 'actions';
 import withAuth from 'hoc/WithAuth';
 
+import * as H from 'history';
+import { AppDispatch } from 'store';
+
 import LoginBox from 'components/Auth/Login';
 
-class Login extends Component {
+type MyProps = {
+   history: H.History;
+   login: (data?: {}) => {};
+};
+
+class Login extends Component<MyProps> {
    state = {
       loading: false,
-      error: null
+      error: null,
    };
 
    render() {
@@ -16,7 +24,7 @@ class Login extends Component {
          <div className="row">
             <div className="col">
                <LoginBox
-                  history={this.props.history}
+                  history={props.history}
                   onLoginSubmit={this.onLoginSubmit}
                   loading={this.state.loading}
                   error={this.state.error}
@@ -26,20 +34,20 @@ class Login extends Component {
       );
    }
 
-   onLoginSubmit = (identifier, password) => {
+   onLoginSubmit = (identifier: string, password: string) => {
       this.setState({ loading: true, error: null });
 
       // Dispatch auth action
       // There will be automatic redirect to panel, in HOC
-      this.props
+      props
          .login({ identifier, password })
-         .catch(error => this.setState({ loading: false, error }));
+         .catch((err: Error) => this.setState({ loading: false, err }));
    };
 }
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch: AppDispatch) => {
    return {
-      login: data => dispatch(actions.login(data))
+      login: (data: {}) => dispatch(actions.login(data)),
    };
 };
 
