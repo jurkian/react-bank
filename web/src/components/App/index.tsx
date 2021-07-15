@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Route, Switch } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useAppDispatch } from '@hooks';
 import * as actions from 'actions';
 
 import { updateAPIConfig } from 'api/base';
@@ -20,7 +20,7 @@ import PageNotFound from 'components/PageNotFound';
 import './app.scss';
 
 const App: React.FC = () => {
-   const dispatch = useDispatch();
+   const dispatch = useAppDispatch();
 
    const setAuthStatus = (status: boolean) => dispatch(actions.setAuthStatus(status));
 

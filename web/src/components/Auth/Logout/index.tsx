@@ -1,14 +1,18 @@
-import { Component } from 'react';
+import React, { useEffect } from 'react';
 
-class Logout extends Component {
-   componentDidMount() {
+import * as H from 'history';
+
+type Props = {
+   history: H.History;
+};
+
+const Logout: React.FC<Props> = (props) => {
+   useEffect(() => {
       localStorage.removeItem('token');
-      this.props.history.push('/');
-   }
+      props.history.push('/');
+   }, []);
 
-   render() {
-      return null;
-   }
-}
+   return null;
+};
 
 export default Logout;
