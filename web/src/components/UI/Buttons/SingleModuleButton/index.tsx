@@ -7,8 +7,8 @@ import './style.scss';
 import { ButtonTypes } from '@types';
 
 type Props = {
-   type: ButtonTypes;
-   href: string;
+   type?: ButtonTypes;
+   href?: string;
    text: string;
 };
 
