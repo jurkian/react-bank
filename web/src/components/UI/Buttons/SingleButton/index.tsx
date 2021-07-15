@@ -1,8 +1,17 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
 
-const SingleButton = props => {
+import { ButtonTypes } from '@types';
+
+type Props = {
+   color?: string;
+   size: string;
+   type?: ButtonTypes;
+   href: string;
+   text: string;
+};
+
+const SingleButton: React.FC<Props> = (props) => {
    const btnColor = props.color ? `btn-${props.color}` : 'btn-primary';
    const btnSize = props.size ? `btn-${props.size}` : '';
    const btnType = props.type ? props.type : 'button';
@@ -16,14 +25,6 @@ const SingleButton = props => {
          {props.text}
       </button>
    );
-};
-
-SingleButton.propTypes = {
-   color: PropTypes.string,
-   size: PropTypes.string,
-   type: PropTypes.string,
-   href: PropTypes.string,
-   text: PropTypes.string
 };
 
 export default SingleButton;

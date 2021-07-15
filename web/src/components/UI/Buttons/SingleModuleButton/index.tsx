@@ -1,11 +1,18 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
 
 import '../style.scss';
 import './style.scss';
 
-const SingleModuleButton = props => {
+import { ButtonTypes } from '@types';
+
+type Props = {
+   type: ButtonTypes;
+   href: string;
+   text: string;
+};
+
+const SingleModuleButton: React.FC<Props> = (props) => {
    const btnType = props.type ? props.type : 'button';
 
    return (
@@ -21,12 +28,6 @@ const SingleModuleButton = props => {
          )}
       </div>
    );
-};
-
-SingleModuleButton.propTypes = {
-   type: PropTypes.string,
-   href: PropTypes.string,
-   text: PropTypes.string
 };
 
 export default SingleModuleButton;

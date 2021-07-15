@@ -1,8 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
 
-const SingleMultiButton = props => {
+import { ButtonTypes } from '@types';
+
+type Props = {
+   type: ButtonTypes;
+   href: string;
+   text: string;
+};
+
+const SingleMultiButton: React.FC<Props> = (props) => {
    const btnType = props.type ? props.type : 'button';
 
    return props.href ? (
@@ -14,12 +21,6 @@ const SingleMultiButton = props => {
          {props.text}
       </button>
    );
-};
-
-SingleMultiButton.propTypes = {
-   type: PropTypes.string,
-   href: PropTypes.string,
-   text: PropTypes.string
 };
 
 export default SingleMultiButton;
