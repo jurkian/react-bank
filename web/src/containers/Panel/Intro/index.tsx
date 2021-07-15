@@ -1,5 +1,5 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import { useAppSelector } from '@hooks';
 
 import IncomeStats from 'components/Widgets/IncomeStats';
 import IconedList from 'components/Widgets/IconedList';
@@ -11,25 +11,29 @@ const data = {
          type: '',
          href: '/panel/accounts',
          title: '<strong>John Doe</strong> added new image',
-         subtitle: '34 minutes ago'
+         subtitle: '34 minutes ago',
       },
       {
          type: 'image',
          href: '',
          title: '<strong>John Doe</strong> added new image',
-         subtitle: '34 minutes ago'
-      }
+         subtitle: '34 minutes ago',
+      },
    ],
    messageData: {
       title: 'Make logo smaller, trust me!',
       sender: 'Johny Depp, johnyd@symu.co',
       recipient: 'jakub.jurkian@example.com',
       content:
-         '<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Debitis, laboriosam.</p><p>Qui porro voluptatibus nisi tempore nam deleniti quo. Porro, nulla.</p>'
-   }
+         '<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Debitis, laboriosam.</p><p>Qui porro voluptatibus nisi tempore nam deleniti quo. Porro, nulla.</p>',
+   },
 };
 
-const PanelHome = ({ user }) => {
+type Props = {};
+
+const PanelHome: React.FC<Props> = (props) => {
+   const user = useAppSelector((state) => state.profile.data);
+
    return (
       <div className="row panel-content">
          <div className="col-md-12">
@@ -55,10 +59,4 @@ const PanelHome = ({ user }) => {
    );
 };
 
-const mapStateToProps = state => {
-   return {
-      user: state.profile.data
-   };
-};
-
-export default connect(mapStateToProps)(PanelHome);
+export default PanelHome;

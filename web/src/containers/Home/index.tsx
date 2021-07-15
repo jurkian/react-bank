@@ -27,19 +27,19 @@ const Home: React.FC<Props> = (props) => {
 
    if (!isLoaded) {
       return <Loader />;
-   } else {
-      return (
-         <div className="row">
-            <div className="col">
-               <section className="module home">
-                  <Header clientsCount={clientsCount} />
-                  <Features />
-                  <NewFeatures />
-               </section>
-            </div>
-         </div>
-      );
    }
+
+   return (
+      <div className="row">
+         <div className="col">
+            <section className="module home">
+               <Header clientsCount={clientsCount} />
+               <Features />
+               <NewFeatures />
+            </section>
+         </div>
+      </div>
+   );
 };
 
 export default Home;
