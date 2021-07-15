@@ -11,7 +11,8 @@
          "store/*": ["./store/*"],
          "tools/*": ["./tools/*"],
          "vendor/*": ["./vendor/*"],
-         "scss/*": ["./scss/*"]
+         "scss/*": ["./scss/*"],
+         "@types/*": ["./@types/*"]
       }
    }
 }
