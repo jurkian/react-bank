@@ -1,10 +1,18 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import './style.scss';
 import SingleListItem from './ListItem';
 
-const IconedList = props => {
+type Props = {
+   items: {
+      type: string;
+      href: string;
+      title: string;
+      subtitle: string;
+   }[];
+};
+
+const IconedList: React.FC<Props> = (props) => {
    // Prepare list items
    const listItems = props.items.map((item, index) => {
       const { ...listData } = item;
@@ -18,10 +26,6 @@ const IconedList = props => {
          <ul>{listItems}</ul>
       </section>
    );
-};
-
-IconedList.propTypes = {
-   items: PropTypes.array
 };
 
 export default IconedList;

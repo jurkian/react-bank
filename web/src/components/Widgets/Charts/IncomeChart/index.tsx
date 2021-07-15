@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+
 import {
    AreaChart,
    XAxis,
@@ -8,12 +8,16 @@ import {
    Tooltip,
    Legend,
    Area,
-   ResponsiveContainer
+   ResponsiveContainer,
 } from 'recharts';
 
 import './style.scss';
 
-const IncomeChart = props => {
+type Props = {
+   data: {}[];
+};
+
+const IncomeChart: React.FC<Props> = (props) => {
    return (
       <div className="income-chart-container">
          <ResponsiveContainer>
@@ -51,10 +55,6 @@ const IncomeChart = props => {
          </ResponsiveContainer>
       </div>
    );
-};
-
-IncomeChart.propTypes = {
-   data: PropTypes.array
 };
 
 export default IncomeChart;
