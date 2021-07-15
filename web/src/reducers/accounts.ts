@@ -1,23 +1,29 @@
+import { AnyAction } from 'redux';
 import * as actionTypes from 'actions/actionTypes';
 
-const initialState = {
+interface State {
+   data: {}[];
+   status: boolean;
+}
+
+const initialState: State = {
    data: [],
-   status: true
+   status: true,
 };
 
-const accounts = (state = initialState, action) => {
+const accounts = (state = initialState, action: AnyAction) => {
    switch (action.type) {
       case actionTypes.FETCH_ACCOUNTS:
          return {
             ...state,
             data: [...action.data],
-            status: true
+            status: true,
          };
 
       case actionTypes.FETCH_ACCOUNTS_STATUS:
          return {
             ...state,
-            status: action.status
+            status: action.status,
          };
 
       default:
