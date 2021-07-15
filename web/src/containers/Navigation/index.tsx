@@ -1,36 +1,28 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, { useState } from 'react';
 
 import NavigationHeader from 'components/Navigation/Header';
 import MainNavigation from 'components/Navigation/MainNavigation';
 
-class Navigation extends Component {
-   state = { isMobileNavVisible: false };
+import { useAppSelector } from '@hooks';
 
-   render() {
-      return (
-         <div className="row">
-            <div className="col">
-               <section className="module navigation">
-                  <NavigationHeader toggleMobileNav={this.toggleMobileNav} user={this.props.user} />
-                  <MainNavigation isMobileNavVisible={this.state.isMobileNavVisible} />
-               </section>
-            </div>
+type Props = {};
+
+const Navigation: React.FC<Props> = (props) => {
+   const [isMobileNavVisible, setIsMobileNavVisible] = useState(false);
+
+   const toggleMobileNav = () => setIsMobileNavVisible((prevState) => !prevState);
+   const user = useAppSelector((state) => state.profile.data);
+
+   return (
+      <div className="row">
+         <div className="col">
+            <section className="module navigation">
+               <NavigationHeader toggleMobileNav={toggleMobileNav} user={user} />
+               <MainNavigation isMobileNavVisible={isMobileNavVisible} />
+            </section>
          </div>
-      );
-   }
-
-   toggleMobileNav = () => {
-      this.setState(prevState => ({
-         isMobileNavVisible: !prevState.isMobileNavVisible
-      }));
-   };
-}
-
-const mapStateToProps = state => {
-   return {
-      user: state.profile.data
-   };
+      </div>
+   );
 };
 
-export default connect(mapStateToProps)(Navigation);
+export default Navigation;

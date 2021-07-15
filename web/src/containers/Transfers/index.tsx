@@ -5,7 +5,9 @@ import TransfersList from 'components/Transfers/List';
 import SingleTransfer from 'components/Transfers/Single';
 import NewTransfer from 'components/Transfers/New';
 
-const Transfers = props => (
+type Props = {};
+
+const Transfers: React.FC<Props> = (props) => (
    <div className="row panel-content">
       <div className="col">
          <Switch>
