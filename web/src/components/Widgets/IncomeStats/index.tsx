@@ -1,53 +1,62 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, { useState, useEffect } from 'react';
+import { useAppSelector } from '@hooks';
+
 import { getStats } from 'api/stats';
 
 import Loader from 'components/UI/Loader';
 import IncomeChart from '../Charts/IncomeChart';
 
-class IncomeStats extends Component {
-   state = {
-      accDetails: {},
-      chartData: [],
-      loaded: false
-   };
+type Props = {};
 
-   // Get account stats for the last 30 days
-   // For the first user's account
-   componentDidMount() {
-      getStats(this.props.firstAccount._id, 30)
-         .then(({ accDetails, data }) => {
-            this.setState({ accDetails, chartData: data, loaded: true });
-         })
-         .catch(err => this.setState({ loaded: false }));
-   }
-
-   render() {
-      if (!this.state.loaded) {
-         return <Loader />;
-      } else {
-         return (
-            <section className="module stats-widget">
-               <h3>Income change stats (30 days)</h3>
-               <p>
-                  <strong>{this.state.accDetails.type} account</strong>
-                  {' / '}
-                  {this.state.accDetails.currency.toUpperCase()}
-                  {' / '}
-                  {this.state.accDetails.number}
-               </p>
-
-               <IncomeChart data={this.state.chartData} />
-            </section>
-         );
-      }
-   }
-}
-
-const mapStateToProps = state => {
-   return {
-      firstAccount: state.accounts.data[0]
-   };
+type AccDetails = {
+   type?: string;
+   currency?: string;
+   number?: number;
 };
 
-export default connect(mapStateToProps)(IncomeStats);
+const IncomeStats: React.FC<Props> = (props) => {
+   const [accDetails, setAccDetails] = useState<AccDetails>({});
+   const [chartData, setChartData] = useState([]);
+   const [isLoaded, setIsLoaded] = useState(false);
+
+   const firstAccount = useAppSelector((state) => state.accounts.data[0]);
+
+   const doGetStats = async () => {
+      // Get account stats for the last 30 days
+      // For the first user's account
+      try {
+         const res = await getStats(firstAccount._id, 30);
+
+         setAccDetails(res.accDetails);
+         setChartData(res.data);
+         setIsLoaded(true);
+      } catch (err) {
+         setIsLoaded(false);
+      }
+   };
+
+   useEffect(() => {
+      doGetStats();
+   }, []);
+
+   if (!isLoaded) {
+      return <Loader />;
+   }
+
+   return (
+      <section className="module stats-widget">
+         <h3>Income change stats (30 days)</h3>
+         <p>
+            <strong>{accDetails.type} account</strong>
+            {' / '}
+            {accDetails.currency?.toUpperCase()}
+            {' / '}
+            {accDetails.number}
+         </p>
+
+         <IncomeChart data={chartData} />
+      </section>
+   );
+};
+
+export default IncomeStats;

@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 import { ButtonTypes } from '@types';
 
 type Props = {
-   type: ButtonTypes;
-   href: string;
+   type?: ButtonTypes;
+   href?: string;
    text: string;
 };
 

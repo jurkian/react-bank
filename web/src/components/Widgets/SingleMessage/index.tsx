@@ -1,12 +1,18 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import MultiModuleButtons from 'components/UI/Buttons/MultiModuleButtons';
 import SingleMultiButton from 'components/UI/Buttons/SingleMultiButton';
 
 import './style.scss';
 
-const SingleMessage = props => {
+type Props = {
+   title: string;
+   sender: string;
+   recipient: string;
+   content: string;
+};
+
+const SingleMessage = (props: Props) => {
    return (
       <section className="module message">
          <header className="message-header">
@@ -29,13 +35,6 @@ const SingleMessage = props => {
          </MultiModuleButtons>
       </section>
    );
-};
-
-SingleMessage.propTypes = {
-   title: PropTypes.string,
-   sender: PropTypes.string,
-   recipient: PropTypes.string,
-   content: PropTypes.string
 };
 
 export default SingleMessage;
