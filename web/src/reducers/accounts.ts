@@ -2,7 +2,13 @@ import { AnyAction } from 'redux';
 import * as actionTypes from 'actions/actionTypes';
 
 interface State {
-   data: {}[];
+   data: {
+      _id: string;
+      type: string;
+      sortcode: string;
+      balance: number;
+      currency: string;
+   }[];
    status: boolean;
 }
 

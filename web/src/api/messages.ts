@@ -4,7 +4,7 @@ import { callAPI } from './base';
 export const getMyMessages = () => callAPI(`/messages/my`);
 
 // Get single message
-export const getSingleMessage = (id: number) => callAPI(`/messages/${id}`);
+export const getSingleMessage = (id: string) => callAPI(`/messages/${id}`);
 
 // Toggle message read
 export const toggleMessageRead = (id: string) => callAPI(`/messages/${id}/toggle-read`, 'put');

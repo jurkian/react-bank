@@ -34,7 +34,7 @@ type UserDetails = {
 
 // Change user's details
 export const changeUserDetails =
-   (email = null, password = null, phone = null) =>
+   (email: string | null = null, password: string | null = null, phone: string | null = null) =>
    async (dispatch: AppDispatch) => {
       try {
          const data: UserDetails = {};

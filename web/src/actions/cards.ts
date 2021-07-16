@@ -26,7 +26,7 @@ export const fetchCardsStatus = (status: boolean) => ({
 });
 
 // Change card's PIN
-export const changeCardPin = (id: number, newPin: number) => async (dispatch: AppDispatch) => {
+export const changeCardPin = (id: string, newPin: number) => async (dispatch: AppDispatch) => {
    try {
       const card = await changePin(id, newPin);
 
@@ -45,7 +45,7 @@ type LimitsType = {
 
 // Change card's limits
 export const changeCardLimits =
-   (id: number, newOnlineLimit: string, newWithdrawalLimit: string) =>
+   (id: string, newOnlineLimit: string, newWithdrawalLimit: string) =>
    async (dispatch: AppDispatch) => {
       try {
          const limits: LimitsType = {};
