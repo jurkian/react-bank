@@ -1,11 +1,17 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import CurrencyBox from '../CurrencyBox';
 
 import './style.scss';
 
-const CurrencyList = ({ currencyData, baseCurrency }) => {
-   const currencyRates = currencyData.rates;
+type Props = {
+   currData: { rates: [] };
+   baseCurrency: string;
+};
+
+const CurrencyList: React.FC<Props> = (props) => {
+   const { currData, baseCurrency } = props;
+
+   const currencyRates = currData.rates;
    const currencyBoxes = Object.keys(currencyRates).map((currency, i) => {
       return (
          <CurrencyBox
@@ -18,11 +24,6 @@ const CurrencyList = ({ currencyData, baseCurrency }) => {
    });
 
    return <div className="currency-boxes-container row">{currencyBoxes}</div>;
-};
-
-CurrencyList.propTypes = {
-   currencyData: PropTypes.object.isRequired,
-   baseCurrency: PropTypes.string.isRequired
 };
 
 export default CurrencyList;

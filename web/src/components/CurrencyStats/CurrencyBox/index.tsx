@@ -1,8 +1,16 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+
 import './style.scss';
 
-const CurrencyBox = ({ baseCurrency, currency, value }) => {
+type Props = {
+   baseCurrency: string;
+   currency: string;
+   value: number;
+};
+
+const CurrencyBox: React.FC<Props> = (props) => {
+   const { baseCurrency, currency, value } = props;
+
    return (
       <div className="col-sm-6 col-md-4 currency-box">
          <h3>{currency}</h3>
@@ -11,12 +19,6 @@ const CurrencyBox = ({ baseCurrency, currency, value }) => {
          </p>
       </div>
    );
-};
-
-CurrencyBox.propTypes = {
-   baseCurrency: PropTypes.string.isRequired,
-   currency: PropTypes.string.isRequired,
-   value: PropTypes.number.isRequired
 };
 
 export default CurrencyBox;

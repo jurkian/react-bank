@@ -12,11 +12,7 @@ import './style.scss';
 
 import makeAPIRequest from './api-request';
 
-interface Params {
-   cardId: string;
-}
-
-interface Props extends RouteComponentProps<Params> {}
+interface Props extends RouteComponentProps {}
 
 const CurrencyStats: React.FC<Props> = (props) => {
    const currs = 'GBP,AUD,CAD,CHF,CZK,EUR,HUF,JPY,NOK,PLN,RUB,SEK,USD'.split(',');
@@ -29,14 +25,14 @@ const CurrencyStats: React.FC<Props> = (props) => {
    const doAPIRequest = () =>
       makeAPIRequest(date, currs, baseCurrency, setCurrencyData, setIsLoaded);
 
-   const onBaseCurrencyChange = () => {
-      setBaseCurrency(baseCurrency);
+   const onBaseCurrencyChange = (newCurr: string) => {
+      setBaseCurrency(newCurr);
       setIsLoaded(true);
 
       doAPIRequest();
    };
 
-   const onCurrencyDateChange = () => {
+   const onCurrencyDateChange = (date: Date) => {
       setDate(date);
       setIsLoaded(true);
 
@@ -61,8 +57,8 @@ const CurrencyStats: React.FC<Props> = (props) => {
                      date={date}
                      currencies={currs}
                      baseCurrency={baseCurrency}
-                     onBaseCurrencyChange={() => onBaseCurrencyChange()}
-                     onCurrencyDateChange={() => onCurrencyDateChange()}
+                     onBaseCurrencyChange={onBaseCurrencyChange}
+                     onCurrencyDateChange={onCurrencyDateChange}
                   />
                </div>
 
