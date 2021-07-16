@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import './style.scss';
 
@@ -7,7 +6,11 @@ import cardChipImg from './card-chip.png';
 import visaImg from './visa-logo.png';
 import mastercardImg from './visa-logo.png';
 
-const CardLogos = props => {
+type Props = {
+   type: string;
+};
+
+const CardLogos: React.FC<Props> = (props) => {
    const cardType = props.type;
 
    return (
@@ -16,10 +19,6 @@ const CardLogos = props => {
          <img src={cardType === 'visa' ? visaImg : mastercardImg} alt="Credit card logo" />
       </section>
    );
-};
-
-CardLogos.propTypes = {
-   type: PropTypes.string
 };
 
 export default CardLogos;

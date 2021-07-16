@@ -2,7 +2,7 @@ import React from 'react';
 
 import './style.scss';
 
-const AccountDetails = () => {
+const AccountDetails: React.FC = () => {
    return (
       <section className="account-details">
          <div className="card-details-row">

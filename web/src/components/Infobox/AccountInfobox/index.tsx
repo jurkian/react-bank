@@ -7,7 +7,7 @@ import AccountDetails from '../AccountDetails';
 import AccountName from '../AccountName';
 import AccountSummary from '../AccountSummary';
 
-const CardInfobox = () => {
+const CardInfobox: React.FC = () => {
    return (
       <section className="module infobox account-infobox">
          <header>

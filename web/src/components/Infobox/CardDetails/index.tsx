@@ -1,10 +1,18 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { myPadStart, chunker } from 'tools';
 
 import './style.scss';
 
-const CardDetails = ({ number, expiresMonth, expiresYear }) => {
+type Props = {
+   number: number;
+   expiresMonth: number;
+   expiresYear: number;
+};
+
+// const CardDetails = ({ number, expiresMonth, expiresYear }) => {
+const CardDetails: React.FC<Props> = (props) => {
+   const { number, expiresMonth, expiresYear } = props;
+
    return (
       <section className="card-details">
          <div className="card-details-row">
@@ -28,12 +36,6 @@ const CardDetails = ({ number, expiresMonth, expiresYear }) => {
          </div>
       </section>
    );
-};
-
-CardDetails.propTypes = {
-   number: PropTypes.number,
-   expiresMonth: PropTypes.number,
-   expiresYear: PropTypes.number
 };
 
 export default CardDetails;

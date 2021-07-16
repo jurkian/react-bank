@@ -1,9 +1,14 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import './style.scss';
 
-const AccountSummary = props => {
+type Props = {
+   income7Days: number;
+   expenses7Days: number;
+   balance: number;
+};
+
+const AccountSummary: React.FC<Props> = (props) => {
    return (
       <section className="account-summary">
          <section className="account-summary-boxes">
@@ -23,12 +28,6 @@ const AccountSummary = props => {
          </section>
       </section>
    );
-};
-
-AccountSummary.propTypes = {
-   income7Days: PropTypes.number,
-   expenses7Days: PropTypes.number,
-   balance: PropTypes.number
 };
 
 export default AccountSummary;

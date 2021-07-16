@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import '../style.scss';
 import './style.scss';
@@ -12,15 +11,19 @@ import AccountSummary from '../AccountSummary';
 import MultiModuleButtons from 'components/UI/Buttons/MultiModuleButtons';
 import SingleMultiButton from 'components/UI/Buttons/SingleMultiButton';
 
-const CardInfobox = ({
-   number,
-   expiresMonth,
-   expiresYear,
-   // balance,
-   // income7Days,
-   // expenses7Days,
-   currentUrl
-}) => {
+type Props = {
+   number: number;
+   expiresMonth: number;
+   expiresYear: number;
+   balance: number;
+   income7Days: number;
+   expenses7Days: number;
+   currentUrl: string;
+};
+
+const CardInfobox: React.FC<Props> = (props) => {
+   const { number, expiresMonth, expiresYear, currentUrl } = props;
+
    return (
       <section className="module infobox card-infobox">
          <header>
@@ -37,16 +40,6 @@ const CardInfobox = ({
          </MultiModuleButtons>
       </section>
    );
-};
-
-CardInfobox.propTypes = {
-   number: PropTypes.number,
-   expiresMonth: PropTypes.number,
-   expiresYear: PropTypes.number,
-   balance: PropTypes.number,
-   income7Days: PropTypes.number,
-   expenses7Days: PropTypes.number,
-   currentUrl: PropTypes.string
 };
 
 export default CardInfobox;
