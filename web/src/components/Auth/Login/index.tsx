@@ -3,9 +3,18 @@ import SmallFormBox from 'components/UI/FormBoxes/Small';
 import LoginForm from './Form';
 import Loader from 'components/UI/Loader';
 
-const LoginBox = props => (
+import * as H from 'history';
+
+type Props = {
+   history: H.History;
+   onLoginSubmit: (identifier: string, password: string) => void;
+   loading: boolean;
+   error: string;
+};
+
+const LoginBox: React.FC<Props> = (props) => (
    <SmallFormBox>
-      {props.error ? <p>{props.error.message}</p> : null}
+      {props.error}
       {props.loading ? (
          <Loader />
       ) : (
