@@ -1,8 +1,19 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import { RouteComponentProps } from 'react-router-dom';
+
+import { useAppSelector } from '@hooks';
 import { chunker } from 'tools';
 
-const SingleAccount = ({ singleAcc }) => {
+interface Params {
+   accId: string;
+}
+
+interface Props extends RouteComponentProps<Params> {}
+
+const SingleAccount: React.FC<Props> = (props) => {
+   const accId = props.match.params.accId;
+   const singleAcc = useAppSelector((state) => state.accounts.data.find((el) => el._id === accId));
+
    return (
       <section className="module single-account">
          <h1>{singleAcc.type} account</h1>
@@ -18,12 +29,4 @@ const SingleAccount = ({ singleAcc }) => {
    );
 };
 
-const mapStateToProps = (state, ownProps) => {
-   const accId = ownProps.match.params.accId;
-
-   return {
-      singleAcc: state.accounts.data.find(el => el._id === accId)
-   };
-};
-
-export default connect(mapStateToProps)(SingleAccount);
+export default SingleAccount;

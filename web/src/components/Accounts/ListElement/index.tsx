@@ -1,9 +1,19 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
 import { chunker } from 'tools';
 
-const AccountsListEl = ({ matchUrl, _id, type, sortcode, currency, balance }) => {
+type Props = {
+   matchUrl: string;
+   _id: string;
+   type: string;
+   sortcode: number;
+   currency: string;
+   balance: number;
+};
+
+const AccountsListEl: React.FC<Props> = (props) => {
+   const { matchUrl, _id, type, sortcode, currency, balance } = props;
+
    return (
       <Link to={`${matchUrl}/${_id}`} className="list-group-item list-group-item-action">
          <div className="d-flex w-100 justify-content-between">
@@ -20,14 +30,6 @@ const AccountsListEl = ({ matchUrl, _id, type, sortcode, currency, balance }) =>
          </small>
       </Link>
    );
-};
-
-AccountsListEl.propTypes = {
-   _id: PropTypes.string,
-   type: PropTypes.string,
-   sortcode: PropTypes.number,
-   currency: PropTypes.string,
-   balance: PropTypes.number
 };
 
 export default AccountsListEl;
