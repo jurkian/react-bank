@@ -28,7 +28,7 @@ export const fetchMessagesStatus = (status: boolean) => ({
 });
 
 // Toggle message read
-export const messageToggle = (id: number) => async (dispatch: AppDispatch) => {
+export const messageToggle = (id: string) => async (dispatch: AppDispatch) => {
    try {
       const message = await toggleMessageRead(id);
 
@@ -41,7 +41,7 @@ export const messageToggle = (id: number) => async (dispatch: AppDispatch) => {
 };
 
 // Remove message
-export const messageRemove = (id: number) => async (dispatch: AppDispatch) => {
+export const messageRemove = (id: string) => async (dispatch: AppDispatch) => {
    try {
       const message = await removeMessage(id);
 
