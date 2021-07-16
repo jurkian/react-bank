@@ -4,10 +4,14 @@ import classNames from 'classnames';
 
 import './style.scss';
 
-const MainNavigation = props => {
+type Props = {
+   isMobileNavVisible: boolean;
+};
+
+const MainNavigation: React.FC<Props> = (props) => {
    let navClasses = classNames({
       'main-nav': true,
-      'navigation-visible': props.isMobileNavVisible
+      'navigation-visible': props.isMobileNavVisible,
    });
 
    return (

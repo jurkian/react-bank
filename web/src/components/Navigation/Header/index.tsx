@@ -3,7 +3,15 @@ import { Link } from 'react-router-dom';
 
 import './style.scss';
 
-const NavigationHeader = props => {
+type Props = {
+   user: {
+      firstName: string;
+      lastName: string;
+   };
+   toggleMobileNav: () => void;
+};
+
+const NavigationHeader: React.FC<Props> = (props) => {
    return (
       <header className="navigation-header">
          <div className="user-profile-box">
