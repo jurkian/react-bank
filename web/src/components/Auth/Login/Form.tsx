@@ -60,10 +60,8 @@ const InnerForm = (props: FormikProps<FormValues>) => {
 };
 
 // The type of props MyForm receives
-interface MyFormProps {
+interface MyFormProps extends FormValues {
    history: H.History;
-   identifier: string;
-   password: string;
    onLoginSubmit: (identifier: string, password: string) => void;
 }
 
