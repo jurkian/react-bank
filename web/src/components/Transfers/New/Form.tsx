@@ -1,9 +1,20 @@
 import React from 'react';
-import { Form, Field, withFormik } from 'formik';
+import { Form, Field, withFormik, FormikProps } from 'formik';
 import SingleModuleButton from 'components/UI/Buttons/SingleModuleButton';
 import validations from './validations';
 
-const InnerForm = props => {
+interface FormValues {
+   sourceAccountId: string;
+   payeeAccNumber: string;
+   payeeSortcode: string;
+   payeeName: string;
+   payeeAddress: string;
+   reference: string;
+   amount: string;
+   userAccountsList: any;
+}
+
+const InnerForm = (props: FormikProps<FormValues>) => {
    const { errors, touched } = props;
 
    return (
@@ -125,17 +136,24 @@ const InnerForm = props => {
    );
 };
 
+interface MyFormProps extends FormValues {
+   userId: string;
+   firstAccId: string;
+   addTransfer: (data: {}) => Promise<any>;
+}
+
 // Wrap our form with the using withFormik HoC
-const NewTransferForm = withFormik({
+const NewTransferForm = withFormik<MyFormProps, FormValues>({
    // Transform outer props into form values
-   mapPropsToValues: props => ({
+   mapPropsToValues: (props) => ({
       sourceAccountId: props.firstAccId,
       payeeAccNumber: '',
       payeeSortcode: '',
       payeeName: '',
       payeeAddress: '',
       reference: '',
-      amount: ''
+      amount: '',
+      userAccountsList: props.userAccountsList,
    }),
 
    validationSchema: validations,
@@ -146,16 +164,16 @@ const NewTransferForm = withFormik({
       const data = {
          ...values,
          sender: props.userId,
-         recipient: props.userId
+         recipient: props.userId,
       };
 
       setStatus('Sending...');
 
       props
          .addTransfer(data)
-         .then(data => setStatus('Transfer done!'))
-         .catch(error => setStatus('Problems, try again...'));
-   }
+         .then((data) => setStatus('Transfer done!'))
+         .catch((error) => setStatus('Problems, try again...'));
+   },
 })(InnerForm);
 
 export default NewTransferForm;

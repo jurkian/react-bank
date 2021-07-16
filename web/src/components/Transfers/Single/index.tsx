@@ -1,9 +1,23 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import { RouteComponentProps } from 'react-router-dom';
+import { useAppSelector } from '@hooks';
+
 import { formatDate } from 'tools';
 
-const SingleTransfer = ({ singleTrans: { type, date, payeeName, amount, status } }) => {
-   date = formatDate(date, 'dd/MM/yyyy HH:mm');
+interface Params {
+   transId: string;
+}
+
+interface Props extends RouteComponentProps<Params> {}
+
+const SingleTransfer: React.FC<Props> = (props) => {
+   const transId = props.match.params.transId;
+   const singleTrans = useAppSelector((state) =>
+      state.transfers.data.find((el) => el._id === transId)
+   );
+
+   const { type, payeeName, amount, status } = singleTrans;
+   const date = formatDate(singleTrans.date, 'dd/MM/yyyy HH:mm');
 
    return (
       <section className="module single-transfer">
@@ -19,12 +33,4 @@ const SingleTransfer = ({ singleTrans: { type, date, payeeName, amount, status }
    );
 };
 
-const mapStateToProps = (state, ownProps) => {
-   const transId = ownProps.match.params.transId;
-
-   return {
-      singleTrans: state.transfers.data.find(el => el._id === transId)
-   };
-};
-
-export default connect(mapStateToProps)(SingleTransfer);
+export default SingleTransfer;
