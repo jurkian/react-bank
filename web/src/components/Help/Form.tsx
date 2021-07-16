@@ -1,12 +1,19 @@
 import React from 'react';
-import { Form, Field, withFormik } from 'formik';
+import { Form, Field, withFormik, FormikProps } from 'formik';
 import * as Yup from 'yup';
 import SingleModuleButton from 'components/UI/Buttons/SingleModuleButton';
 
 // API
 import { sendHelpForm } from 'api/forms';
 
-const InnerForm = props => {
+interface FormValues {
+   name: string;
+   email: string;
+   subject: string;
+   message: string;
+}
+
+const InnerForm = (props: FormikProps<FormValues>) => {
    const { errors, touched } = props;
 
    return (
@@ -77,26 +84,26 @@ const InnerForm = props => {
    );
 };
 
+interface MyFormProps extends FormValues {}
+
 // Wrap our form with the using withFormik HoC
-const ContactForm = withFormik({
+const ContactForm = withFormik<MyFormProps, FormValues>({
    // Transform outer props into form values
-   mapPropsToValues: props => ({
+   mapPropsToValues: (props) => ({
       name: '',
       email: '',
       subject: '',
-      message: ''
+      message: '',
    }),
 
    // Add a custom validation function (this can be async too!)
    validationSchema: Yup.object().shape({
       name: Yup.string().required('Name is required'),
-      email: Yup.string()
-         .required('Email is required')
-         .email('This is not a valid email'),
+      email: Yup.string().required('Email is required').email('This is not a valid email'),
       subject: Yup.string().required('Subject is required'),
       message: Yup.string()
          .required('Message is required')
-         .min(6, 'Please enter at least 6 characters')
+         .min(6, 'Please enter at least 6 characters'),
    }),
 
    // Submission handler
@@ -106,10 +113,10 @@ const ContactForm = withFormik({
       setStatus('Sending...');
 
       sendHelpForm({ name, email, subject, message })
-         .then(res => res.data)
-         .then(res => setStatus('Your message has been sent'))
-         .catch(err => setStatus('Your message has been sent'));
-   }
+         .then((res) => res.data)
+         .then((res) => setStatus('Your message has been sent'))
+         .catch((err) => setStatus('Your message has been sent'));
+   },
 })(InnerForm);
 
 export default ContactForm;
