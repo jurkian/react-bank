@@ -1,8 +1,8 @@
-import React, { Component, Fragment } from 'react';
+import React, { useEffect } from 'react';
 import { Route, Switch } from 'react-router-dom';
-import { connect } from 'react-redux';
 import * as actions from 'actions';
-import withAuth from 'hoc/WithAuth';
+
+import { useAppSelector, useAppDispatch } from '@hooks';
 
 import { isValidToken } from 'tools';
 
@@ -20,56 +20,54 @@ import ProfileChangeDetails from 'containers/Profile/ChangeDetails';
 import Messages from 'containers/Messages';
 import Help from 'components/Help';
 
+type Props = {};
+
 // Get all user's initial data or redirect back to /login if not logged in
 // This is all handled in withAuth HOC
-class Panel extends Component {
-   componentDidMount() {
-      isValidToken()
-         .then(() => {
-            this.props.setAuthStatus(true);
-            this.props.fetchInitialData();
-         })
-         .catch(() => {
-            this.props.setAuthStatus(false);
-         });
-   }
+const Panel: React.FC<Props> = (props) => {
+   const dispatch = useAppDispatch();
 
-   render() {
-      if (!this.props.initialDataStatus) {
-         return <Loader />;
-      } else {
-         return (
-            <Fragment>
-               <Route path="/panel" component={Navigation} />
+   const initialDataStatus = useAppSelector((state) => state.panel.initialDataStatus);
 
-               <Switch>
-                  <Route exact path="/panel" component={PanelIntro} />
-                  <Route path="/panel/accounts" component={Accounts} />
-                  <Route path="/panel/transfers" component={Transfers} />
-                  <Route path="/panel/cards" component={Cards} />
-                  <Route path="/panel/profile" component={Profile} />
-                  <Route path="/panel/change-details" component={ProfileChangeDetails} />
-                  <Route path="/panel/messages" component={Messages} />
-                  <Route path="/panel/help" component={Help} />
-                  <Route component={PageNotFound} />
-               </Switch>
-            </Fragment>
-         );
+   const setAuthStatus = (status: boolean) => dispatch(actions.setAuthStatus(status));
+   const fetchInitialData = () => dispatch(actions.fetchInitialData());
+
+   const checkValidToken = async () => {
+      try {
+         await isValidToken();
+
+         setAuthStatus(true);
+         fetchInitialData();
+      } catch (err) {
+         setAuthStatus(false);
       }
+   };
+
+   useEffect(() => {
+      checkValidToken();
+   }, []);
+
+   if (!initialDataStatus) {
+      return <Loader />;
    }
-}
 
-const mapStateToProps = state => {
-   return {
-      initialDataStatus: state.panel.initialDataStatus
-   };
+   return (
+      <>
+         <Route path="/panel" component={Navigation} />
+
+         <Switch>
+            <Route exact path="/panel" component={PanelIntro} />
+            <Route path="/panel/accounts" component={Accounts} />
+            <Route path="/panel/transfers" component={Transfers} />
+            <Route path="/panel/cards" component={Cards} />
+            <Route path="/panel/profile" component={Profile} />
+            <Route path="/panel/change-details" component={ProfileChangeDetails} />
+            <Route path="/panel/messages" component={Messages} />
+            <Route path="/panel/help" component={Help} />
+            <Route component={PageNotFound} />
+         </Switch>
+      </>
+   );
 };
 
-const mapDispatchToProps = dispatch => {
-   return {
-      setAuthStatus: status => dispatch(actions.setAuthStatus(status)),
-      fetchInitialData: () => dispatch(actions.fetchInitialData())
-   };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(withAuth(Panel));
+export default Panel;
