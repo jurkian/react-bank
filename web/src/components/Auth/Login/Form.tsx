@@ -1,17 +1,18 @@
 import React from 'react';
-import { Form, Field, withFormik } from 'formik';
+import { Form, Field, withFormik, FormikProps } from 'formik';
 import { Link } from 'react-router-dom';
 import * as Yup from 'yup';
 import SingleModuleButton from 'components/UI/Buttons/SingleModuleButton';
 
 import * as H from 'history';
 
-type Props = {
-   history: H.History;
-   onLoginSubmit: (identifier: string, password: string) => void;
-};
+// Shape of form values
+interface FormValues {
+   identifier: string;
+   password: string;
+}
 
-const InnerForm: React.FC<Props> = (props) => {
+const InnerForm = (props: FormikProps<FormValues>) => {
    const { errors, touched } = props;
 
    return (
@@ -58,8 +59,16 @@ const InnerForm: React.FC<Props> = (props) => {
    );
 };
 
+// The type of props MyForm receives
+interface MyFormProps {
+   history: H.History;
+   identifier: string;
+   password: string;
+   onLoginSubmit: (identifier: string, password: string) => void;
+}
+
 // Wrap our form with the using withFormik HoC
-const LoginForm = withFormik({
+const LoginForm = withFormik<MyFormProps, FormValues>({
    // Transform outer props into form values
    mapPropsToValues: (props) => ({ identifier: '', password: '' }),
 
@@ -72,7 +81,7 @@ const LoginForm = withFormik({
    }),
 
    // Submission handler
-   handleSubmit: (values, { props, setStatus }) => {
+   handleSubmit: (values, { props }) => {
       props.onLoginSubmit(values.identifier, values.password);
    },
 })(InnerForm);
