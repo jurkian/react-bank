@@ -1,9 +1,9 @@
-import { applyMiddleware, createStore } from 'redux';
+import { applyMiddleware, createStore, Action } from 'redux';
 import rootReducer from 'reducers';
 import { routerMiddleware } from 'connected-react-router';
 
 import { createBrowserHistory } from 'history';
-import thunk from 'redux-thunk';
+import thunk, { ThunkDispatch } from 'redux-thunk';
 
 // Activate Redux DevTools only in dev mode
 import { composeWithDevTools } from 'redux-devtools-extension/developmentOnly';
@@ -24,4 +24,7 @@ export { history };
 export type RootState = ReturnType<typeof store.getState>;
 
 // Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
-export type AppDispatch = typeof store.dispatch;
+// export type AppDispatch = typeof store.dispatch;
+
+// Dispatch with Thunk support
+export type AppDispatch = ThunkDispatch<RootState, void, Action>;
