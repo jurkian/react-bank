@@ -3,9 +3,18 @@ import SmallFormBox from 'components/UI/FormBoxes/Small';
 import RegisterForm from './Form';
 import Loader from 'components/UI/Loader';
 
-const RegisterBox = props => (
+import * as H from 'history';
+
+type Props = {
+   history: H.History;
+   onRegisterSubmit: (email: string, password: string) => void;
+   loading: boolean;
+   error: string;
+};
+
+const RegisterBox: React.FC<Props> = (props) => (
    <SmallFormBox>
-      {props.error ? <p>{props.error.message}</p> : null}
+      {props.error}
       {props.loading ? (
          <Loader />
       ) : (

@@ -4,7 +4,14 @@ import { Link } from 'react-router-dom';
 import * as Yup from 'yup';
 import SingleModuleButton from 'components/UI/Buttons/SingleModuleButton';
 
-const InnerForm = props => {
+import * as H from 'history';
+
+type Props = {
+   history: H.History;
+   onRegisterSubmit: (email: string, password: string) => void;
+};
+
+const InnerForm: React.FC<Props> = (props) => {
    const { errors, touched } = props;
 
    return (
@@ -27,22 +34,20 @@ const InnerForm = props => {
 // Wrap our form with the using withFormik HoC
 const RegisterForm = withFormik({
    // Transform outer props into form values
-   mapPropsToValues: props => ({ email: '', password: '' }),
+   mapPropsToValues: (props) => ({ email: '', password: '' }),
 
    // Add a custom validation function (this can be async too!)
    validationSchema: Yup.object().shape({
-      email: Yup.string()
-         .required('Email is required')
-         .email('This is not a valid email'),
+      email: Yup.string().required('Email is required').email('This is not a valid email'),
       password: Yup.string()
          .required('Password is required')
-         .min(6, 'Your password has to be at least 6 characters')
+         .min(6, 'Your password has to be at least 6 characters'),
    }),
 
    // Submission handler
    handleSubmit: (values, { props, setStatus }) => {
       props.onRegisterSubmit(values.email, values.password);
-   }
+   },
 })(InnerForm);
 
 export default RegisterForm;

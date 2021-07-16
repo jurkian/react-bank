@@ -8,7 +8,7 @@ import * as H from 'history';
 
 type Props = {
    history: H.History;
-   onLoginSubmit: () => void;
+   onLoginSubmit: (identifier: string, password: string) => void;
 };
 
 const InnerForm: React.FC<Props> = (props) => {

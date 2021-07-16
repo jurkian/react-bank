@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import * as actions from 'actions';
 import { useAppDispatch } from '@hooks';
-
 import * as H from 'history';
 
+import * as actions from 'actions';
 import LoginBox from 'components/Auth/Login';
 
 type Props = {
@@ -20,8 +19,6 @@ const Login: React.FC<Props> = (props) => {
       setIsLoading(true);
       setError('');
 
-      // Dispatch auth action
-      // There will be automatic redirect to panel, in HOC
       const loginData = {
          identifier,
          password,
