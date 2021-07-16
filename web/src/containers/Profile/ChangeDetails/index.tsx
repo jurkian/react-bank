@@ -1,33 +1,29 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import { useAppSelector, useAppDispatch } from '@hooks';
+
 import * as actions from 'actions';
 
 import SmallFormBox from 'components/UI/FormBoxes/Small';
 import Form from './Form';
 
-const ProfileChangeDetails = props => {
+type Props = {};
+
+const ProfileChangeDetails: React.FC<Props> = (props) => {
+   const dispatch = useAppDispatch();
+   const userEmail = useAppSelector((state) => state.profile.data.email);
+
+   const changeUserDetails = (newEmail: string | null, newPassword: string | null) =>
+      dispatch(actions.changeUserDetails(newEmail, newPassword));
+
    return (
       <div className="row panel-content">
          <div className="col">
             <SmallFormBox>
-               <Form changeUserDetails={props.changeUserDetails} userEmail={props.userEmail} />
+               <Form changeUserDetails={changeUserDetails} userEmail={userEmail} />
             </SmallFormBox>
          </div>
       </div>
    );
 };
 
-const mapStateToProps = state => {
-   return {
-      userEmail: state.profile.data.email
-   };
-};
-
-const mapDispatchToProps = dispatch => {
-   return {
-      changeUserDetails: (newEmail, newPassword) =>
-         dispatch(actions.changeUserDetails(newEmail, newPassword))
-   };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(ProfileChangeDetails);
+export default ProfileChangeDetails;
