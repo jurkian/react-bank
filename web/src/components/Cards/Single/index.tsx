@@ -1,8 +1,22 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import { useAppSelector } from '@hooks';
+
 import CardInfobox from 'components/Infobox/CardInfobox';
 
-const SingleCard = ({ singleCard, match }) => {
+import { RouteComponentProps } from 'react-router-dom';
+
+interface Params {
+   cardId: string;
+}
+
+interface Props extends RouteComponentProps<Params> {}
+
+const SingleCard: React.FC<Props> = (props) => {
+   const { match } = props;
+
+   const cardId = props.match.params.cardId;
+   const singleCard = useAppSelector((state) => state.cards.data.find((el) => el._id === cardId));
+
    return (
       <div className="row">
          <div className="col">
@@ -12,12 +26,4 @@ const SingleCard = ({ singleCard, match }) => {
    );
 };
 
-const mapStateToProps = (state, ownProps) => {
-   const cardId = ownProps.match.params.cardId;
-
-   return {
-      singleCard: state.cards.data.find(el => el._id === cardId)
-   };
-};
-
-export default connect(mapStateToProps)(SingleCard);
+export default SingleCard;

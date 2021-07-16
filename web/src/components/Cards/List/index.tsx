@@ -1,26 +1,32 @@
-import React, { Fragment } from 'react';
-import { connect } from 'react-redux';
+import React from 'react';
+import { useAppSelector } from '@hooks';
+
 import CardsListEl from '../ListElement';
 
-const CardsList = ({ cards, match }) => {
-   const cardsList = cards.map(card => (
+import { RouteComponentProps } from 'react-router-dom';
+
+interface Props extends RouteComponentProps {}
+
+type CardType = {
+   _id: string;
+};
+
+const CardsList: React.FC<Props> = (props) => {
+   const { match } = props;
+   const cards = useAppSelector((state) => state.cards.data);
+
+   const cardsList = cards.map((card: CardType) => (
       <CardsListEl key={card._id} {...card} matchUrl={match.url} />
    ));
 
    return (
-      <Fragment>
+      <>
          <h1>Cards</h1>
 
          <p>You have {cardsList.length} active cards</p>
          <div className="list-group">{cardsList}</div>
-      </Fragment>
+      </>
    );
 };
 
-const mapStateToProps = state => {
-   return {
-      cards: state.cards.data
-   };
-};
-
-export default connect(mapStateToProps)(CardsList);
+export default CardsList;

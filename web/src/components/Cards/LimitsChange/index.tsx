@@ -1,47 +1,47 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import { useAppSelector, useAppDispatch } from '@hooks';
+
 import * as actions from 'actions';
 import { chunker } from 'tools';
 import Form from './Form';
 
-const LimitsChange = props => {
+import { RouteComponentProps } from 'react-router-dom';
+
+interface Params {
+   cardId: string;
+}
+
+interface Props extends RouteComponentProps<Params> {}
+
+const LimitsChange: React.FC<Props> = (props) => {
+   const dispatch = useAppDispatch();
+
+   const cardId = props.match.params.cardId;
+
+   const singleCard = useAppSelector((state) => state.cards.data.find((el) => el._id === cardId));
+   const currentOnlineLimit = singleCard.dailyOnlineLimit;
+   const currentWithdrawalLimit = singleCard.dailyWithdrawalLimit;
+
+   const changeCardLimits = (newOnlineLimit: string, newWithdrawalLimit: string) =>
+      dispatch(actions.changeCardLimits(cardId, newOnlineLimit, newWithdrawalLimit));
+
    return (
       <div className="col-sm-6 offset-sm-3">
          <section className="module limits-change">
             <h1>Limits change</h1>
             <p>
-               <strong>{props.singleCard.type} card</strong>
+               <strong>{singleCard.type} card</strong>
             </p>
-            <p>Number: {chunker(props.singleCard.number, 4, '-')}</p>
+            <p>Number: {chunker(singleCard.number, 4, '-')}</p>
 
             <Form
-               changeCardLimits={props.changeCardLimits}
-               currentOnlineLimit={props.currentOnlineLimit}
-               currentWithdrawalLimit={props.currentWithdrawalLimit}
+               changeCardLimits={changeCardLimits}
+               currentOnlineLimit={currentOnlineLimit}
+               currentWithdrawalLimit={currentWithdrawalLimit}
             />
          </section>
       </div>
    );
 };
 
-const mapStateToProps = (state, ownProps) => {
-   const cardId = ownProps.match.params.cardId;
-   const singleCard = state.cards.data.find(el => el._id === cardId);
-
-   return {
-      singleCard,
-      currentOnlineLimit: singleCard.dailyOnlineLimit,
-      currentWithdrawalLimit: singleCard.dailyWithdrawalLimit
-   };
-};
-
-const mapDispatchToProps = (dispatch, ownProps) => {
-   const cardId = ownProps.match.params.cardId;
-
-   return {
-      changeCardLimits: (newOnlineLimit, newWithdrawalLimit) =>
-         dispatch(actions.changeCardLimits(cardId, newOnlineLimit, newWithdrawalLimit))
-   };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(LimitsChange);
+export default LimitsChange;

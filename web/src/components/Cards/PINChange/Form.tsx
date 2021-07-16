@@ -1,10 +1,16 @@
 import React from 'react';
-import { Form, Field, withFormik } from 'formik';
+import { Form, Field, withFormik, FormikProps } from 'formik';
 import * as Yup from 'yup';
 import 'tools/validations/YupCustomValidations';
 import SingleModuleButton from 'components/UI/Buttons/SingleModuleButton';
 
-const InnerForm = props => {
+// Shape of form values
+interface FormValues {
+   pin: string;
+   pinConf: string;
+}
+
+const InnerForm = (props: FormikProps<FormValues>) => {
    const { errors, touched } = props;
 
    return (
@@ -48,9 +54,14 @@ const InnerForm = props => {
    );
 };
 
-const PINChangeForm = withFormik({
+interface MyFormProps extends FormValues {
+   changeCardPin: (pin: number) => Promise<any>;
+}
+
+// Wrap our form with the using withFormik HoC
+const PINChangeForm = withFormik<MyFormProps, FormValues>({
    // Transform outer props into form values
-   mapPropsToValues: props => ({ pin: '', pinConf: '' }),
+   mapPropsToValues: (props) => ({ pin: '', pinConf: '' }),
 
    validationSchema: Yup.object().shape({
       pin: Yup.number()
@@ -62,12 +73,12 @@ const PINChangeForm = withFormik({
       pinConf: Yup.number()
          // When PIN has any value, activate pinConf validations
          .when('pin', {
-            is: val => val && val.toString().length > 0,
+            is: (val: number) => val && val.toString().length > 0,
             then: Yup.number()
                .required('Please confirm your PIN')
                .typeError('PIN confirmation must be a number')
-               .oneOf([Yup.ref('pin')], 'PINs must be the same')
-         })
+               .oneOf([Yup.ref('pin')], 'PINs must be the same'),
+         }),
    }),
 
    // Submission handler
@@ -83,9 +94,9 @@ const PINChangeForm = withFormik({
 
       props
          .changeCardPin(pin)
-         .then(data => setStatus('PIN successfully changed!'))
-         .catch(error => setStatus('Problems, try again...'));
-   }
+         .then((data) => setStatus('PIN successfully changed!'))
+         .catch((error) => setStatus('Problems, try again...'));
+   },
 })(InnerForm);
 
 export default PINChangeForm;

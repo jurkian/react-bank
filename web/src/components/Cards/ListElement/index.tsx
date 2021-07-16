@@ -1,9 +1,24 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
+
 import { myPadStart, chunker } from 'tools';
 
-const CardsListEl = props => {
+type Props = {
+   _id: string;
+   type: string;
+   expiresMonth: number;
+   expiresYear: number;
+   balance: number;
+
+   matchUrl: string;
+   number: number;
+   dailyOnlineLimit: number;
+   dailyWithdrawalLimit: number;
+   monthlyOnlineLimit: number;
+   monthlyWithdrawalLimit: number;
+};
+
+const CardsListEl: React.FC<Props> = (props) => {
    return (
       <Link
          to={`${props.matchUrl}/${props._id}`}
@@ -12,7 +27,7 @@ const CardsListEl = props => {
          <div className="d-flex w-100 justify-content-between">
             <h5 className="mb-1">Card</h5>
             <small className="text-muted">
-               Expires: {myPadStart(props.expiresMonth, 2, 0)}/{props.expiresYear}
+               Expires: {myPadStart(props.expiresMonth, 2, '0')}/{props.expiresYear}
             </small>
          </div>
          <p className="mb-1">Number: {chunker(props.number, 4, '-')}</p>
@@ -27,14 +42,6 @@ const CardsListEl = props => {
          </small>
       </Link>
    );
-};
-
-CardsListEl.propTypes = {
-   _id: PropTypes.string,
-   type: PropTypes.string,
-   expiresMonth: PropTypes.number,
-   expiresYear: PropTypes.number,
-   balance: PropTypes.number
 };
 
 export default CardsListEl;
