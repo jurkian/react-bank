@@ -29,6 +29,7 @@
    "scripts": {
       "start": "cross-env BROWSER=none react-scripts start",
       "build": "react-scripts build && rimraf build/**/*.map",
+      "force-build": "cross-env TSC_COMPILE_ON_ERROR=true react-scripts build && rimraf build/**/*.map",
       "test": "react-scripts test",
       "eject": "react-scripts eject"
    },
