@@ -9,7 +9,10 @@
     "build": "strapi build",
     "strapi": "strapi"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "@types/lodash": "^4.14.171",
+    "@types/node": "^16.3.2"
+  },
   "dependencies": {
     "faker": "^5.5.3",
     "joi": "^17.4.0",
