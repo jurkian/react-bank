@@ -1,0 +1,50 @@
+{
+  "name": "react-bank",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Banking app built in React and Redux",
+  "scripts": {
+    "develop": "strapi develop",
+    "start": "strapi start",
+    "build": "strapi build",
+    "strapi": "strapi"
+  },
+  "devDependencies": {
+    "@types/lodash": "^4.14.171",
+    "@types/node": "^16.3.2"
+  },
+  "dependencies": {
+    "faker": "^5.5.3",
+    "joi": "^17.4.0",
+    "knex": "<0.20.0",
+    "moment": "^2.29.1",
+    "mysql": "latest",
+    "strapi": "3.6.5",
+    "strapi-admin": "3.6.5",
+    "strapi-connector-bookshelf": "3.6.5",
+    "strapi-plugin-content-manager": "3.6.5",
+    "strapi-plugin-content-type-builder": "3.6.5",
+    "strapi-plugin-email": "3.6.5",
+    "strapi-plugin-upload": "3.6.5",
+    "strapi-plugin-users-permissions": "3.6.5",
+    "strapi-provider-email-mailgun": "^3.6.5",
+    "strapi-utils": "3.6.5"
+  },
+  "author": {
+    "name": ""
+  },
+  "strapi": {},
+  "engines": {
+    "node": ">=10.16.0 <=14.x.x",
+    "npm": ">=6.0.0"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jurkian/react-bank.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jurkian/react-bank/issues"
+  },
+  "homepage": "https://github.com/jurkian/react-bank#readme"
+}
