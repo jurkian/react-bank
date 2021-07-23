@@ -8,7 +8,7 @@ Demo user (automatically created when you start the app):
 Login: email@example.com<br />
 Password: admin123
 
-**(Please note this app needs to be adjusted to use the new Strapi Back End)**
+**(Please note this app needs to be adjusted to use the new Strapi Back End. Also, the TypeScript implementation is in early stage and covers only Front End at the moment.)**
 
 ## What's inside?
 
