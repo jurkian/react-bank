@@ -28,7 +28,7 @@
       "nodemailer-mailgun-transport": "^1.4.0",
       "strapi": "^3.3.4",
       "url-slug": "^2.2.0",
-      "validator": "^12.0.0"
+      "validator": "^13.7.0"
    },
    "devDependencies": {
       "dotenv": "^8.2.0",
