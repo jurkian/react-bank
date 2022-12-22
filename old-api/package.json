@@ -19,7 +19,7 @@
       "express-validator": "^6.2.0",
       "faker": "^5.1.0",
       "helmet": "^3.21.2",
-      "jsonwebtoken": "^8.5.1",
+      "jsonwebtoken": "^9.0.0",
       "lodash": "^4.17.20",
       "module-alias": "^2.2.2",
       "mongodb": "^3.3.3",
